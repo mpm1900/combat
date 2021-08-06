@@ -43,7 +43,7 @@ export const CombatMoveResult = (props: CombatMoveResultProps) => {
       onDamageDone && onDamageDone()
       setTimeout(() => {
         onDone && onDone()
-      }, 1000 + statusesCount * 200)
+      }, 2000 + statusesCount * 100)
     }
   }, [damageDone])
 
