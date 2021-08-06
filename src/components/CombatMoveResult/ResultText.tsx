@@ -12,17 +12,6 @@ export type ResultTextProps = {
 
 export const ResultText = (props: PropsWithChildren<ResultTextProps>) => {
   const { perfect, miss, damageDone, perfectTextColor, children } = props
-  const postStyles = useSpring({
-    from: {
-      opacity: 0,
-    },
-    to: {
-      opacity: 1,
-    },
-    config: { duration: damageDone ? 0 : 500 },
-    // delay: 200,
-  })
-
   const perfectStyles = useSpring({
     from: {
       textShadow: '0px 0px 40px rgba(255,255,255,1)',
@@ -50,7 +39,6 @@ export const ResultText = (props: PropsWithChildren<ResultTextProps>) => {
       display='flex'
       justifyContent='center'
       alignItems='center'
-      style={postStyles}
     >
       {perfect && damageDone && (
         <Box

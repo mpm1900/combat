@@ -40,7 +40,7 @@ export const CombatMoveResult = (props: CombatMoveResultProps) => {
   const wrapper = {}
   useEffect(() => {
     if (damageDone) {
-      onDamageDone && onDamageDone()
+      // onDamageDone && onDamageDone()
       setTimeout(() => {
         onDone && onDone()
       }, 2000 + statusesCount * 100)
