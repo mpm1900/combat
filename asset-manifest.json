@@ -1,38 +1,40 @@
 {
   "files": {
-    "main.css": "/combat/static/css/main.dde45e52.chunk.css",
-    "main.js": "/combat/static/js/main.21cca50a.chunk.js",
-    "main.js.map": "/combat/static/js/main.21cca50a.chunk.js.map",
+    "main.css": "/combat/static/css/main.881d6237.chunk.css",
+    "main.js": "/combat/static/js/main.e7a93df2.chunk.js",
+    "main.js.map": "/combat/static/js/main.e7a93df2.chunk.js.map",
     "runtime-main.js": "/combat/static/js/runtime-main.32250efa.js",
     "runtime-main.js.map": "/combat/static/js/runtime-main.32250efa.js.map",
-    "static/js/2.e7ed9303.chunk.js": "/combat/static/js/2.e7ed9303.chunk.js",
-    "static/js/2.e7ed9303.chunk.js.map": "/combat/static/js/2.e7ed9303.chunk.js.map",
+    "static/js/2.bc2f4a73.chunk.js": "/combat/static/js/2.bc2f4a73.chunk.js",
+    "static/js/2.bc2f4a73.chunk.js.map": "/combat/static/js/2.bc2f4a73.chunk.js.map",
     "static/js/3.beda6b1d.chunk.js": "/combat/static/js/3.beda6b1d.chunk.js",
     "static/js/3.beda6b1d.chunk.js.map": "/combat/static/js/3.beda6b1d.chunk.js.map",
     "index.html": "/combat/index.html",
-    "static/css/main.dde45e52.chunk.css.map": "/combat/static/css/main.dde45e52.chunk.css.map",
-    "static/js/2.e7ed9303.chunk.js.LICENSE.txt": "/combat/static/js/2.e7ed9303.chunk.js.LICENSE.txt",
+    "static/css/main.881d6237.chunk.css.map": "/combat/static/css/main.881d6237.chunk.css.map",
+    "static/js/2.bc2f4a73.chunk.js.LICENSE.txt": "/combat/static/js/2.bc2f4a73.chunk.js.LICENSE.txt",
     "static/media/death-skull.e46d2abd.svg": "/combat/static/media/death-skull.e46d2abd.svg",
     "static/media/dice-target.2123da11.svg": "/combat/static/media/dice-target.2123da11.svg",
     "static/media/drop.c90ef023.svg": "/combat/static/media/drop.c90ef023.svg",
     "static/media/fast-backward-button.5e491b82.svg": "/combat/static/media/fast-backward-button.5e491b82.svg",
     "static/media/fast-forward-button.2307d71a.svg": "/combat/static/media/fast-forward-button.2307d71a.svg",
+    "static/media/flame.b55b5992.svg": "/combat/static/media/flame.b55b5992.svg",
     "static/media/flamer.6efba9c3.svg": "/combat/static/media/flamer.6efba9c3.svg",
     "static/media/fluffy-wing.30c94702.svg": "/combat/static/media/fluffy-wing.30c94702.svg",
+    "static/media/lightning-trio.2c6165fd.svg": "/combat/static/media/lightning-trio.2c6165fd.svg",
     "static/media/magic-swirl.fe6b7c76.svg": "/combat/static/media/magic-swirl.fe6b7c76.svg",
     "static/media/oak-leaf.7deeef1c.svg": "/combat/static/media/oak-leaf.7deeef1c.svg",
+    "static/media/perspective-dice-six-faces-random.6ee9d245.svg": "/combat/static/media/perspective-dice-six-faces-random.6ee9d245.svg",
     "static/media/power-lightning.3ae17416.svg": "/combat/static/media/power-lightning.3ae17416.svg",
     "static/media/pulse.bdf208ab.svg": "/combat/static/media/pulse.bdf208ab.svg",
     "static/media/revolt.2e58af85.svg": "/combat/static/media/revolt.2e58af85.svg",
     "static/media/spectre.a300475c.svg": "/combat/static/media/spectre.a300475c.svg",
-    "static/media/stone-pile.addbf61f.svg": "/combat/static/media/stone-pile.addbf61f.svg",
-    "static/media/thumb-down.fd69cc7f.svg": "/combat/static/media/thumb-down.fd69cc7f.svg",
-    "static/media/thumb-up.9f51d969.svg": "/combat/static/media/thumb-up.9f51d969.svg"
+    "static/media/star-swirl.58a85c13.svg": "/combat/static/media/star-swirl.58a85c13.svg",
+    "static/media/stone-pile.addbf61f.svg": "/combat/static/media/stone-pile.addbf61f.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.32250efa.js",
-    "static/js/2.e7ed9303.chunk.js",
-    "static/css/main.dde45e52.chunk.css",
-    "static/js/main.21cca50a.chunk.js"
+    "static/js/2.bc2f4a73.chunk.js",
+    "static/css/main.881d6237.chunk.css",
+    "static/js/main.e7a93df2.chunk.js"
   ]
 }
