@@ -22,6 +22,7 @@ export type CheckProps = BoxProps & {
   size: number
   delay?: number
   value: boolean | null
+  isDone?: boolean
   nullColor?: string
   failureColor?: string
   successColor?: string
@@ -31,6 +32,7 @@ export type CheckProps = BoxProps & {
 
 export const Check = (props: CheckProps) => {
   const {
+    isDone = false,
     value,
     size,
     padding = '6px',
@@ -43,14 +45,13 @@ export const Check = (props: CheckProps) => {
     children,
     onRest,
   } = props
-  const [dropDone, setDropDone] = useState(false)
   const isNull = value === null
 
   const dropDuration = 200
   const dropRef = useSpringRef()
   const drop = useSpring({
     ref: dropRef,
-    from: { top: -size },
+    from: { top: isDone ? 0 : -size },
     top: isNull ? -size : 0,
     config: { duration: dropDuration },
     delay: delay,
@@ -65,7 +66,6 @@ export const Check = (props: CheckProps) => {
     config: { duration: shakeDuration },
     delay: delay + dropDuration,
     onRest: () => {
-      setDropDone(!isNull)
       onRest && onRest()
     },
   })
@@ -77,12 +77,12 @@ export const Check = (props: CheckProps) => {
       borderColor: nullColor,
     },
     to: {
-      borderColor: dropDone ? (value ? successColor : failureColor) : nullColor,
+      borderColor: isDone ? (value ? successColor : failureColor) : nullColor,
     },
   })
 
   const shadowColor = value ? 'rgba(0,0,0,1)' : 'rgba(0,0,0,0.3)'
-  const shadowValue = dropDone
+  const shadowValue = isDone
     ? `0px 0px 20px ${shadowColor} inset`
     : `0px 0px 0px ${shadowColor} inset`
 
@@ -102,7 +102,7 @@ export const Check = (props: CheckProps) => {
         transform: shake.x
           .to({
             range: [0, 0.5, 1],
-            output: [0, isNull ? 0 : size / 6, 0],
+            output: [0, isNull || isDone ? 0 : size / 6, 0],
           })
           .to((x) => `translate3d(0px, ${x}px, 0px)`),
       }}

@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import Color from 'color'
-import { useSpring } from 'react-spring'
 import { Box } from '../_core/Box'
 import { MoveResult } from '../../types/move'
 import { TargetResults } from './TargetResults'
 import { CombatMoveResultChecks } from './CombatMoveResultChecks'
+import { useCombatBodyResults } from '../CombatBody/CombatBodyResultsContext'
 
 export interface CombatMoveResultProps {
   rolls: (boolean | null)[]
@@ -25,13 +25,13 @@ export const CombatMoveResult = (props: CombatMoveResultProps) => {
     onDamageDone,
     onDone,
   } = props
+  const { damageDone, setDamageDone, checksDone, setChecksDone } =
+    useCombatBodyResults()
   const [perfectCheckColor, setPerfectCheckColor] = useState(perfectColor)
   const perfectTextColor = useMemo(
     () => Color(perfectColor).lighten(0.8).rgb().toString(),
     [perfectColor],
   )
-  const [checksDone, setChecksDone] = useState(false)
-  const [damageDone, setDamageDone] = useState(false)
 
   const statusesCount = results.reduce((sum, result) => {
     return sum + result.statuses.target.length
@@ -39,8 +39,9 @@ export const CombatMoveResult = (props: CombatMoveResultProps) => {
 
   const wrapper = {}
   useEffect(() => {
+    console.log('damage done change', damageDone)
     if (damageDone) {
-      // onDamageDone && onDamageDone()
+      onDamageDone && onDamageDone()
       setTimeout(() => {
         onDone && onDone()
       }, 2000 + statusesCount * 100)
@@ -51,11 +52,9 @@ export const CombatMoveResult = (props: CombatMoveResultProps) => {
     <Box minWidth='366px' justifyContent='center' style={wrapper}>
       <CombatMoveResultChecks
         rolls={rolls}
-        damageDone={damageDone}
         perfectCheckColor={perfectCheckColor}
         perfectText={perfectText}
         perfectTextColor={perfectTextColor}
-        onDone={() => setChecksDone(true)}
       />
       {checksDone && (
         <Box flexDirection='row'>
@@ -65,7 +64,6 @@ export const CombatMoveResult = (props: CombatMoveResultProps) => {
               results={results}
               onDone={() => {
                 setPerfectCheckColor(perfectColor)
-                setDamageDone(true)
               }}
             />
           </Box>

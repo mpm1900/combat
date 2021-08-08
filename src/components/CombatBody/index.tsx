@@ -8,14 +8,14 @@ import {
 } from '../../types/move'
 import { AccuracyStats, Character } from '../../types/character/character'
 import { getStats } from '../../types/character/util'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useCombatTurn } from '../../contexts/CombatContext/turn'
 import { CombatBodyActions } from './CombatBodyActions'
 import { FadeWindow } from '../_core/FadeWindow'
 import { CombatBodyTargets } from './CombatBodyTargets'
 import { CombatBodyResults } from './CombatBodyResults'
-import { Check } from '../_core/Check'
 import { Box } from '../_core/Box'
+import { CombatBodyResultsContext } from './CombatBodyResultsContext'
 
 export const CombatBody = () => {
   const {
@@ -29,6 +29,8 @@ export const CombatBody = () => {
   const { moveBuffer, targetsBuffer } = useCombatBuffer()
   const [rolls, setRolls] = useState<(boolean | null)[]>([])
   const [moveResults, setMoveResults] = useState<MoveResult[] | undefined>()
+  const [checksDone, setChecksDone] = useState(false)
+  const [damageDone, setDamageDone] = useState(false)
 
   const character = getActiveCharacter()
   const targetsOptions =
@@ -74,6 +76,21 @@ export const CombatBody = () => {
     }
   }
 
+  const commitTurn = () => {
+    nextTurn()
+    setDamageDone(false)
+    setChecksDone(false)
+  }
+
+  useEffect(() => {
+    if (damageDone) {
+      commitMove()
+      setTimeout(() => {
+        commitTurn()
+      }, 3000)
+    }
+  }, [damageDone])
+
   return (
     <Box flex={1}>
       <FadeWindow flex='1' alignItems='center'>
@@ -81,13 +98,12 @@ export const CombatBody = () => {
         {targetsOptions && !targetsBuffer && (
           <CombatBodyTargets targetsOptions={targetsOptions} />
         )}
-        {moveResults && targetsBuffer && character && (
-          <CombatBodyResults
-            moveResults={moveResults}
-            rolls={rolls}
-            commitMove={commitMove}
-            nextTurn={nextTurn}
-          />
+        {moveResults && targetsBuffer && (
+          <CombatBodyResultsContext.Provider
+            value={{ damageDone, setDamageDone, checksDone, setChecksDone }}
+          >
+            <CombatBodyResults moveResults={moveResults} rolls={rolls} />
+          </CombatBodyResultsContext.Provider>
         )}
       </FadeWindow>
     </Box>

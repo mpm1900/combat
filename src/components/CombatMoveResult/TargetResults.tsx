@@ -4,13 +4,12 @@ import { MoveResult } from '../../types/move'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
 import { AnimatedNumber } from '../_core/AnimatedNumber'
 import { Box } from '../_core/Box'
-import { ReactComponent as Success } from '../../icons/delapouite/thumb-up.svg'
-import { ReactComponent as Failure } from '../../icons/delapouite/thumb-down.svg'
 import { ReactComponent as Arrow } from '../../icons/delapouite/fast-forward-button.svg'
 import { theme } from '../../theme'
 import { Icon } from '../_core/Icon'
 import { Check } from '../_core/Check'
 import { StatusIcon } from '../_core/StatusIcon'
+import { useCombatBodyResults } from '../CombatBody/CombatBodyResultsContext'
 
 export type TargetResultsProps = {
   results: MoveResult[]
@@ -46,7 +45,12 @@ type TargetResultProps = {
 }
 const TargetResult = (props: TargetResultProps) => {
   const { result, onDone } = props
-  const [damageDone, setDamageDone] = useState(false)
+  const { damageDone, setDamageDone } = useCombatBodyResults()
+  const [statusesDoneArray, setStatusesDoneArray] = useState(
+    result.statuses.target.map((s) => false),
+  )
+  const setStatusDone = (index: number) =>
+    setStatusesDoneArray((a) => a.map((s, i) => (i === index ? true : s)))
 
   const wrapper = useSpring({
     from: { opacity: 0 },
@@ -63,7 +67,7 @@ const TargetResult = (props: TargetResultProps) => {
   const damage = useSpring({
     damage: result.totalDamage,
     from: {
-      damage: 0,
+      damage: damageDone ? result.totalDamage : 0,
     },
     config: {
       mass: 10,
@@ -118,8 +122,9 @@ const TargetResult = (props: TargetResultProps) => {
                   padding='2px'
                   borderWidth={'2px'}
                   value={status.isApplied}
+                  isDone={statusesDoneArray[i]}
                   successColor={theme.statsGreen}
-                  // onRest={() => setStatusDone(i)}
+                  onRest={() => setStatusDone(i)}
                 >
                   {<StatusIcon status={status} height='16px' width='16px' />}
                 </Check>

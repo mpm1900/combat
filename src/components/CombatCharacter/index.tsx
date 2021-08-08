@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { useCombat } from '../../contexts/CombatContext'
 import { theme } from '../../theme'
 import { Character } from '../../types/character/character'
 import { getStats } from '../../types/character/util'
@@ -15,11 +16,21 @@ export type CombatCharacterProps = {
 
 export const CombatCharacter = (props: CombatCharacterProps) => {
   const { character } = props
+  const { getActiveCharacter } = useCombat()
+  const activeCharacter = getActiveCharacter()
+  const isActive = character.id === activeCharacter?.id
   const stats = useMemo(() => getStats(character), [character])
   const currentHealth = min(stats.health - character.damage, 0)
   const currentEnergy = min(stats.energy - character.energyOffset, 0)
   return (
-    <Box>
+    <Box
+      style={
+        {
+          //transform: isActive ? 'scale(1.2)' : '',
+          //marginLeft: isActive ? '-24px' : '',
+        }
+      }
+    >
       <Box
         width='240px'
         background='linear-gradient(
