@@ -75,19 +75,21 @@ export const CombatBody = () => {
   }
 
   return (
-    <FadeWindow flex='1' alignItems='center'>
-      {!moveBuffer && <CombatBodyActions />}
-      {targetsOptions && !targetsBuffer && (
-        <CombatBodyTargets targetsOptions={targetsOptions} />
-      )}
-      {moveResults && targetsBuffer && character && (
-        <CombatBodyResults
-          moveResults={moveResults}
-          rolls={rolls}
-          commitMove={commitMove}
-          nextTurn={nextTurn}
-        />
-      )}
-    </FadeWindow>
+    <Box flex={1}>
+      <FadeWindow flex='1' alignItems='center'>
+        {!moveBuffer && <CombatBodyActions />}
+        {targetsOptions && !targetsBuffer && (
+          <CombatBodyTargets targetsOptions={targetsOptions} />
+        )}
+        {moveResults && targetsBuffer && character && (
+          <CombatBodyResults
+            moveResults={moveResults}
+            rolls={rolls}
+            commitMove={commitMove}
+            nextTurn={nextTurn}
+          />
+        )}
+      </FadeWindow>
+    </Box>
   )
 }

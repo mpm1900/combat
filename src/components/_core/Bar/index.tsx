@@ -1,4 +1,4 @@
-import { useSpring } from 'react-spring'
+import { config, useSpring } from 'react-spring'
 import { Box, BoxProps } from '../Box'
 
 export type BarProps = BoxProps & {
@@ -20,6 +20,7 @@ export const Bar = (props: BarProps) => {
 
   const deltaStyles = useSpring({
     width: `${percent}%`,
+    config: config.molasses,
   })
 
   return (
@@ -48,7 +49,8 @@ export const Bar = (props: BarProps) => {
         right='0px'
         alignItems='flex-end'
         justifyContent='center'
-        color='white'
+        color='rgba(255,255,255,0.81)'
+        padding='0px 2px'
         zIndex={3}
         style={{
           textShadow: '0px 1px 1px rgba(0,0,0,1)',

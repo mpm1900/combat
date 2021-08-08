@@ -9,7 +9,7 @@ export const CombatParties = (props: PropsWithChildren<CombatPartiesProps>) => {
   const { children } = props
   const { parties } = useCombat()
   return (
-    <Box flex='1' overflow='hidden' flexDirection='row'>
+    <Box flex='1' overflow='hidden' flexDirection='row' padding='0px 8px'>
       <Box padding='8px'>
         {parties[0] &&
           parties[0].characters.map((c) => (

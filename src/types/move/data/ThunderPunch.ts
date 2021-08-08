@@ -10,7 +10,7 @@ export const ThunderPunch: Move = {
   element: 'thunder',
   target: 'uncontrolled-party',
   checks: 3,
-  offset: -20,
+  offset: 0,
   power: 120,
   recovery: 100,
   energyCost: 10,

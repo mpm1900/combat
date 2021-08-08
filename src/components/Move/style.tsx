@@ -7,7 +7,7 @@ export const Wrapper = styled(Box)`
   flex-direction: column;
   padding: 16px;
   margin: 8px;
-  border: 1px solid black;
+  border: 1px solid rgba(255, 255, 255, 0.45);
   width: 250px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.27);
   background: linear-gradient(

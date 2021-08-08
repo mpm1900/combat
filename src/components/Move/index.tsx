@@ -8,13 +8,13 @@ import {
   MoveDetails,
   Wrapper,
 } from './style'
-import { ElementIcon } from './ElementIcon'
 import { TypeIcon } from './TypeIcon'
 import { MoveStatuses } from './MoveStatuses'
 import { AccuracyStats, Character } from '../../types/character/character'
 import { PropsWithChildren, useMemo } from 'react'
 import { getStats } from '../../types/character/util'
 import { Box } from '../_core/Box'
+import { ElementalIcon } from '../_core/ElementalIcon'
 
 const targetTypeStringMap: Record<MoveTarget, string> = {
   all: 'All',
@@ -47,7 +47,7 @@ export const Move = (props: PropsWithChildren<MoveProps>) => {
   return (
     <Wrapper>
       <Header>
-        <ElementIcon type={move.element} />
+        <ElementalIcon type={move.element} />
         <Box flex={1} paddingRight='16px'>
           <strong style={{ marginLeft: 8, fontSize: 18 }}>{move.name}</strong>
         </Box>

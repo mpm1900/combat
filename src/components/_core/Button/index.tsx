@@ -3,13 +3,16 @@ import { Box, BoxProps } from '../Box'
 
 const inactiveColor = 'rgba(255,255,255,0.45)'
 const activeColor = 'rgba(255,255,255,0.96)'
-const StyledButton = styled(Box)({
+type ButtonProps = { isHovering?: boolean; disabled?: boolean }
+const StyledButton = styled(Box)<ButtonProps>((p) => ({
   alignItems: 'center',
   background: 'rgba(0,0,0,0.18)',
   border: `2px solid ${inactiveColor}`,
   borderRadius: '4px',
   color: activeColor,
   cursor: 'pointer',
+  fontSize: '16px',
+  lineHeight: '20px',
   fontWeight: 500,
   padding: '4px 16px',
   textTransform: 'uppercase',
@@ -22,6 +25,15 @@ const StyledButton = styled(Box)({
   ':active': {
     background: 'transparent',
   },
-})
+  ...(p.isHovering
+    ? {
+        background: 'rgba(255,255,255,0.18)',
+        borderColor: activeColor,
+        color: activeColor,
+      }
+    : {}),
+}))
 
-export const Button = (props: BoxProps) => <StyledButton {...props} />
+export const Button = (props: BoxProps & ButtonProps) => (
+  <StyledButton as='button' {...props} />
+)

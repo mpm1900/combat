@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Status } from '../../types/status/status'
 import { Box } from '../_core/Box'
 import { StatusCard } from '../_core/StatusCard'
+import { StatusIcon } from '../_core/StatusIcon'
 import { Tooltip } from '../_core/Tooltip'
 
 export type CombatCharacterStatusProps = {
@@ -25,14 +26,8 @@ export const CombatCharacterStatus = (props: CombatCharacterStatusProps) => {
           triggerOffset: 4,
         }}
       >
-        <Box
-          style={{
-            fontSize: '10px',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-          }}
-        >
-          {status.name}
+        <Box padding='4px 2px'>
+          <StatusIcon status={status} color='white' />
         </Box>
       </Tooltip>
     </Box>

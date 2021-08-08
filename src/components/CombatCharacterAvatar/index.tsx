@@ -1,9 +1,8 @@
 import styled from 'styled-components'
-import { overflow } from 'styled-system'
 import { Character } from '../../types/character/character'
 import { ElementalType } from '../../types/elemental'
-import { colorMap } from '../Move/ElementIcon'
 import { Box, BoxProps } from '../_core/Box'
+import { colorMap } from '../_core/ElementalIcon'
 
 const Wrapper = styled(Box)({
   boxShadow: '0px 0px 10px inset rgba(0,0,0,0.45)',

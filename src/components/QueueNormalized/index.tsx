@@ -8,8 +8,8 @@ import { convertToDeltas, QueueStats } from '../../types/queue/queue'
 import { QueueProps } from '../Queue'
 import { Box } from '../_core/Box'
 import { Icon } from '../_core/Icon'
-import { colorMap } from '../Move/ElementIcon'
 import { ElementalType } from '../../types/elemental'
+import { colorMap } from '../_core/ElementalIcon'
 
 const margin = 16
 const width = 18
@@ -58,7 +58,7 @@ export const QueueNormalized = (props: QueueProps) => {
 
   return (
     <Box margin='0 8px' height='20px' flexDirection='row'>
-      {transitions((styles, character, t, index) => {
+      {transitions((styles, character) => {
         return (
           <Box
             key={character.id}

@@ -10,6 +10,7 @@ import { ReactComponent as Arrow } from '../../icons/delapouite/fast-forward-but
 import { theme } from '../../theme'
 import { Icon } from '../_core/Icon'
 import { Check } from '../_core/Check'
+import { StatusIcon } from '../_core/StatusIcon'
 
 export type TargetResultsProps = {
   results: MoveResult[]
@@ -120,7 +121,7 @@ const TargetResult = (props: TargetResultProps) => {
                   successColor={theme.statsGreen}
                   // onRest={() => setStatusDone(i)}
                 >
-                  {status.isApplied ? <Success /> : <Failure />}
+                  {<StatusIcon status={status} height='16px' width='16px' />}
                 </Check>
                 <Box opacity={status.isApplied ? 1 : 0.54}>{status.name}</Box>
               </Box>

@@ -1,10 +1,11 @@
 import { useMemo } from 'react'
+import { theme } from '../../theme'
 import { Character } from '../../types/character/character'
 import { getStats } from '../../types/character/util'
 import { min } from '../../types/equation'
-import { colorMap } from '../Move/ElementIcon'
 import { Bar } from '../_core/Bar'
 import { Box } from '../_core/Box'
+import { colorMap, ElementalIcon } from '../_core/ElementalIcon'
 import { Hexagon } from '../_core/Hexagon'
 import { CombatCharacterStatus } from './CombatCharacterStatus'
 
@@ -27,7 +28,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         rgba(80, 94, 116, 1) 100%
       )'
         border='1px solid rgba(255,255,255,0.56)'
-        margin='36px 0 0 24px'
+        margin='36px 0 0 32px'
         flexDirection='row'
       >
         <Hexagon
@@ -36,28 +37,41 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
           borderWidth={2}
           size={72}
           style={{
-            margin: '10px 0 0 -24px',
+            margin: '14px 0 0 -32px',
           }}
         />
         <Box flex={1}>
-          <Box padding='4px'>
-            <Box color='white'>
-              <strong style={{ textShadow: '0 1px 3px rgba(0,0,0,0.56)' }}>
+          <Box padding='4px' minHeight='36px'>
+            <Box color='white' alignItems='center' flexDirection='row'>
+              {character.elements.map((element) => (
+                <ElementalIcon
+                  type={element.element}
+                  height='16px'
+                  width='16px'
+                />
+              ))}
+              <Box
+                marginLeft='4px'
+                style={{
+                  textShadow: '0 1px 3px rgba(0,0,0,0.56)',
+                  fontWeight: 700,
+                }}
+              >
                 {character.name}
-              </strong>
+              </Box>
             </Box>
           </Box>
           <Bar
             value={currentHealth}
             max={stats.health}
-            height='16px'
-            background='lightcoral'
+            height='12px'
+            background={theme.healthBarRed}
             border='1px solid rgba(0,0,0,0.45)'
             marginLeft='-8px'
             color='rgba(0,0,0,0.56)'
             style={{
               fontSize: '12px',
-              fontWeight: 700,
+              fontWeight: 600,
             }}
           >
             {currentHealth}/{stats.health}
@@ -66,22 +80,27 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             value={currentEnergy}
             max={stats.energy}
             height='12px'
-            background='darkseagreen'
+            background={theme.energyBarGreen}
             border='1px solid rgba(0,0,0,0.45)'
             borderTop='none'
-            marginLeft='-16px'
+            marginLeft='-32px'
             paddingRight='4px'
             color='rgba(0,0,0,0.56)'
             style={{
               fontSize: '12px',
-              fontWeight: 700,
+              fontWeight: 600,
             }}
           >
             {currentEnergy}/{stats.energy}
           </Bar>
         </Box>
       </Box>
-      <Box justifyContent='flex-end' color='white' flexDirection='row'>
+      <Box
+        justifyContent='flex-end'
+        color='white'
+        flexDirection='row'
+        height='28px'
+      >
         {character.statuses.map((status) => (
           <CombatCharacterStatus key={status.id} status={status} />
         ))}

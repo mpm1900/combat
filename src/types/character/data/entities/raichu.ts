@@ -29,5 +29,5 @@ export const Raichu = (): Character => ({
     specialAttack: 90,
     specialDefense: 80,
   },
-  moves: [ThunderPunch, Thunderbolt],
+  moves: [ThunderPunch, Thunderbolt, ThunderPunch, Thunderbolt],
 })
