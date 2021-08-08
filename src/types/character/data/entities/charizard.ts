@@ -2,6 +2,7 @@ import { v4 } from 'uuid'
 import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
 import { FireBall } from '../../../move/data/FireBall'
+import { FlareBlitz } from '../../../move/data/FlareBlitz'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 
@@ -28,5 +29,5 @@ export const Charizard = (): Character => ({
     specialAttack: 108,
     specialDefense: 85,
   },
-  moves: [FireBall],
+  moves: [FireBall, FlareBlitz],
 })

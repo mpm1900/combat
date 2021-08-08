@@ -5,7 +5,7 @@ import { Check } from '../_core/Check'
 import { ResultText } from './ResultText'
 
 export type CombatMoveResultChecksProps = {
-  rolls: (boolean | null)[]
+  rolls: boolean[]
   perfectCheckColor: string
   perfectText: string
   perfectTextColor: string

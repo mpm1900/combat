@@ -27,7 +27,7 @@ function App() {
   const { init } = useCombat()
 
   useEffect(() => {
-    init([party(), enemies()])
+    init(enemies())
   }, [])
 
   return (

@@ -24,10 +24,12 @@ export const CombatBody = () => {
     getActiveCharacter,
     updateCharacter,
     getTargets,
+    isCharacterPlayerCharacter,
   } = useCombat()
-  const { nextTurn } = useCombatTurn()
-  const { moveBuffer, targetsBuffer } = useCombatBuffer()
-  const [rolls, setRolls] = useState<(boolean | null)[]>([])
+  const { nextTurn, turnId } = useCombatTurn()
+  const { moveBuffer, setMoveBuffer, targetsBuffer, setTargetsBuffer } =
+    useCombatBuffer()
+  const [rolls, setRolls] = useState<boolean[]>([])
   const [moveResults, setMoveResults] = useState<MoveResult[] | undefined>()
   const [checksDone, setChecksDone] = useState(false)
   const [damageDone, setDamageDone] = useState(false)
@@ -91,19 +93,47 @@ export const CombatBody = () => {
     }
   }, [damageDone])
 
+  useEffect(() => {
+    if (character && !moveBuffer && !targetsBuffer) {
+      if (!isCharacterPlayerCharacter(character.id)) {
+        const moveIndex = Math.floor(Math.random() * character.moves.length)
+        const move = character.moves[moveIndex]
+        if (move) {
+          setMoveBuffer(move)
+          const targets = getTargets(move, character)
+          const targetsIndex = Math.floor(Math.random() * targets.length)
+          setTargetsBuffer(targets[targetsIndex])
+        }
+      }
+    }
+  }, [character])
+
   return (
     <Box flex={1}>
       <FadeWindow flex='1' alignItems='center'>
-        {!moveBuffer && <CombatBodyActions />}
-        {targetsOptions && !targetsBuffer && (
-          <CombatBodyTargets targetsOptions={targetsOptions} />
-        )}
-        {moveResults && targetsBuffer && (
-          <CombatBodyResultsContext.Provider
-            value={{ damageDone, setDamageDone, checksDone, setChecksDone }}
-          >
-            <CombatBodyResults moveResults={moveResults} rolls={rolls} />
-          </CombatBodyResultsContext.Provider>
+        {character && (
+          <>
+            {!moveBuffer && isCharacterPlayerCharacter(character.id) && (
+              <CombatBodyActions />
+            )}
+            {targetsOptions &&
+              !targetsBuffer &&
+              isCharacterPlayerCharacter(character.id) && (
+                <CombatBodyTargets targetsOptions={targetsOptions} />
+              )}
+            {moveResults && targetsBuffer && (
+              <CombatBodyResultsContext.Provider
+                value={{
+                  damageDone,
+                  setDamageDone,
+                  checksDone,
+                  setChecksDone,
+                }}
+              >
+                <CombatBodyResults moveResults={moveResults} rolls={rolls} />
+              </CombatBodyResultsContext.Provider>
+            )}
+          </>
         )}
       </FadeWindow>
     </Box>

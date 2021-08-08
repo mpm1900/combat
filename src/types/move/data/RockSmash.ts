@@ -6,10 +6,10 @@ export const RockSmash: Move = {
   name: 'Rock Smash',
   type: 'physical',
   element: 'earth',
-  target: 'uncontrolled-target',
+  target: 'uncontrolled-party',
   checks: 3,
-  offset: 0,
-  power: 120,
+  offset: -5,
+  power: 100,
   recovery: 100,
   energyCost: 10,
   perfectStatuses: {

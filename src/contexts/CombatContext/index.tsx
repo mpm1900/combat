@@ -10,6 +10,7 @@ import { Party } from '../../types/character/party'
 import { Move } from '../../types/move'
 import { getActiveId, Queue } from '../../types/queue/queue'
 import { ResolvedStatus, Status } from '../../types/status/status'
+import { usePlayer } from '../PlayerContext'
 import { CombatBuffer } from './buffer'
 import { getTargetIds } from './getTargets'
 import { CombatTurn } from './turn'
@@ -20,8 +21,10 @@ export type CombatContextValue = {
   queue: Queue
   parties: Party[]
   characters: Character[]
-  init: (parties: Party[]) => void
+  init: (party: Party) => void
   getCharacter: (id: string) => Character | undefined
+  getCharacterPartyId: (id: string) => string | undefined
+  isCharacterPlayerCharacter: (id: string) => boolean
   getActiveCharacter: () => Character | undefined
   hydrateCharacterIds: (ids: string[]) => Character[]
   getTargets: (move: Move, source: Character) => Character[][]
@@ -37,6 +40,8 @@ const defaultValue: CombatContextValue = {
   characters: [],
   init: () => {},
   getCharacter: () => undefined,
+  getCharacterPartyId: () => undefined,
+  isCharacterPlayerCharacter: () => false,
   getActiveCharacter: () => undefined,
   hydrateCharacterIds: () => [],
   getTargets: () => [],
@@ -52,6 +57,7 @@ export const useCombat = () => useContext(CombatContext)
 
 export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
   const { children } = props
+  const { party } = usePlayer()
   const [parties, setParties] = useState<CombatParty[]>([])
   const [characters, setCharacters] = useState<Character[]>([])
   const { queue, enqueue, initialize } = useQueue([])
@@ -99,6 +105,12 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
   const getCharacter = (id: string) =>
     hydrateCharacterIds([id])[0] as Character | undefined
 
+  const getCharacterPartyId = (id: string) =>
+    parties.find((p) => p.characterIds.includes(id))?.id
+
+  const isCharacterPlayerCharacter = (id: string) =>
+    getCharacterPartyId(id) === party.id
+
   const getActiveCharacter = () => getCharacter(getActiveId(queue))
 
   const getTargets = (move: Move, source: Character) => {
@@ -108,14 +120,15 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
     return targets.map((ids) => hydrateCharacterIds(ids))
   }
 
-  const init = (p: Party[]) => {
+  const init = (p: Party) => {
+    const initParties = [party, p]
     setParties(
-      p.map((party) => ({
+      initParties.map((party) => ({
         id: party.id,
         characterIds: party.characters.map((c) => c.id),
       })),
     )
-    const chars = p.reduce(
+    const chars = initParties.reduce(
       (result, party) => [...result, ...party.characters],
       [] as Character[],
     )
@@ -138,6 +151,8 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
     characters,
     init,
     getCharacter,
+    getCharacterPartyId,
+    isCharacterPlayerCharacter,
     getActiveCharacter,
     hydrateCharacterIds,
     getTargets,

@@ -8,7 +8,7 @@ export const WaterShot: Move = {
   type: 'special',
   element: 'water',
   target: 'uncontrolled-target',
-  checks: 3,
+  checks: 4,
   offset: -5,
   power: 150,
   recovery: 100,

@@ -6,10 +6,10 @@ export const RazorLeaf: Move = {
   name: 'Razor Leaf',
   type: 'special',
   element: 'grass',
-  target: 'uncontrolled-party',
+  target: 'uncontrolled-target',
   checks: 2,
   offset: -10,
-  power: 100,
+  power: 80,
   recovery: 100,
   energyCost: 10,
   perfectStatuses: {
