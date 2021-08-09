@@ -40,7 +40,11 @@ export const Move = (props: PropsWithChildren<MoveProps>) => {
       <Header>
         <ElementalIcon type={move.element} />
         <Box flex={1} paddingRight='16px'>
-          <strong style={{ marginLeft: 8, fontSize: 18 }}>{move.name}</strong>
+          <span
+            style={{ marginLeft: 8, fontSize: 20, fontFamily: 'Trade Winds' }}
+          >
+            {move.name}
+          </span>
         </Box>
       </Header>
       <AttackWrapper>

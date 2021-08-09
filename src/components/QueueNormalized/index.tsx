@@ -35,7 +35,7 @@ export const QueueNormalized = (props: QueueProps) => {
 
   const list = [...charactersInOrder]
 
-  const magicWidthCoef = 7.2857
+  const magicWidthCoef = 7.2833
   const getX = (index: number) =>
     list.reduce((sum, c, i) => {
       const w = index > i ? c.name.length * magicWidthCoef + space : 0
@@ -57,7 +57,7 @@ export const QueueNormalized = (props: QueueProps) => {
   )
 
   return (
-    <Box margin='0 8px' height='20px' flexDirection='row'>
+    <Box margin='0 8px 0 16px' height='20px' flexDirection='row'>
       {transitions((styles, character) => {
         return (
           <Box
@@ -81,7 +81,8 @@ export const QueueNormalized = (props: QueueProps) => {
                 whiteSpace: 'nowrap',
                 textOverflow: 'ellipsis',
                 lineHeight: '20px',
-                fontFamily: 'monospace',
+                fontSize: '12px',
+                fontFamily: 'Roboto Mono',
               }}
               color={colorMap[character.elements[0].element as ElementalType]}
             >

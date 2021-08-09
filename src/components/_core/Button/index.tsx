@@ -8,14 +8,14 @@ const StyledButton = styled(Box)<ButtonProps>((p) => ({
   alignItems: 'center',
   background: 'rgba(0,0,0,0.18)',
   border: `2px solid ${inactiveColor}`,
-  borderRadius: '4px',
   color: activeColor,
   cursor: 'pointer',
-  fontSize: '16px',
+  fontSize: '14px',
   lineHeight: '20px',
   fontWeight: 500,
   textTransform: 'uppercase',
   textShadow: '0px 1px 3px rgba(0,0,0,0.54)',
+  fontFamily: 'Trade Winds',
   ':hover': {
     background: 'rgba(255,255,255,0.18)',
     borderColor: activeColor,
@@ -39,4 +39,5 @@ export const Button = (props: BoxProps & ButtonProps) => (
 
 Button.defaultProps = {
   padding: '4px 16px',
+  borderRadius: '4px',
 }

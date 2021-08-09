@@ -7,7 +7,7 @@ import { StatusList } from '../_core/StatusList'
 
 const Section = styled(Box)({
   width: '100%',
-  marginBottom: '4px',
+  marginBottom: '6px',
 })
 const TitleWrapper = styled(Box)({
   flexDirection: 'row',
@@ -15,9 +15,10 @@ const TitleWrapper = styled(Box)({
   alignItems: 'center',
 })
 const Title = styled(Box)({
-  fontWeight: 700,
+  fontWeight: 900,
+  color: 'rgba(255,255,255,0.90)',
   textTransform: 'uppercase',
-  fontSize: '14px',
+  fontSize: '13px',
 })
 const Spacer = styled(Box)({
   flex: 1,

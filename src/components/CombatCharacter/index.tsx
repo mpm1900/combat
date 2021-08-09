@@ -53,19 +53,25 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         />
         <Box flex={1}>
           <Box padding='4px' minHeight='36px'>
-            <Box color='white' alignItems='center' flexDirection='row'>
+            <Box
+              color='white'
+              alignItems='center'
+              flexDirection='row'
+              marginLeft='4px'
+            >
               {character.elements.map((element) => (
                 <ElementalIcon
                   type={element.element}
-                  height='16px'
-                  width='16px'
+                  height='20px'
+                  width='20px'
                 />
               ))}
               <Box
-                marginLeft='4px'
+                marginLeft='6px'
+                paddingTop='4px'
                 style={{
                   textShadow: '0 1px 3px rgba(0,0,0,0.56)',
-                  fontWeight: 700,
+                  fontFamily: 'Trade Winds',
                 }}
               >
                 {character.name}

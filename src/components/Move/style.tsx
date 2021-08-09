@@ -68,6 +68,7 @@ export const AttackAccuracyText = styled.div<{ checks: number }>((props) => ({
 export const MoveDetailsTitle = styled(Box)({
   color: 'rgba(255,255,255,0.54)',
   fontSize: '12px',
+  lineHeight: '16px',
   fontWeight: 700,
   whiteSpace: 'nowrap',
 })
@@ -75,5 +76,5 @@ export const MoveDetailsTitle = styled(Box)({
 export const MoveDetailsValue = styled(Box)({
   color: 'white',
   fontWeight: 700,
-  fontSize: '14px',
+  fontSize: '13px',
 })

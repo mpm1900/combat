@@ -11,7 +11,6 @@ import { getStats } from '../../types/character/util'
 import { useEffect, useState } from 'react'
 import { useCombatTurn } from '../../contexts/CombatContext/turn'
 import { CombatBodyActions } from './CombatBodyActions'
-import { FadeWindow } from '../_core/FadeWindow'
 import { CombatBodyTargets } from './CombatBodyTargets'
 import { Box } from '../_core/Box'
 import { CombatMoveResults } from '../CombatMoveResults'
@@ -107,7 +106,7 @@ export const CombatBody = () => {
   }, [character, moveBuffer, targetsBuffer])
 
   return (
-    <Box flex={1}>
+    <Box flex={1} marginTop='24px'>
       <Box flex='1' alignItems='center'>
         {!moveBuffer && isCharacterPlayerCharacter(character?.id || '') && (
           <CombatBodyActions />

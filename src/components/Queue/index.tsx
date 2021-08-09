@@ -42,6 +42,7 @@ export const Queue = (props: QueueProps) => {
       <QueueWrapper>
         {transitions((styles, item) => (
           <CombatCharacterAvatar
+            marginTop='-2px'
             character={character(item.id) as Character}
             style={{
               ...styles,

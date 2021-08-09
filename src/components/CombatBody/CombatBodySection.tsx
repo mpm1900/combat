@@ -16,7 +16,7 @@ export const CombatBodySection = (props: CombatBodySectionProps) => {
         marginBottom='24px'
         justifyContent='center'
         textAlign='center'
-        style={{ fontSize: '24px', fontWeight: 700 }}
+        style={{ fontSize: '24px', fontWeight: 400, fontFamily: 'Trade Winds' }}
       >
         {title}
       </Box>

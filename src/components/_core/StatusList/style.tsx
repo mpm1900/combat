@@ -18,12 +18,12 @@ export const StatusWrapper = styled(Box)<{ isPositive: boolean }>((props) => ({
 export const StatusChance = styled(Box)({
   marginRight: '2px',
   opacity: 0.72,
-  fontSize: '12px',
+  fontSize: '10px',
   fontWeight: 300,
 })
 
 export const StatusName = styled(Box)<{ isHovering?: boolean }>((props) => ({
-  fontSize: '14px',
+  fontSize: '13px',
   fontWeight: 400,
   cursor: 'default',
   textDecoration: props.isHovering ? 'underline' : 'none',

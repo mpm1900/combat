@@ -43,29 +43,35 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
                 character={character}
                 position='absolute'
                 marginRight='-8px'
-                marginLeft='-24px'
-                marginBottom='-24px'
+                marginLeft='-16px'
+                marginBottom='-16px'
                 borderRadius='50%'
                 height='80px'
                 width='80px'
                 zIndex={2}
               />
             )}
-            <Box flexDirection='row' alignItems='center' paddingLeft='48px'>
+            <Box flexDirection='row' alignItems='center' paddingLeft='52px'>
               <Button
                 isHovering={true}
                 disabled={true}
                 marginRight='4px'
+                borderRadius='4px 4px 0 0'
                 style={{ borderBottom: 'none' }}
               >
                 Attacks
               </Button>
-              <Button style={{ borderBottom: 'none' }}>Items</Button>
+              <Button
+                borderRadius='4px 4px 0 0'
+                style={{ borderBottom: 'none' }}
+              >
+                Items
+              </Button>
             </Box>
           </Box>
           <Box
             background='rgba(0,0,0,0.09)'
-            border='2px solid rgba(255,255,255,0.81)'
+            border='1px solid rgba(255,255,255,0.81)'
             padding='8px'
             flex='1'
             flexDirection='row'
