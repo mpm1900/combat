@@ -1,9 +1,10 @@
-import { useCombat } from '../../contexts/CombatContext'
+import { config, useSpring } from 'react-spring'
 import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
 import { Character } from '../../types/character/character'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
 import { Box } from '../_core/Box'
 import { Button } from '../_core/Button'
+import { CombatBodySection } from './CombatBodySection'
 
 export type CombatBodyTargetsProps = {
   targetsOptions: Character[][]
@@ -12,12 +13,16 @@ export type CombatBodyTargetsProps = {
 export const CombatBodyTargets = (props: CombatBodyTargetsProps) => {
   const { targetsOptions } = props
   const { setMoveBuffer, setTargetsBuffer } = useCombatBuffer()
+
+  const styles = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    config: config.molasses,
+  })
+
   return (
-    <Box flex={1} alignItems='center'>
-      <Box flexDirection='row' alignItems='center'>
-        <h2 style={{ color: 'white' }}>Choose a Target</h2>
-      </Box>
-      <Box flexDirection='row'>
+    <CombatBodySection title='Choose a Target'>
+      <Box flexDirection='row' style={styles}>
         {targetsOptions.map((targets, i) => (
           <Box
             key={i}
@@ -45,11 +50,11 @@ export const CombatBodyTargets = (props: CombatBodyTargetsProps) => {
           </Box>
         ))}
       </Box>
-      <Box marginTop='32px'>
+      <Box marginTop='32px' flexDirection='row' justifyContent='center'>
         <Button onClick={() => setMoveBuffer(undefined)}>
           Back to Action Select
         </Button>
       </Box>
-    </Box>
+    </CombatBodySection>
   )
 }

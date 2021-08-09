@@ -14,7 +14,6 @@ const StyledButton = styled(Box)<ButtonProps>((p) => ({
   fontSize: '16px',
   lineHeight: '20px',
   fontWeight: 500,
-  padding: '4px 16px',
   textTransform: 'uppercase',
   textShadow: '0px 1px 3px rgba(0,0,0,0.54)',
   ':hover': {
@@ -37,3 +36,7 @@ const StyledButton = styled(Box)<ButtonProps>((p) => ({
 export const Button = (props: BoxProps & ButtonProps) => (
   <StyledButton as='button' {...props} />
 )
+
+Button.defaultProps = {
+  padding: '4px 16px',
+}

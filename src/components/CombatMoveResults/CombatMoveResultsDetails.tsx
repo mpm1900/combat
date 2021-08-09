@@ -9,30 +9,38 @@ import { theme } from '../../theme'
 import { Icon } from '../_core/Icon'
 import { Check } from '../_core/Check'
 import { StatusIcon } from '../_core/StatusIcon'
-import { useCombatBodyResults } from '../CombatBody/CombatBodyResultsContext'
+import { useList } from '../../hooks/useList'
 
-export type TargetResultsProps = {
-  results: MoveResult[]
-  onDone: () => void
+export type CombatMoveResultsDetailsProps = {
+  moveResults: MoveResult[]
+  resultsDone: boolean
+  onDone?: () => void
 }
 
-export const TargetResults = (props: TargetResultsProps) => {
-  const { results, onDone } = props
-  const [resultsDone, setResultsDone] = useState(results.map((_) => false))
-  const setStatusDone = (index: number) =>
-    setResultsDone((r) => r.map((d, i) => (i === index ? true : d)))
+export const CombatMoveResultsDetails = (
+  props: CombatMoveResultsDetailsProps,
+) => {
+  const { moveResults, resultsDone, onDone } = props
+  const [resultsDoneArray, setResultDone] = useList<boolean>(
+    moveResults.length,
+    false,
+  )
 
   useEffect(() => {
-    if (resultsDone.every(Boolean)) {
-      onDone()
+    if (resultsDoneArray.every(Boolean) && !resultsDone) {
+      onDone && onDone()
     }
-  }, [resultsDone])
+  }, [resultsDoneArray])
 
   return (
     <Box padding='16px 8px' background='rgba(0,0,0,0.54)'>
-      {results.map((result, i) => (
+      {moveResults.map((result, i) => (
         <Box marginTop={i > 0 ? '12px' : 0}>
-          <TargetResult result={result} onDone={() => setStatusDone(i)} />
+          <TargetResult
+            result={result}
+            resultsDone={resultsDone}
+            onDone={() => setResultDone(i, true)}
+          />
         </Box>
       ))}
     </Box>
@@ -41,16 +49,16 @@ export const TargetResults = (props: TargetResultsProps) => {
 
 type TargetResultProps = {
   result: MoveResult
+  resultsDone: boolean
   onDone: () => void
 }
 const TargetResult = (props: TargetResultProps) => {
-  const { result, onDone } = props
-  const { damageDone, setDamageDone } = useCombatBodyResults()
-  const [statusesDoneArray, setStatusesDoneArray] = useState(
-    result.statuses.target.map((s) => false),
+  const { result, resultsDone, onDone } = props
+  const [damageDone, setDamageDone] = useState(resultsDone)
+  const [statusesDoneArray, setStatusDone] = useList<boolean>(
+    result.statuses.target.length,
+    resultsDone,
   )
-  const setStatusDone = (index: number) =>
-    setStatusesDoneArray((a) => a.map((s, i) => (i === index ? true : s)))
 
   const wrapper = useSpring({
     from: { opacity: 0 },
@@ -79,10 +87,10 @@ const TargetResult = (props: TargetResultProps) => {
   })
 
   useEffect(() => {
-    if (damageDone) {
+    if (damageDone && statusesDoneArray.every(Boolean)) {
       onDone()
     }
-  }, [damageDone])
+  }, [damageDone, statusesDoneArray])
 
   return (
     <Box style={wrapper} overflow='hidden'>
@@ -124,7 +132,7 @@ const TargetResult = (props: TargetResultProps) => {
                   value={status.isApplied}
                   isDone={statusesDoneArray[i]}
                   successColor={theme.statsGreen}
-                  onRest={() => setStatusDone(i)}
+                  onRest={() => setStatusDone(i, true)}
                 >
                   {<StatusIcon status={status} height='16px' width='16px' />}
                 </Check>

@@ -5,7 +5,8 @@ import {
   AttackPower,
   AttackWrapper,
   Header,
-  MoveDetails,
+  MoveDetailsValue,
+  MoveDetailsTitle,
   Wrapper,
 } from './style'
 import { TypeIcon } from './TypeIcon'
@@ -15,17 +16,7 @@ import { PropsWithChildren, useMemo } from 'react'
 import { getStats } from '../../types/character/util'
 import { Box } from '../_core/Box'
 import { ElementalIcon } from '../_core/ElementalIcon'
-
-const targetTypeStringMap: Record<MoveTarget, string> = {
-  all: 'All',
-  self: 'Self',
-  'uncontrolled-target': 'Enemy',
-  'uncontrolled-splash': 'Splash',
-  'uncontrolled-party': 'Party',
-  'controlled-target': 'Ally',
-  'controlled-splash': 'Splash',
-  'controlled-party': 'Team',
-}
+import { MoveDetails } from './MoveDetails'
 
 export type MoveProps = {
   move: MoveType
@@ -65,24 +56,7 @@ export const Move = (props: PropsWithChildren<MoveProps>) => {
         </AttackAccuracy>
       </AttackWrapper>
 
-      <Box
-        flexDirection='row'
-        style={{ textAlign: 'center' }}
-        margin='8px 0 12px 0'
-      >
-        <MoveDetails>
-          <Box style={{ fontSize: 12, whiteSpace: 'nowrap' }}>Target</Box>
-          <Box color='white'>{targetTypeStringMap[move.target]}</Box>
-        </MoveDetails>
-        <MoveDetails>
-          <Box style={{ fontSize: 12, whiteSpace: 'nowrap' }}>Energy Cost</Box>
-          <Box color='white'>{move.energyCost}</Box>
-        </MoveDetails>
-        <MoveDetails>
-          <Box style={{ fontSize: 12, whiteSpace: 'nowrap' }}>Recovery</Box>
-          <Box color='white'>{move.recovery}</Box>
-        </MoveDetails>
-      </Box>
+      <MoveDetails move={move} />
       <MoveStatuses move={move} character={character} />
       <Box flex={1} />
       {children}

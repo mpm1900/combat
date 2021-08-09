@@ -1,30 +1,37 @@
-import { useEffect, useState } from 'react'
-import { useCombatBodyResults } from '../CombatBody/CombatBodyResultsContext'
+import Color from 'color'
+import { useEffect, useMemo, useState } from 'react'
+import { useList } from '../../hooks/useList'
+import { theme } from '../../theme'
 import { Box } from '../_core/Box'
 import { Check } from '../_core/Check'
 import { ResultText } from './ResultText'
 
 export type CombatMoveResultChecksProps = {
   rolls: boolean[]
-  perfectCheckColor: string
-  perfectText: string
-  perfectTextColor: string
+  checksDone: boolean
+  resultsDone: boolean
+  onDone?: () => void
 }
 
-export const CombatMoveResultChecks = (props: CombatMoveResultChecksProps) => {
-  const { rolls, perfectCheckColor, perfectText, perfectTextColor } = props
-  const { damageDone, checksDone, setChecksDone } = useCombatBodyResults()
-  const [checksDoneArray, setChecksDoneArray] = useState(
-    rolls.map((_) => checksDone),
+export const CombatMoveResultsChecks = (props: CombatMoveResultChecksProps) => {
+  const { rolls, resultsDone, checksDone, onDone } = props
+  const [checksDoneArray, setCheckDone] = useList<boolean>(
+    rolls.length,
+    checksDone,
   )
-  const setCheckDone = (index: number) =>
-    setChecksDoneArray((d) => d.map((c, i) => (i === index ? true : c)))
+  const [perfectCheckColor, setPerfectCheckColor] = useState(
+    theme.perfectCheckColor,
+  )
+  const perfectTextColor = useMemo(
+    () => Color(theme.perfectCheckColor).lighten(0.8).rgb().toString(),
+    [theme.perfectCheckColor],
+  )
   const isPerfect = rolls.every(Boolean)
   const isMiss = !rolls.some(Boolean)
 
   useEffect(() => {
     if (!checksDone && checksDoneArray.every(Boolean)) {
-      setChecksDone(true)
+      onDone && onDone()
     }
   }, [checksDoneArray])
 
@@ -34,7 +41,7 @@ export const CombatMoveResultChecks = (props: CombatMoveResultChecksProps) => {
         <Check
           key={i}
           size={100}
-          delay={200 * i}
+          delay={100 * i}
           value={r}
           isDone={checksDoneArray[i]}
           successColor={
@@ -48,7 +55,7 @@ export const CombatMoveResultChecks = (props: CombatMoveResultChecksProps) => {
               : 'rgba(0,0,0,0.18)'
           }
           onRest={() => {
-            setCheckDone(i)
+            setCheckDone(i, true)
           }}
         />
       ))}
@@ -56,10 +63,10 @@ export const CombatMoveResultChecks = (props: CombatMoveResultChecksProps) => {
         <ResultText
           perfect={isPerfect}
           miss={isMiss}
-          damageDone={damageDone}
+          damageDone={resultsDone}
           perfectTextColor={perfectTextColor}
         >
-          {perfectText}
+          PERFECT
         </ResultText>
       )}
     </Box>

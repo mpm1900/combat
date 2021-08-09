@@ -8,7 +8,7 @@ export const Wrapper = styled(Box)`
   padding: 16px;
   margin: 8px;
   border: 1px solid rgba(255, 255, 255, 0.45);
-  width: 250px;
+  min-width: 250px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.27);
   background: linear-gradient(
     198deg,
@@ -49,7 +49,6 @@ export const AttackAccuracy = styled.div({
   color: 'rgba(255,255,255,0.5)',
   justifyContent: 'center',
   alignItems: 'center',
-  //fontSize: 12,
 })
 
 const accuracyColors: any = {
@@ -66,11 +65,15 @@ export const AttackAccuracyText = styled.div<{ checks: number }>((props) => ({
   color: accuracyColors[props.checks] || 'white',
 }))
 
-export const MoveDetails = styled(Box)({
-  flex: 1,
-  fontSize: '14px',
+export const MoveDetailsTitle = styled(Box)({
+  color: 'rgba(255,255,255,0.54)',
+  fontSize: '12px',
   fontWeight: 700,
-  color: 'rgba(255,255,255,0.56)',
-  // whiteSpace: 'nowrap',
-  padding: '0 8px',
+  whiteSpace: 'nowrap',
+})
+
+export const MoveDetailsValue = styled(Box)({
+  color: 'white',
+  fontWeight: 700,
+  fontSize: '14px',
 })

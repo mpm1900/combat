@@ -13,9 +13,8 @@ import { useCombatTurn } from '../../contexts/CombatContext/turn'
 import { CombatBodyActions } from './CombatBodyActions'
 import { FadeWindow } from '../_core/FadeWindow'
 import { CombatBodyTargets } from './CombatBodyTargets'
-import { CombatBodyResults } from './CombatBodyResults'
 import { Box } from '../_core/Box'
-import { CombatBodyResultsContext } from './CombatBodyResultsContext'
+import { CombatMoveResults } from '../CombatMoveResults'
 
 export const CombatBody = () => {
   const {
@@ -26,13 +25,12 @@ export const CombatBody = () => {
     getTargets,
     isCharacterPlayerCharacter,
   } = useCombat()
-  const { nextTurn, turnId } = useCombatTurn()
+  const { turnId, nextTurn } = useCombatTurn()
   const { moveBuffer, setMoveBuffer, targetsBuffer, setTargetsBuffer } =
     useCombatBuffer()
   const [rolls, setRolls] = useState<boolean[]>([])
   const [moveResults, setMoveResults] = useState<MoveResult[] | undefined>()
-  const [checksDone, setChecksDone] = useState(false)
-  const [damageDone, setDamageDone] = useState(false)
+  const [moveCommited, setMoveCommitted] = useState(false)
 
   const character = getActiveCharacter()
   const targetsOptions =
@@ -43,12 +41,14 @@ export const CombatBody = () => {
     source: Character,
     targets: Character[],
   ) => {
+    if (moveResults) return
     const stats = getStats(source)
     const rolls = getRolls(
       move.checks,
       stats[`${move.type}Accuracy` as keyof AccuracyStats] + move.offset,
     )
     setRolls(rolls)
+    console.log('setting move results')
     setMoveResults(
       targets.map((target) => {
         return resolveMove(source, target, move, rolls)
@@ -57,13 +57,19 @@ export const CombatBody = () => {
   }
 
   useEffect(() => {
-    if (character && moveBuffer && targetsBuffer) {
+    if (character && moveBuffer && targetsBuffer && !moveResults) {
+      console.log('roll damage')
       rollDamage(moveBuffer, character, targetsBuffer)
     }
-  }, [moveBuffer, targetsBuffer])
+  }, [character, moveBuffer, targetsBuffer, moveResults])
+
+  useEffect(() => {
+    setMoveCommitted(false)
+  }, [turnId])
 
   const commitMove = () => {
-    if (character && moveBuffer && moveResults) {
+    if (character && moveBuffer && moveResults && !moveCommited) {
+      setMoveCommitted(true)
       targetsBuffer?.forEach((char, i) => {
         if (moveResults[i]) {
           addStatusesToCharacter(char.id, moveResults[i].statuses.target)
@@ -80,18 +86,8 @@ export const CombatBody = () => {
 
   const commitTurn = () => {
     nextTurn()
-    setDamageDone(false)
-    setChecksDone(false)
+    setMoveResults(undefined)
   }
-
-  useEffect(() => {
-    if (damageDone) {
-      commitMove()
-      setTimeout(() => {
-        commitTurn()
-      }, 3000)
-    }
-  }, [damageDone])
 
   useEffect(() => {
     if (character && !moveBuffer && !targetsBuffer) {
@@ -99,43 +95,41 @@ export const CombatBody = () => {
         const moveIndex = Math.floor(Math.random() * character.moves.length)
         const move = character.moves[moveIndex]
         if (move) {
-          setMoveBuffer(move)
-          const targets = getTargets(move, character)
-          const targetsIndex = Math.floor(Math.random() * targets.length)
-          setTargetsBuffer(targets[targetsIndex])
+          setTimeout(() => {
+            setMoveBuffer(move)
+            const targets = getTargets(move, character)
+            const targetsIndex = Math.floor(Math.random() * targets.length)
+            setTargetsBuffer(targets[targetsIndex])
+          })
         }
       }
     }
-  }, [character])
+  }, [character, moveBuffer, targetsBuffer])
 
   return (
     <Box flex={1}>
-      <FadeWindow flex='1' alignItems='center'>
-        {character && (
-          <>
-            {!moveBuffer && isCharacterPlayerCharacter(character.id) && (
-              <CombatBodyActions />
-            )}
-            {targetsOptions &&
-              !targetsBuffer &&
-              isCharacterPlayerCharacter(character.id) && (
-                <CombatBodyTargets targetsOptions={targetsOptions} />
-              )}
-            {moveResults && targetsBuffer && (
-              <CombatBodyResultsContext.Provider
-                value={{
-                  damageDone,
-                  setDamageDone,
-                  checksDone,
-                  setChecksDone,
-                }}
-              >
-                <CombatBodyResults moveResults={moveResults} rolls={rolls} />
-              </CombatBodyResultsContext.Provider>
-            )}
-          </>
+      <Box flex='1' alignItems='center'>
+        {!moveBuffer && isCharacterPlayerCharacter(character?.id || '') && (
+          <CombatBodyActions />
         )}
-      </FadeWindow>
+        {targetsOptions &&
+          !targetsBuffer &&
+          isCharacterPlayerCharacter(character?.id || '') && (
+            <CombatBodyTargets targetsOptions={targetsOptions} />
+          )}
+        {targetsBuffer && (
+          <CombatMoveResults
+            moveResults={moveResults}
+            rolls={rolls}
+            onChildrenDone={() => {
+              commitMove()
+            }}
+            onDone={() => {
+              commitTurn()
+            }}
+          />
+        )}
+      </Box>
     </Box>
   )
 }
