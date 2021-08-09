@@ -28,28 +28,31 @@ export const CombatMoveResultsHeader = (
       <span>
         <strong
           style={{
+            fontFamily: 'Trade Winds',
             color: isCharacterPlayerCharacter(character.id)
               ? 'lightblue'
               : 'lightsalmon',
           }}
         >
           {character.name}
-        </strong>{' '}
-        uses{' '}
+        </strong>
+        <span style={{ padding: '0px 8px' }}> uses </span>
         <strong
           style={{
+            fontFamily: 'Trade Winds',
             color: colorMap[moveBuffer.element],
           }}
         >
           {moveBuffer.name}
-        </strong>{' '}
-        on{' '}
+        </strong>
+        <span style={{ padding: '0px 8px' }}> on </span>
       </span>
       <span>
         {moveResults.map((result, i) => (
           <>
             <strong
               style={{
+                fontFamily: 'Trade Winds',
                 color: isCharacterPlayerCharacter(result.target.id)
                   ? 'lightblue'
                   : 'lightsalmon',

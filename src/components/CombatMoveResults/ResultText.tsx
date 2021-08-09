@@ -39,6 +39,9 @@ export const ResultText = (props: PropsWithChildren<ResultTextProps>) => {
       display='flex'
       justifyContent='center'
       alignItems='center'
+      style={{
+        fontFamily: 'Trade Winds',
+      }}
     >
       {perfect && damageDone && (
         <Box
