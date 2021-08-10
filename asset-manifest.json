@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/combat/static/css/main.881bff57.chunk.css",
-    "main.js": "/combat/static/js/main.4df53ab8.chunk.js",
-    "main.js.map": "/combat/static/js/main.4df53ab8.chunk.js.map",
+    "main.js": "/combat/static/js/main.37f0e2ec.chunk.js",
+    "main.js.map": "/combat/static/js/main.37f0e2ec.chunk.js.map",
     "runtime-main.js": "/combat/static/js/runtime-main.32250efa.js",
     "runtime-main.js.map": "/combat/static/js/runtime-main.32250efa.js.map",
-    "static/js/2.9a74698c.chunk.js": "/combat/static/js/2.9a74698c.chunk.js",
-    "static/js/2.9a74698c.chunk.js.map": "/combat/static/js/2.9a74698c.chunk.js.map",
+    "static/js/2.d8732c7f.chunk.js": "/combat/static/js/2.d8732c7f.chunk.js",
+    "static/js/2.d8732c7f.chunk.js.map": "/combat/static/js/2.d8732c7f.chunk.js.map",
     "static/js/3.beda6b1d.chunk.js": "/combat/static/js/3.beda6b1d.chunk.js",
     "static/js/3.beda6b1d.chunk.js.map": "/combat/static/js/3.beda6b1d.chunk.js.map",
     "index.html": "/combat/index.html",
     "static/css/main.881bff57.chunk.css.map": "/combat/static/css/main.881bff57.chunk.css.map",
-    "static/js/2.9a74698c.chunk.js.LICENSE.txt": "/combat/static/js/2.9a74698c.chunk.js.LICENSE.txt",
+    "static/js/2.d8732c7f.chunk.js.LICENSE.txt": "/combat/static/js/2.d8732c7f.chunk.js.LICENSE.txt",
     "static/media/death-skull.e46d2abd.svg": "/combat/static/media/death-skull.e46d2abd.svg",
     "static/media/dice-target.2123da11.svg": "/combat/static/media/dice-target.2123da11.svg",
     "static/media/drop.c90ef023.svg": "/combat/static/media/drop.c90ef023.svg",
@@ -34,8 +34,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.32250efa.js",
-    "static/js/2.9a74698c.chunk.js",
+    "static/js/2.d8732c7f.chunk.js",
     "static/css/main.881bff57.chunk.css",
-    "static/js/main.4df53ab8.chunk.js"
+    "static/js/main.37f0e2ec.chunk.js"
   ]
 }
