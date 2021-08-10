@@ -71,7 +71,11 @@ export const CombatBodyTargets = (props: CombatBodyTargetsProps) => {
               />
             ))}
             <Button marginTop='8px' onClick={() => setTargetsBuffer(targets)}>
-              Select
+              {targets.reduce((str, target, i) => {
+                return (
+                  str + target.name + (i !== targets.length - 1 ? ', ' : '')
+                )
+              }, '')}
             </Button>
           </Box>
         ))}
