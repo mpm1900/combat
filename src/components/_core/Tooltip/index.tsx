@@ -31,7 +31,7 @@ export const Tooltip = (props: TooltipProps) => {
       </Box>
       {isOpen &&
         renderLayer(
-          <Box {...contentProps} {...layerProps}>
+          <Box {...contentProps} {...layerProps} zIndex={999}>
             {content}
             <Arrow {...arrowProps} />
           </Box>,

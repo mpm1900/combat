@@ -6,6 +6,7 @@ export const BASE_MODIFIER: ResolvedModifier = {
     speed: { m: 1, b: 0 },
     energy: { m: 1, b: 0 },
     initiative: { m: 1, b: 0 },
+    evasion: { m: 1, b: 0 },
     criticalChance: { m: 1, b: 0 },
     criticalDamage: { m: 1, b: 0 },
     turnHealthRegen: { m: 1, b: 0 },

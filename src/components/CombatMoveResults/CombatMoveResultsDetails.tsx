@@ -4,9 +4,8 @@ import { MoveResult } from '../../types/move'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
 import { AnimatedNumber } from '../_core/AnimatedNumber'
 import { Box } from '../_core/Box'
-import { ReactComponent as Arrow } from '../../icons/delapouite/fast-forward-button.svg'
+import { ReactComponent as Evade } from '../../icons/darkzaitzev/running-ninja.svg'
 import { theme } from '../../theme'
-import { Icon } from '../_core/Icon'
 import { Check } from '../_core/Check'
 import { StatusIcon } from '../_core/StatusIcon'
 import { useList } from '../../hooks/useList'
@@ -55,6 +54,7 @@ type TargetResultProps = {
 const TargetResult = (props: TargetResultProps) => {
   const { result, resultsDone, onDone } = props
   const [damageDone, setDamageDone] = useState(resultsDone)
+  const [dodgeDone, setDodgeDone] = useState(false)
   const [statusesDoneArray, setStatusDone] = useList<boolean>(
     result.statuses.target.length,
     resultsDone,
@@ -103,9 +103,16 @@ const TargetResult = (props: TargetResultProps) => {
           value={damage.damage}
         />
         <Box width='64px' alignItems='center' margin='0 16px 0 0'>
-          <Icon width='32px' color='rgba(255,255,255,0.36)'>
-            <Arrow />
-          </Icon>
+          <Check
+            size={32}
+            borderWidth='2px'
+            value={result.dodged}
+            isDone={damageDone}
+            successColor={theme.statsPink}
+            onRest={() => setDodgeDone(true)}
+          >
+            <Evade />
+          </Check>
         </Box>
 
         <CombatCharacterAvatar

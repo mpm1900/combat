@@ -26,7 +26,7 @@ export const CombatMoveResultsHeader = (
       style={{ fontSize: '24px' }}
     >
       <span>
-        <strong
+        <span
           style={{
             fontFamily: 'Trade Winds',
             color: isCharacterPlayerCharacter(character.id)
@@ -35,39 +35,43 @@ export const CombatMoveResultsHeader = (
           }}
         >
           {character.name}
-        </strong>
+        </span>
         <span style={{ padding: '0px 8px' }}> uses </span>
-        <strong
+        <span
           style={{
             fontFamily: 'Trade Winds',
             color: colorMap[moveBuffer.element],
           }}
         >
           {moveBuffer.name}
-        </strong>
-        <span style={{ padding: '0px 8px' }}> on </span>
+        </span>
+        {!moveResults.every((r) => r.target.id === character.id) && (
+          <span style={{ padding: '0px 8px' }}> on </span>
+        )}
       </span>
-      <span>
-        {moveResults.map((result, i) => (
-          <>
-            <strong
-              style={{
-                fontFamily: 'Trade Winds',
-                color: isCharacterPlayerCharacter(result.target.id)
-                  ? 'lightblue'
-                  : 'lightsalmon',
-              }}
-            >
-              {result.target.name}
-            </strong>
-            {i === moveResults.length - 1
-              ? ''
-              : i === moveResults.length - 2
-              ? ', and '
-              : ', '}
-          </>
-        ))}
-      </span>
+      {!moveResults.every((r) => r.target.id === character.id) && (
+        <span>
+          {moveResults.map((result, i) => (
+            <>
+              <span
+                style={{
+                  fontFamily: 'Trade Winds',
+                  color: isCharacterPlayerCharacter(result.target.id)
+                    ? 'lightblue'
+                    : 'lightsalmon',
+                }}
+              >
+                {result.target.name}
+              </span>
+              {i === moveResults.length - 1
+                ? ''
+                : i === moveResults.length - 2
+                ? ', and '
+                : ', '}
+            </>
+          ))}
+        </span>
+      )}
     </Box>
   )
 }

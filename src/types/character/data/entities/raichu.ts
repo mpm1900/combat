@@ -1,6 +1,5 @@
 import { v4 } from 'uuid'
 import { ThunderElement } from '../../../elemental/data/ThunderElement'
-import { AirSlash } from '../../../move/data/AirSlash'
 import { Thunderbolt } from '../../../move/data/Thunderbolt'
 import { ThunderPunch } from '../../../move/data/ThunderPunch'
 import { Character } from '../../character'
@@ -20,7 +19,8 @@ export const Raichu = (): Character => ({
     speed: 99,
     energy: 100,
     initiative: 100,
-    criticalChance: 0.5,
+    evasion: 5,
+    criticalChance: 5,
     criticalDamage: 1.5,
     physicalAccuracy: 95,
     physicalAttack: 90,
