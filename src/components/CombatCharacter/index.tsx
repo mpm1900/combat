@@ -12,10 +12,11 @@ import { CombatCharacterStatus } from './CombatCharacterStatus'
 
 export type CombatCharacterProps = {
   character: Character
+  side: 'left' | 'right'
 }
 
 export const CombatCharacter = (props: CombatCharacterProps) => {
-  const { character } = props
+  const { character, side } = props
   const { getActiveCharacter } = useCombat()
   const activeCharacter = getActiveCharacter()
   const isActive = character.id === activeCharacter?.id
@@ -113,7 +114,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         </Box>
       </Box>
       <Box
-        justifyContent='flex-end'
+        justifyContent={side === 'left' ? 'flex-end' : 'flex-start'}
         color='white'
         flexDirection='row'
         height='28px'

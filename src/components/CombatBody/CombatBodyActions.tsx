@@ -95,6 +95,7 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
             </Box>
           </Box>
           <Box
+            alignItems='flex-start'
             background='rgba(0,0,0,0.09)'
             border='1px solid rgba(255,255,255,0.81)'
             padding='8px'

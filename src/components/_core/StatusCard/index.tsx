@@ -51,6 +51,16 @@ export const StatusCard = (props: StatusCardProps) => {
   return (
     <Box background='white' padding='8px'>
       <Box style={{ fontWeight: 700 }}>{status.name}</Box>
+      <Box
+        color='rgba(0,0,0,0.63)'
+        style={{ fontWeight: 900, fontSize: '10px' }}
+      >
+        <span style={{ whiteSpace: 'nowrap' }}>
+          Duration:{' '}
+          {status.duration === -1 ? <span>&#8734;</span> : status.duration} Turn
+          {status.duration !== 1 ? 's' : ''}
+        </span>
+      </Box>
       <Box>
         {modKeys.map((keys, modIndex) =>
           keys.map((key) => {
