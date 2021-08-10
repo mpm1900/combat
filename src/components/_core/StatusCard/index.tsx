@@ -12,6 +12,7 @@ export const statKeyMap: Record<keyof CharacterStats, string> = {
   criticalDamage: 'Critical Damage',
   turnHealthRegen: 'Health Regen (each turn)',
   activeTurnHealthRegen: 'Health Regen (on turn)',
+  queuePositionOffset: 'Queue Position',
   physicalAccuracy: 'Phys. Accuracy',
   physicalAttack: 'Phys Attack',
   physicalDefense: 'Phys Defense',
@@ -66,7 +67,7 @@ export const StatusCard = (props: StatusCardProps) => {
                 )}
                 {eq.b !== 0 && (
                   <Box>
-                    {statKeyMap[key]}: {eq.m > 0 ? '+' : ''}
+                    {statKeyMap[key]}: {eq.b > 0 ? '+' : ''}
                     {eq.b}
                   </Box>
                 )}

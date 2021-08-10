@@ -25,6 +25,7 @@ export const CombatBody = () => {
     updateCharacter,
     getTargets,
     isCharacterPlayerCharacter,
+    updateQueueItemById,
   } = useCombat()
   const { turnId, nextTurn } = useCombatTurn()
   const { moveBuffer, setMoveBuffer, targetsBuffer, setTargetsBuffer } =
@@ -71,6 +72,9 @@ export const CombatBody = () => {
       setMoveCommitted(true)
       targetsBuffer?.forEach((char, i) => {
         if (moveResults[i]) {
+          if (i === 0) {
+            addStatusesToCharacter(character.id, moveResults[i].statuses.source)
+          }
           addStatusesToCharacter(char.id, moveResults[i].statuses.target)
           addStatusesToCharacter(character.id, moveResults[i].statuses.source)
           addDamageToCharacter(char.id, moveResults[i].totalDamage)
@@ -102,6 +106,15 @@ export const CombatBody = () => {
             damage: min(c.damage - stats.turnHealthRegen, 0),
           }
         })
+        if (char.id !== character.id) {
+          updateQueueItemById(char.id, (qi) => {
+            const stats = getStats(char)
+            return {
+              ...qi,
+              value: qi.value + stats.queuePositionOffset,
+            }
+          })
+        }
       })
       nextTurn()
       setMoveResults(undefined)

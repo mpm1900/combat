@@ -9,7 +9,7 @@ import { Character } from '../../types/character/character'
 import { Party } from '../../types/character/party'
 import { getStats } from '../../types/character/util'
 import { Move } from '../../types/move'
-import { getActiveId, Queue } from '../../types/queue/queue'
+import { getActiveId, Queue, QueueItem } from '../../types/queue/queue'
 import { ResolvedStatus, Status } from '../../types/status/status'
 import { usePlayer } from '../PlayerContext'
 import { CombatBuffer } from './buffer'
@@ -35,6 +35,7 @@ export type CombatContextValue = {
   addStatusesToCharacter: (id: string, statuses: ResolvedStatus[]) => void
   reduceStatusDurations: () => void
   enqueue: (move: Move) => void
+  updateQueueItemById: (id: string, fn: (qi: QueueItem) => QueueItem) => void
 }
 const defaultValue: CombatContextValue = {
   queue: [],
@@ -53,6 +54,7 @@ const defaultValue: CombatContextValue = {
   addStatusesToCharacter: () => {},
   reduceStatusDurations: () => {},
   enqueue: () => {},
+  updateQueueItemById: () => {},
 }
 
 export const CombatContext = createContext<CombatContextValue>(defaultValue)
@@ -63,7 +65,7 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
   const { party } = usePlayer()
   const [parties, setParties] = useState<CombatParty[]>([])
   const [characters, setCharacters] = useState<Character[]>([])
-  const { queue, enqueue, initialize } = useQueue([])
+  const { queue, enqueue, updateById, initialize } = useQueue([])
   const updateCharacter = (id: string, fn: (c: Character) => Character) => {
     setCharacters((chars) => chars.map((c) => (c.id === id ? fn(c) : c)))
   }
@@ -111,7 +113,12 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
   const getCharacterPartyId = (id: string) =>
     parties.find((p) => p.characterIds.includes(id))?.id
 
-  const getLiveCharacters = () => hydrateCharacterIds(queue.map((q) => q.id))
+  const getLiveCharacters = () =>
+    characters.filter((qi) => {
+      const char = characters.find((c) => c.id === qi.id)
+      const health = qi.stats.health
+      return char && char.damage < health
+    })
 
   const isCharacterPlayerCharacter = (id: string) =>
     getCharacterPartyId(id) === party.id
@@ -170,6 +177,7 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
     addStatusesToCharacter,
     reduceStatusDurations,
     enqueue: (move: Move) => enqueue(characters, move),
+    updateQueueItemById: updateById,
   }
 
   return (

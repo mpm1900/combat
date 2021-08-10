@@ -21,7 +21,7 @@ const Spacer = styled(Box)({
 export type CombatBodyActionsProps = {}
 
 export const CombatBodyActions = (props: CombatBodyActionsProps) => {
-  const { getActiveCharacter } = useCombat()
+  const { getActiveCharacter, isCharacterPlayerCharacter } = useCombat()
   const { bufferMove } = useCombatBuffer()
   const character = getActiveCharacter()
   const [activeMove, setActiveMove] = useState<MoveType | undefined>(
@@ -71,12 +71,12 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
                 marginLeft='-16px'
                 marginBottom='-16px'
                 borderRadius='50%'
-                height='80px'
-                width='80px'
+                height='56px'
+                width='56px'
                 zIndex={2}
               />
             )}
-            <Box flexDirection='row' alignItems='center' paddingLeft='52px'>
+            <Box flexDirection='row' alignItems='center' paddingLeft='32px'>
               <Button
                 isHovering={true}
                 disabled={true}

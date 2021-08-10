@@ -50,7 +50,9 @@ export const Move = (props: PropsWithChildren<MoveProps>) => {
       <AttackWrapper>
         <AttackPower type={move.type}>
           <TypeIcon type={move.type} />
-          <span style={{ marginLeft: 4 }}>{move.power}</span>
+          {move.power ? (
+            <span style={{ marginLeft: 4 }}>{move.power}</span>
+          ) : null}
         </AttackPower>
         <AttackAccuracy>
           <AttackAccuracyText checks={move.checks} style={{ marginRight: 4 }}>

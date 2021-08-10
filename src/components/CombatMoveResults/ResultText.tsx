@@ -47,7 +47,7 @@ export const ResultText = (props: PropsWithChildren<ResultTextProps>) => {
         <Box
           style={{
             ...perfectStyles,
-            fontWeight: 'bolder',
+            fontWeight: 700,
             fontSize: '48px',
             color: perfectTextColor,
           }}

@@ -52,6 +52,7 @@ export type MoveResult = {
   statuses: MoveResolvedStatuses
   source: Character
   target: Character
+  move: Move
 }
 
 export const resolveMove = (
@@ -66,7 +67,11 @@ export const resolveMove = (
   const successes = rolls.filter(Boolean).length
   const perfect = successes === move.checks
   const failure = successes === 0
-  const dodged = getRolls(1, tStats.evasion)[0] && !perfect
+  const dodged =
+    getRolls(1, tStats.evasion)[0] &&
+    !perfect &&
+    !failure &&
+    !(source.id === target.id)
   const baseDamage = (successes / move.checks) * (move.power || 0)
   const damageModifier = getMoveDamageModifier(move, sStats, tStats)
   const [critical] = getRolls(1, sStats.criticalChance)
@@ -98,5 +103,6 @@ export const resolveMove = (
     statuses: resolvedStatuses,
     source,
     target,
+    move,
   }
 }

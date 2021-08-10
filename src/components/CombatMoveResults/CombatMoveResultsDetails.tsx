@@ -33,6 +33,14 @@ export const CombatMoveResultsDetails = (
 
   return (
     <Box padding='16px 8px' background='rgba(0,0,0,0.54)'>
+      <Box
+        color='white'
+        marginBottom='8px'
+        textAlign='center'
+        style={{ fontFamily: 'Trade Winds' }}
+      >
+        Targets
+      </Box>
       {moveResults.map((result, i) => (
         <Box marginTop={i > 0 ? '12px' : 0}>
           <TargetResult
@@ -42,6 +50,11 @@ export const CombatMoveResultsDetails = (
           />
         </Box>
       ))}
+      <SourceResults
+        result={moveResults[0]}
+        resultsDone={resultsDone}
+        onDone={() => {}}
+      />
     </Box>
   )
 }
@@ -95,25 +108,29 @@ const TargetResult = (props: TargetResultProps) => {
   return (
     <Box style={wrapper} overflow='hidden'>
       <Box flexDirection='row' alignItems='center' justifyContent='center'>
-        <AnimatedNumber
-          color='white'
-          width='80px'
-          alignItems='center'
-          style={{ fontSize: '32px', fontWeight: 'bolder' }}
-          value={damage.damage}
-        />
-        <Box width='64px' alignItems='center' margin='0 16px 0 0'>
-          <Check
-            size={32}
-            borderWidth='2px'
-            value={result.dodged}
-            isDone={damageDone}
-            successColor={theme.statsPink}
-            onRest={() => setDodgeDone(true)}
-          >
-            <Evade />
-          </Check>
-        </Box>
+        {result.move.power ? (
+          <AnimatedNumber
+            color='white'
+            width='80px'
+            alignItems='center'
+            style={{ fontSize: '32px', fontWeight: 'bolder' }}
+            value={damage.damage}
+          />
+        ) : null}
+        {result.source.id !== result.target.id && (
+          <Box width='64px' alignItems='center' margin='0 16px 0 0'>
+            <Check
+              size={32}
+              borderWidth='2px'
+              value={result.dodged}
+              isDone={dodgeDone}
+              successColor={theme.statsPink}
+              onRest={() => setDodgeDone(true)}
+            >
+              <Evade />
+            </Check>
+          </Box>
+        )}
 
         <CombatCharacterAvatar
           height='36px'
@@ -150,5 +167,51 @@ const TargetResult = (props: TargetResultProps) => {
         )}
       </Box>
     </Box>
+  )
+}
+
+export const SourceResults = (props: TargetResultProps) => {
+  const { result, resultsDone, onDone } = props
+  const [statusesDoneArray, setStatusDone] = useList<boolean>(
+    result.statuses.source.length,
+    resultsDone,
+  )
+
+  if (!result || result.statuses.source.length === 0) return null
+
+  return (
+    <>
+      <Box
+        color='white'
+        marginTop='8px'
+        textAlign='center'
+        style={{ fontFamily: 'Trade Winds' }}
+      >
+        Source
+      </Box>
+      {result.statuses.source.map((status, i) => (
+        <Box
+          key={status.id}
+          color='white'
+          flexDirection='row'
+          justifyContent='center'
+          alignItems='center'
+          padding='0 4px'
+        >
+          <Check
+            size={20}
+            padding='2px'
+            borderWidth={'2px'}
+            value={status.isApplied}
+            isDone={statusesDoneArray[i]}
+            successColor={theme.statsGreen}
+            onRest={() => setStatusDone(i, true)}
+          >
+            {<StatusIcon status={status} height='16px' width='16px' />}
+          </Check>
+          <Box opacity={status.isApplied ? 1 : 0.54}>{status.name}</Box>
+        </Box>
+      ))}
+    </>
   )
 }

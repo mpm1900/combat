@@ -1,19 +1,19 @@
 import { v4 } from 'uuid'
-import { Sleep } from '../../status/data/Sleep'
+import { Warped } from '../../status/data/Warped'
 import { Move } from '../move'
 
-export const Rest: Move = {
+export const TimeWarp: Move = {
   id: v4(),
-  name: 'Rest',
-  type: 'physical',
-  element: 'air',
-  target: 'self',
+  name: 'Time Warp',
+  type: 'special',
+  element: 'dark',
+  target: 'uncontrolled-target',
   checks: 2,
   offset: 0,
   recovery: 100,
   energyCost: 10,
   perfectStatuses: {
-    target: [Sleep(1, 3, true)],
+    target: [Warped(1, 1, true)],
     source: [],
   },
   failureStatuses: {
