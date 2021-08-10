@@ -1,4 +1,5 @@
 import { config, useSpring } from 'react-spring'
+import { usePrevious } from '../../../hooks/usePrevious'
 import { Box, BoxProps } from '../Box'
 
 export type BarProps = BoxProps & {
@@ -9,18 +10,26 @@ export type BarProps = BoxProps & {
 
 export const Bar = (props: BarProps) => {
   const { value, max, min = 0, children, background, ...rest } = props
+  const previous = usePrevious(value) || 0
+  if (max === 390) {
+    console.log(value > previous)
+  }
   const percent = (value / (max - min)) * 100
 
+  const barSpeed = previous > value ? 0 : 2000
   const barStyles = useSpring({
     width: `${percent}%`,
     config: {
-      duration: 0,
+      duration: barSpeed,
     },
   })
 
+  const deltaSpeed = previous <= value ? 0 : 2000
   const deltaStyles = useSpring({
     width: `${percent}%`,
-    config: config.molasses,
+    config: {
+      duration: deltaSpeed,
+    },
   })
 
   return (
@@ -33,6 +42,16 @@ export const Bar = (props: BarProps) => {
         zIndex={1}
         style={deltaStyles}
       ></Box>
+      {value > previous && (
+        <Box
+          position='absolute'
+          top='0px'
+          bottom='0px'
+          background={'white'}
+          zIndex={1}
+          width={`${percent}%`}
+        ></Box>
+      )}
       <Box
         position='absolute'
         top='0px'

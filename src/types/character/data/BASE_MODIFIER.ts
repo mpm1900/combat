@@ -8,6 +8,8 @@ export const BASE_MODIFIER: ResolvedModifier = {
     initiative: { m: 1, b: 0 },
     criticalChance: { m: 1, b: 0 },
     criticalDamage: { m: 1, b: 0 },
+    turnHealthRegen: { m: 1, b: 0 },
+    activeTurnHealthRegen: { m: 1, b: 0 },
 
     physicalAccuracy: { m: 1, b: 0 },
     physicalAttack: { m: 1, b: 0 },

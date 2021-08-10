@@ -1,8 +1,8 @@
-import { ReactNode } from 'react'
+import { ReactChild, ReactNode } from 'react'
 import { Box, BoxProps } from '../_core/Box'
 
 export type CombatBodySectionProps = BoxProps & {
-  title: ReactNode
+  title: ReactChild | Element
 }
 
 export const CombatBodySection = (props: CombatBodySectionProps) => {

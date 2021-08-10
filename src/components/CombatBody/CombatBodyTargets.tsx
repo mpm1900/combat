@@ -1,4 +1,5 @@
 import { config, useSpring } from 'react-spring'
+import styled from 'styled-components'
 import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
 import { Character } from '../../types/character/character'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
@@ -6,13 +7,20 @@ import { Box } from '../_core/Box'
 import { Button } from '../_core/Button'
 import { CombatBodySection } from './CombatBodySection'
 
+const Spacer = styled(Box)({
+  flex: 1,
+  height: '0px',
+  borderBottom: '1px solid rgba(255,255,255,0.24)',
+  margin: 'auto 16px',
+})
+
 export type CombatBodyTargetsProps = {
   targetsOptions: Character[][]
 }
 
 export const CombatBodyTargets = (props: CombatBodyTargetsProps) => {
   const { targetsOptions } = props
-  const { setMoveBuffer, setTargetsBuffer } = useCombatBuffer()
+  const { moveBuffer, setMoveBuffer, setTargetsBuffer } = useCombatBuffer()
 
   const styles = useSpring({
     opacity: 1,
@@ -21,8 +29,26 @@ export const CombatBodyTargets = (props: CombatBodyTargetsProps) => {
   })
 
   return (
-    <CombatBodySection title='Choose a Target'>
-      <Box flexDirection='row' style={styles}>
+    <CombatBodySection
+      width='100%'
+      title={
+        (
+          <Box flex={1}>
+            <Box flexDirection='row'>
+              <Spacer />
+              <Box marginBottom='16px'>
+                <span>
+                  <span>{moveBuffer?.name}</span> Selected
+                </span>
+              </Box>
+              <Spacer />
+            </Box>
+            <Box>Select Target(s)</Box>
+          </Box>
+        ) as any
+      }
+    >
+      <Box flexDirection='row' justifyContent='center' style={styles}>
         {targetsOptions.map((targets, i) => (
           <Box
             key={i}

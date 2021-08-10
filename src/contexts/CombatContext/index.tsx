@@ -7,6 +7,7 @@ import {
 } from 'react'
 import { Character } from '../../types/character/character'
 import { Party } from '../../types/character/party'
+import { getStats } from '../../types/character/util'
 import { Move } from '../../types/move'
 import { getActiveId, Queue } from '../../types/queue/queue'
 import { ResolvedStatus, Status } from '../../types/status/status'
@@ -24,6 +25,7 @@ export type CombatContextValue = {
   init: (party: Party) => void
   getCharacter: (id: string) => Character | undefined
   getCharacterPartyId: (id: string) => string | undefined
+  getLiveCharacters: () => Character[]
   isCharacterPlayerCharacter: (id: string) => boolean
   getActiveCharacter: () => Character | undefined
   hydrateCharacterIds: (ids: string[]) => Character[]
@@ -41,6 +43,7 @@ const defaultValue: CombatContextValue = {
   init: () => {},
   getCharacter: () => undefined,
   getCharacterPartyId: () => undefined,
+  getLiveCharacters: () => [],
   isCharacterPlayerCharacter: () => false,
   getActiveCharacter: () => undefined,
   hydrateCharacterIds: () => [],
@@ -108,16 +111,21 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
   const getCharacterPartyId = (id: string) =>
     parties.find((p) => p.characterIds.includes(id))?.id
 
+  const getLiveCharacters = () => hydrateCharacterIds(queue.map((q) => q.id))
+
   const isCharacterPlayerCharacter = (id: string) =>
     getCharacterPartyId(id) === party.id
 
   const getActiveCharacter = () => getCharacter(getActiveId(queue))
 
   const getTargets = (move: Move, source: Character) => {
-    const targets = getTargetIds(move, source, parties)
-    if (targets.length === 0)
+    const targetIds = getTargetIds(move, source, parties)
+    if (targetIds.length === 0)
       throw new Error('Invalid Battle state. [getTargets]')
-    return targets.map((ids) => hydrateCharacterIds(ids))
+    return targetIds
+      .map((ids) => hydrateCharacterIds(ids))
+      .map((chars) => chars.filter((c) => c.damage < getStats(c).health))
+      .filter((chars) => chars.length > 0)
   }
 
   const init = (p: Party) => {
@@ -152,6 +160,7 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
     init,
     getCharacter,
     getCharacterPartyId,
+    getLiveCharacters,
     isCharacterPlayerCharacter,
     getActiveCharacter,
     hydrateCharacterIds,

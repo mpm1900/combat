@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { config, useSpring } from 'react-spring'
+import styled from 'styled-components'
 import { useCombat } from '../../contexts/CombatContext'
 import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
 import { Move as MoveType } from '../../types/move'
@@ -9,6 +10,13 @@ import { Box } from '../_core/Box'
 import { Button } from '../_core/Button'
 import { ElementalIcon } from '../_core/ElementalIcon'
 import { CombatBodySection } from './CombatBodySection'
+
+const Spacer = styled(Box)({
+  flex: 1,
+  height: '0px',
+  borderBottom: '1px solid rgba(255,255,255,0.24)',
+  margin: 'auto 16px',
+})
 
 export type CombatBodyActionsProps = {}
 
@@ -27,7 +35,24 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
   })
 
   return (
-    <CombatBodySection title='Select an Action'>
+    <CombatBodySection
+      title={
+        (
+          <Box flex={1}>
+            <Box flexDirection='row'>
+              <Spacer />
+              <Box marginBottom='16px'>
+                <span>
+                  <span>{character?.name}'s</span> Turn
+                </span>
+              </Box>
+              <Spacer />
+            </Box>
+            <Box>Select an Action</Box>
+          </Box>
+        ) as any
+      }
+    >
       <Box
         flexDirection='row'
         justifyContent='center'

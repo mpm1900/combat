@@ -3,6 +3,7 @@ import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
 import { FireBall } from '../../../move/data/FireBall'
 import { FlareBlitz } from '../../../move/data/FlareBlitz'
+import { Rest } from '../../../move/data/Rest'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 
@@ -28,6 +29,8 @@ export const Charizard = (): Character => ({
     specialAccuracy: 85,
     specialAttack: 108,
     specialDefense: 85,
+    turnHealthRegen: 10,
+    activeTurnHealthRegen: 30,
   },
-  moves: [FireBall, FlareBlitz],
+  moves: [FireBall, FlareBlitz, Rest],
 })

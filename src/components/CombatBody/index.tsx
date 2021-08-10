@@ -14,12 +14,14 @@ import { CombatBodyActions } from './CombatBodyActions'
 import { CombatBodyTargets } from './CombatBodyTargets'
 import { Box } from '../_core/Box'
 import { CombatMoveResults } from '../CombatMoveResults'
+import { min } from '../../types/equation'
 
 export const CombatBody = () => {
   const {
     addDamageToCharacter,
     addStatusesToCharacter,
     getActiveCharacter,
+    getLiveCharacters,
     updateCharacter,
     getTargets,
     isCharacterPlayerCharacter,
@@ -47,7 +49,6 @@ export const CombatBody = () => {
       stats[`${move.type}Accuracy` as keyof AccuracyStats] + move.offset,
     )
     setRolls(rolls)
-    console.log('setting move results')
     setMoveResults(
       targets.map((target) => {
         return resolveMove(source, target, move, rolls)
@@ -57,7 +58,6 @@ export const CombatBody = () => {
 
   useEffect(() => {
     if (character && moveBuffer && targetsBuffer && !moveResults) {
-      console.log('roll damage')
       rollDamage(moveBuffer, character, targetsBuffer)
     }
   }, [character, moveBuffer, targetsBuffer, moveResults])
@@ -76,16 +76,36 @@ export const CombatBody = () => {
           addDamageToCharacter(char.id, moveResults[i].totalDamage)
         }
       })
-      updateCharacter(character.id, (c) => ({
-        ...c,
-        energyOffset: c.energyOffset + moveBuffer.energyCost,
-      }))
+      updateCharacter(character.id, (c) => {
+        return {
+          ...c,
+          energyOffset: c.energyOffset + moveBuffer.energyCost,
+        }
+      })
     }
   }
 
   const commitTurn = () => {
-    nextTurn()
-    setMoveResults(undefined)
+    if (character && moveBuffer) {
+      updateCharacter(character.id, (c) => {
+        const stats = getStats(character)
+        return {
+          ...c,
+          damage: min(c.damage - stats.activeTurnHealthRegen, 0),
+        }
+      })
+      getLiveCharacters().forEach((char) => {
+        updateCharacter(char.id, (c) => {
+          const stats = getStats(c)
+          return {
+            ...c,
+            damage: min(c.damage - stats.turnHealthRegen, 0),
+          }
+        })
+      })
+      nextTurn()
+      setMoveResults(undefined)
+    }
   }
 
   useEffect(() => {

@@ -9,6 +9,8 @@ export const statKeyMap: Record<keyof CharacterStats, string> = {
   initiative: 'Initiative',
   criticalChance: 'Critical Chance',
   criticalDamage: 'Critical Damage',
+  turnHealthRegen: 'Health Regen (each turn)',
+  activeTurnHealthRegen: 'Health Regen (on turn)',
   physicalAccuracy: 'Phys. Accuracy',
   physicalAttack: 'Phys Attack',
   physicalDefense: 'Phys Defense',

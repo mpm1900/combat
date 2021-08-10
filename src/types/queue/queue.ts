@@ -18,15 +18,18 @@ export const initializeQueue = (characters: Character[]): Queue => {
     id: c.id,
     value: getStats(c),
   }))
-  const maxValue = Math.max.apply(
-    Math,
-    stats.map((qs) => qs.value.initiative),
-  )
   return consolidateQueue(
-    stats.map((qs) => ({
-      id: qs.id,
-      value: qs.value.initiative,
-    })),
+    stats
+      .map((qs) => ({
+        id: qs.id,
+        value: qs.value.initiative,
+        stats: qs.value,
+      }))
+      .filter((qi) => {
+        const char = characters.find((c) => c.id === qi.id)
+        const health = qi.stats.health
+        return char && char.damage < health
+      }),
     characters,
   )
 }

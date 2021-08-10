@@ -1,6 +1,5 @@
 import { ElementalType, Elemental } from '../elemental/elemental'
 import { Move } from '../move/move'
-import { Modifier } from '../stats/stats'
 import { Status } from '../status/status'
 
 export type ElementalDamageStats = {
@@ -26,6 +25,8 @@ export type BaseCharacterStats = {
   initiative: number
   criticalChance: number
   criticalDamage: number
+  turnHealthRegen: number
+  activeTurnHealthRegen: number
 }
 
 export type CharacterStats = BaseCharacterStats &
