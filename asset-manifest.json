@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/combat/static/css/main.881bff57.chunk.css",
-    "main.js": "/combat/static/js/main.3a33e8d3.chunk.js",
-    "main.js.map": "/combat/static/js/main.3a33e8d3.chunk.js.map",
+    "main.js": "/combat/static/js/main.ecfec67c.chunk.js",
+    "main.js.map": "/combat/static/js/main.ecfec67c.chunk.js.map",
     "runtime-main.js": "/combat/static/js/runtime-main.32250efa.js",
     "runtime-main.js.map": "/combat/static/js/runtime-main.32250efa.js.map",
     "static/js/2.43e28dc7.chunk.js": "/combat/static/js/2.43e28dc7.chunk.js",
@@ -27,6 +27,7 @@
     "static/media/power-lightning.3ae17416.svg": "/combat/static/media/power-lightning.3ae17416.svg",
     "static/media/pulse.bdf208ab.svg": "/combat/static/media/pulse.bdf208ab.svg",
     "static/media/revolt.2e58af85.svg": "/combat/static/media/revolt.2e58af85.svg",
+    "static/media/running-ninja.385acc30.svg": "/combat/static/media/running-ninja.385acc30.svg",
     "static/media/spectre.a300475c.svg": "/combat/static/media/spectre.a300475c.svg",
     "static/media/star-swirl.58a85c13.svg": "/combat/static/media/star-swirl.58a85c13.svg",
     "static/media/stone-pile.addbf61f.svg": "/combat/static/media/stone-pile.addbf61f.svg"
@@ -35,6 +36,6 @@
     "static/js/runtime-main.32250efa.js",
     "static/js/2.43e28dc7.chunk.js",
     "static/css/main.881bff57.chunk.css",
-    "static/js/main.3a33e8d3.chunk.js"
+    "static/js/main.ecfec67c.chunk.js"
   ]
 }
