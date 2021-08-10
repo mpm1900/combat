@@ -26,7 +26,7 @@ export const Charizard = (): Character => ({
     evasion: 5,
     criticalChance: 5,
     criticalDamage: 1.5,
-    physicalAccuracy: 64,
+    physicalAccuracy: 100, //64,
     physicalAttack: 84,
     physicalDefense: 78,
     specialAccuracy: 85,

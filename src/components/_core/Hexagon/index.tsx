@@ -1,6 +1,4 @@
-import { FunctionComponent } from 'react'
 import styled, { CSSProperties } from 'styled-components'
-import { width } from 'styled-system'
 import { Box, BoxProps } from '../Box'
 
 export type HexagonProps = BoxProps & {

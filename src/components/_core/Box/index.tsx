@@ -1,10 +1,5 @@
 import { animated } from '@react-spring/web'
-import {
-  forwardRef,
-  ForwardRefExoticComponent,
-  HTMLAttributes,
-  RefObject,
-} from 'react'
+import { HTMLAttributes } from 'react'
 import styled, { StyledProps } from 'styled-components'
 import {
   background,

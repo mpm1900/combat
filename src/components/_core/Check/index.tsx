@@ -9,7 +9,6 @@ const Wrapper = styled(Box)((p) => ({
   overflow: 'hidden',
   borderStyle: 'solid',
   boxShadow: '0px 0px 5px rgba(0,0,0,0.5) inset',
-  margin: 8,
 }))
 
 const Inner = styled(Box)(() => ({
@@ -36,6 +35,7 @@ export const Check = (props: CheckProps) => {
     size,
     padding = '6px',
     borderWidth = '3px',
+    margin = '8px',
     delay = 0,
     nullColor = 'rgba(255,255,255,0.09)',
     failureColor = 'rgba(255,255,255,0.18)',
@@ -43,6 +43,7 @@ export const Check = (props: CheckProps) => {
     backgroundColor = 'rgba(255,255,255,0.054)',
     children,
     onRest,
+    ...rest
   } = props
 
   const dropDuration = 300
@@ -92,9 +93,11 @@ export const Check = (props: CheckProps) => {
   useChain([dropRef, shakeRef, borderRef])
   return (
     <Wrapper
+      {...rest}
       height={size}
       width={size}
       borderWidth={borderWidth}
+      margin={margin}
       style={{
         ...border,
         transform: shake.x

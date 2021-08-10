@@ -1,7 +1,6 @@
 import { v4 } from 'uuid'
 import { AirElement } from '../../../elemental/data/AirElement'
 import { AirSlash } from '../../../move/data/AirSlash'
-import { ThunderPunch } from '../../../move/data/ThunderPunch'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 

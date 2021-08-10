@@ -1,4 +1,3 @@
-import { PropsWithChildren } from 'react'
 import { useCombat } from '../../contexts/CombatContext'
 import { CombatCharacter } from '../CombatCharacter'
 import { Box } from '../_core/Box'

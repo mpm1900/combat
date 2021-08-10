@@ -1,4 +1,4 @@
-import { config, useSpring } from 'react-spring'
+import { useSpring } from 'react-spring'
 import { usePrevious } from '../../../hooks/usePrevious'
 import { Box, BoxProps } from '../Box'
 

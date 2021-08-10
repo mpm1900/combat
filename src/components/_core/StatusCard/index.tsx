@@ -1,6 +1,7 @@
 import { CharacterStats } from '../../../types/character/character'
 import { Status } from '../../../types/status/status'
 import { Box } from '../Box'
+import { statusDescriptions } from './descriptions'
 
 export const statKeyMap: Record<keyof CharacterStats, string> = {
   health: 'Health',
@@ -49,7 +50,7 @@ export const StatusCard = (props: StatusCardProps) => {
     Object.keys(mod.stats),
   ) as (keyof CharacterStats)[][]
   return (
-    <Box background='white' padding='8px'>
+    <Box background='white' padding='8px' maxWidth='200px'>
       <Box style={{ fontWeight: 700 }}>{status.name}</Box>
       <Box
         color='rgba(0,0,0,0.63)'
@@ -61,6 +62,11 @@ export const StatusCard = (props: StatusCardProps) => {
           {status.duration !== 1 ? 's' : ''}
         </span>
       </Box>
+      {statusDescriptions[status.statusId] && (
+        <Box style={{ fontSize: '12px' }}>
+          {statusDescriptions[status.statusId]}
+        </Box>
+      )}
       <Box>
         {modKeys.map((keys, modIndex) =>
           keys.map((key) => {

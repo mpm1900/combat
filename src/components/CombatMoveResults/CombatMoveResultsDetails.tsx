@@ -108,17 +108,23 @@ const TargetResult = (props: TargetResultProps) => {
   return (
     <Box style={wrapper} overflow='hidden'>
       <Box flexDirection='row' alignItems='center' justifyContent='center'>
+        <CombatCharacterAvatar
+          height='36px'
+          width='36px'
+          margin='8px'
+          character={result.target}
+        />
         {result.move.power ? (
-          <AnimatedNumber
-            color='white'
-            width='80px'
-            alignItems='center'
-            style={{ fontSize: '32px', fontWeight: 'bolder' }}
-            value={damage.damage}
-          />
+          <Box width='100px' alignItems='center' position='relative'>
+            <AnimatedNumber
+              color={result.critical && damageDone ? 'lightblue' : 'white'}
+              style={{ fontSize: '32px', fontWeight: 900 }}
+              value={damage.damage}
+            />
+          </Box>
         ) : null}
         {result.source.id !== result.target.id && (
-          <Box width='64px' alignItems='center' margin='0 16px 0 0'>
+          <Box alignItems='center' position='relative'>
             <Check
               size={32}
               borderWidth='2px'
@@ -129,16 +135,26 @@ const TargetResult = (props: TargetResultProps) => {
             >
               <Evade />
             </Check>
+            {result.critical && damageDone && (
+              <Box
+                position='absolute'
+                justifyContent='center'
+                alignItems='center'
+                style={{
+                  fontSize: '24px',
+                  inset: '0px',
+                  color: 'rgba(255,255,255,1)',
+                  fontFamily: 'Trade Winds',
+                  textShadow: '0px 2px 10px rgba(0,0,0,0.81)',
+                }}
+              >
+                CRIT!
+              </Box>
+            )}
           </Box>
         )}
-
-        <CombatCharacterAvatar
-          height='36px'
-          width='36px'
-          character={result.target}
-        />
       </Box>
-      <Box height={result.statuses.target.length ? '42px' : '0px'}>
+      <Box height={result.statuses.target.length ? '32px' : '0px'}>
         {damageDone && (
           <Box flexDirection='row' justifyContent='center'>
             {result.statuses.target.map((status, i) => (
@@ -153,6 +169,7 @@ const TargetResult = (props: TargetResultProps) => {
                   size={20}
                   padding='2px'
                   borderWidth={'2px'}
+                  margin='4px'
                   value={status.isApplied}
                   isDone={statusesDoneArray[i]}
                   successColor={theme.statsGreen}

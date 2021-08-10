@@ -1,4 +1,3 @@
-import Color from 'color'
 import { PropsWithChildren } from 'react'
 import { useSpring } from 'react-spring'
 import { Box } from '../_core/Box'

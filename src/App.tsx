@@ -5,12 +5,9 @@ import { CombatHeader } from './components/CombatHeader'
 import { CombatParty } from './components/CombatParties'
 import { Box } from './components/_core/Box'
 import { useCombat } from './contexts/CombatContext'
-import { Blastoise } from './types/character/data/entities/blastoise'
-import { Charizard } from './types/character/data/entities/charizard'
 import { Golem } from './types/character/data/entities/golem'
 import { Pidgeot } from './types/character/data/entities/pidgeot'
 import { Raichu } from './types/character/data/entities/raichu'
-import { Venusaur } from './types/character/data/entities/venusaur'
 import { Party } from './types/character/party'
 
 const enemies = (): Party => ({

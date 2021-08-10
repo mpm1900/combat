@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { useHover, useLayer, Arrow, UseLayerOptions } from 'react-laag'
+import { useLayer, Arrow, UseLayerOptions } from 'react-laag'
 import { Box, BoxProps } from '../Box'
 
 export type TooltipProps = BoxProps & {
