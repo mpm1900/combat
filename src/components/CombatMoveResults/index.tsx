@@ -23,7 +23,7 @@ export const CombatMoveResults = (props: CombatMoveResultProps) => {
     if (checksDone && resultsDone && !isDone) {
       onChildrenDone && onChildrenDone()
       setTimeout(() => {
-        // setIsDone(true)
+        setIsDone(true)
       }, 2000)
     }
   }, [checksDone, resultsDone])
