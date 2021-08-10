@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box } from '../_core/Box'
+import { Box, BoxProps } from '../_core/Box'
 import { Icon } from '../_core/Icon'
 import { ReactComponent as Check } from '../../icons/delapouite/dice-target.svg'
 import { MoveStatuses } from '../../types/move'
@@ -7,7 +7,6 @@ import { StatusList } from '../_core/StatusList'
 
 const Section = styled(Box)({
   width: '100%',
-  marginBottom: '6px',
 })
 const TitleWrapper = styled(Box)({
   flexDirection: 'row',
@@ -31,7 +30,7 @@ const Chance = styled(Box)({
   opacity: 0.56,
 })
 
-export type MoveStatusesSectionProps = {
+export type MoveStatusesSectionProps = BoxProps & {
   checks: number
   checksColor?: string
   chance?: number
@@ -40,10 +39,17 @@ export type MoveStatusesSectionProps = {
 }
 
 export const MoveStatusesSection = (props: MoveStatusesSectionProps) => {
-  const { checks, checksColor = 'white', chance, statuses, title } = props
+  const {
+    checks,
+    checksColor = 'white',
+    chance,
+    statuses,
+    title,
+    ...rest
+  } = props
   const checksArray = Array(checks).fill(null)
   return (
-    <Section>
+    <Section {...rest}>
       <TitleWrapper>
         <Title>{title}</Title>
         <Spacer />

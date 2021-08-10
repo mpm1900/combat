@@ -3,6 +3,7 @@ import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
 import { FireBall } from '../../../move/data/FireBall'
 import { FlareBlitz } from '../../../move/data/FlareBlitz'
+import { Protect } from '../../../move/data/Protect'
 import { Rest } from '../../../move/data/Rest'
 import { TimeWarp } from '../../../move/data/TimeWarp'
 import { Character } from '../../character'
@@ -34,5 +35,5 @@ export const Charizard = (): Character => ({
     turnHealthRegen: 10,
     activeTurnHealthRegen: 30,
   },
-  moves: [FireBall, FlareBlitz, Rest, TimeWarp],
+  moves: [FireBall, FlareBlitz, Rest, TimeWarp, Protect],
 })

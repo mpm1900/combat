@@ -19,4 +19,5 @@ export type StatusFn = (
   applyChance: number,
   duration: number,
   isPositive: boolean,
+  statusId?: string,
 ) => Status

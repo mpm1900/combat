@@ -45,6 +45,7 @@ export const MoveStatuses = (props: MoveStatusesProps) => {
           chance={failureChance}
           statuses={move.failureStatuses}
           title='ON FAILURE'
+          marginTop={hasPerfectStatuses ? '6px' : 0}
         />
       )}
     </Box>

@@ -15,6 +15,7 @@ import { CombatBodyTargets } from './CombatBodyTargets'
 import { Box } from '../_core/Box'
 import { CombatMoveResults } from '../CombatMoveResults'
 import { min } from '../../types/equation'
+import { ProtectedId } from '../../types/status/data/Protected'
 
 export const CombatBody = () => {
   const {
@@ -22,6 +23,7 @@ export const CombatBody = () => {
     addStatusesToCharacter,
     getActiveCharacter,
     getLiveCharacters,
+    getCharacterPartyId,
     updateCharacter,
     getTargets,
     isCharacterPlayerCharacter,
@@ -75,9 +77,28 @@ export const CombatBody = () => {
           if (i === 0) {
             addStatusesToCharacter(character.id, moveResults[i].statuses.source)
           }
-          addStatusesToCharacter(char.id, moveResults[i].statuses.target)
+
           addStatusesToCharacter(character.id, moveResults[i].statuses.source)
-          addDamageToCharacter(char.id, moveResults[i].totalDamage)
+          const protectedStatus = char.statuses.find(
+            (s) => s.statusId === ProtectedId,
+          )
+          const hasEnemySourceStatus =
+            getCharacterPartyId(char.id) !==
+              getCharacterPartyId(character.id) &&
+            moveResults[i].statuses.target.length > 0
+
+          if (
+            protectedStatus &&
+            (moveResults[i].totalDamage > 0 || hasEnemySourceStatus)
+          ) {
+            updateCharacter(char.id, (c) => ({
+              ...c,
+              statuses: c.statuses.filter((s) => s.statusId !== ProtectedId),
+            }))
+          } else {
+            addStatusesToCharacter(char.id, moveResults[i].statuses.target)
+            addDamageToCharacter(char.id, moveResults[i].totalDamage)
+          }
         }
       })
       updateCharacter(character.id, (c) => {

@@ -14,8 +14,8 @@ type MakeStatusStatus = Omit<
   'statusId' | 'id' | 'applyChance' | 'duration' | 'isPositive'
 >
 export const makeStatusFn = (partial: MakeStatusStatus): StatusFn => {
-  const statusId = v4()
-  return (applyChance, duration, isPositive) => ({
+  const _statusId = v4()
+  return (applyChance, duration, isPositive, statusId = _statusId) => ({
     ...partial,
     id: v4(),
     statusId,
