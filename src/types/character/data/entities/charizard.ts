@@ -1,6 +1,7 @@
 import { v4 } from 'uuid'
 import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
+import { DoubleTeam } from '../../../move/data/DoubleTeam'
 import { FireBall } from '../../../move/data/FireBall'
 import { FlareBlitz } from '../../../move/data/FlareBlitz'
 import { Protect } from '../../../move/data/Protect'
@@ -15,6 +16,7 @@ export const Charizard = (): Character => ({
   level: 100,
   elements: [FireElement, AirElement],
   statuses: [],
+  immunities: [],
   damage: 0,
   energyOffset: 0,
   stats: {
@@ -35,5 +37,5 @@ export const Charizard = (): Character => ({
     turnHealthRegen: 10,
     activeTurnHealthRegen: 30,
   },
-  moves: [FireBall, FlareBlitz, Rest, TimeWarp, Protect],
+  moves: [FireBall, FlareBlitz, Rest, TimeWarp, Protect, DoubleTeam],
 })

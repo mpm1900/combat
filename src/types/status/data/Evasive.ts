@@ -1,15 +1,15 @@
 import { v4 } from 'uuid'
 import { makeStatusFn } from '../util'
 
-export const WarpedId = v4()
-export const Warped = makeStatusFn({
-  statusId: WarpedId,
-  name: 'Warped',
+export const EvasiveId = v4()
+export const Evasive = makeStatusFn({
+  statusId: EvasiveId,
+  name: 'Evasive',
   isStackable: false,
   modifiers: [
     {
       stats: {
-        queuePositionOffset: {
+        evasion: {
           m: 0,
           b: 100,
         },

@@ -11,14 +11,12 @@ export const resolveStatus = (status: Status): ResolvedStatus => {
 
 type MakeStatusStatus = Omit<
   Status,
-  'statusId' | 'id' | 'applyChance' | 'duration' | 'isPositive'
+  'id' | 'applyChance' | 'duration' | 'isPositive'
 >
 export const makeStatusFn = (partial: MakeStatusStatus): StatusFn => {
-  const _statusId = v4()
-  return (applyChance, duration, isPositive, statusId = _statusId) => ({
+  return (applyChance, duration, isPositive) => ({
     ...partial,
     id: v4(),
-    statusId,
     applyChance,
     duration,
     isPositive,

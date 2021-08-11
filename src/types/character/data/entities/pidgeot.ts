@@ -10,6 +10,7 @@ export const Pidgeot = (): Character => ({
   level: 100,
   elements: [AirElement],
   statuses: [],
+  immunities: [],
   damage: 0,
   energyOffset: 0,
   stats: {

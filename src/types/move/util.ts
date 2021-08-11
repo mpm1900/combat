@@ -61,7 +61,6 @@ export const resolveMove = (
   move: Move,
   rolls: boolean[],
 ): MoveResult => {
-  console.log('resolve move')
   const [sStats, { stats: sMods }] = getStatsAndEquations(source)
   const [tStats, { stats: tMods }] = getStatsAndEquations(target)
   const successes = rolls.filter(Boolean).length
@@ -92,8 +91,19 @@ export const resolveMove = (
     : undefined) || { target: [], source: [] }
 
   const resolvedStatuses: MoveResolvedStatuses = {
-    source: statuses.source.map((s) => resolveStatus(s)),
-    target: statuses.target.map((s) => resolveStatus(s)),
+    source: statuses.source
+      .map((s) => resolveStatus(s))
+      .filter(
+        (s) => !source.immunities.map((i) => i.statusId).includes(s.statusId),
+      ),
+    target: statuses.target
+      .map((s) => ({
+        ...resolveStatus(s),
+        isPositive: !s.isPositive,
+      }))
+      .filter(
+        (s) => !target.immunities.map((i) => i.statusId).includes(s.statusId),
+      ),
   }
 
   return {

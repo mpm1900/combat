@@ -22,7 +22,7 @@ export const CombatMoveResultsHeader = (
     <Box
       color='white'
       textAlign='center'
-      marginBottom='24px'
+      marginBottom='16px'
       style={{ fontSize: '24px' }}
     >
       <span>

@@ -1,19 +1,19 @@
 import { v4 } from 'uuid'
-import { Resting } from '../../status/data/Resting'
+import { Evasive } from '../../status/data/Evasive'
 import { Move } from '../move'
 
-export const Rest: Move = {
+export const DoubleTeam: Move = {
   id: v4(),
-  name: 'Rest',
-  type: 'physical',
-  element: 'air',
+  name: 'Double Team',
+  type: 'special',
+  element: 'ghost',
   target: 'self',
   checks: 2,
   offset: 0,
   recovery: 100,
   energyCost: 10,
   perfectStatuses: {
-    target: [Resting(1, 3, true)],
+    target: [Evasive(1, 6, true)],
     source: [],
   },
   failureStatuses: {

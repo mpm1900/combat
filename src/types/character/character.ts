@@ -47,5 +47,6 @@ export type Character = {
   stats: CharacterStats
   elements: Elemental[]
   statuses: Status[]
+  immunities: Status[]
   moves: Move[]
 }

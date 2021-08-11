@@ -1,6 +1,9 @@
+import { v4 } from 'uuid'
 import { makeStatusFn } from '../util'
 
+export const DazedId = v4()
 export const Dazed = makeStatusFn({
+  statusId: DazedId,
   name: 'Dazed',
   isStackable: false,
   modifiers: [

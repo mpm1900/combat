@@ -11,6 +11,7 @@ export const Raichu = (): Character => ({
   level: 100,
   elements: [ThunderElement],
   statuses: [],
+  immunities: [],
   damage: 0,
   energyOffset: 0,
   stats: {
@@ -23,7 +24,7 @@ export const Raichu = (): Character => ({
     criticalChance: 5,
     criticalDamage: 1.5,
     physicalAccuracy: 95,
-    physicalAttack: 90,
+    physicalAttack: 100, //90,
     physicalDefense: 55,
     specialAccuracy: 80,
     specialAttack: 90,

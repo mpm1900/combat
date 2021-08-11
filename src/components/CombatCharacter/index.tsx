@@ -8,6 +8,7 @@ import { Bar } from '../_core/Bar'
 import { Box } from '../_core/Box'
 import { colorMap, ElementalIcon } from '../_core/ElementalIcon'
 import { Hexagon } from '../_core/Hexagon'
+import { ImmunityCard } from '../_core/ImmunityCard'
 import { CombatCharacterStatus } from './CombatCharacterStatus'
 
 export type CombatCharacterProps = {
@@ -114,14 +115,23 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         </Box>
       </Box>
       <Box
-        justifyContent={side === 'left' ? 'flex-end' : 'flex-start'}
+        justifyContent='space-between'
         color='white'
         flexDirection='row'
         height='28px'
       >
-        {character.statuses.map((status) => (
-          <CombatCharacterStatus key={status.id} status={status} />
-        ))}
+        <Box flexDirection='row'>
+          {character.immunities.map((status) => (
+            <CombatCharacterStatus key={status.id} status={status} color='plum'>
+              <ImmunityCard status={status} />
+            </CombatCharacterStatus>
+          ))}
+        </Box>
+        <Box flexDirection='row' justifyContent='flex-end'>
+          {character.statuses.map((status) => (
+            <CombatCharacterStatus key={status.id} status={status} />
+          ))}
+        </Box>
       </Box>
     </Box>
   )

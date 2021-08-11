@@ -10,6 +10,7 @@ export const Venusaur = (): Character => ({
   level: 100,
   elements: [GrassElement],
   statuses: [],
+  immunities: [],
   damage: 0,
   energyOffset: 0,
   stats: {

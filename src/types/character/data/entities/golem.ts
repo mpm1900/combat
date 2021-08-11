@@ -10,6 +10,7 @@ export const Golem = (): Character => ({
   level: 100,
   elements: [EarthElement],
   statuses: [],
+  immunities: [],
   damage: 0,
   energyOffset: 0,
   stats: {

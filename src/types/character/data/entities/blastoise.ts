@@ -10,6 +10,7 @@ export const Blastoise = (): Character => ({
   level: 100,
   elements: [WaterElement],
   statuses: [],
+  immunities: [],
   damage: 0,
   energyOffset: 0,
   stats: {

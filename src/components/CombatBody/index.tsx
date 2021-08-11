@@ -45,6 +45,7 @@ export const CombatBody = () => {
     source: Character,
     targets: Character[],
   ) => {
+    console.log('rolling damage', move.name)
     if (moveResults) return
     const stats = getStats(source)
     const rolls = getRolls(
@@ -52,6 +53,7 @@ export const CombatBody = () => {
       stats[`${move.type}Accuracy` as keyof AccuracyStats] + move.offset,
     )
     setRolls(rolls)
+    console.log('setting move results', move.name)
     setMoveResults(
       targets.map((target) => {
         return resolveMove(source, target, move, rolls)
@@ -137,23 +139,27 @@ export const CombatBody = () => {
           })
         }
       })
+
       nextTurn()
-      setMoveResults(undefined)
+      setTimeout(() => {
+        setMoveResults(undefined)
+      }, 1)
     }
   }
 
   useEffect(() => {
     if (character && !moveBuffer && !targetsBuffer) {
       if (!isCharacterPlayerCharacter(character.id)) {
+        console.log('AI MOVE')
         const moveIndex = Math.floor(Math.random() * character.moves.length)
         const move = character.moves[moveIndex]
         if (move) {
-          setTimeout(() => {
-            setMoveBuffer(move)
-            const targets = getTargets(move, character)
-            const targetsIndex = Math.floor(Math.random() * targets.length)
-            setTargetsBuffer(targets[targetsIndex])
-          })
+          console.log('CHOSING FOR CHAR', move.name)
+          setMoveBuffer(move)
+          const targets = getTargets(move, character)
+          const targetsIndex = Math.floor(Math.random() * targets.length)
+          setTargetsBuffer(targets[targetsIndex])
+          // rollDamage(move, character, targets[targetsIndex])
         }
       }
     }
@@ -171,16 +177,18 @@ export const CombatBody = () => {
             <CombatBodyTargets targetsOptions={targetsOptions} />
           )}
         {targetsBuffer && (
-          <CombatMoveResults
-            moveResults={moveResults}
-            rolls={rolls}
-            onChildrenDone={() => {
-              commitMove()
-            }}
-            onDone={() => {
-              commitTurn()
-            }}
-          />
+          <>
+            <CombatMoveResults
+              moveResults={moveResults}
+              rolls={rolls}
+              onChildrenDone={() => {
+                commitMove()
+              }}
+              onDone={() => {
+                commitTurn()
+              }}
+            />
+          </>
         )}
       </Box>
     </Box>
