@@ -1,19 +1,19 @@
 import { v4 } from 'uuid'
-import { Evasive } from '../../status/data/Evasive'
+import { Focused } from '../../status/data/Focused'
 import { Move } from '../move'
 
-export const DoubleTeam: Move = {
+export const Focus: Move = {
   id: v4(),
-  name: 'Double Team',
+  name: 'Focus',
   type: 'special',
   element: 'light',
-  target: 'self',
+  target: 'controlled-target',
   checks: 2,
   offset: 0,
   recovery: 100,
   energyCost: 10,
   perfectStatuses: {
-    target: [Evasive(1, 6, true)],
+    target: [Focused(1, 6, true)],
     source: [],
   },
   failureStatuses: {

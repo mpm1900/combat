@@ -11,6 +11,8 @@ export const ZERO_STATS: CharacterStats = {
   turnHealthRegen: 0,
   activeTurnHealthRegen: 0,
   queuePositionOffset: 0,
+  forceCombatCheckSuccess: 0,
+  forceCombatCheckFailure: 0,
   physicalAccuracy: 0,
   physicalAttack: 0,
   physicalDefense: 0,

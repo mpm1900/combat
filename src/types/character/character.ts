@@ -29,6 +29,8 @@ export type BaseCharacterStats = {
   turnHealthRegen: number
   activeTurnHealthRegen: number
   queuePositionOffset: number
+  forceCombatCheckSuccess: number
+  forceCombatCheckFailure: number
 }
 
 export type CharacterStats = BaseCharacterStats &

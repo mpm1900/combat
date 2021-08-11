@@ -11,11 +11,24 @@ import { getStats, getStatsAndEquations } from '../character/util'
 import { resolveStatus } from '../status/util'
 import { Move, MoveResolvedStatuses, MoveStatuses } from './move'
 
-export const getRolls = (checks: number, stat: number): boolean[] => {
+export const getRolls = (
+  checks: number,
+  stat: number,
+  forceSucess: number = 0,
+  forceFailure: number = 0,
+): boolean[] => {
   let results: boolean[] = []
   for (let i = 0; i < checks; i++) {
     const roll = Math.random() * 100
-    results = [...results, roll < stat]
+    let result = roll < stat
+    if (forceSucess > i) {
+      result = true
+    } else {
+      if (forceFailure > i) {
+        result = false
+      }
+    }
+    results = [...results, result]
   }
   return results
 }

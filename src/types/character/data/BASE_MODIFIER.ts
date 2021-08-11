@@ -12,6 +12,8 @@ export const BASE_MODIFIER: ResolvedModifier = {
     turnHealthRegen: { m: 1, b: 0 },
     activeTurnHealthRegen: { m: 1, b: 0 },
     queuePositionOffset: { m: 1, b: 0 },
+    forceCombatCheckSuccess: { m: 1, b: 0 },
+    forceCombatCheckFailure: { m: 1, b: 0 },
 
     physicalAccuracy: { m: 1, b: 0 },
     physicalAttack: { m: 1, b: 0 },

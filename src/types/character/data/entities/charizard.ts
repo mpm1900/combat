@@ -1,9 +1,11 @@
 import { v4 } from 'uuid'
 import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
+import { Curse } from '../../../move/data/Curse'
 import { DoubleTeam } from '../../../move/data/DoubleTeam'
 import { FireBall } from '../../../move/data/FireBall'
 import { FlareBlitz } from '../../../move/data/FlareBlitz'
+import { Focus } from '../../../move/data/Focus'
 import { Protect } from '../../../move/data/Protect'
 import { Rest } from '../../../move/data/Rest'
 import { TimeWarp } from '../../../move/data/TimeWarp'
@@ -37,5 +39,14 @@ export const Charizard = (): Character => ({
     turnHealthRegen: 10,
     activeTurnHealthRegen: 30,
   },
-  moves: [FireBall, FlareBlitz, Rest, TimeWarp, Protect, DoubleTeam],
+  moves: [
+    FireBall,
+    FlareBlitz,
+    Rest,
+    TimeWarp,
+    Protect,
+    DoubleTeam,
+    Curse,
+    Focus,
+  ],
 })

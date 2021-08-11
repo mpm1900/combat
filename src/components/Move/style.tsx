@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { theme } from '../../theme'
 import { AttackTypes } from '../../types/character/character'
 import { Box } from '../_core/Box'
 
@@ -10,11 +11,7 @@ export const Wrapper = styled(Box)`
   border: 1px solid rgba(255, 255, 255, 0.45);
   min-width: 250px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.27);
-  background: linear-gradient(
-    198deg,
-    rgba(45, 47, 56, 1) 0%,
-    rgba(80, 94, 116, 1) 100%
-  );
+  background: ${theme.boxGradient};
 `
 export const Header = styled(Box)({
   flexDirection: 'row',

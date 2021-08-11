@@ -32,7 +32,11 @@ export const CombatMoveResultsDetails = (
   }, [resultsDoneArray])
 
   return (
-    <Box padding='16px 8px' background='rgba(0,0,0,0.54)'>
+    <Box
+      padding='16px 8px'
+      background={theme.boxGradient}
+      border={`1px solid ${theme.white5}`}
+    >
       <Box
         color='white'
         marginBottom='8px'

@@ -1,19 +1,19 @@
 import { v4 } from 'uuid'
-import { Evasive } from '../../status/data/Evasive'
+import { Cursed } from '../../status/data/Cursed'
 import { Move } from '../move'
 
-export const DoubleTeam: Move = {
+export const Curse: Move = {
   id: v4(),
-  name: 'Double Team',
+  name: 'Curse',
   type: 'special',
-  element: 'light',
-  target: 'self',
+  element: 'ghost',
+  target: 'uncontrolled-target',
   checks: 2,
   offset: 0,
   recovery: 100,
   energyCost: 10,
   perfectStatuses: {
-    target: [Evasive(1, 6, true)],
+    target: [Cursed(1, 6, true)],
     source: [],
   },
   failureStatuses: {

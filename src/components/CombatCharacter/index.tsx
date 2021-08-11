@@ -35,11 +35,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
     >
       <Box
         width='240px'
-        background='linear-gradient(
-        198deg,
-        rgba(45, 47, 56, 1) 0%,
-        rgba(80, 94, 116, 1) 100%
-      )'
+        background={theme.boxGradient}
         border='1px solid rgba(255,255,255,0.56)'
         margin='36px 0 0 32px'
         flexDirection='row'

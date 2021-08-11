@@ -1,6 +1,7 @@
 import { CharacterStats } from '../../../types/character/character'
 import { Status } from '../../../types/status/status'
 import { Box } from '../Box'
+import { TooltipCard } from '../TooltipCard'
 import { statusDescriptions } from './descriptions'
 
 export const statKeyMap: Record<keyof CharacterStats, string> = {
@@ -14,6 +15,8 @@ export const statKeyMap: Record<keyof CharacterStats, string> = {
   turnHealthRegen: 'Health Regen (each turn)',
   activeTurnHealthRegen: 'Health Regen (on turn)',
   queuePositionOffset: 'Queue Position',
+  forceCombatCheckSuccess: 'Forced Check Success',
+  forceCombatCheckFailure: 'Forced Check Failure',
   physicalAccuracy: 'Phys. Accuracy',
   physicalAttack: 'Phys Attack',
   physicalDefense: 'Phys Defense',
@@ -49,24 +52,24 @@ export const StatusCard = (props: StatusCardProps) => {
   const modKeys = status.modifiers.map((mod) =>
     Object.keys(mod.stats),
   ) as (keyof CharacterStats)[][]
+  const description = statusDescriptions[status.statusId]
   return (
-    <Box background='white' padding='8px' maxWidth='200px'>
+    <TooltipCard>
       <Box style={{ fontWeight: 700 }}>{status.name}</Box>
-      <Box
-        color='rgba(0,0,0,0.63)'
-        style={{ fontWeight: 900, fontSize: '10px' }}
-      >
-        <span style={{ whiteSpace: 'nowrap' }}>
-          Duration:{' '}
-          {status.duration === -1 ? <span>&#8734;</span> : status.duration} Turn
-          {status.duration !== 1 ? 's' : ''}
-        </span>
-      </Box>
-      {statusDescriptions[status.statusId] && (
-        <Box style={{ fontSize: '12px' }}>
-          {statusDescriptions[status.statusId]}
+      {!description && (
+        <Box
+          color='rgba(0,0,0,0.63)'
+          style={{ fontWeight: 900, fontSize: '10px' }}
+        >
+          <span style={{ whiteSpace: 'nowrap' }}>
+            Duration:{' '}
+            {status.duration === -1 ? <span>&#8734;</span> : status.duration}{' '}
+            Turn
+            {status.duration !== 1 ? 's' : ''}
+          </span>
         </Box>
       )}
+      {description && <Box style={{ fontSize: '12px' }}>{description}</Box>}
       <Box>
         {modKeys.map((keys, modIndex) =>
           keys.map((key) => {
@@ -92,6 +95,6 @@ export const StatusCard = (props: StatusCardProps) => {
           }),
         )}
       </Box>
-    </Box>
+    </TooltipCard>
   )
 }

@@ -3,6 +3,7 @@ import { config, useSpring } from 'react-spring'
 import styled from 'styled-components'
 import { useCombat } from '../../contexts/CombatContext'
 import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
+import { theme } from '../../theme'
 import { Move as MoveType } from '../../types/move'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
 import { Move } from '../Move'
@@ -97,12 +98,17 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
           <Box
             alignItems='flex-start'
             background='rgba(0,0,0,0.09)'
-            border='1px solid rgba(255,255,255,0.81)'
+            border={`1px solid ${theme.white6}`}
             padding='8px'
             flex='1'
             flexDirection='row'
           >
-            <Box flex='1' padding='8px 16px'>
+            <Box
+              flex='1'
+              padding='8px 0px 8px 16px'
+              overflowY='scroll'
+              maxHeight='288px'
+            >
               {character?.moves?.map((move) => (
                 <Button
                   key={move.id}

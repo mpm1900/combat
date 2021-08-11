@@ -15,7 +15,6 @@ export interface CombatMoveResultProps {
 
 export const CombatMoveResults = (props: CombatMoveResultProps) => {
   const { rolls, moveResults, onChildrenDone, onDone } = props
-  console.log('results', moveResults && moveResults[0].move.name)
   const [checksDone, setChecksDone] = useState(false)
   const [resultsDone, setResultsDone] = useState(false)
   const [isDone, setIsDone] = useState(false)

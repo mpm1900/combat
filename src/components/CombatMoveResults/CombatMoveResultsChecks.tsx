@@ -1,10 +1,15 @@
 import Color from 'color'
 import { useEffect, useMemo, useState } from 'react'
+import { useCombat } from '../../contexts/CombatContext'
 import { useList } from '../../hooks/useList'
 import { theme } from '../../theme'
+import { ZERO_STATS } from '../../types/character/data/ZERO_STATS'
+import { getStats } from '../../types/character/util'
 import { Box } from '../_core/Box'
 import { Check } from '../_core/Check'
 import { ResultText } from './ResultText'
+import { ReactComponent as FocusedCheck } from '../../icons/skoll/allied-star.svg'
+import { ReactComponent as CursedCheck } from '../../icons/lorc/skull-crossed-bones.svg'
 
 export type CombatMoveResultChecksProps = {
   rolls: boolean[]
@@ -15,6 +20,8 @@ export type CombatMoveResultChecksProps = {
 
 export const CombatMoveResultsChecks = (props: CombatMoveResultChecksProps) => {
   const { rolls, resultsDone, checksDone, onDone } = props
+  const { getActiveCharacter } = useCombat()
+  const character = getActiveCharacter()
   const [checksDoneArray, setCheckDone] = useList<boolean>(
     rolls.length,
     checksDone,
@@ -26,6 +33,13 @@ export const CombatMoveResultsChecks = (props: CombatMoveResultChecksProps) => {
     () => Color(theme.perfectCheckColor).lighten(0.8).rgb().toString(),
     [theme.perfectCheckColor],
   )
+  const focusedCheckColor = useMemo(
+    () => Color(theme.perfectCheckColor).lighten(0.4).rgb().toString(),
+    [theme.perfectCheckColor],
+  )
+  const stats = useMemo(() => {
+    return character ? getStats(character) : ZERO_STATS
+  }, [character])
   const isPerfect = rolls.every(Boolean)
   const isMiss = !rolls.some(Boolean)
 
@@ -44,8 +58,19 @@ export const CombatMoveResultsChecks = (props: CombatMoveResultChecksProps) => {
           delay={100 * i}
           value={r}
           isDone={checksDoneArray[i]}
+          failureColor={
+            stats.forceCombatCheckFailure > i
+              ? 'rgba(94,50,50,0.54)'
+              : undefined
+          }
           successColor={
-            checksDone ? (isPerfect ? perfectCheckColor : undefined) : undefined
+            checksDone
+              ? stats.forceCombatCheckSuccess > i
+                ? focusedCheckColor
+                : isPerfect
+                ? perfectCheckColor
+                : undefined
+              : undefined
           }
           backgroundColor={
             checksDone
@@ -57,7 +82,13 @@ export const CombatMoveResultsChecks = (props: CombatMoveResultChecksProps) => {
           onRest={() => {
             setCheckDone(i, true)
           }}
-        />
+        >
+          {stats.forceCombatCheckSuccess > i ? (
+            <FocusedCheck />
+          ) : stats.forceCombatCheckFailure > i ? (
+            <CursedCheck />
+          ) : undefined}
+        </Check>
       ))}
       {checksDone && (
         <ResultText
