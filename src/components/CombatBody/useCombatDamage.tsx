@@ -3,7 +3,7 @@ import { useCombat } from '../../contexts/CombatContext'
 import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
 import { useCombatTurn } from '../../contexts/CombatContext/turn'
 import { AccuracyStats, Character } from '../../types/character/character'
-import { getStats } from '../../types/character/util'
+import { getStats, getStatuses } from '../../types/character/util'
 import { min } from '../../types/equation'
 import { getRolls, Move, MoveResult, resolveMove } from '../../types/move'
 import { ProtectedId } from '../../types/status/data/Protected'
@@ -64,7 +64,7 @@ export const useCombatDamage = () => {
           }
 
           addStatusesToCharacter(character.id, moveResults[i].statuses.source)
-          const protectedStatus = char.statuses.find(
+          const protectedStatus = getStatuses(char).find(
             (s) => s.statusId === ProtectedId,
           )
           const hasEnemySourceStatus =

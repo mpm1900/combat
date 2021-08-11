@@ -4,12 +4,15 @@ import { Thunderbolt } from '../../../move/data/Thunderbolt'
 import { ThunderPunch } from '../../../move/data/ThunderPunch'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
+import { BASE_CHARACTER } from './BASE_CHARACTER'
 
 export const Raichu = (): Character => ({
+  ...BASE_CHARACTER,
   id: v4(),
   name: 'Raichu',
   level: 100,
   elements: [ThunderElement],
+  abilities: [],
   statuses: [],
   immunities: [],
   damage: 0,
@@ -23,8 +26,8 @@ export const Raichu = (): Character => ({
     evasion: 5,
     criticalChance: 5,
     criticalDamage: 1.5,
-    physicalAccuracy: 95,
-    physicalAttack: 100, //90,
+    physicalAccuracy: 85,
+    physicalAttack: 90,
     physicalDefense: 55,
     specialAccuracy: 80,
     specialAttack: 90,

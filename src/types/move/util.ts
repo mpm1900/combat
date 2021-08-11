@@ -7,7 +7,11 @@ import {
   ElementalDamageStats,
   ElementalResistanceStats,
 } from '../character/character'
-import { getStats, getStatsAndEquations } from '../character/util'
+import {
+  getImmunities,
+  getStats,
+  getStatsAndEquations,
+} from '../character/util'
 import { resolveStatus } from '../status/util'
 import { Move, MoveResolvedStatuses, MoveStatuses } from './move'
 
@@ -107,7 +111,10 @@ export const resolveMove = (
     source: statuses.source
       .map((s) => resolveStatus(s))
       .filter(
-        (s) => !source.immunities.map((i) => i.statusId).includes(s.statusId),
+        (s) =>
+          !getImmunities(source)
+            .map((i) => i.statusId)
+            .includes(s.statusId),
       ),
     target: statuses.target
       .map((s) => ({
@@ -115,7 +122,10 @@ export const resolveMove = (
         isPositive: !s.isPositive,
       }))
       .filter(
-        (s) => !target.immunities.map((i) => i.statusId).includes(s.statusId),
+        (s) =>
+          !getImmunities(target)
+            .map((i) => i.statusId)
+            .includes(s.statusId),
       ),
   }
 

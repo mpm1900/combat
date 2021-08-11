@@ -30,7 +30,7 @@ export const colorMap: Record<ElementalType, string> = {
   grass: 'lightgreen',
   earth: 'tan',
   thunder: 'gold',
-  air: 'aliceblue',
+  air: 'powderblue',
   ghost: 'mediumpurple',
   dark: 'lightslategrey',
   light: 'lightyellow',

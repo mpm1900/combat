@@ -6,11 +6,30 @@ import {
   resolveStats,
   StatEquations,
 } from '../stats'
+import { Status } from '../status/status'
 import { Character, CharacterStats } from './character'
 import { BASE_MODIFIER } from './data'
 
+export const getStatuses = (character: Character) => {
+  const abilityStatuses = character.abilities.reduce((statuses, ability) => {
+    // TODO: Filter down critical statuses when not in a critical state
+    return [...statuses, ...ability.statuses]
+  }, [] as Status[])
+  return [...character.statuses, ...abilityStatuses]
+}
+
+export const getImmunities = (character: Character) => {
+  const abilityImmunities = character.abilities.reduce(
+    (immunities, ability) => {
+      return [...immunities, ...ability.immunities]
+    },
+    [] as Status[],
+  )
+  return [...character.statuses, ...abilityImmunities]
+}
+
 export const getModifiers = (character: Character) => {
-  const statusModifiers = character.statuses.reduce(
+  const statusModifiers = getStatuses(character).reduce(
     (list, status) => [...list, ...status.modifiers],
     [] as Modifier[],
   )

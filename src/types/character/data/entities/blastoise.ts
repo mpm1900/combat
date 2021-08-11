@@ -3,12 +3,15 @@ import { WaterElement } from '../../../elemental/data/WaterElement'
 import { WaterShot } from '../../../move/data/WaterShot'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
+import { BASE_CHARACTER } from './BASE_CHARACTER'
 
 export const Blastoise = (): Character => ({
+  ...BASE_CHARACTER,
   id: v4(),
   name: 'Blastoise',
   level: 100,
   elements: [WaterElement],
+  abilities: [],
   statuses: [],
   immunities: [],
   damage: 0,

@@ -26,9 +26,6 @@ export const CombatMoveResultsChecks = (props: CombatMoveResultChecksProps) => {
     rolls.length,
     checksDone,
   )
-  const [perfectCheckColor, setPerfectCheckColor] = useState(
-    theme.perfectCheckColor,
-  )
   const perfectTextColor = useMemo(
     () => Color(theme.perfectCheckColor).lighten(0.8).rgb().toString(),
     [theme.perfectCheckColor],
@@ -68,7 +65,7 @@ export const CombatMoveResultsChecks = (props: CombatMoveResultChecksProps) => {
               ? stats.forceCombatCheckSuccess > i
                 ? focusedCheckColor
                 : isPerfect
-                ? perfectCheckColor
+                ? theme.perfectCheckColor
                 : undefined
               : undefined
           }

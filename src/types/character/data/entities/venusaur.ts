@@ -3,12 +3,15 @@ import { GrassElement } from '../../../elemental/data/GrassElement'
 import { RazorLeaf } from '../../../move/data/RazorLeaf'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
+import { BASE_CHARACTER } from './BASE_CHARACTER'
 
 export const Venusaur = (): Character => ({
+  ...BASE_CHARACTER,
   id: v4(),
   name: 'Venusaur',
   level: 100,
   elements: [GrassElement],
+  abilities: [],
   statuses: [],
   immunities: [],
   damage: 0,

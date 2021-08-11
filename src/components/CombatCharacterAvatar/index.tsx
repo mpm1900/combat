@@ -4,7 +4,7 @@ import { ElementalType } from '../../types/elemental'
 import { Box, BoxProps } from '../_core/Box'
 import { colorMap } from '../_core/ElementalIcon'
 
-const Wrapper = styled(Box)({
+const Wrapper = styled(Box)((p) => ({
   boxShadow: '0px 0px 10px inset rgba(0,0,0,0.45)',
   boxSizing: 'border-box',
   whiteSpace: 'nowrap',
@@ -13,20 +13,25 @@ const Wrapper = styled(Box)({
   justifyContent: 'center',
   textOverflow: 'ellipsis',
   display: 'inline-block',
-})
+  color: 'white',
+  textShadow: '1px 1px 1px rgba(0,0,0,0.9)',
+  lineHeight: `calc(${p.height} - 8px)`,
+}))
 
 export type CombatCharacterAvatarProps = BoxProps & {
   character: Character
 }
 export const CombatCharacterAvatar = (props: CombatCharacterAvatarProps) => {
-  const { character, ...rest } = props
+  const { character, children, ...rest } = props
   return (
     <Wrapper
       {...rest}
       backgroundColor={
         colorMap[character?.elements[0].element as ElementalType]
       }
-    ></Wrapper>
+    >
+      {children}
+    </Wrapper>
   )
 }
 

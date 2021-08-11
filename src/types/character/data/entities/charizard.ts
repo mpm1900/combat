@@ -9,14 +9,18 @@ import { Focus } from '../../../move/data/Focus'
 import { Protect } from '../../../move/data/Protect'
 import { Rest } from '../../../move/data/Rest'
 import { TimeWarp } from '../../../move/data/TimeWarp'
+import { Cursed } from '../../../status/data/Cursed'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
+import { BASE_CHARACTER } from './BASE_CHARACTER'
 
 export const Charizard = (): Character => ({
+  ...BASE_CHARACTER,
   id: v4(),
   name: 'Charizard',
   level: 100,
   elements: [FireElement, AirElement],
+  abilities: [],
   statuses: [],
   immunities: [],
   damage: 0,

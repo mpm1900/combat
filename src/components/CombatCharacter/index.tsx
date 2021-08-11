@@ -2,7 +2,11 @@ import { useMemo } from 'react'
 import { useCombat } from '../../contexts/CombatContext'
 import { theme } from '../../theme'
 import { Character } from '../../types/character/character'
-import { getStats } from '../../types/character/util'
+import {
+  getImmunities,
+  getStats,
+  getStatuses,
+} from '../../types/character/util'
 import { min } from '../../types/equation'
 import { Bar } from '../_core/Bar'
 import { Box } from '../_core/Box'
@@ -117,14 +121,14 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         height='28px'
       >
         <Box flexDirection='row'>
-          {character.immunities.map((status) => (
+          {getImmunities(character).map((status) => (
             <CombatCharacterStatus key={status.id} status={status} color='plum'>
               <ImmunityCard status={status} />
             </CombatCharacterStatus>
           ))}
         </Box>
         <Box flexDirection='row' justifyContent='flex-end'>
-          {character.statuses.map((status) => (
+          {getStatuses(character).map((status) => (
             <CombatCharacterStatus key={status.id} status={status} />
           ))}
         </Box>

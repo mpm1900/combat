@@ -1,6 +1,9 @@
+import { useMemo } from 'react'
 import { config, useTransition } from 'react-spring'
 import { Character } from '../../types/character/character'
+import { getStats } from '../../types/character/util'
 import {
+  convertToDeltas,
   getMaxValue,
   Queue as QueueType,
   QueueItem as QueueItemType,
@@ -37,19 +40,29 @@ export const Queue = (props: QueueProps) => {
     }),
     config: config.slow,
   })
+  const deltas = useMemo(() => {
+    const statsArray = characters.map((c) => ({ id: c.id, value: getStats(c) }))
+    return convertToDeltas(queue, statsArray)
+  }, [characters, queue])
+
   return (
     <Box flex={1} margin='0 0 8px 8px' position='relative' paddingRight='60px'>
       <QueueWrapper>
         {transitions((styles, item) => (
           <CombatCharacterAvatar
             marginTop='-2px'
+            textAlign='center'
             character={character(item.id) as Character}
             style={{
               ...styles,
               transform: styles.offset.to((v) => `translate3d(${v}px, 0,0)`),
             }}
             position='absolute'
-          />
+          >
+            {((deltas.find((d) => d.id === item.id)?.value || 0) * 100).toFixed(
+              1,
+            )}
+          </CombatCharacterAvatar>
         ))}
         <Box
           flex='1'

@@ -3,12 +3,15 @@ import { AirElement } from '../../../elemental/data/AirElement'
 import { AirSlash } from '../../../move/data/AirSlash'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
+import { BASE_CHARACTER } from './BASE_CHARACTER'
 
 export const Pidgeot = (): Character => ({
+  ...BASE_CHARACTER,
   id: v4(),
   name: 'Pidgeot',
   level: 100,
   elements: [AirElement],
+  abilities: [],
   statuses: [],
   immunities: [],
   damage: 0,
