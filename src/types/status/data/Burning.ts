@@ -6,6 +6,8 @@ export const Burned = makeStatusFn({
   statusId: BurnedId,
   name: 'Burned',
   isStackable: false,
+  removeOnHit: false,
+  removeOnActiveTurn: false,
   modifiers: [
     {
       stats: {

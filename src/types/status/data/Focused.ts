@@ -6,6 +6,8 @@ export const Focused = makeStatusFn({
   statusId: FocusedId,
   name: 'Focused',
   isStackable: true,
+  removeOnHit: false,
+  removeOnActiveTurn: false,
   modifiers: [
     {
       stats: {

@@ -6,6 +6,8 @@ export const Protected = makeStatusFn({
   statusId: ProtectedId,
   name: 'Protected',
   isStackable: false,
+  removeOnHit: true,
+  removeOnActiveTurn: true,
   modifiers: [
     {
       stats: {},

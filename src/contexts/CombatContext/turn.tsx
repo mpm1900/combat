@@ -27,8 +27,14 @@ export const CombatTurn = (props: PropsWithChildren<{}>) => {
   const { children } = props
   const [turnId, setTurnId] = useState<string>(v4())
   const [turnCount, setTurnCount] = useState(0)
-  const { enqueue, reduceStatusDurations } = useCombat()
+  const {
+    enqueue,
+    reduceStatusDurations,
+    getActiveCharacter,
+    updateCharacter,
+  } = useCombat()
   const { clear, moveBuffer } = useCombatBuffer()
+  const character = getActiveCharacter()
   const nextTurn = () => {
     setTurnId(v4())
     setTurnCount((c) => c + 1)
@@ -46,6 +52,15 @@ export const CombatTurn = (props: PropsWithChildren<{}>) => {
       clear()
     }
   }, [turnCount])
+
+  useEffect(() => {
+    if (character) {
+      updateCharacter(character.id, (c) => ({
+        ...c,
+        statuses: c.statuses.filter((s) => !s.removeOnActiveTurn),
+      }))
+    }
+  }, [character?.id])
 
   return (
     <CombatTurnContext.Provider value={context}>

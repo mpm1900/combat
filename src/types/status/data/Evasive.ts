@@ -6,6 +6,8 @@ export const Evasive = makeStatusFn({
   statusId: EvasiveId,
   name: 'Evasive',
   isStackable: false,
+  removeOnHit: false,
+  removeOnActiveTurn: false,
   modifiers: [
     {
       stats: {

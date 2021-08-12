@@ -6,6 +6,8 @@ export const Wet = makeStatusFn({
   statusId: WetId,
   name: 'Wet',
   isStackable: false,
+  removeOnHit: false,
+  removeOnActiveTurn: false,
   modifiers: [
     {
       stats: {

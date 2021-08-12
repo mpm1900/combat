@@ -6,6 +6,8 @@ export const Shocked = makeStatusFn({
   statusId: ShockedId,
   name: 'Shocked',
   isStackable: false,
+  removeOnHit: false,
+  removeOnActiveTurn: false,
   modifiers: [
     {
       stats: {

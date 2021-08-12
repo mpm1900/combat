@@ -6,6 +6,8 @@ export const Dazed = makeStatusFn({
   statusId: DazedId,
   name: 'Dazed',
   isStackable: false,
+  removeOnHit: false,
+  removeOnActiveTurn: false,
   modifiers: [
     {
       stats: {

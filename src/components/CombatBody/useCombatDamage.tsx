@@ -82,9 +82,13 @@ export const useCombatDamage = () => {
           ) {
             updateCharacter(char.id, (c) => ({
               ...c,
-              statuses: c.statuses.filter((s) => s.statusId !== ProtectedId),
+              statuses: c.statuses.filter((s) => !s.removeOnHit),
             }))
           } else {
+            updateCharacter(char.id, (c) => ({
+              ...c,
+              statuses: c.statuses.filter((s) => !s.removeOnHit),
+            }))
             addStatusesToCharacter(char.id, moveResults[i].statuses.target)
             addDamageToCharacter(char.id, moveResults[i].totalDamage)
           }

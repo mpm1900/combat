@@ -100,6 +100,18 @@ export const StatusCard = (props: StatusCardProps) => {
           )}
         </Box>
       )}
+      {(status.removeOnHit || status.removeOnActiveTurn) && (
+        <Box marginTop='8px' style={{ fontWeight: 600 }}>
+          {status.removeOnHit && (
+            <Box style={{ fontSize: '10px' }}>Removed on hit.</Box>
+          )}
+          {status.removeOnActiveTurn && (
+            <Box style={{ fontSize: '10px' }}>
+              Removed character's next turn.
+            </Box>
+          )}
+        </Box>
+      )}
     </TooltipCard>
   )
 }

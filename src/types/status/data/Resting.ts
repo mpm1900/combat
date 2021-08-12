@@ -6,6 +6,8 @@ export const Resting = makeStatusFn({
   statusId: RestingId,
   name: 'Resting',
   isStackable: false,
+  removeOnHit: false,
+  removeOnActiveTurn: false,
   modifiers: [
     {
       stats: {

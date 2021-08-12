@@ -14,12 +14,12 @@ import { colorMap, ElementalIcon } from '../_core/ElementalIcon'
 import { Hexagon } from '../_core/Hexagon'
 import { ImmunityCard } from '../_core/ImmunityCard'
 import { CombatCharacterStatus } from './CombatCharacterStatus'
-import { ReactComponent as Accuracy } from '../../icons/lorc/archery-target.svg'
+import { ReactComponent as Accuracy } from '../../icons/delapouite/eye-target.svg'
 import { ReactComponent as Attack } from '../../icons/lorc/battered-axe.svg'
 import { ReactComponent as Defense } from '../../icons/sbed/shield.svg'
-import { Icon } from '../_core/Icon'
 import { AnimatedNumber } from '../_core/AnimatedNumber'
 import { useSpring } from 'react-spring'
+import { CombatCharacterStats } from './CombatCharacterStats'
 
 export type CombatCharacterProps = {
   character: Character
@@ -47,7 +47,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
       }
     >
       <Box
-        width='256px'
+        width='312px'
         background={theme.boxGradient}
         border='1px solid rgba(255,255,255,0.56)'
         margin='36px 0 0 32px'
@@ -60,7 +60,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             borderWidth={2}
             size={80}
             style={{
-              margin: '16px 0 0 -32px',
+              margin: '18px 0 0 -34px',
             }}
           />
         </Box>
@@ -70,7 +70,8 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               color='white'
               alignItems='center'
               flexDirection='row'
-              marginLeft='4px'
+              paddingLeft='4px'
+              borderBottom='1px solid rgba(255,255,255,0.36)'
             >
               {character.elements.map((element) => (
                 <ElementalIcon
@@ -100,51 +101,30 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             background='rgba(0,0,0,0.36)'
             style={{ fontWeight: 700, fontSize: '14px' }}
           >
-            <Box flexDirection='row' alignItems='center'>
-              <Icon width='16px' color='white'>
-                <Accuracy />
-              </Icon>
-              <span style={{ color: theme.physicalColor }}>
-                {stats.physicalAccuracy}
-              </span>
-              <span> : </span>
-              <span style={{ color: theme.specialColor }}>
-                {stats.specialAccuracy}
-              </span>
-            </Box>
-            <Box flexDirection='row' alignItems='center'>
-              <Icon width='16px' color='white' marginRight='2px'>
-                <Attack />
-              </Icon>
-              <span style={{ color: theme.physicalColor }}>
-                {stats.physicalAttack}
-              </span>
-              <span> : </span>
-              <span style={{ color: theme.specialColor }}>
-                {stats.specialAttack}
-              </span>
-            </Box>
-            <Box flexDirection='row' alignItems='center'>
-              <Icon width='16px' color='white'>
-                <Defense />
-              </Icon>
-              <span style={{ color: theme.physicalColor }}>
-                {stats.physicalDefense}
-              </span>
-              <span> : </span>
-              <span style={{ color: theme.specialColor }}>
-                {stats.specialDefense}
-              </span>
-            </Box>
+            <CombatCharacterStats
+              icon={<Accuracy />}
+              physical={String(stats.physicalAccuracy) + '%'}
+              special={String(stats.specialAccuracy) + '%'}
+            />
+            <CombatCharacterStats
+              icon={<Attack />}
+              physical={String(stats.physicalAttack).padStart(3, '0')}
+              special={String(stats.specialAttack).padStart(3, '0')}
+            />
+            <CombatCharacterStats
+              icon={<Defense />}
+              physical={String(stats.physicalDefense).padStart(3, '0')}
+              special={String(stats.specialDefense).padStart(3, '0')}
+            />
           </Box>
           <Box position='relative'>
             <Box
               position='absolute'
               background={theme.boxGradient}
-              height='30px'
+              height='36px'
               width='42px'
               zIndex={2}
-              top='-3px'
+              top='-6px'
               left='-32px'
               borderRadius='50%'
               border='1px solid rgba(255,255,255,0.72)'
@@ -162,7 +142,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             <Bar
               value={currentHealth}
               max={stats.health}
-              height='12px'
+              height='14px'
               background={theme.healthBarRed}
               border='1px solid rgba(0,0,0,0.45)'
               marginLeft='4px'

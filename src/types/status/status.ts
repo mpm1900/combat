@@ -8,7 +8,8 @@ export type Status = {
   isPositive: boolean
   isStackable: boolean
   // TODO: implement this (protected)
-  removeOnHit?: boolean
+  removeOnHit: boolean
+  removeOnActiveTurn: boolean
   applyChance: number
   modifiers: Modifier[]
 }
