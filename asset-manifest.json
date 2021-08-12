@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/combat/static/css/main.881bff57.chunk.css",
-    "main.js": "/combat/static/js/main.980a4b23.chunk.js",
-    "main.js.map": "/combat/static/js/main.980a4b23.chunk.js.map",
+    "main.js": "/combat/static/js/main.ba271d70.chunk.js",
+    "main.js.map": "/combat/static/js/main.ba271d70.chunk.js.map",
     "runtime-main.js": "/combat/static/js/runtime-main.32250efa.js",
     "runtime-main.js.map": "/combat/static/js/runtime-main.32250efa.js.map",
     "static/js/2.46ac21e0.chunk.js": "/combat/static/js/2.46ac21e0.chunk.js",
@@ -25,6 +25,7 @@
     "static/media/magic-swirl.fe6b7c76.svg": "/combat/static/media/magic-swirl.fe6b7c76.svg",
     "static/media/oak-leaf.7deeef1c.svg": "/combat/static/media/oak-leaf.7deeef1c.svg",
     "static/media/perspective-dice-six-faces-random.6ee9d245.svg": "/combat/static/media/perspective-dice-six-faces-random.6ee9d245.svg",
+    "static/media/plain-circle.929d41ad.svg": "/combat/static/media/plain-circle.929d41ad.svg",
     "static/media/power-lightning.3ae17416.svg": "/combat/static/media/power-lightning.3ae17416.svg",
     "static/media/pulse.bdf208ab.svg": "/combat/static/media/pulse.bdf208ab.svg",
     "static/media/revolt.2e58af85.svg": "/combat/static/media/revolt.2e58af85.svg",
@@ -38,6 +39,6 @@
     "static/js/runtime-main.32250efa.js",
     "static/js/2.46ac21e0.chunk.js",
     "static/css/main.881bff57.chunk.css",
-    "static/js/main.980a4b23.chunk.js"
+    "static/js/main.ba271d70.chunk.js"
   ]
 }
