@@ -19,6 +19,8 @@ export const ZERO_STATS: CharacterStats = {
   specialAccuracy: 0,
   specialAttack: 0,
   specialDefense: 0,
+  normalDamage: 0,
+  normalResistance: 0,
   fireDamage: 0,
   fireResistance: 0,
   waterDamage: 0,

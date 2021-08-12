@@ -6,7 +6,7 @@ export const DoubleTeam: Move = {
   id: v4(),
   name: 'Double Team',
   type: 'special',
-  element: 'light',
+  element: 'normal',
   target: 'self',
   checks: 2,
   offset: 0,

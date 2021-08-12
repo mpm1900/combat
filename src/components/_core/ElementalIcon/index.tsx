@@ -1,5 +1,6 @@
 import { ElementalType } from '../../../types/elemental'
 import { BoxProps } from '../Box'
+import { ReactComponent as Normal } from '../../../icons/delapouite/plain-circle.svg'
 import { ReactComponent as Fire } from '../../../icons/sbed/flamer.svg'
 import { ReactComponent as Water } from '../../../icons/lorc/drop.svg'
 import { ReactComponent as Thunder } from '../../../icons/lorc/power-lightning.svg'
@@ -13,6 +14,7 @@ import { FunctionComponent } from 'react'
 import { Icon } from '../Icon'
 
 const iconMap: Record<ElementalType, FunctionComponent> = {
+  normal: Normal,
   fire: Fire,
   water: Water,
   grass: Grass,
@@ -25,6 +27,7 @@ const iconMap: Record<ElementalType, FunctionComponent> = {
 }
 
 export const colorMap: Record<ElementalType, string> = {
+  normal: 'grey',
   fire: 'salmon',
   water: 'CornflowerBlue',
   grass: 'lightgreen',

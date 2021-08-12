@@ -40,8 +40,6 @@ export const Charizard = (): Character => ({
     specialAccuracy: 85,
     specialAttack: 108,
     specialDefense: 85,
-    turnHealthRegen: 10,
-    activeTurnHealthRegen: 30,
   },
   moves: [
     FireBall,

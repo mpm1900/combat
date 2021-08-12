@@ -23,6 +23,8 @@ export const statKeyMap: Record<keyof CharacterStats, string> = {
   specialAccuracy: 'Spec Accuracy',
   specialAttack: 'Spec Attack',
   specialDefense: 'Spec Defense',
+  normalDamage: 'Normal Damage',
+  normalResistance: 'Normal Res',
   fireDamage: 'Fire Damage',
   fireResistance: 'Fire Res',
   waterDamage: 'Water Damage',

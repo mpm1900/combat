@@ -16,7 +16,8 @@ export const CombatHeader = (props: CombatHeaderProps) => {
     <Box background='rgba(0, 0, 0, 0.5)'>
       <Box flexDirection='row' padding='0px 8px 16px 8px'>
         {character && (
-          <Box flexDirection='row'>
+          <Box flexDirection='row' width='264px'>
+            <Box flex={1} />
             <Box justifyContent='center'>
               <Box
                 color='rgba(255,255,255,0.27)'
@@ -25,7 +26,7 @@ export const CombatHeader = (props: CombatHeaderProps) => {
               >
                 Turn {turnCount + 1}
               </Box>
-              <Box background='white' padding='4px 8px' width='160px'>
+              <Box background='white' padding='4px 8px' maxWidth='160px'>
                 <span>
                   <strong>{character.name}'s</strong> Turn
                 </span>

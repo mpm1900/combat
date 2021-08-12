@@ -105,7 +105,7 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
           >
             <Box
               flex='1'
-              padding='8px 0px 8px 16px'
+              padding='8px 4px 8px 8px'
               overflowY='scroll'
               maxHeight='288px'
             >

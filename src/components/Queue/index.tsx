@@ -77,7 +77,7 @@ export const Queue = (props: QueueProps) => {
                 width: `${100 / maxValue}%`,
                 height: '100%',
                 background: 'rgba(255,255,255,0.09)',
-                borderRight: '1px solid rgba(255,255,255,0.18)',
+                // borderRight: '1px solid rgba(255,255,255,0.09)',
               }}
             />
           ))}

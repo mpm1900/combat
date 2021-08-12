@@ -1,6 +1,7 @@
 import { Modifier } from '../stats'
 
 export type ElementalType =
+  | 'normal'
   | 'fire'
   | 'water'
   | 'grass'

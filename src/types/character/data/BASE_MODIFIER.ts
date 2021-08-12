@@ -22,6 +22,8 @@ export const BASE_MODIFIER: ResolvedModifier = {
     specialAttack: { m: 1, b: 0 },
     specialDefense: { m: 1, b: 0 },
 
+    normalDamage: { m: 0, b: 0 },
+    normalResistance: { m: 0, b: 0 },
     fireDamage: { m: 0, b: 0 },
     fireResistance: { m: 0, b: 0 },
     waterDamage: { m: 0, b: 0 },
