@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/combat/static/css/main.881bff57.chunk.css",
-    "main.js": "/combat/static/js/main.44bff4d0.chunk.js",
-    "main.js.map": "/combat/static/js/main.44bff4d0.chunk.js.map",
+    "main.js": "/combat/static/js/main.67b88cf2.chunk.js",
+    "main.js.map": "/combat/static/js/main.67b88cf2.chunk.js.map",
     "runtime-main.js": "/combat/static/js/runtime-main.32250efa.js",
     "runtime-main.js.map": "/combat/static/js/runtime-main.32250efa.js.map",
-    "static/js/2.d23d2cc7.chunk.js": "/combat/static/js/2.d23d2cc7.chunk.js",
-    "static/js/2.d23d2cc7.chunk.js.map": "/combat/static/js/2.d23d2cc7.chunk.js.map",
+    "static/js/2.11ea3e0d.chunk.js": "/combat/static/js/2.11ea3e0d.chunk.js",
+    "static/js/2.11ea3e0d.chunk.js.map": "/combat/static/js/2.11ea3e0d.chunk.js.map",
     "static/js/3.beda6b1d.chunk.js": "/combat/static/js/3.beda6b1d.chunk.js",
     "static/js/3.beda6b1d.chunk.js.map": "/combat/static/js/3.beda6b1d.chunk.js.map",
     "index.html": "/combat/index.html",
     "static/css/main.881bff57.chunk.css.map": "/combat/static/css/main.881bff57.chunk.css.map",
-    "static/js/2.d23d2cc7.chunk.js.LICENSE.txt": "/combat/static/js/2.d23d2cc7.chunk.js.LICENSE.txt",
+    "static/js/2.11ea3e0d.chunk.js.LICENSE.txt": "/combat/static/js/2.11ea3e0d.chunk.js.LICENSE.txt",
     "static/media/allied-star.9a910a3f.svg": "/combat/static/media/allied-star.9a910a3f.svg",
     "static/media/archery-target.23304b6d.svg": "/combat/static/media/archery-target.23304b6d.svg",
     "static/media/battered-axe.e5f4176d.svg": "/combat/static/media/battered-axe.e5f4176d.svg",
@@ -23,6 +23,7 @@
     "static/media/flame.b55b5992.svg": "/combat/static/media/flame.b55b5992.svg",
     "static/media/flamer.6efba9c3.svg": "/combat/static/media/flamer.6efba9c3.svg",
     "static/media/fluffy-wing.30c94702.svg": "/combat/static/media/fluffy-wing.30c94702.svg",
+    "static/media/hypersonic-bolt.08ddc80c.svg": "/combat/static/media/hypersonic-bolt.08ddc80c.svg",
     "static/media/lightning-trio.2c6165fd.svg": "/combat/static/media/lightning-trio.2c6165fd.svg",
     "static/media/magic-swirl.fe6b7c76.svg": "/combat/static/media/magic-swirl.fe6b7c76.svg",
     "static/media/oak-leaf.7deeef1c.svg": "/combat/static/media/oak-leaf.7deeef1c.svg",
@@ -40,8 +41,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.32250efa.js",
-    "static/js/2.d23d2cc7.chunk.js",
+    "static/js/2.11ea3e0d.chunk.js",
     "static/css/main.881bff57.chunk.css",
-    "static/js/main.44bff4d0.chunk.js"
+    "static/js/main.67b88cf2.chunk.js"
   ]
 }
