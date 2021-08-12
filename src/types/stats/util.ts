@@ -63,7 +63,7 @@ export function resolveStats(baseStats: CharacterStats, modifiers: Modifier[]) {
   return keys.reduce(
     (result, key) => ({
       ...result,
-      [key]: stats[key](result[key]),
+      [key]: Math.floor(stats[key](result[key])),
     }),
     baseStats,
   )

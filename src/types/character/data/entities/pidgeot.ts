@@ -19,7 +19,7 @@ export const Pidgeot = (): Character => ({
   energyOffset: 0,
   stats: {
     ...ZERO_STATS,
-    health: 83 * 5,
+    health: 83,
     speed: 91,
     energy: 100,
     initiative: 100,

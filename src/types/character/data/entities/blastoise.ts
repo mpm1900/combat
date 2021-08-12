@@ -19,7 +19,7 @@ export const Blastoise = (): Character => ({
   energyOffset: 0,
   stats: {
     ...ZERO_STATS,
-    health: 79 * 5,
+    health: 79,
     speed: 78,
     energy: 100,
     initiative: 100,

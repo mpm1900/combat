@@ -59,9 +59,9 @@ export const Queue = (props: QueueProps) => {
             }}
             position='absolute'
           >
-            {((deltas.find((d) => d.id === item.id)?.value || 0) * 100).toFixed(
-              1,
-            )}
+            {(
+              (deltas.find((d) => d.id === item.id)?.value || 0) * 1000
+            ).toFixed(1)}
           </CombatCharacterAvatar>
         ))}
         <Box

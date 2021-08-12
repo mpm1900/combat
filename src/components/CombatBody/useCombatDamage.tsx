@@ -66,8 +66,6 @@ export const useCombatDamage = () => {
           if (i === 0) {
             addStatusesToCharacter(character.id, moveResults[i].statuses.source)
           }
-
-          addStatusesToCharacter(character.id, moveResults[i].statuses.source)
           const protectedStatus = getStatuses(char).find(
             (s) => s.statusId === ProtectedId,
           )

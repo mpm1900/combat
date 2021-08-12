@@ -1,5 +1,5 @@
 import { Character, CharacterStats } from '../character/character'
-import { getStats } from '../character/util'
+import { convertStats, getStats } from '../character/util'
 import { Move } from '../move'
 
 export type QueueItem = {
@@ -27,8 +27,10 @@ export const initializeQueue = (characters: Character[]): Queue => {
       }))
       .filter((qi) => {
         const char = characters.find((c) => c.id === qi.id)
-        const health = qi.stats.health
-        return char && char.damage < health
+        if (!char) return false
+        const stats = convertStats(char)
+        const health = stats.health
+        return char.damage < health
       }),
     characters,
   )

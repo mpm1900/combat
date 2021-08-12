@@ -7,7 +7,7 @@ import {
 } from 'react'
 import { Character } from '../../types/character/character'
 import { Party } from '../../types/character/party'
-import { getStats } from '../../types/character/util'
+import { convertStats, getStats } from '../../types/character/util'
 import { Move } from '../../types/move'
 import { getActiveId, Queue, QueueItem } from '../../types/queue/queue'
 import { ResolvedStatus } from '../../types/status/status'
@@ -114,9 +114,9 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
     parties.find((p) => p.characterIds.includes(id))?.id
 
   const getLiveCharacters = () =>
-    characters.filter((qi) => {
-      const char = characters.find((c) => c.id === qi.id)
-      const health = qi.stats.health
+    characters.filter((char) => {
+      const stats = convertStats(char)
+      const health = stats.health
       return char && char.damage < health
     })
 

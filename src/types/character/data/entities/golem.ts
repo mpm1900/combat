@@ -19,7 +19,7 @@ export const Golem = (): Character => ({
   energyOffset: 0,
   stats: {
     ...ZERO_STATS,
-    health: 80 * 5,
+    health: 80,
     speed: 45,
     energy: 100,
     initiative: 100,

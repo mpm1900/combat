@@ -13,9 +13,10 @@ const Wrapper = styled(Box)((p) => ({
   justifyContent: 'center',
   textOverflow: 'ellipsis',
   display: 'inline-block',
-  color: 'white',
-  textShadow: '1px 1px 1px rgba(0,0,0,0.9)',
+  color: 'black',
+  // textShadow: '1px 1px 1px rgba(255,255,255,0.9)',
   lineHeight: `calc(${p.height} - 8px)`,
+  fontWeight: 900,
 }))
 
 export type CombatCharacterAvatarProps = BoxProps & {
