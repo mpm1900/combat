@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { useCombat } from '../../contexts/CombatContext'
 import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
 import { theme } from '../../theme'
+import { getStats } from '../../types/character/util'
 import { Move as MoveType } from '../../types/move'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
 import { Move } from '../Move'
@@ -28,6 +29,7 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
   const [activeMove, setActiveMove] = useState<MoveType | undefined>(
     character?.moves[0],
   )
+  const stats = character ? getStats(character) : undefined
 
   const styles = useSpring({
     opacity: 1,
@@ -80,7 +82,6 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
             <Box flexDirection='row' alignItems='center' paddingLeft='32px'>
               <Button
                 isHovering={true}
-                disabled={true}
                 marginRight='4px'
                 borderRadius='4px 4px 0 0'
                 style={{ borderBottom: 'none' }}
@@ -110,22 +111,27 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
               maxHeight='288px'
             >
               {character?.moves?.map((move) => (
-                <Button
-                  key={move.id}
-                  alignItems='center'
-                  flexDirection='row'
-                  marginTop='8px'
-                  padding='8px'
-                  width='200px'
-                  isHovering={move.id === activeMove?.id}
-                  onMouseEnter={() => setActiveMove(move)}
-                  onClick={() => {
-                    bufferMove(move)
-                  }}
-                >
-                  <ElementalIcon height='20px' type={move.element} />
-                  <Box>{move.name}</Box>
-                </Button>
+                <Box onMouseEnter={() => setActiveMove(move)}>
+                  <Button
+                    key={move.id}
+                    alignItems='center'
+                    flexDirection='row'
+                    marginTop='8px'
+                    padding='8px'
+                    width='200px'
+                    disabled={
+                      !stats ||
+                      stats.energy - character.energyOffset < move.energyCost
+                    }
+                    isHovering={move.id === activeMove?.id}
+                    onClick={() => {
+                      bufferMove(move)
+                    }}
+                  >
+                    <ElementalIcon height='20px' type={move.element} />
+                    <Box>{move.name}</Box>
+                  </Button>
+                </Box>
               ))}
             </Box>
             <Box flex='1' justifyContent='center'>

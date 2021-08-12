@@ -6,6 +6,8 @@ export const ZERO_STATS: CharacterStats = {
   energy: 0,
   initiative: 0,
   evasion: 0,
+  physicalArmor: 0,
+  specialArmor: 0,
   criticalChance: 0,
   criticalDamage: 0,
   turnHealthRegen: 0,

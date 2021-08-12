@@ -19,6 +19,9 @@ export type DefenseStats = {
 export type AccuracyStats = {
   [Property in AttackTypes as `${Property}Accuracy`]: number
 }
+export type ArmorStats = {
+  [Property in AttackTypes as `${Property}Armor`]: number
+}
 export type BaseCharacterStats = {
   health: number
   speed: number
@@ -38,6 +41,7 @@ export type CharacterStats = BaseCharacterStats &
   AttackStats &
   DefenseStats &
   AccuracyStats &
+  ArmorStats &
   ElementalDamageStats &
   ElementalResistanceStats
 

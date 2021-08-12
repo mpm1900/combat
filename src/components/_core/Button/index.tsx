@@ -24,8 +24,14 @@ const StyledButton = styled(Box)<ButtonProps>((p) => ({
   ':active': {
     background: 'transparent',
   },
+  ':disabled': {
+    opacity: 0.36,
+    background: 'rgba(255,255,255,0.09)',
+    cursor: 'not-allowed',
+  },
   ...(p.isHovering
     ? {
+        opacity: 1,
         background: 'rgba(255,255,255,0.18)',
         borderColor: activeColor,
         color: activeColor,

@@ -9,7 +9,6 @@ import { Focus } from '../../../move/data/Focus'
 import { Protect } from '../../../move/data/Protect'
 import { Rest } from '../../../move/data/Rest'
 import { TimeWarp } from '../../../move/data/TimeWarp'
-import { Cursed } from '../../../status/data/Cursed'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
@@ -34,7 +33,7 @@ export const Charizard = (): Character => ({
     evasion: 5,
     criticalChance: 5,
     criticalDamage: 1.5,
-    physicalAccuracy: 100, //64,
+    physicalAccuracy: 64,
     physicalAttack: 84,
     physicalDefense: 78,
     specialAccuracy: 85,

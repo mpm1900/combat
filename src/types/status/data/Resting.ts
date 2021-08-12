@@ -14,8 +14,8 @@ export const Resting = makeStatusFn({
           b: 0,
         },
         activeTurnHealthRegen: {
-          m: 0,
-          b: 9999,
+          m: 1,
+          b: 0,
         },
       },
     },

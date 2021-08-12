@@ -46,7 +46,7 @@ export const CombatMoveResultsDetails = (
         Targets
       </Box>
       {moveResults.map((result, i) => (
-        <Box marginTop={i > 0 ? '12px' : 0}>
+        <Box key={i} marginTop={i > 0 ? '12px' : 0}>
           <TargetResult
             result={result}
             resultsDone={resultsDone}

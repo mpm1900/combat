@@ -47,7 +47,7 @@ export const ElementalIcon = (props: ElementalIconProps) => {
   const { type, color, ...rest } = props
   const Body = iconMap[type]
   return (
-    <Icon {...rest} color={colorMap[type] || color}>
+    <Icon {...rest} color={color || colorMap[type]}>
       <Body />
     </Icon>
   )

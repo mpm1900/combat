@@ -3,7 +3,11 @@ import { useCombat } from '../../contexts/CombatContext'
 import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
 import { useCombatTurn } from '../../contexts/CombatContext/turn'
 import { AccuracyStats, Character } from '../../types/character/character'
-import { getStats, getStatuses } from '../../types/character/util'
+import {
+  getStats,
+  getStatsAndEquations,
+  getStatuses,
+} from '../../types/character/util'
 import { min } from '../../types/equation'
 import { getRolls, Move, MoveResult, resolveMove } from '../../types/move'
 import { ProtectedId } from '../../types/status/data/Protected'
@@ -98,18 +102,18 @@ export const useCombatDamage = () => {
   const commitTurn = () => {
     if (character && moveBuffer) {
       updateCharacter(character.id, (c) => {
-        const stats = getStats(character)
+        const [stats, { stats: mods }] = getStatsAndEquations(character)
         return {
           ...c,
-          damage: min(c.damage - stats.activeTurnHealthRegen, 0),
+          damage: min(c.damage - mods.activeTurnHealthRegen(stats.health), 0),
         }
       })
       getLiveCharacters().forEach((char) => {
         updateCharacter(char.id, (c) => {
-          const stats = getStats(c)
+          const [stats, { stats: mods }] = getStatsAndEquations(character)
           return {
             ...c,
-            damage: min(c.damage - stats.turnHealthRegen, 0),
+            damage: min(c.damage - mods.turnHealthRegen(stats.health), 0),
           }
         })
         if (char.id !== character.id) {

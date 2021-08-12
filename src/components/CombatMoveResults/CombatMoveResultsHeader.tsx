@@ -52,7 +52,7 @@ export const CombatMoveResultsHeader = (
       {!moveResults.every((r) => r.target.id === character.id) && (
         <span>
           {moveResults.map((result, i) => (
-            <>
+            <span key={i}>
               <span
                 style={{
                   fontFamily: 'Trade Winds',
@@ -68,7 +68,7 @@ export const CombatMoveResultsHeader = (
                 : i === moveResults.length - 2
                 ? ', and '
                 : ', '}
-            </>
+            </span>
           ))}
         </span>
       )}

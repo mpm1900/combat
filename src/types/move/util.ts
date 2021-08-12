@@ -1,5 +1,6 @@
 import {
   AccuracyStats,
+  ArmorStats,
   AttackStats,
   Character,
   CharacterStats,
@@ -12,6 +13,8 @@ import {
   getStats,
   getStatsAndEquations,
 } from '../character/util'
+import { min } from '../equation'
+import { ResolvedStatus, Status } from '../status/status'
 import { resolveStatus } from '../status/util'
 import { Move, MoveResolvedStatuses, MoveStatuses } from './move'
 
@@ -62,6 +65,24 @@ export const getMoveFailureChance = (move: Move, character: Character) => {
   return Math.pow(1 - statValue, move.checks)
 }
 
+export const getResolvedStatuses = (
+  statuses: Status[],
+  character: Character,
+  flip: boolean = false,
+): ResolvedStatus[] => {
+  return statuses
+    .map((s) => ({
+      ...resolveStatus(s),
+      isPositive: flip ? !s.isPositive : s.isPositive,
+    }))
+    .filter(
+      (s) =>
+        !getImmunities(character)
+          .map((i) => i.statusId)
+          .includes(s.statusId),
+    )
+}
+
 export type MoveResult = {
   totalDamage: number
   critical: boolean
@@ -93,14 +114,18 @@ export const resolveMove = (
   const [critical] = getRolls(1, sStats.criticalChance)
   const criticalMod = critical && perfect ? sStats.criticalDamage : 1
   const rawDamage = baseDamage * damageModifier * criticalMod
+  const armorKey = `${move.type}Armor` as keyof ArmorStats
   const elementalDamageKey =
     `${move.element}Damage` as keyof ElementalDamageStats
   const elementalResistanceKey =
     `${move.element}Resistance` as keyof ElementalResistanceStats
   const eSourceDamage = sMods[elementalDamageKey](rawDamage)
   const eTargetDamage = tMods[elementalResistanceKey](rawDamage + eSourceDamage)
+  const armor = tStats[armorKey]
   const totalDamage =
-    rawDamage === 0 ? 0 : Math.floor(rawDamage + eSourceDamage - eTargetDamage)
+    rawDamage === 0
+      ? 0
+      : min(Math.floor(rawDamage + eSourceDamage - eTargetDamage) - armor, 0)
   const statuses: MoveStatuses = (perfect
     ? move.perfectStatuses
     : failure
@@ -108,25 +133,8 @@ export const resolveMove = (
     : undefined) || { target: [], source: [] }
 
   const resolvedStatuses: MoveResolvedStatuses = {
-    source: statuses.source
-      .map((s) => resolveStatus(s))
-      .filter(
-        (s) =>
-          !getImmunities(source)
-            .map((i) => i.statusId)
-            .includes(s.statusId),
-      ),
-    target: statuses.target
-      .map((s) => ({
-        ...resolveStatus(s),
-        isPositive: !s.isPositive,
-      }))
-      .filter(
-        (s) =>
-          !getImmunities(target)
-            .map((i) => i.statusId)
-            .includes(s.statusId),
-      ),
+    source: getResolvedStatuses(statuses.source, source),
+    target: getResolvedStatuses(statuses.target, target, true),
   }
 
   return {
