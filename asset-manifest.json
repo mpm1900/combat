@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/combat/static/css/main.881bff57.chunk.css",
-    "main.js": "/combat/static/js/main.dfb55138.chunk.js",
-    "main.js.map": "/combat/static/js/main.dfb55138.chunk.js.map",
+    "main.js": "/combat/static/js/main.b382cb1b.chunk.js",
+    "main.js.map": "/combat/static/js/main.b382cb1b.chunk.js.map",
     "runtime-main.js": "/combat/static/js/runtime-main.32250efa.js",
     "runtime-main.js.map": "/combat/static/js/runtime-main.32250efa.js.map",
     "static/js/2.d23d2cc7.chunk.js": "/combat/static/js/2.d23d2cc7.chunk.js",
@@ -13,6 +13,8 @@
     "static/css/main.881bff57.chunk.css.map": "/combat/static/css/main.881bff57.chunk.css.map",
     "static/js/2.d23d2cc7.chunk.js.LICENSE.txt": "/combat/static/js/2.d23d2cc7.chunk.js.LICENSE.txt",
     "static/media/allied-star.9a910a3f.svg": "/combat/static/media/allied-star.9a910a3f.svg",
+    "static/media/archery-target.23304b6d.svg": "/combat/static/media/archery-target.23304b6d.svg",
+    "static/media/battered-axe.e5f4176d.svg": "/combat/static/media/battered-axe.e5f4176d.svg",
     "static/media/death-skull.e46d2abd.svg": "/combat/static/media/death-skull.e46d2abd.svg",
     "static/media/dice-target.2123da11.svg": "/combat/static/media/dice-target.2123da11.svg",
     "static/media/drop.c90ef023.svg": "/combat/static/media/drop.c90ef023.svg",
@@ -30,6 +32,7 @@
     "static/media/pulse.bdf208ab.svg": "/combat/static/media/pulse.bdf208ab.svg",
     "static/media/revolt.2e58af85.svg": "/combat/static/media/revolt.2e58af85.svg",
     "static/media/running-ninja.385acc30.svg": "/combat/static/media/running-ninja.385acc30.svg",
+    "static/media/shield.1d833c64.svg": "/combat/static/media/shield.1d833c64.svg",
     "static/media/skull-crossed-bones.bdbe94fd.svg": "/combat/static/media/skull-crossed-bones.bdbe94fd.svg",
     "static/media/spectre.a300475c.svg": "/combat/static/media/spectre.a300475c.svg",
     "static/media/star-swirl.58a85c13.svg": "/combat/static/media/star-swirl.58a85c13.svg",
@@ -39,6 +42,6 @@
     "static/js/runtime-main.32250efa.js",
     "static/js/2.d23d2cc7.chunk.js",
     "static/css/main.881bff57.chunk.css",
-    "static/js/main.dfb55138.chunk.js"
+    "static/js/main.b382cb1b.chunk.js"
   ]
 }
