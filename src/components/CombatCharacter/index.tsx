@@ -14,6 +14,10 @@ import { colorMap, ElementalIcon } from '../_core/ElementalIcon'
 import { Hexagon } from '../_core/Hexagon'
 import { ImmunityCard } from '../_core/ImmunityCard'
 import { CombatCharacterStatus } from './CombatCharacterStatus'
+import { ReactComponent as Accuracy } from '../../icons/lorc/archery-target.svg'
+import { ReactComponent as Attack } from '../../icons/lorc/battered-axe.svg'
+import { ReactComponent as Defense } from '../../icons/sbed/shield.svg'
+import { Icon } from '../_core/Icon'
 
 export type CombatCharacterProps = {
   character: Character
@@ -38,23 +42,25 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
       }
     >
       <Box
-        width='240px'
+        width='256px'
         background={theme.boxGradient}
         border='1px solid rgba(255,255,255,0.56)'
         margin='36px 0 0 32px'
         flexDirection='row'
       >
-        <Hexagon
-          color={colorMap[character.elements[0].element]}
-          borderColor='rgba(255,255,255,0.56)'
-          borderWidth={2}
-          size={72}
-          style={{
-            margin: '14px 0 0 -32px',
-          }}
-        />
+        <Box>
+          <Hexagon
+            color={colorMap[character.elements[0].element]}
+            borderColor='rgba(255,255,255,0.56)'
+            borderWidth={2}
+            size={80}
+            style={{
+              margin: '16px 0 0 -32px',
+            }}
+          />
+        </Box>
         <Box flex={1}>
-          <Box padding='4px' minHeight='36px'>
+          <Box>
             <Box
               color='white'
               alignItems='center'
@@ -78,6 +84,51 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               >
                 {character.name}
               </Box>
+            </Box>
+          </Box>
+          <Box
+            flexDirection='row'
+            color='white'
+            alignItems='center'
+            justifyContent='center'
+            padding='4px'
+            style={{ fontWeight: 700, fontSize: '14px' }}
+          >
+            <Box flexDirection='row' alignItems='center' marginRight='8px'>
+              <Icon width='16px' color='white'>
+                <Accuracy />
+              </Icon>
+              <span style={{ color: theme.physicalColor }}>
+                {stats.physicalAccuracy}
+              </span>
+              <span> / </span>
+              <span style={{ color: theme.specialColor }}>
+                {stats.specialAccuracy}
+              </span>
+            </Box>
+            <Box flexDirection='row' alignItems='center' marginRight='8px'>
+              <Icon width='16px' color='white' marginRight='2px'>
+                <Attack />
+              </Icon>
+              <span style={{ color: theme.physicalColor }}>
+                {stats.physicalAttack}
+              </span>
+              <span> / </span>
+              <span style={{ color: theme.specialColor }}>
+                {stats.specialAttack}
+              </span>
+            </Box>
+            <Box flexDirection='row' alignItems='center'>
+              <Icon width='16px' color='white'>
+                <Defense />
+              </Icon>
+              <span style={{ color: theme.physicalColor }}>
+                {stats.physicalDefense}
+              </span>
+              <span> / </span>
+              <span style={{ color: theme.specialColor }}>
+                {stats.specialDefense}
+              </span>
             </Box>
           </Box>
           <Bar

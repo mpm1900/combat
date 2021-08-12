@@ -5,6 +5,9 @@ const tokens = {
   energyBarGreen: 'rgba(120, 150, 120, 1)',
   perfectCheckColor: '#fcba03',
 
+  physicalColor: 'rgba(232,148,93,1)',
+  specialColor: 'rgba(174, 152, 237,1)',
+
   boxGradientFrom: 'rgba(27,36,45,1)',
   boxGradientTo: 'rgba(54,63,81,1)',
 
