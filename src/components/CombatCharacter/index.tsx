@@ -101,7 +101,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               <span style={{ color: theme.physicalColor }}>
                 {stats.physicalAccuracy}
               </span>
-              <span> / </span>
+              <span> : </span>
               <span style={{ color: theme.specialColor }}>
                 {stats.specialAccuracy}
               </span>
@@ -113,7 +113,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               <span style={{ color: theme.physicalColor }}>
                 {stats.physicalAttack}
               </span>
-              <span> / </span>
+              <span> : </span>
               <span style={{ color: theme.specialColor }}>
                 {stats.specialAttack}
               </span>
@@ -125,7 +125,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               <span style={{ color: theme.physicalColor }}>
                 {stats.physicalDefense}
               </span>
-              <span> / </span>
+              <span> : </span>
               <span style={{ color: theme.specialColor }}>
                 {stats.specialDefense}
               </span>

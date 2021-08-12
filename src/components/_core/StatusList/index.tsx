@@ -47,6 +47,8 @@ export const StatusListItem = (
         isOpen={isHovering}
         content={<StatusCard status={status} />}
         options={{
+          auto: true,
+          placement: 'bottom-center',
           triggerOffset: 4,
         }}
       >
