@@ -12,8 +12,12 @@ import { BASE_MODIFIER } from './data'
 
 export const getStatuses = (character: Character) => {
   const abilityStatuses = character.abilities.reduce((statuses, ability) => {
-    // TODO: Filter down critical statuses when not in a critical state
-    return [...statuses, ...ability.statuses]
+    const health = character.stats.health - character.damage
+    const isCriticalCondition = character.stats.health / health <= 1 / 3
+    return [
+      ...statuses,
+      ...ability.statuses.filter((s) => !s.isCritical || isCriticalCondition),
+    ]
   }, [] as Status[])
   return [...character.statuses, ...abilityStatuses]
 }
@@ -47,7 +51,11 @@ export const getStats = (character: Character): CharacterStats => {
     ...stats,
     physicalAccuracy: max(stats.physicalAccuracy, 95),
     specialAccuracy: max(stats.specialAccuracy, 95),
+    physicalDefense: min(stats.physicalDefense, 1),
+    specialDefense: min(stats.specialDefense, 1),
     speed: min(stats.speed, 0),
+    energy: min(stats.energy, 0),
+    evasion: min(stats.evasion, 0),
   }
 }
 

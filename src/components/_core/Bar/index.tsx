@@ -63,9 +63,10 @@ export const Bar = (props: BarProps) => {
         bottom='0px'
         left='0px'
         right='0px'
-        alignItems='flex-end'
-        justifyContent='center'
+        alignItems='center'
+        justifyContent='flex-end'
         color='rgba(255,255,255,0.81)'
+        flexDirection='row'
         padding='0px 2px'
         zIndex={3}
         style={{

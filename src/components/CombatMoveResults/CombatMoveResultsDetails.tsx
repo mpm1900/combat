@@ -5,6 +5,7 @@ import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
 import { AnimatedNumber } from '../_core/AnimatedNumber'
 import { Box } from '../_core/Box'
 import { ReactComponent as Evade } from '../../icons/darkzaitzev/running-ninja.svg'
+import { ReactComponent as Crit } from '../../icons/lorc/hypersonic-bolt.svg'
 import { theme } from '../../theme'
 import { Check } from '../_core/Check'
 import { StatusIcon } from '../_core/StatusIcon'
@@ -72,6 +73,7 @@ const TargetResult = (props: TargetResultProps) => {
   const { result, resultsDone, onDone } = props
   const [damageDone, setDamageDone] = useState(resultsDone)
   const [dodgeDone, setDodgeDone] = useState(false)
+  const [critDone, setCritDone] = useState(false)
   const [statusesDoneArray, setStatusDone] = useList<boolean>(
     result.statuses.target.length,
     resultsDone,
@@ -139,13 +141,43 @@ const TargetResult = (props: TargetResultProps) => {
             >
               <Evade />
             </Check>
+            {result.dodged && damageDone && (
+              <Box
+                position='absolute'
+                justifyContent='center'
+                alignItems='center'
+                style={{
+                  fontSize: '18px',
+                  inset: '0px',
+                  color: 'rgba(255,255,255,1)',
+                  fontFamily: 'Trade Winds',
+                  textShadow: '0px 2px 10px rgba(0,0,0,0.81)',
+                }}
+              >
+                Dodged!
+              </Box>
+            )}
+          </Box>
+        )}
+        {result.source.id !== result.target.id && (
+          <Box alignItems='center' position='relative'>
+            <Check
+              size={32}
+              borderWidth='2px'
+              value={result.critical}
+              isDone={critDone}
+              successColor={'powderblue'}
+              onRest={() => setCritDone(true)}
+            >
+              <Crit />
+            </Check>
             {result.critical && damageDone && (
               <Box
                 position='absolute'
                 justifyContent='center'
                 alignItems='center'
                 style={{
-                  fontSize: '24px',
+                  fontSize: '18px',
                   inset: '0px',
                   color: 'rgba(255,255,255,1)',
                   fontFamily: 'Trade Winds',

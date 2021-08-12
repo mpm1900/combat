@@ -18,6 +18,8 @@ import { ReactComponent as Accuracy } from '../../icons/lorc/archery-target.svg'
 import { ReactComponent as Attack } from '../../icons/lorc/battered-axe.svg'
 import { ReactComponent as Defense } from '../../icons/sbed/shield.svg'
 import { Icon } from '../_core/Icon'
+import { AnimatedNumber } from '../_core/AnimatedNumber'
+import { useSpring } from 'react-spring'
 
 export type CombatCharacterProps = {
   character: Character
@@ -32,6 +34,9 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
   const stats = useMemo(() => getStats(character), [character])
   const currentHealth = min(stats.health - character.damage, 0)
   const currentEnergy = min(stats.energy - character.energyOffset, 0)
+  const healthStyles = useSpring({
+    value: currentHealth,
+  })
   return (
     <Box
       style={
@@ -90,11 +95,12 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             flexDirection='row'
             color='white'
             alignItems='center'
-            justifyContent='center'
+            justifyContent='space-around'
             padding='4px'
+            background='rgba(0,0,0,0.36)'
             style={{ fontWeight: 700, fontSize: '14px' }}
           >
-            <Box flexDirection='row' alignItems='center' marginRight='8px'>
+            <Box flexDirection='row' alignItems='center'>
               <Icon width='16px' color='white'>
                 <Accuracy />
               </Icon>
@@ -106,7 +112,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
                 {stats.specialAccuracy}
               </span>
             </Box>
-            <Box flexDirection='row' alignItems='center' marginRight='8px'>
+            <Box flexDirection='row' alignItems='center'>
               <Icon width='16px' color='white' marginRight='2px'>
                 <Attack />
               </Icon>
@@ -131,38 +137,61 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               </span>
             </Box>
           </Box>
-          <Bar
-            value={currentHealth}
-            max={stats.health}
-            height='12px'
-            background={theme.healthBarRed}
-            border='1px solid rgba(0,0,0,0.45)'
-            marginLeft='-8px'
-            color='rgba(0,0,0,0.56)'
-            style={{
-              fontSize: '12px',
-              fontWeight: 600,
-            }}
-          >
-            {currentHealth}/{stats.health}
-          </Bar>
-          <Bar
-            value={currentEnergy}
-            max={stats.energy}
-            height='12px'
-            background={theme.energyBarGreen}
-            border='1px solid rgba(0,0,0,0.45)'
-            borderTop='none'
-            marginLeft='-32px'
-            paddingRight='4px'
-            color='rgba(0,0,0,0.56)'
-            style={{
-              fontSize: '12px',
-              fontWeight: 600,
-            }}
-          >
-            {currentEnergy}/{stats.energy}
-          </Bar>
+          <Box position='relative'>
+            <Box
+              position='absolute'
+              background={theme.boxGradient}
+              height='30px'
+              width='42px'
+              zIndex={2}
+              top='-3px'
+              left='-32px'
+              borderRadius='50%'
+              border='1px solid rgba(255,255,255,0.72)'
+              color='rgba(255,255,255,0.72)'
+              paddingTop='2px'
+              alignItems='center'
+              justifyContent='center'
+              style={{
+                fontFamily: 'Trade Winds',
+                fontSize: '14px',
+              }}
+            >
+              {character.level}
+            </Box>
+            <Bar
+              value={currentHealth}
+              max={stats.health}
+              height='12px'
+              background={theme.healthBarRed}
+              border='1px solid rgba(0,0,0,0.45)'
+              marginLeft='4px'
+              color='rgba(0,0,0,0.56)'
+              style={{
+                fontSize: '12px',
+                fontWeight: 600,
+              }}
+            >
+              <AnimatedNumber value={healthStyles.value} />/{stats.health}
+            </Bar>
+            <Bar
+              value={currentEnergy}
+              max={stats.energy}
+              height='12px'
+              background={theme.energyBarGreen}
+              border='1px solid rgba(0,0,0,0.45)'
+              borderTop='none'
+              marginLeft='4px'
+              paddingRight='4px'
+              color='rgba(0,0,0,0.56)'
+              style={{
+                fontSize: '12px',
+                fontWeight: 600,
+              }}
+            >
+              {currentEnergy}/{stats.energy}
+            </Bar>
+          </Box>
         </Box>
       </Box>
       <Box

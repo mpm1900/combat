@@ -7,6 +7,8 @@ export type Status = {
   duration: number
   isPositive: boolean
   isStackable: boolean
+  // TODO: implement this (protected)
+  removeOnHit?: boolean
   applyChance: number
   modifiers: Modifier[]
 }
