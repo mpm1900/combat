@@ -25,7 +25,7 @@ export const getImmunities = (character: Character) => {
     },
     [] as Status[],
   )
-  return [...character.statuses, ...abilityImmunities]
+  return [...character.immunities, ...abilityImmunities]
 }
 
 export const getModifiers = (character: Character) => {
