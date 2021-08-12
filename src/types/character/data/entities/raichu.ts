@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { Blaze } from '../../../ability/data/Blaze'
 import { ThunderElement } from '../../../elemental/data/ThunderElement'
 import { Thunderbolt } from '../../../move/data/Thunderbolt'
 import { ThunderPunch } from '../../../move/data/ThunderPunch'
@@ -12,7 +13,7 @@ export const Raichu = (): Character => ({
   name: 'Raichu',
   level: 100,
   elements: [ThunderElement],
-  abilities: [],
+  abilities: [Blaze],
   statuses: [],
   immunities: [],
   damage: 0,

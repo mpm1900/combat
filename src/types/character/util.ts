@@ -13,7 +13,7 @@ import { BASE_MODIFIER } from './data'
 export const getStatuses = (character: Character) => {
   const abilityStatuses = character.abilities.reduce((statuses, ability) => {
     const health = character.stats.health - character.damage
-    const isCriticalCondition = character.stats.health / health <= 1 / 3
+    const isCriticalCondition = health / character.stats.health <= 1 / 3
     return [
       ...statuses,
       ...ability.statuses.filter((s) => !s.isCritical || isCriticalCondition),

@@ -9,14 +9,17 @@ import { StatusChance, StatusName, StatusWrapper, Wrapper } from './style'
 export type StatusListProps = {
   statuses: Status[] | undefined
   type: 'target' | 'source'
+  showIcon?: boolean
 }
 export const StatusList = (props: StatusListProps) => {
-  const { statuses, type } = props
+  const { statuses, type, showIcon = true } = props
   return statuses?.length ? (
     <Wrapper>
-      <Box paddingTop='2px' marginRight='4px'>
-        <StatusTargetIcon type={type} />
-      </Box>
+      {showIcon && (
+        <Box paddingTop='2px' marginRight='4px'>
+          <StatusTargetIcon type={type} />
+        </Box>
+      )}
       <Box flexDirection='row' flexWrap='wrap'>
         {statuses.map((status, i) => (
           <StatusListItem status={status}>
@@ -42,7 +45,9 @@ export const StatusListItem = (
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <StatusChance>({(status.applyChance * 100).toFixed(0)}%)</StatusChance>
+      {status.applyChance < 1 && (
+        <StatusChance>({(status.applyChance * 100).toFixed(0)}%)</StatusChance>
+      )}
       <Tooltip
         isOpen={isHovering}
         content={<StatusCard status={status} />}

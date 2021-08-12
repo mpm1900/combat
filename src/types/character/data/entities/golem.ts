@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { Blaze } from '../../../ability/data/Blaze'
 import { EarthElement } from '../../../elemental/data/EarthElement'
 import { RockSmash } from '../../../move/data/RockSmash'
 import { Character } from '../../character'
@@ -11,7 +12,7 @@ export const Golem = (): Character => ({
   name: 'Golem',
   level: 100,
   elements: [EarthElement],
-  abilities: [],
+  abilities: [Blaze],
   statuses: [],
   immunities: [],
   damage: 0,

@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { Blaze } from '../../../ability/data/Blaze'
 import { AirElement } from '../../../elemental/data/AirElement'
 import { AirSlash } from '../../../move/data/AirSlash'
 import { Character } from '../../character'
@@ -11,7 +12,7 @@ export const Pidgeot = (): Character => ({
   name: 'Pidgeot',
   level: 100,
   elements: [AirElement],
-  abilities: [],
+  abilities: [Blaze],
   statuses: [],
   immunities: [],
   damage: 0,

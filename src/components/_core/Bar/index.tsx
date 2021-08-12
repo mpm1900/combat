@@ -30,7 +30,7 @@ export const Bar = (props: BarProps) => {
   })
 
   return (
-    <Box {...rest} position='relative' background='rgba(0,0,0,0.36)' zIndex={1}>
+    <Box {...rest} position='relative' background='rgba(0,0,0,0.54)' zIndex={1}>
       <Box
         position='absolute'
         top='0px'

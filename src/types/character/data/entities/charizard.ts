@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { Blaze } from '../../../ability/data/Blaze'
 import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
 import { Curse } from '../../../move/data/Curse'
@@ -9,7 +10,6 @@ import { Focus } from '../../../move/data/Focus'
 import { Protect } from '../../../move/data/Protect'
 import { Rest } from '../../../move/data/Rest'
 import { TimeWarp } from '../../../move/data/TimeWarp'
-import { Evasive } from '../../../status/data/Evasive'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
@@ -20,7 +20,7 @@ export const Charizard = (): Character => ({
   name: 'Charizard',
   level: 100,
   elements: [FireElement, AirElement],
-  abilities: [],
+  abilities: [Blaze],
   statuses: [],
   immunities: [],
   damage: 0,

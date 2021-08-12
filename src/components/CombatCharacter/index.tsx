@@ -20,6 +20,7 @@ import { ReactComponent as Defense } from '../../icons/sbed/shield.svg'
 import { AnimatedNumber } from '../_core/AnimatedNumber'
 import { useSpring } from 'react-spring'
 import { CombatCharacterStats } from './CombatCharacterStats'
+import { CombatCharacterAbility } from './CombatCharacterAbility'
 
 export type CombatCharacterProps = {
   character: Character
@@ -58,9 +59,9 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             color={colorMap[character.elements[0].element]}
             borderColor='rgba(255,255,255,0.56)'
             borderWidth={2}
-            size={80}
+            size={96}
             style={{
-              margin: '18px 0 0 -34px',
+              margin: '27px 0 0 -48px',
             }}
           />
         </Box>
@@ -70,7 +71,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               color='white'
               alignItems='center'
               flexDirection='row'
-              paddingLeft='4px'
+              padding='4px 4px 4px 8px'
               borderBottom='1px solid rgba(255,255,255,0.36)'
             >
               {character.elements.map((element) => (
@@ -117,18 +118,28 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               special={String(stats.specialDefense).padStart(3, '0')}
             />
           </Box>
+          <Box
+            flexDirection='row'
+            background='rgba(0,0,0,0.36)'
+            padding='0px 4px 4px 4px'
+            style={{ fontSize: '14px' }}
+          >
+            {character.abilities.map((ability) => (
+              <CombatCharacterAbility ability={ability} />
+            ))}
+          </Box>
           <Box position='relative'>
             <Box
               position='absolute'
               background={theme.boxGradient}
-              height='36px'
-              width='42px'
+              height='32px'
+              width='56px'
               zIndex={2}
-              top='-6px'
-              left='-32px'
-              borderRadius='50%'
+              top='-3px'
+              left='-56px'
+              borderRadius='9999px'
               border='1px solid rgba(255,255,255,0.72)'
-              color='rgba(255,255,255,0.72)'
+              color='rgba(255,255,255,1)'
               paddingTop='2px'
               alignItems='center'
               justifyContent='center'
@@ -145,7 +156,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               height='14px'
               background={theme.healthBarRed}
               border='1px solid rgba(0,0,0,0.45)'
-              marginLeft='4px'
+              marginLeft='-4px'
               color='rgba(0,0,0,0.56)'
               style={{
                 fontSize: '12px',
@@ -161,7 +172,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               background={theme.energyBarGreen}
               border='1px solid rgba(0,0,0,0.45)'
               borderTop='none'
-              marginLeft='4px'
+              marginLeft='-4px'
               paddingRight='4px'
               color='rgba(0,0,0,0.56)'
               style={{

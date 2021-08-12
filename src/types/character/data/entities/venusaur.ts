@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { Blaze } from '../../../ability/data/Blaze'
 import { GrassElement } from '../../../elemental/data/GrassElement'
 import { RazorLeaf } from '../../../move/data/RazorLeaf'
 import { Character } from '../../character'
@@ -11,7 +12,7 @@ export const Venusaur = (): Character => ({
   name: 'Venusaur',
   level: 100,
   elements: [GrassElement],
-  abilities: [],
+  abilities: [Blaze],
   statuses: [],
   immunities: [],
   damage: 0,
