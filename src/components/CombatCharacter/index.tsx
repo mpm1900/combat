@@ -51,7 +51,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         width='312px'
         background={theme.boxGradient}
         border='1px solid rgba(255,255,255,0.56)'
-        margin='36px 0 0 32px'
+        margin='36px 0 0 48px'
         flexDirection='row'
       >
         <Box>
@@ -136,8 +136,6 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               zIndex={2}
               top='-14px'
               left='-38px'
-              borderRadius='9999px'
-              color='rgba(255,255,255,1)'
               paddingTop='2px'
               alignItems='center'
               justifyContent='center'
@@ -155,7 +153,12 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
                   transform: 'rotate(30deg)',
                 }}
               />
-              <Box position='absolute' zIndex={2} marginTop='4px'>
+              <Box
+                position='absolute'
+                zIndex={2}
+                marginTop='4px'
+                color='darkseagreen'
+              >
                 {character.level}
               </Box>
             </Box>
@@ -166,8 +169,6 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               zIndex={2}
               top='1px'
               left='-64px'
-              borderRadius='9999px'
-              color='rgba(255,255,255,1)'
               paddingTop='2px'
               alignItems='center'
               justifyContent='center'
@@ -185,10 +186,118 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
                   transform: 'rotate(30deg)',
                 }}
               />
-              <Box position='absolute' zIndex={2} marginTop='4px'>
+              <Box
+                position='absolute'
+                zIndex={2}
+                marginTop='4px'
+                color='lightblue'
+              >
                 {stats.speed}
               </Box>
             </Box>
+            <Box
+              position='absolute'
+              height='56px'
+              width='56px'
+              zIndex={2}
+              top='-14px'
+              left='-90px'
+              paddingTop='2px'
+              alignItems='center'
+              justifyContent='center'
+              style={{
+                fontFamily: 'Trade Winds',
+                fontSize: '12px',
+              }}
+            >
+              <Hexagon
+                size={32}
+                color='rgba(37, 39, 60, 1)'
+                borderWidth={2}
+                borderColor='rgba(255,255,255,0.54)'
+                style={{
+                  transform: 'rotate(30deg)',
+                }}
+              />
+              <Box
+                position='absolute'
+                zIndex={2}
+                marginTop='4px'
+                color='lightgreen'
+              >
+                {stats.evasion}%
+              </Box>
+            </Box>
+            {stats.physicalArmor > 0 && (
+              <Box
+                position='absolute'
+                height='56px'
+                width='56px'
+                zIndex={2}
+                top='-29px'
+                left='-116px'
+                paddingTop='2px'
+                alignItems='center'
+                justifyContent='center'
+                style={{
+                  fontFamily: 'Trade Winds',
+                  fontSize: '12px',
+                }}
+              >
+                <Hexagon
+                  size={32}
+                  color='rgba(37, 39, 60, 1)'
+                  borderWidth={2}
+                  borderColor='rgba(255,255,255,0.54)'
+                  style={{
+                    transform: 'rotate(30deg)',
+                  }}
+                />
+                <Box
+                  position='absolute'
+                  zIndex={2}
+                  marginTop='4px'
+                  color={theme.physicalColor}
+                >
+                  {stats.physicalArmor}
+                </Box>
+              </Box>
+            )}
+            {stats.specialArmor > 0 && (
+              <Box
+                position='absolute'
+                height='56px'
+                width='56px'
+                zIndex={2}
+                top='-59px'
+                left='-116px'
+                paddingTop='2px'
+                alignItems='center'
+                justifyContent='center'
+                style={{
+                  fontFamily: 'Trade Winds',
+                  fontSize: '12px',
+                }}
+              >
+                <Hexagon
+                  size={32}
+                  color='rgba(37, 39, 60, 1)'
+                  borderWidth={2}
+                  borderColor='rgba(255,255,255,0.54)'
+                  style={{
+                    transform: 'rotate(30deg)',
+                  }}
+                />
+                <Box
+                  position='absolute'
+                  zIndex={2}
+                  marginTop='4px'
+                  color={theme.specialColor}
+                >
+                  {stats.specialArmor}
+                </Box>
+              </Box>
+            )}
             <Bar
               value={currentHealth}
               max={stats.health}
