@@ -9,6 +9,7 @@ import {
   QueueItem as QueueItemType,
 } from '../../types/queue/queue'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
+import { AnimatedNumberValue } from '../_core/AnimatedNumber'
 import { Box } from '../_core/Box'
 import { QueueWrapper } from './style'
 
@@ -59,9 +60,9 @@ export const Queue = (props: QueueProps) => {
             }}
             position='absolute'
           >
-            {(
-              (deltas.find((d) => d.id === item.id)?.value || 0) * 1000
-            ).toFixed(1)}
+            <AnimatedNumberValue>
+              {(deltas.find((d) => d.id === item.id)?.value || 0) * 1000}
+            </AnimatedNumberValue>
           </CombatCharacterAvatar>
         ))}
         <Box
@@ -77,7 +78,6 @@ export const Queue = (props: QueueProps) => {
                 width: `${100 / maxValue}%`,
                 height: '100%',
                 background: 'rgba(255,255,255,0.09)',
-                // borderRight: '1px solid rgba(255,255,255,0.09)',
               }}
             />
           ))}

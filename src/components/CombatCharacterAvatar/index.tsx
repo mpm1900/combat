@@ -14,7 +14,6 @@ const Wrapper = styled(Box)((p) => ({
   textOverflow: 'ellipsis',
   display: 'inline-block',
   color: 'black',
-  // textShadow: '1px 1px 1px rgba(255,255,255,0.9)',
   lineHeight: `calc(${p.height} - 8px)`,
   fontWeight: 900,
 }))

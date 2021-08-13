@@ -19,7 +19,6 @@ export const useCombatAI = () => {
           const targets = getTargets(move, character)
           const targetsIndex = Math.floor(Math.random() * targets.length)
           setTargetsBuffer(targets[targetsIndex])
-          // rollDamage(move, character, targets[targetsIndex])
         }
       }
     }

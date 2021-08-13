@@ -91,7 +91,7 @@ export const CombatMoveResultsChecks = (props: CombatMoveResultChecksProps) => {
         <ResultText
           perfect={isPerfect}
           miss={isMiss}
-          damageDone={resultsDone}
+          resultsDone={resultsDone}
           perfectTextColor={perfectTextColor}
         >
           PERFECT

@@ -17,7 +17,6 @@ export const CombatCharacterStats = (props: CombatCharacterStatsProps) => {
       justifyContent='space-between'
       flexDirection='row'
       color='white'
-      opacity='0.72'
       style={{
         fontSize: '12px',
       }}

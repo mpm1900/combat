@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useSpring } from 'react-spring'
 import { usePrevious } from '../../../hooks/usePrevious'
+import { AnimatedNumberValue } from '../AnimatedNumber'
 import { Box, BoxProps } from '../Box'
 
 export type BarProps = BoxProps & {
@@ -75,7 +76,11 @@ export const Bar = (props: BarProps) => {
           textShadow: '0px 1px 1px rgba(0,0,0,1)',
         }}
       >
-        {children}
+        {children || (
+          <span>
+            <AnimatedNumberValue>{value}</AnimatedNumberValue>/{max}
+          </span>
+        )}
       </Box>
     </Box>
   )

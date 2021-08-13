@@ -1,7 +1,8 @@
 import { ReactComponent as Target } from '../../icons/delapouite/fast-forward-button.svg'
 import { ReactComponent as Source } from '../../icons/delapouite/fast-backward-button.svg'
 import { FunctionComponent } from 'react'
-import styled from 'styled-components'
+import { Icon } from '../_core/Icon'
+import { BoxProps } from '../_core/Box'
 
 export type StatusTargetType = 'target' | 'source'
 
@@ -15,25 +16,21 @@ const colorMap: Record<StatusTargetType, string> = {
   source: 'rgba(255,255,255,0.45)',
 }
 
-const Wrapper = styled.div<{ color: string }>`
-  height: 16px;
-  width: 16px;
-  margin-right: 4px;
-  path {
-    fill: ${(p) => p.color};
-  }
-`
-
-export type StatusTargetIconProps = {
+export type StatusTargetIconProps = BoxProps & {
   type: StatusTargetType
-  color?: string
 }
 export const StatusTargetIcon = (props: StatusTargetIconProps) => {
-  const { type, color } = props
+  const { type, color, ...rest } = props
   const Name = iconMap[type]
   return (
-    <Wrapper color={color || colorMap[type]}>
+    <Icon
+      height='16px'
+      width='16px'
+      marginRight='4px'
+      color={color || colorMap[type]}
+      {...rest}
+    >
       <Name />
-    </Wrapper>
+    </Icon>
   )
 }

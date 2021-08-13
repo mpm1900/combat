@@ -48,7 +48,6 @@ export const QueueNormalized = (props: QueueProps) => {
     })),
     {
       key: (char: Character) => char.id,
-      // from: { opacity: 0 },
       leave: { opacity: 0 },
       enter: ({ x }) => ({ opacity: 1, transform: `translate3d(${x}px,0,0)` }),
       update: ({ x }) => ({ transform: `translate3d(${x}px,0,0)` }),

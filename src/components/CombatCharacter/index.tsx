@@ -21,6 +21,7 @@ import { AnimatedNumber } from '../_core/AnimatedNumber'
 import { useSpring } from 'react-spring'
 import { CombatCharacterStats } from './CombatCharacterStats'
 import { CombatCharacterAbility } from './CombatCharacterAbility'
+import { CombatCharacterBadges } from './CombatCharacterBadges'
 
 export type CombatCharacterProps = {
   character: Character
@@ -66,31 +67,32 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
           />
         </Box>
         <Box flex={1}>
-          <Box>
+          <Box
+            color='white'
+            alignItems='center'
+            flexDirection='row'
+            justifyContent='space-between'
+            padding='4px 4px 4px 8px'
+            borderBottom='1px solid rgba(255,255,255,0.36)'
+          >
             <Box
-              color='white'
-              alignItems='center'
-              flexDirection='row'
-              padding='4px 4px 4px 8px'
-              borderBottom='1px solid rgba(255,255,255,0.36)'
+              paddingTop='4px'
+              style={{
+                textShadow: '0 1px 3px rgba(0,0,0,0.56)',
+                fontFamily: 'Trade Winds',
+              }}
             >
+              {character.name}
+            </Box>
+            <Box flexDirection='row'>
               {character.elements.map((element) => (
                 <ElementalIcon
                   type={element.element}
                   height='20px'
                   width='20px'
+                  marginLeft='4px'
                 />
               ))}
-              <Box
-                marginLeft='6px'
-                paddingTop='4px'
-                style={{
-                  textShadow: '0 1px 3px rgba(0,0,0,0.56)',
-                  fontFamily: 'Trade Winds',
-                }}
-              >
-                {character.name}
-              </Box>
             </Box>
           </Box>
           <Box
@@ -128,176 +130,8 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
               <CombatCharacterAbility ability={ability} />
             ))}
           </Box>
+          <CombatCharacterBadges character={character} marginLeft='-1px' />
           <Box position='relative'>
-            <Box
-              position='absolute'
-              height='56px'
-              width='56px'
-              zIndex={2}
-              top='-14px'
-              left='-38px'
-              paddingTop='2px'
-              alignItems='center'
-              justifyContent='center'
-              style={{
-                fontFamily: 'Trade Winds',
-                fontSize: '12px',
-              }}
-            >
-              <Hexagon
-                size={32}
-                color='rgba(37, 39, 60, 1)'
-                borderWidth={2}
-                borderColor='rgba(255,255,255,0.54)'
-                style={{
-                  transform: 'rotate(30deg)',
-                }}
-              />
-              <Box
-                position='absolute'
-                zIndex={2}
-                marginTop='4px'
-                color='darkseagreen'
-              >
-                {character.level}
-              </Box>
-            </Box>
-            <Box
-              position='absolute'
-              height='56px'
-              width='56px'
-              zIndex={2}
-              top='1px'
-              left='-64px'
-              paddingTop='2px'
-              alignItems='center'
-              justifyContent='center'
-              style={{
-                fontFamily: 'Trade Winds',
-                fontSize: '12px',
-              }}
-            >
-              <Hexagon
-                size={32}
-                color='rgba(37, 39, 60, 1)'
-                borderWidth={2}
-                borderColor='rgba(255,255,255,0.54)'
-                style={{
-                  transform: 'rotate(30deg)',
-                }}
-              />
-              <Box
-                position='absolute'
-                zIndex={2}
-                marginTop='4px'
-                color='lightblue'
-              >
-                {stats.speed}
-              </Box>
-            </Box>
-            <Box
-              position='absolute'
-              height='56px'
-              width='56px'
-              zIndex={2}
-              top='-14px'
-              left='-90px'
-              paddingTop='2px'
-              alignItems='center'
-              justifyContent='center'
-              style={{
-                fontFamily: 'Trade Winds',
-                fontSize: '12px',
-              }}
-            >
-              <Hexagon
-                size={32}
-                color='rgba(37, 39, 60, 1)'
-                borderWidth={2}
-                borderColor='rgba(255,255,255,0.54)'
-                style={{
-                  transform: 'rotate(30deg)',
-                }}
-              />
-              <Box
-                position='absolute'
-                zIndex={2}
-                marginTop='4px'
-                color='lightgreen'
-              >
-                {stats.evasion}%
-              </Box>
-            </Box>
-            {stats.physicalArmor > 0 && (
-              <Box
-                position='absolute'
-                height='56px'
-                width='56px'
-                zIndex={2}
-                top='-29px'
-                left='-116px'
-                paddingTop='2px'
-                alignItems='center'
-                justifyContent='center'
-                style={{
-                  fontFamily: 'Trade Winds',
-                  fontSize: '12px',
-                }}
-              >
-                <Hexagon
-                  size={32}
-                  color='rgba(37, 39, 60, 1)'
-                  borderWidth={2}
-                  borderColor='rgba(255,255,255,0.54)'
-                  style={{
-                    transform: 'rotate(30deg)',
-                  }}
-                />
-                <Box
-                  position='absolute'
-                  zIndex={2}
-                  marginTop='4px'
-                  color={theme.physicalColor}
-                >
-                  {stats.physicalArmor}
-                </Box>
-              </Box>
-            )}
-            {stats.specialArmor > 0 && (
-              <Box
-                position='absolute'
-                height='56px'
-                width='56px'
-                zIndex={2}
-                top='-59px'
-                left='-116px'
-                paddingTop='2px'
-                alignItems='center'
-                justifyContent='center'
-                style={{
-                  fontFamily: 'Trade Winds',
-                  fontSize: '12px',
-                }}
-              >
-                <Hexagon
-                  size={32}
-                  color='rgba(37, 39, 60, 1)'
-                  borderWidth={2}
-                  borderColor='rgba(255,255,255,0.54)'
-                  style={{
-                    transform: 'rotate(30deg)',
-                  }}
-                />
-                <Box
-                  position='absolute'
-                  zIndex={2}
-                  marginTop='4px'
-                  color={theme.specialColor}
-                >
-                  {stats.specialArmor}
-                </Box>
-              </Box>
-            )}
             <Bar
               value={currentHealth}
               max={stats.health}

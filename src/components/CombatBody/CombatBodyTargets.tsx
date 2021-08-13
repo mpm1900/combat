@@ -1,6 +1,7 @@
 import { config, useSpring } from 'react-spring'
 import styled from 'styled-components'
 import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
+import { theme } from '../../theme'
 import { Character } from '../../types/character/character'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
 import { Box } from '../_core/Box'
@@ -30,7 +31,6 @@ export const CombatBodyTargets = (props: CombatBodyTargetsProps) => {
 
   return (
     <CombatBodySection
-      width='100%'
       title={
         (
           <Box flex={1}>
@@ -56,11 +56,7 @@ export const CombatBodyTargets = (props: CombatBodyTargetsProps) => {
             margin='4px'
             border='1px solid black'
             alignItems='center'
-            background='linear-gradient(
-                    198deg,
-                    rgba(45, 47, 56, 1) 0%,
-                    rgba(80, 94, 116, 1) 100%
-                  )'
+            background={theme.boxGradient}
           >
             {targets.map((target) => (
               <CombatCharacterAvatar

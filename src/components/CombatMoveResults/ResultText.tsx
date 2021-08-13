@@ -1,22 +1,28 @@
 import { PropsWithChildren } from 'react'
 import { useSpring } from 'react-spring'
+import styled from 'styled-components'
 import { Box } from '../_core/Box'
 
 export type ResultTextProps = {
   perfect: boolean
   miss: boolean
-  damageDone: boolean
+  resultsDone: boolean
   perfectTextColor: string
 }
 
+const Text = styled(Box)({
+  fontWeight: 700,
+  fontSize: '48px',
+})
+
 export const ResultText = (props: PropsWithChildren<ResultTextProps>) => {
-  const { perfect, miss, damageDone, perfectTextColor, children } = props
+  const { perfect, miss, resultsDone, perfectTextColor, children } = props
   const perfectStyles = useSpring({
     from: {
       textShadow: '0px 0px 40px rgba(255,255,255,1)',
     },
     to: {
-      textShadow: damageDone
+      textShadow: resultsDone
         ? '0px 4px 10px rgba(0,0,0,1)'
         : '0px 0px 40px rgba(255,255,255,1)',
     },
@@ -42,29 +48,12 @@ export const ResultText = (props: PropsWithChildren<ResultTextProps>) => {
         fontFamily: 'Trade Winds',
       }}
     >
-      {perfect && damageDone && (
-        <Box
-          style={{
-            ...perfectStyles,
-            fontWeight: 700,
-            fontSize: '48px',
-            color: perfectTextColor,
-          }}
-        >
+      {perfect && resultsDone && (
+        <Text color={perfectTextColor} style={perfectStyles}>
           {children}
-        </Box>
+        </Text>
       )}
-      {miss && (
-        <Box
-          style={{
-            fontWeight: 'bolder',
-            fontSize: '48px',
-            color: '#ccc',
-          }}
-        >
-          FAILURE
-        </Box>
-      )}
+      {miss && <Text color='rgba(255,255,255,0.54)'>FAILURE</Text>}
     </Box>
   )
 }
