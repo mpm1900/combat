@@ -131,24 +131,63 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
           <Box position='relative'>
             <Box
               position='absolute'
-              background={theme.boxGradient}
-              height='32px'
+              height='56px'
               width='56px'
               zIndex={2}
-              top='-3px'
-              left='-56px'
+              top='-14px'
+              left='-38px'
               borderRadius='9999px'
-              border='1px solid rgba(255,255,255,0.72)'
               color='rgba(255,255,255,1)'
               paddingTop='2px'
               alignItems='center'
               justifyContent='center'
               style={{
                 fontFamily: 'Trade Winds',
-                fontSize: '14px',
+                fontSize: '12px',
               }}
             >
-              {character.level}
+              <Hexagon
+                size={32}
+                color='rgba(37, 39, 60, 1)'
+                borderWidth={2}
+                borderColor='rgba(255,255,255,0.54)'
+                style={{
+                  transform: 'rotate(30deg)',
+                }}
+              />
+              <Box position='absolute' zIndex={2} marginTop='4px'>
+                {character.level}
+              </Box>
+            </Box>
+            <Box
+              position='absolute'
+              height='56px'
+              width='56px'
+              zIndex={2}
+              top='1px'
+              left='-64px'
+              borderRadius='9999px'
+              color='rgba(255,255,255,1)'
+              paddingTop='2px'
+              alignItems='center'
+              justifyContent='center'
+              style={{
+                fontFamily: 'Trade Winds',
+                fontSize: '12px',
+              }}
+            >
+              <Hexagon
+                size={32}
+                color='rgba(37, 39, 60, 1)'
+                borderWidth={2}
+                borderColor='rgba(255,255,255,0.54)'
+                style={{
+                  transform: 'rotate(30deg)',
+                }}
+              />
+              <Box position='absolute' zIndex={2} marginTop='4px'>
+                {stats.speed}
+              </Box>
             </Box>
             <Bar
               value={currentHealth}
@@ -190,6 +229,8 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         color='white'
         flexDirection='row'
         height='28px'
+        marginTop='4px'
+        marginLeft='56px'
       >
         <Box flexDirection='row'>
           {getImmunities(character).map((status) => (

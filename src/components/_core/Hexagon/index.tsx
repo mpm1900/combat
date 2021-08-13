@@ -60,4 +60,6 @@ const StyledHexagon = styled(Box)<HexagonProps>((props) => {
   }
 })
 
-export const Hexagon = (props: HexagonProps) => <StyledHexagon {...props} />
+export const Hexagon = (props: HexagonProps) => (
+  <StyledHexagon {...props}>{props.children}</StyledHexagon>
+)
