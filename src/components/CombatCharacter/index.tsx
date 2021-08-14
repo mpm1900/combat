@@ -182,7 +182,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         flexDirection='row'
         height='28px'
         marginTop='4px'
-        marginLeft='56px'
+        marginLeft='72px'
       >
         <Box flexDirection='row'>
           {immunitiesStaks.map((item) => (

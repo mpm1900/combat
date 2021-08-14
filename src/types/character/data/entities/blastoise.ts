@@ -1,5 +1,5 @@
 import { v4 } from 'uuid'
-import { Blaze } from '../../../ability/data/Blaze'
+import { Torrent } from '../../../ability/data/Torrent'
 import { WaterElement } from '../../../elemental/data/WaterElement'
 import { WaterShot } from '../../../move/data/WaterShot'
 import { Character } from '../../character'
@@ -12,7 +12,7 @@ export const Blastoise = (): Character => ({
   name: 'Blastoise',
   level: 100,
   elements: [WaterElement],
-  abilities: [Blaze],
+  abilities: [Torrent],
   statuses: [],
   immunities: [],
   damage: 0,
