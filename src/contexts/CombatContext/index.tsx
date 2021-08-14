@@ -65,6 +65,7 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
   const { party } = usePlayer()
   const [parties, setParties] = useState<CombatParty[]>([])
   const [characters, setCharacters] = useState<Character[]>([])
+  const [benchCharacters, setBenchCharacters] = useState<Character[]>([])
   const { queue, enqueue, updateById, initialize } = useQueue([])
   const updateCharacter = (id: string, fn: (c: Character) => Character) => {
     setCharacters((chars) => chars.map((c) => (c.id === id ? fn(c) : c)))
@@ -137,18 +138,30 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
 
   const init = (p: Party) => {
     const initParties = [party, p]
-    setParties(
-      initParties.map((party) => ({
+    const parties = initParties.map((party) => {
+      const [first, second, third, ...rest] = party.characters
+      return {
         id: party.id,
-        characterIds: party.characters.map((c) => c.id),
-      })),
-    )
-    const chars = initParties.reduce(
+        characterIds: [first, second, third].map((c) => c.id),
+        benchIds: rest.map((c) => c.id),
+      }
+    })
+    setParties(parties)
+    const all = initParties.reduce(
       (result, party) => [...result, ...party.characters],
       [] as Character[],
     )
-    setCharacters(chars)
-    initialize(chars)
+    const active = parties
+      .flatMap((p) => p.characterIds)
+      .map((cid) => all.find((c) => c.id === cid))
+      .filter((c) => c !== undefined) as Character[]
+    const bench = parties
+      .flatMap((p) => p.benchIds)
+      .map((cid) => all.find((c) => c.id === cid))
+      .filter((c) => c !== undefined) as Character[]
+    setCharacters(active)
+    setBenchCharacters(bench)
+    initialize(active)
   }
 
   const contextParties = useMemo(() => {
@@ -179,6 +192,8 @@ export const CombatContextProvider = (props: PropsWithChildren<{}>) => {
     enqueue: (move: Move) => enqueue(characters, move),
     updateQueueItemById: updateById,
   }
+
+  console.log(benchCharacters)
 
   return (
     <CombatContext.Provider value={context}>

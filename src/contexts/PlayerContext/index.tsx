@@ -2,6 +2,7 @@ import { createContext, PropsWithChildren, useContext, useState } from 'react'
 import { v4 } from 'uuid'
 import { Blastoise } from '../../types/character/data/entities/blastoise'
 import { Charizard } from '../../types/character/data/entities/charizard'
+import { Golem } from '../../types/character/data/entities/golem'
 import { Venusaur } from '../../types/character/data/entities/venusaur'
 import { Party } from '../../types/character/party'
 

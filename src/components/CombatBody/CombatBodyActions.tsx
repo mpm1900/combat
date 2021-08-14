@@ -82,10 +82,17 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
                 Attacks
               </Button>
               <Button
+                marginRight='4px'
                 borderRadius='4px 4px 0 0'
                 style={{ borderBottom: 'none' }}
               >
                 Items
+              </Button>
+              <Button
+                borderRadius='4px 4px 0 0'
+                style={{ borderBottom: 'none' }}
+              >
+                Switch
               </Button>
             </Box>
           </Box>

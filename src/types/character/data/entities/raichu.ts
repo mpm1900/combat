@@ -1,5 +1,4 @@
 import { v4 } from 'uuid'
-import { Blaze } from '../../../ability/data/Blaze'
 import { Levitate } from '../../../ability/data/Levitate'
 import { ThunderElement } from '../../../elemental/data/ThunderElement'
 import { Thunderbolt } from '../../../move/data/Thunderbolt'
