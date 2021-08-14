@@ -27,3 +27,6 @@ export const negEquation = (o: EquationObject) => ({
 export const max = (value: number, n: number) => (value > n ? n : value)
 
 export const min = (value: number, n: number) => (value < n ? n : value)
+
+export const minmax = (value: number, min: number, max: number) =>
+  value > max ? max : value < min ? min : value

@@ -45,6 +45,10 @@ export type CharacterStats = BaseCharacterStats &
   ElementalDamageStats &
   ElementalResistanceStats
 
+export type ResolvedCharacterStats = CharacterStats & {
+  healthRatio: number
+}
+
 export type Character = {
   id: string
   name: string

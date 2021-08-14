@@ -1,7 +1,17 @@
+import { ResolvedCharacterStats } from '../character/character'
 import { Status } from '../status/status'
 
+export type AbilityStatusConditionType = 'greater-than' | 'less-than' | 'equal'
+
+export type AbilityStatusCondition = {
+  stat: keyof ResolvedCharacterStats
+  value: number
+  type: AbilityStatusConditionType
+}
+
 export type AbilityStatus = Status & {
-  isCritical: boolean
+  conditionsType: 'and' | 'or'
+  conditions: AbilityStatusCondition[]
 }
 
 export type Ability = {

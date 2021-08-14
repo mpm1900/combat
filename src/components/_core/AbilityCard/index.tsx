@@ -1,4 +1,4 @@
-import { Ability } from '../../../types/ability/ability'
+import { Ability, AbilityStatus } from '../../../types/ability/ability'
 import { Box } from '../Box'
 import { StatusList } from '../StatusList'
 import { TooltipCard } from '../TooltipCard'
@@ -9,8 +9,8 @@ export type AbilityCardProps = {
 
 export const AbilityCard = (props: AbilityCardProps) => {
   const { ability } = props
-  const normalStatuses = ability.statuses.filter((s) => !s.isCritical)
-  const criticalStatuses = ability.statuses.filter((s) => s.isCritical)
+  const normalStatuses: AbilityStatus[] = [] // ability.statuses.filter((s) => !s.isCritical)
+  const criticalStatuses = ability.statuses
   return (
     <TooltipCard>
       <Box style={{ fontWeight: 700 }}>{ability.name}</Box>

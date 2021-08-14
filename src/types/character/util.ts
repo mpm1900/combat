@@ -1,4 +1,5 @@
-import { max, min } from '../equation'
+import { getResolvedAbilityStatusValue } from '../ability/util'
+import { max, min, minmax } from '../equation'
 import {
   Modifier,
   reduceModifiers,
@@ -7,18 +8,17 @@ import {
   StatEquations,
 } from '../stats'
 import { Status } from '../status/status'
-import { Character, CharacterStats } from './character'
+import { Character, CharacterStats, ResolvedCharacterStats } from './character'
 import { BASE_MODIFIER } from './data'
 
 export const getStatuses = (character: Character) => {
   const abilityStatuses = character.abilities.reduce((statuses, ability) => {
     const stats = convertStats(character)
-    const health = stats.health - character.damage
-    const healthRatio = health / stats.health
-    const isCriticalCondition = healthRatio <= 1 / 3
     return [
       ...statuses,
-      ...ability.statuses.filter((s) => !s.isCritical || isCriticalCondition),
+      ...ability.statuses.filter((s) =>
+        getResolvedAbilityStatusValue(s, stats),
+      ),
     ]
   }, [] as Status[])
   return [...character.statuses, ...abilityStatuses]
@@ -58,22 +58,26 @@ const convertStat = (stat: number, level: number) => {
   return Math.floor((((31 + 2 * stat + ev / 4) * level) / 100 + 5) * 1)
 }
 
-export const convertStats = (character: Character): CharacterStats => {
+export const convertStats = (character: Character): ResolvedCharacterStats => {
   const baseStats = { ...character.stats }
+  const maxHealth = converHealth(baseStats.health, character.level)
+  const health = maxHealth - character.damage
   return {
     ...baseStats,
-    health: converHealth(baseStats.health, character.level),
+    health: maxHealth,
     speed: convertStat(baseStats.speed, character.level),
     physicalAttack: convertStat(baseStats.physicalAttack, character.level),
     specialAttack: convertStat(baseStats.specialAttack, character.level),
     physicalDefense: convertStat(baseStats.physicalDefense, character.level),
     specialDefense: convertStat(baseStats.specialDefense, character.level),
+    healthRatio: health / maxHealth,
   }
 }
 
-export const getStats = (character: Character): CharacterStats => {
+export const getStats = (character: Character): ResolvedCharacterStats => {
   const modifiers = getModifiers(character)
   const stats = resolveStats(convertStats(character), modifiers)
+  const health = stats.health - character.damage
   return {
     ...stats,
     physicalAccuracy: max(stats.physicalAccuracy, 95),
@@ -82,7 +86,8 @@ export const getStats = (character: Character): CharacterStats => {
     specialDefense: min(stats.specialDefense, 1),
     speed: min(stats.speed, 0),
     energy: min(stats.energy, 0),
-    evasion: min(stats.evasion, 0),
+    evasion: minmax(stats.evasion, 0, 100),
+    healthRatio: health / stats.health,
   }
 }
 

@@ -10,7 +10,14 @@ export const Blaze: Ability = {
   statuses: [
     {
       ...FireAttackUp(1, -1, true),
-      isCritical: true,
+      conditionsType: 'and',
+      conditions: [
+        {
+          stat: 'healthRatio',
+          value: 1 / 3,
+          type: 'less-than',
+        },
+      ],
     },
   ],
   immunities: [],
