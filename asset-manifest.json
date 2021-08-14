@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/combat/static/css/main.881bff57.chunk.css",
-    "main.js": "/combat/static/js/main.90e8b4ea.chunk.js",
-    "main.js.map": "/combat/static/js/main.90e8b4ea.chunk.js.map",
+    "main.js": "/combat/static/js/main.59a50796.chunk.js",
+    "main.js.map": "/combat/static/js/main.59a50796.chunk.js.map",
     "runtime-main.js": "/combat/static/js/runtime-main.32250efa.js",
     "runtime-main.js.map": "/combat/static/js/runtime-main.32250efa.js.map",
     "static/js/2.f4463984.chunk.js": "/combat/static/js/2.f4463984.chunk.js",
@@ -14,9 +14,11 @@
     "static/js/2.f4463984.chunk.js.LICENSE.txt": "/combat/static/js/2.f4463984.chunk.js.LICENSE.txt",
     "static/media/allied-star.9a910a3f.svg": "/combat/static/media/allied-star.9a910a3f.svg",
     "static/media/battered-axe.e5f4176d.svg": "/combat/static/media/battered-axe.e5f4176d.svg",
+    "static/media/cursed-star.83d862b9.svg": "/combat/static/media/cursed-star.83d862b9.svg",
     "static/media/death-skull.e46d2abd.svg": "/combat/static/media/death-skull.e46d2abd.svg",
     "static/media/dice-target.2123da11.svg": "/combat/static/media/dice-target.2123da11.svg",
     "static/media/drop.c90ef023.svg": "/combat/static/media/drop.c90ef023.svg",
+    "static/media/extra-time.e7e73db4.svg": "/combat/static/media/extra-time.e7e73db4.svg",
     "static/media/eye-target.6caa98ef.svg": "/combat/static/media/eye-target.6caa98ef.svg",
     "static/media/fast-backward-button.5e491b82.svg": "/combat/static/media/fast-backward-button.5e491b82.svg",
     "static/media/fast-forward-button.2307d71a.svg": "/combat/static/media/fast-forward-button.2307d71a.svg",
@@ -26,9 +28,11 @@
     "static/media/hypersonic-bolt.08ddc80c.svg": "/combat/static/media/hypersonic-bolt.08ddc80c.svg",
     "static/media/lightning-trio.2c6165fd.svg": "/combat/static/media/lightning-trio.2c6165fd.svg",
     "static/media/magic-swirl.fe6b7c76.svg": "/combat/static/media/magic-swirl.fe6b7c76.svg",
+    "static/media/night-sleep.6db48180.svg": "/combat/static/media/night-sleep.6db48180.svg",
     "static/media/oak-leaf.7deeef1c.svg": "/combat/static/media/oak-leaf.7deeef1c.svg",
     "static/media/perspective-dice-six-faces-random.6ee9d245.svg": "/combat/static/media/perspective-dice-six-faces-random.6ee9d245.svg",
     "static/media/plain-circle.929d41ad.svg": "/combat/static/media/plain-circle.929d41ad.svg",
+    "static/media/polar-star.6ad913ae.svg": "/combat/static/media/polar-star.6ad913ae.svg",
     "static/media/power-lightning.3ae17416.svg": "/combat/static/media/power-lightning.3ae17416.svg",
     "static/media/pulse.bdf208ab.svg": "/combat/static/media/pulse.bdf208ab.svg",
     "static/media/revolt.2e58af85.svg": "/combat/static/media/revolt.2e58af85.svg",
@@ -36,13 +40,15 @@
     "static/media/shield.1d833c64.svg": "/combat/static/media/shield.1d833c64.svg",
     "static/media/skull-crossed-bones.bdbe94fd.svg": "/combat/static/media/skull-crossed-bones.bdbe94fd.svg",
     "static/media/spectre.a300475c.svg": "/combat/static/media/spectre.a300475c.svg",
+    "static/media/sprint.bff415c6.svg": "/combat/static/media/sprint.bff415c6.svg",
     "static/media/star-swirl.58a85c13.svg": "/combat/static/media/star-swirl.58a85c13.svg",
-    "static/media/stone-pile.addbf61f.svg": "/combat/static/media/stone-pile.addbf61f.svg"
+    "static/media/stone-pile.addbf61f.svg": "/combat/static/media/stone-pile.addbf61f.svg",
+    "static/media/vibrating-shield.33076a20.svg": "/combat/static/media/vibrating-shield.33076a20.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.32250efa.js",
     "static/js/2.f4463984.chunk.js",
     "static/css/main.881bff57.chunk.css",
-    "static/js/main.90e8b4ea.chunk.js"
+    "static/js/main.59a50796.chunk.js"
   ]
 }
