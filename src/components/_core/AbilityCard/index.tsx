@@ -19,7 +19,7 @@ export const AbilityCard = (props: AbilityCardProps) => {
     <TooltipCard>
       <Box style={{ fontWeight: 700 }}>{ability.name}</Box>
       {normalStatuses.length > 0 && (
-        <Box marginTop='4px' background='rgba(0,0,0,0.72)' padding='8px'>
+        <Box marginTop='4px'>
           <Box color='white' style={{ fontWeight: 700, fontSize: '14px' }}>
             Statuses
           </Box>
@@ -31,7 +31,7 @@ export const AbilityCard = (props: AbilityCardProps) => {
         </Box>
       )}
       {criticalStatuses.length > 0 && (
-        <Box marginTop='4px' background='rgba(0,0,0,0.72)' padding='8px'>
+        <Box marginTop='4px'>
           <Box color='white' style={{ fontWeight: 700, fontSize: '14px' }}>
             Critical Statuses
           </Box>
@@ -43,7 +43,7 @@ export const AbilityCard = (props: AbilityCardProps) => {
         </Box>
       )}
       {ability.immunities.length > 0 && (
-        <Box marginTop='4px' background='rgba(0,0,0,0.72)' padding='8px'>
+        <Box marginTop='4px'>
           <Box style={{ fontWeight: 700, fontSize: '14px' }}>Immunities</Box>
           {ability.immunities.map((immunity) => (
             <Box style={{ fontSize: '14px' }}>{immunity.name}</Box>
