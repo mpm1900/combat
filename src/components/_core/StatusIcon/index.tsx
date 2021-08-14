@@ -10,6 +10,7 @@ import { ReactComponent as Focused } from '../../../icons/delapouite/polar-star.
 import { ReactComponent as Protected } from '../../../icons/delapouite/vibrating-shield.svg'
 import { ReactComponent as Resting } from '../../../icons/delapouite/night-sleep.svg'
 import { ReactComponent as Shocked } from '../../../icons/lorc/lightning-trio.svg'
+import { ReactComponent as Teleported } from '../../../icons/lorc/fast-arrow.svg'
 import { ReactComponent as Warped } from '../../../icons/delapouite/extra-time.svg'
 
 import { ReactComponent as Normal } from '../../../icons/delapouite/plain-circle.svg'
@@ -33,6 +34,8 @@ const iconMap: Record<string, FunctionComponent> = {
   Protected: Protected,
   Resting: Resting,
   Shocked: Shocked,
+
+  Teleported: Teleported,
   Warped: Warped,
 
   // TODO: find unique icon

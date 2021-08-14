@@ -19,8 +19,8 @@ export type ResolvedStatus = Status & {
 }
 
 export type StatusStackItem = {
-  status: Status
-  statuses: Status[]
+  status: ResolvedStatus
+  statuses: ResolvedStatus[]
   count: number
 }
 

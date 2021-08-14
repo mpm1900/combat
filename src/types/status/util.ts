@@ -29,7 +29,12 @@ export const convertStatusesToStack = (
   let list = [...statuses]
   let stack: StatusStackItem[] = []
   list.forEach((status) => {
-    const itemStatuses = list.filter((s) => s.statusId === status.statusId)
+    const itemStatuses = list
+      .filter((s) => s.statusId === status.statusId)
+      .map((is) => {
+        const s = { ...is } as ResolvedStatus
+        return { ...s, isApplied: s.isApplied || true }
+      })
     list = list.filter((s) => s.statusId !== status.statusId)
     stack = [
       ...stack,

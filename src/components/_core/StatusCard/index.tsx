@@ -62,9 +62,9 @@ export const StatusCard = (props: StatusCardProps) => {
       <Box style={{ fontWeight: 700 }}>{status.name}</Box>
 
       <Box
-        color='rgba(0,0,0,0.63)'
+        color='rgba(255,255,255,0.63)'
         marginBottom='4px'
-        style={{ fontWeight: 900, fontSize: '10px' }}
+        style={{ fontWeight: 400, fontSize: '10px' }}
       >
         <span style={{ whiteSpace: 'nowrap' }}>
           Duration:{' '}

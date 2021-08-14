@@ -10,6 +10,7 @@ import { theme } from '../../theme'
 import { Check } from '../_core/Check'
 import { StatusIcon } from '../_core/StatusIcon'
 import { useList } from '../../hooks/useList'
+import { convertStatusesToStack } from '../../types/status/util'
 
 export type CombatMoveResultsDetailsProps = {
   moveResults: MoveResult[]
@@ -74,8 +75,9 @@ const TargetResult = (props: TargetResultProps) => {
   const [damageDone, setDamageDone] = useState(resultsDone)
   const [dodgeDone, setDodgeDone] = useState(false)
   const [critDone, setCritDone] = useState(false)
+  const targetStatusStack = convertStatusesToStack(result.statuses.target)
   const [statusesDoneArray, setStatusDone] = useList<boolean>(
-    result.statuses.target.length,
+    targetStatusStack.length,
     resultsDone,
   )
 
@@ -193,9 +195,9 @@ const TargetResult = (props: TargetResultProps) => {
       <Box height={result.statuses.target.length ? '32px' : '0px'}>
         {damageDone && (
           <Box flexDirection='row' justifyContent='center'>
-            {result.statuses.target.map((status, i) => (
+            {targetStatusStack.map((item, i) => (
               <Box
-                key={status.id}
+                key={item.status.id}
                 color='white'
                 flexDirection='row'
                 alignItems='center'
@@ -206,14 +208,23 @@ const TargetResult = (props: TargetResultProps) => {
                   padding='2px'
                   borderWidth={'2px'}
                   margin='4px'
-                  value={status.isApplied}
+                  value={item.status?.isApplied || false}
                   isDone={statusesDoneArray[i]}
                   successColor={theme.statsGreen}
                   onRest={() => setStatusDone(i, true)}
                 >
-                  {<StatusIcon status={status} height='16px' width='16px' />}
+                  {
+                    <StatusIcon
+                      status={item.status}
+                      height='16px'
+                      width='16px'
+                    />
+                  }
                 </Check>
-                <Box opacity={status.isApplied ? 1 : 0.54}>{status.name}</Box>
+                <Box opacity={item.status.isApplied ? 1 : 0.54}>
+                  {item.status.name}
+                  {item.count > 1 ? ` x${item.count}` : ''}
+                </Box>
               </Box>
             ))}
           </Box>

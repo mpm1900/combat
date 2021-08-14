@@ -1,4 +1,5 @@
 import { useLayer, Arrow, UseLayerOptions } from 'react-laag'
+import { theme } from '../../../theme'
 import { Box, BoxProps } from '../Box'
 
 export type TooltipProps = BoxProps & {
@@ -32,7 +33,19 @@ export const Tooltip = (props: TooltipProps) => {
         renderLayer(
           <Box {...contentProps} {...layerProps} zIndex={999}>
             {content}
-            <Arrow {...arrowProps} />
+            <Arrow
+              {...arrowProps}
+              backgroundColor={theme.boxGradientFrom}
+              borderColor='rgba(255,255,255,0.54)'
+              borderWidth={1}
+              style={{
+                ...arrowProps.style,
+                marginBottom: '-1px',
+                marginTop: '-1px',
+                marginLeft: '-1px',
+                marginRight: '-1px',
+              }}
+            />
           </Box>,
         )}
     </>

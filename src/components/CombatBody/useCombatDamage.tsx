@@ -123,7 +123,7 @@ export const useCombatDamage = () => {
             const stats = getStats(char)
             return {
               ...qi,
-              value: qi.value + stats.queuePositionOffset,
+              value: min(qi.value + stats.queuePositionOffset, 0),
             }
           })
         }

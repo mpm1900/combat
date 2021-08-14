@@ -3,6 +3,7 @@ import { Blaze } from '../../../ability/data/Blaze'
 import { Levitate } from '../../../ability/data/Levitate'
 import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
+import { Blitz } from '../../../move/data/Blitz'
 import { Curse } from '../../../move/data/Curse'
 import { DoubleTeam } from '../../../move/data/DoubleTeam'
 import { FireBall } from '../../../move/data/FireBall'
@@ -48,6 +49,7 @@ export const Charizard = (): Character => ({
     FlareBlitz,
     Rest,
     TimeWarp,
+    Blitz,
     Protect,
     DoubleTeam,
     Curse,

@@ -5,7 +5,7 @@ import { Box } from '../Box'
 export const Wrapper = styled(Box)({
   marginLeft: '4px',
   flexDirection: 'row',
-  alignItems: 'flex-start',
+  alignItems: 'center',
 })
 
 export const StatusWrapper = styled(Box)<{ isPositive: boolean }>((props) => ({
