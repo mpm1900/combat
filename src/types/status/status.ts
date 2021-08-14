@@ -18,6 +18,12 @@ export type ResolvedStatus = Status & {
   isApplied: boolean
 }
 
+export type StatusStackItem = {
+  status: Status
+  statuses: Status[]
+  count: number
+}
+
 export type StatusFn = (
   applyChance: number,
   duration: number,

@@ -1,5 +1,5 @@
 import { v4 } from 'uuid'
-import { ResolvedStatus, Status, StatusFn } from './status'
+import { ResolvedStatus, Status, StatusFn, StatusStackItem } from './status'
 
 export const resolveStatus = (status: Status): ResolvedStatus => {
   const { applyChance } = status
@@ -21,4 +21,24 @@ export const makeStatusFn = (partial: MakeStatusStatus): StatusFn => {
     duration,
     isPositive,
   })
+}
+
+export const convertStatusesToStack = (
+  statuses: Status[],
+): StatusStackItem[] => {
+  let list = [...statuses]
+  let stack: StatusStackItem[] = []
+  list.forEach((status) => {
+    const itemStatuses = list.filter((s) => s.statusId === status.statusId)
+    list = list.filter((s) => s.statusId !== status.statusId)
+    stack = [
+      ...stack,
+      {
+        status: itemStatuses[0],
+        statuses: itemStatuses,
+        count: itemStatuses.length,
+      },
+    ]
+  })
+  return stack.filter((si) => si.count > 0)
 }

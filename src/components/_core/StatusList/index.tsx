@@ -1,5 +1,6 @@
 import { PropsWithChildren, useState } from 'react'
-import { Status } from '../../../types/status/status'
+import { Status, StatusStackItem } from '../../../types/status/status'
+import { convertStatusesToStack } from '../../../types/status/util'
 import { StatusTargetIcon } from '../../Move/StatusTargetIcon'
 import { Box } from '../Box'
 import { StatusCard } from '../StatusCard'
@@ -13,31 +14,37 @@ export type StatusListProps = {
 }
 export const StatusList = (props: StatusListProps) => {
   const { statuses, type, showIcon = true } = props
-  return statuses?.length ? (
-    <Wrapper>
-      {showIcon && (
-        <Box paddingTop='2px' marginRight='4px'>
-          <StatusTargetIcon type={type} />
-        </Box>
+  const stack = convertStatusesToStack(statuses || [])
+  return (
+    <>
+      {stack.length > 0 && (
+        <Wrapper>
+          {showIcon && (
+            <Box paddingTop='2px' marginRight='4px'>
+              <StatusTargetIcon type={type} />
+            </Box>
+          )}
+          <Box flexDirection='row' flexWrap='wrap'>
+            {stack.map((item, i) => (
+              <StatusListItem item={item}>
+                {i !== stack.length - 1 ? ',' : ''}
+              </StatusListItem>
+            ))}
+          </Box>
+        </Wrapper>
       )}
-      <Box flexDirection='row' flexWrap='wrap'>
-        {statuses.map((status, i) => (
-          <StatusListItem status={status}>
-            {i !== statuses.length - 1 ? ',' : ''}
-          </StatusListItem>
-        ))}
-      </Box>
-    </Wrapper>
-  ) : null
+    </>
+  )
 }
 
 export type StatusListItemProps = {
-  status: Status
+  item: StatusStackItem
 }
 export const StatusListItem = (
   props: PropsWithChildren<StatusListItemProps>,
 ) => {
-  const { status, children } = props
+  const { item, children } = props
+  const { status, count } = item
   const [isHovering, setIsHovering] = useState(false)
   return (
     <StatusWrapper
@@ -57,7 +64,9 @@ export const StatusListItem = (
           triggerOffset: 4,
         }}
       >
-        <StatusName isHovering={isHovering}>{status.name}</StatusName>
+        <StatusName isHovering={isHovering}>
+          {status.name} {count > 1 ? `x${count}` : ''}
+        </StatusName>
       </Tooltip>
       {children}
     </StatusWrapper>

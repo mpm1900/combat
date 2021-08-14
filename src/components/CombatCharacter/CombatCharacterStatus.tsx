@@ -1,16 +1,17 @@
 import { useState } from 'react'
-import { Status } from '../../types/status/status'
+import { Status, StatusStackItem } from '../../types/status/status'
 import { Box, BoxProps } from '../_core/Box'
 import { StatusCard } from '../_core/StatusCard'
 import { StatusIcon } from '../_core/StatusIcon'
 import { Tooltip } from '../_core/Tooltip'
 
 export type CombatCharacterStatusProps = BoxProps & {
-  status: Status
+  item: StatusStackItem
 }
 
 export const CombatCharacterStatus = (props: CombatCharacterStatusProps) => {
-  const { status, color = 'white', children, ...rest } = props
+  const { item, color = 'white', children, ...rest } = props
+  const { status, count } = item
   const [isHovering, setIsHovering] = useState(false)
   return (
     <Box
@@ -28,8 +29,9 @@ export const CombatCharacterStatus = (props: CombatCharacterStatusProps) => {
           auto: true,
         }}
       >
-        <Box padding='4px 2px'>
+        <Box padding='4px 2px' flexDirection='row'>
           <StatusIcon status={status} color={color} />
+          {count > 1 && <span>({count})</span>}
         </Box>
       </Tooltip>
     </Box>

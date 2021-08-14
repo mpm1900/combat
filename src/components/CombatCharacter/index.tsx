@@ -22,6 +22,7 @@ import { useSpring } from 'react-spring'
 import { CombatCharacterStats } from './CombatCharacterStats'
 import { CombatCharacterAbility } from './CombatCharacterAbility'
 import { CombatCharacterBadges } from './CombatCharacterBadges'
+import { convertStatusesToStack } from '../../types/status/util'
 
 export type CombatCharacterProps = {
   character: Character
@@ -39,6 +40,8 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
   const healthStyles = useSpring({
     value: currentHealth,
   })
+  const statusStacks = convertStatusesToStack(getStatuses(character))
+  const immunitiesStaks = convertStatusesToStack(getImmunities(character))
   return (
     <Box
       style={
@@ -126,8 +129,14 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             padding='0px 4px 4px 4px'
             style={{ fontSize: '14px' }}
           >
-            {character.abilities.map((ability) => (
-              <CombatCharacterAbility ability={ability} />
+            {character.abilities.map((ability, i) => (
+              <CombatCharacterAbility
+                ability={ability}
+                comma={
+                  i !== character.abilities.length - 1 &&
+                  character.abilities.length > 1
+                }
+              />
             ))}
           </Box>
           <CombatCharacterBadges character={character} marginLeft='-1px' />
@@ -176,15 +185,19 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         marginLeft='56px'
       >
         <Box flexDirection='row'>
-          {getImmunities(character).map((status) => (
-            <CombatCharacterStatus key={status.id} status={status} color='plum'>
-              <ImmunityCard status={status} />
+          {immunitiesStaks.map((item) => (
+            <CombatCharacterStatus
+              key={item.status.id}
+              item={item}
+              color='plum'
+            >
+              <ImmunityCard status={item.status} />
             </CombatCharacterStatus>
           ))}
         </Box>
         <Box flexDirection='row' justifyContent='flex-end'>
-          {getStatuses(character).map((status) => (
-            <CombatCharacterStatus key={status.id} status={status} />
+          {statusStacks.map((item) => (
+            <CombatCharacterStatus key={item.status.id} item={item} />
           ))}
         </Box>
       </Box>

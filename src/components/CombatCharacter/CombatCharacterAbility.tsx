@@ -19,11 +19,12 @@ const AbilityText = styled(Box)<{ isHovering: boolean }>((p) => ({
 }))
 
 export type CombatCharacterAbilityProps = BoxProps & {
+  comma: boolean
   ability: Ability
 }
 
 export const CombatCharacterAbility = (props: CombatCharacterAbilityProps) => {
-  const { ability, color = 'white', children, ...rest } = props
+  const { comma, ability, color = 'white', children, ...rest } = props
   const [isHovering, setIsHovering] = useState(false)
   return (
     <Box
@@ -41,7 +42,10 @@ export const CombatCharacterAbility = (props: CombatCharacterAbilityProps) => {
           auto: true,
         }}
       >
-        <AbilityText isHovering={isHovering}>{ability.name}</AbilityText>
+        <AbilityText isHovering={isHovering}>
+          {ability.name}
+          {comma ? ',' : ''}
+        </AbilityText>
       </Tooltip>
     </Box>
   )

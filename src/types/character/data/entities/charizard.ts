@@ -1,5 +1,6 @@
 import { v4 } from 'uuid'
 import { Blaze } from '../../../ability/data/Blaze'
+import { Levitate } from '../../../ability/data/Levitate'
 import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
 import { Curse } from '../../../move/data/Curse'
@@ -21,7 +22,7 @@ export const Charizard = (): Character => ({
   name: 'Charizard',
   level: 100,
   elements: [FireElement, AirElement],
-  abilities: [Blaze],
+  abilities: [Blaze, Levitate],
   statuses: [],
   immunities: [],
   damage: 0,

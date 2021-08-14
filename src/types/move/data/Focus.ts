@@ -13,7 +13,7 @@ export const Focus: Move = {
   recovery: 100,
   energyCost: 10,
   perfectStatuses: {
-    target: [Focused(1, 6, true)],
+    target: [Focused(1, 6, true), Focused(1, 6, true)],
     source: [],
   },
   failureStatuses: {

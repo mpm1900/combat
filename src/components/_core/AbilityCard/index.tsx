@@ -9,8 +9,12 @@ export type AbilityCardProps = {
 
 export const AbilityCard = (props: AbilityCardProps) => {
   const { ability } = props
-  const normalStatuses: AbilityStatus[] = [] // ability.statuses.filter((s) => !s.isCritical)
-  const criticalStatuses = ability.statuses
+  const normalStatuses = ability.statuses.filter(
+    (s) => s.conditions.length === 0,
+  )
+  const criticalStatuses = ability.statuses.filter(
+    (s) => s.conditions.length > 0,
+  )
   return (
     <TooltipCard>
       <Box style={{ fontWeight: 700 }}>{ability.name}</Box>
