@@ -11,8 +11,10 @@ import { FlareBlitz } from '../../../move/data/FlareBlitz'
 import { Focus } from '../../../move/data/Focus'
 import { Protect } from '../../../move/data/Protect'
 import { Rest } from '../../../move/data/Rest'
+import { Silence } from '../../../move/data/Silence'
 import { TimeWarp } from '../../../move/data/TimeWarp'
 import { Cursed } from '../../../status/data/Cursed'
+import { Silenced } from '../../../status/data/Silenced'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
@@ -54,5 +56,6 @@ export const Charizard = (): Character => ({
     DoubleTeam,
     Curse,
     Focus,
+    Silence,
   ],
 })

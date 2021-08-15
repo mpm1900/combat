@@ -12,7 +12,7 @@ export const FireBall: Move = {
   offset: -10,
   power: 45,
   recovery: 100,
-  energyCost: 10,
+  energyCost: 0,
   perfectStatuses: {
     target: [Burned(0.95, 5, true)],
     source: [],

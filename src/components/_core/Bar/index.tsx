@@ -13,7 +13,8 @@ export type BarProps = BoxProps & {
 export const Bar = (props: BarProps) => {
   const { value, max, min = 0, children, background, ...rest } = props
   const previous = usePrevious(value) || 0
-  const percent = (value / (max - min)) * 100
+  const base = max - min
+  const percent = base === 0 ? 0 : (value / base) * 100
   const diff = previous - value
 
   const barSpeed = previous > value ? 0 : (diff + 50) * 10

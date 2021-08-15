@@ -1,10 +1,15 @@
 import { useEffect } from 'react'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { useCombatSystemBuffer } from '../../contexts/CombatSystemContext/CombatSystemBuffer'
+import { min } from '../../types/equation'
 
 export const useCombatAI = () => {
-  const { activeCharacter, getTargets, isCharacterPlayerCharacter } =
-    useCombatSystem()
+  const {
+    activeCharacter,
+    getTargets,
+    isCharacterPlayerCharacter,
+    getCharacterStats,
+  } = useCombatSystem()
   const { moveBuffer, bufferMove, targetsBuffer, setTargetsBuffer } =
     useCombatSystemBuffer()
 
@@ -16,12 +21,20 @@ export const useCombatAI = () => {
   useEffect(() => {
     if (activeCharacter && !moveBuffer) {
       if (!isCharacterPlayerCharacter(activeCharacter.id)) {
-        const moveIndex = Math.floor(
-          Math.random() * activeCharacter.moves.length,
+        const stats = getCharacterStats(activeCharacter.id)
+        const availableEnergy = min(
+          stats.energy - activeCharacter.energyOffset,
+          0,
         )
-        const move = activeCharacter.moves[moveIndex]
-        if (move) {
-          bufferMove(move)
+        const moveList = activeCharacter.moves.filter(
+          (m) => m.energyCost <= availableEnergy,
+        )
+        if (moveList.length > 0) {
+          const moveIndex = Math.floor(Math.random() * moveList.length)
+          const move = moveList[moveIndex]
+          if (move) {
+            bufferMove(move)
+          }
         }
       }
     }
