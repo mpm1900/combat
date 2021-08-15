@@ -60,7 +60,7 @@ export const CombatPartyBenchCharacter = (
   return (
     <CombatCharacterAvatar
       character={character}
-      borderColor='rgba(255,255,255,0.45)'
+      borderColor='rgba(255,255,255,0.27)'
       borderWidth={1}
       justifyContent='center'
       alignItems='center'
@@ -69,7 +69,7 @@ export const CombatPartyBenchCharacter = (
       style={{ display: 'flex' }}
     >
       {!character && (
-        <Icon color='rgba(255,255,255,0.45)' width='32px'>
+        <Icon color='rgba(255,255,255,0.18)' width='32px'>
           <Na />
         </Icon>
       )}
