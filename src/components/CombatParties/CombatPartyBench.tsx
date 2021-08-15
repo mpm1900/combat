@@ -5,6 +5,7 @@ import { ReactComponent as Na } from '../../icons/sbed/cancel.svg'
 import { ReactComponent as Dead } from '../../icons/lorc/tombstone.svg'
 import { Icon } from '../_core/Icon'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
+import { Spacer } from '../_core/Spacer'
 
 export type CombatPartyBenchProps = {
   partyId: string
@@ -20,11 +21,27 @@ export const CombatPartyBench = (props: CombatPartyBenchProps) => {
 
   if (bench.length === 0) return null
   return (
-    <Box flex='1' padding='8px' background='rgba(0, 0, 0, 0.45)' color='white'>
+    <Box
+      flex='1'
+      padding='0 8px 8px 8px'
+      background='rgba(0, 0, 0, 0.45)'
+      color='white'
+    >
       <Box flexDirection='row' justifyContent='space-between'>
         {benchList.map((character) => (
           <CombatPartyBenchCharacter character={character} />
         ))}
+      </Box>
+      <Box flexDirection='row' alignItems='center' paddingTop='8px'>
+        <Spacer />
+        <Box
+          style={{
+            fontFamily: 'Trade Winds',
+          }}
+        >
+          Bench
+        </Box>
+        <Spacer />
       </Box>
     </Box>
   )

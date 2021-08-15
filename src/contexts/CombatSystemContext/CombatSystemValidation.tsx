@@ -6,16 +6,20 @@ import {
   useState,
 } from 'react'
 import { useCombatSystem } from '.'
-import { getStats } from '../../types/character/util'
+import { usePlayer } from '../PlayerContext'
 
 export type CombatSystemValidationContextValue = {
   validationComplete: boolean
+  benchCharactersToAdd: number
   validateParties: () => void
+  activateCharacter: (id: string) => void
   reset: () => void
 }
 const defaultValue: CombatSystemValidationContextValue = {
   validationComplete: false,
+  benchCharactersToAdd: 0,
   validateParties: () => {},
+  activateCharacter: () => {},
   reset: () => {},
 }
 
@@ -25,6 +29,7 @@ export const useCombatSystemValidation = () =>
 
 export const CombatSystemValidation = (props: PropsWithChildren<{}>) => {
   const { children } = props
+  const { party } = usePlayer()
   const {
     partyIds,
     activeCharacters,
@@ -34,6 +39,7 @@ export const CombatSystemValidation = (props: PropsWithChildren<{}>) => {
     getLiveCharacters,
     substituteCharacters,
   } = useCombatSystem()
+
   const [
     activeCharacterValidationComplete,
     setActiveCharacterValidationComplete,
@@ -44,8 +50,12 @@ export const CombatSystemValidation = (props: PropsWithChildren<{}>) => {
     setBenchCharacterValidationComplete,
   ] = useState(false)
 
+  const [benchCharactersToAdd, setBenchCharactersToAdd] = useState(0)
+
   const validationComplete =
-    activeCharacterValidationComplete && benchCharacterValidationComplete
+    activeCharacterValidationComplete &&
+    benchCharacterValidationComplete &&
+    benchCharactersToAdd === 0
 
   const validateActiveCharactersHealth = () => {
     activeCharacters.forEach((c) => {
@@ -67,12 +77,17 @@ export const CombatSystemValidation = (props: PropsWithChildren<{}>) => {
         0,
         countToFill,
       )
-
-      liveBenchCharactersToFill.forEach((b) => {
-        if (b) {
-          substituteCharacters('', b.id)
-        }
-      })
+      if (partyId !== party.id) {
+        liveBenchCharactersToFill.forEach((b) => {
+          if (b) {
+            substituteCharacters('', b.id)
+          }
+        })
+      } else {
+        setBenchCharactersToAdd(
+          liveBenchCharactersToFill.filter((c) => c !== undefined).length,
+        )
+      }
     })
     setBenchCharacterValidationComplete(true)
   }
@@ -87,14 +102,22 @@ export const CombatSystemValidation = (props: PropsWithChildren<{}>) => {
     validateActiveCharactersHealth()
   }
 
+  const activateCharacter = (id: string) => {
+    substituteCharacters('', id)
+    setBenchCharactersToAdd((n) => n - 1)
+  }
+
   const reset = () => {
     setActiveCharacterValidationComplete(false)
     setBenchCharacterValidationComplete(false)
+    setBenchCharactersToAdd(0)
   }
 
   const context: CombatSystemValidationContextValue = {
     validationComplete,
+    benchCharactersToAdd,
     validateParties,
+    activateCharacter,
     reset,
   }
   return (

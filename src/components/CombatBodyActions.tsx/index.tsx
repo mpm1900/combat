@@ -8,11 +8,15 @@ import { Spacer } from '../_core/Spacer'
 import { CombatBodySection } from '../CombatBody/CombatBodySection'
 import { CombatBodyActionsAttacks } from './Attacks'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
+import { useCombatSystemValidation } from '../../contexts/CombatSystemContext/CombatSystemValidation'
+import { usePlayer } from '../../contexts/PlayerContext'
 
 export type CombatBodyActionsProps = {}
 
 export const CombatBodyActions = (props: CombatBodyActionsProps) => {
-  const { activeCharacter } = useCombatSystem()
+  const { party } = usePlayer()
+  const { activeCharacter, getLiveCharacters, getBenchCharacters } =
+    useCombatSystem()
   const [tab, setTab] = useState('attacks')
 
   const styles = useSpring({

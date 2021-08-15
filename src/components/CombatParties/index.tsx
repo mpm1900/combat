@@ -18,7 +18,7 @@ export const CombatParty = (props: CombatPartyProps) => {
       <Box flexDirection='row'>
         <CombatPartyBench partyId={partyId} />
       </Box>
-      <Box padding='8px'>
+      <Box padding='0 8px'>
         {partyId &&
           getActiveCharacters(partyId).map((c) => (
             <CombatCharacter key={c.id} character={c} side={side} />

@@ -6,6 +6,8 @@ import { useCombatDamage } from './useCombatActions'
 import { useCombatAI } from './useCombatAI'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { useCombatSystemBuffer } from '../../contexts/CombatSystemContext/CombatSystemBuffer'
+import { useCombatSystemValidation } from '../../contexts/CombatSystemContext/CombatSystemValidation'
+import { CombatBodySwitch } from './CombatBodySwitch'
 
 export const CombatBody = () => {
   const { activeCharacter, getTargets, isCharacterPlayerCharacter } =
@@ -19,9 +21,12 @@ export const CombatBody = () => {
 
   useCombatAI()
 
+  const { benchCharactersToAdd } = useCombatSystemValidation()
+
   return (
     <Box flex={1} marginTop='24px'>
       <Box flex='1' alignItems='center'>
+        {benchCharactersToAdd > 0 && <CombatBodySwitch />}
         {!moveBuffer &&
           isCharacterPlayerCharacter(activeCharacter?.id || '') && (
             <CombatBodyActions />
