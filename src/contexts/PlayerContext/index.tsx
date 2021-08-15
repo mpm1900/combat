@@ -8,7 +8,7 @@ import { Party } from '../../types/character/party'
 
 const defaultParty = (): Party => ({
   id: v4(),
-  characters: [Charizard(), Venusaur(), Blastoise()],
+  characters: [Charizard(), Venusaur(), Blastoise(), Golem()],
 })
 
 export type PlayerContextValue = {

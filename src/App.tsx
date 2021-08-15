@@ -4,7 +4,8 @@ import { CombatBody } from './components/CombatBody'
 import { CombatHeader } from './components/CombatHeader'
 import { CombatParty } from './components/CombatParties'
 import { Box } from './components/_core/Box'
-import { useCombat } from './contexts/CombatContext'
+import { useCombatSystem } from './contexts/CombatSystemContext'
+import { Blastoise } from './types/character/data/entities/blastoise'
 import { Golem } from './types/character/data/entities/golem'
 import { Pidgeot } from './types/character/data/entities/pidgeot'
 import { Raichu } from './types/character/data/entities/raichu'
@@ -12,11 +13,11 @@ import { Party } from './types/character/party'
 
 const enemies = (): Party => ({
   id: v4(),
-  characters: [Raichu(), Golem(), Pidgeot()],
+  characters: [Raichu(), Golem(), Pidgeot(), Blastoise()],
 })
 
 function App() {
-  const { init } = useCombat()
+  const { init } = useCombatSystem()
 
   useEffect(() => {
     init(enemies())

@@ -1,6 +1,7 @@
+import { useEffect } from 'react'
 import { config, useSpring } from 'react-spring'
 import styled from 'styled-components'
-import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
+import { useCombatSystemBuffer } from '../../contexts/CombatSystemContext/CombatSystemBuffer'
 import { theme } from '../../theme'
 import { Character } from '../../types/character/character'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
@@ -21,7 +22,14 @@ export type CombatBodyTargetsProps = {
 
 export const CombatBodyTargets = (props: CombatBodyTargetsProps) => {
   const { targetsOptions } = props
-  const { moveBuffer, setMoveBuffer, setTargetsBuffer } = useCombatBuffer()
+  const { moveBuffer, setMoveBuffer, setTargetsBuffer } =
+    useCombatSystemBuffer()
+
+  useEffect(() => {
+    if (targetsOptions.length === 1) {
+      setTargetsBuffer(targetsOptions[0])
+    }
+  }, [targetsOptions])
 
   const styles = useSpring({
     opacity: 1,

@@ -51,6 +51,7 @@ export type ResolvedCharacterStats = CharacterStats & {
 
 export type Character = {
   id: string
+  partyId?: string
   name: string
   level: number
   damage: number

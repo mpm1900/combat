@@ -1,6 +1,6 @@
-import { CharacterStats } from '../character'
+import { ResolvedCharacterStats } from '../character'
 
-export const ZERO_STATS: CharacterStats = {
+export const ZERO_STATS: ResolvedCharacterStats = {
   health: 0,
   speed: 0,
   energy: 0,
@@ -41,4 +41,5 @@ export const ZERO_STATS: CharacterStats = {
   darkResistance: 0,
   lightDamage: 0,
   lightResistance: 0,
+  healthRatio: 0,
 }

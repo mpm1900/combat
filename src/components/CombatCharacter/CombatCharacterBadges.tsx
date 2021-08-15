@@ -1,6 +1,6 @@
+import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { theme } from '../../theme'
 import { Character } from '../../types/character/character'
-import { getStats } from '../../types/character/util'
 import { Box, BoxProps } from '../_core/Box'
 import { Hexagon } from '../_core/Hexagon'
 
@@ -10,7 +10,8 @@ export type CombatCharacterBadgesProps = BoxProps & {
 
 export const CombatCharacterBadges = (props: CombatCharacterBadgesProps) => {
   const { character, ...rest } = props
-  const stats = getStats(character)
+  const { getCharacterStats } = useCombatSystem()
+  const stats = getCharacterStats(character.id)
   return (
     <Box {...rest} position='relative'>
       <Badge size={36} color='darkseagreen' top='-12px' left='-38px'>

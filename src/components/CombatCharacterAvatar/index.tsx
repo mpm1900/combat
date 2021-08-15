@@ -19,7 +19,7 @@ const Wrapper = styled(Box)((p) => ({
 }))
 
 export type CombatCharacterAvatarProps = BoxProps & {
-  character: Character
+  character: Character | undefined
 }
 export const CombatCharacterAvatar = (props: CombatCharacterAvatarProps) => {
   const { character, children, ...rest } = props

@@ -1,34 +1,27 @@
 import { useState } from 'react'
 import { config, useSpring } from 'react-spring'
-import { useCombat } from '../../contexts/CombatContext'
-import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
 import { theme } from '../../theme'
-import { getStats } from '../../types/character/util'
-import { Move as MoveType } from '../../types/move'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
-import { Move } from '../Move'
 import { Box } from '../_core/Box'
 import { Button } from '../_core/Button'
-import { ElementalIcon } from '../_core/ElementalIcon'
 import { Spacer } from '../_core/Spacer'
-import { CombatBodySection } from './CombatBodySection'
+import { CombatBodySection } from '../CombatBody/CombatBodySection'
+import { CombatBodyActionsAttacks } from './Attacks'
+import { useCombatSystem } from '../../contexts/CombatSystemContext'
 
 export type CombatBodyActionsProps = {}
 
 export const CombatBodyActions = (props: CombatBodyActionsProps) => {
-  const { getActiveCharacter, isCharacterPlayerCharacter } = useCombat()
-  const { bufferMove } = useCombatBuffer()
-  const character = getActiveCharacter()
-  const [activeMove, setActiveMove] = useState<MoveType | undefined>(
-    character?.moves[0],
-  )
-  const stats = character ? getStats(character) : undefined
+  const { activeCharacter } = useCombatSystem()
+  const [tab, setTab] = useState('attacks')
 
   const styles = useSpring({
     opacity: 1,
     from: { opacity: 0 },
     config: config.molasses,
   })
+
+  if (!activeCharacter) return null
 
   return (
     <CombatBodySection
@@ -39,7 +32,7 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
               <Spacer />
               <Box marginBottom='16px'>
                 <span>
-                  <span>{character?.name}'s</span> Turn
+                  <span>{activeCharacter?.name}'s</span> Turn
                 </span>
               </Box>
               <Spacer />
@@ -59,9 +52,9 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
         <Box flex={1} />
         <Box maxWidth='640px' overflow='hidden'>
           <Box flexDirection='row' alignItems='flex-end'>
-            {character && (
+            {activeCharacter && (
               <CombatCharacterAvatar
-                character={character}
+                character={activeCharacter}
                 position='absolute'
                 marginRight='-8px'
                 marginLeft='-16px'
@@ -74,10 +67,11 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
             )}
             <Box flexDirection='row' alignItems='center' paddingLeft='32px'>
               <Button
-                isHovering={true}
+                isHovering={tab === 'attacks'}
                 marginRight='4px'
                 borderRadius='4px 4px 0 0'
                 style={{ borderBottom: 'none' }}
+                onClick={() => setTab('attacks')}
               >
                 Attacks
               </Button>
@@ -89,56 +83,25 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
                 Items
               </Button>
               <Button
+                isHovering={tab === 'switch'}
                 borderRadius='4px 4px 0 0'
                 style={{ borderBottom: 'none' }}
+                onClick={() => setTab('switch')}
               >
                 Switch
               </Button>
             </Box>
           </Box>
           <Box
-            alignItems='flex-start'
             background='rgba(0,0,0,0.09)'
             border={`1px solid ${theme.white6}`}
             padding='8px'
             flex='1'
             flexDirection='row'
           >
-            <Box
-              flex='1'
-              padding='8px 4px 8px 8px'
-              overflowY='scroll'
-              maxHeight='288px'
-            >
-              {character?.moves?.map((move) => (
-                <Box onMouseEnter={() => setActiveMove(move)}>
-                  <Button
-                    key={move.id}
-                    alignItems='center'
-                    flexDirection='row'
-                    marginTop='8px'
-                    padding='8px'
-                    width='200px'
-                    disabled={
-                      !stats ||
-                      stats.energy - character.energyOffset < move.energyCost
-                    }
-                    isHovering={move.id === activeMove?.id}
-                    onClick={() => {
-                      bufferMove(move)
-                    }}
-                  >
-                    <ElementalIcon height='20px' type={move.element} />
-                    <Box>{move.name}</Box>
-                  </Button>
-                </Box>
-              ))}
-            </Box>
-            <Box flex='1' justifyContent='center'>
-              {activeMove && (
-                <Move move={activeMove} character={character}></Move>
-              )}
-            </Box>
+            {tab === 'attacks' && (
+              <CombatBodyActionsAttacks character={activeCharacter} />
+            )}
           </Box>
         </Box>
         <Box flex={1} />

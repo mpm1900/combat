@@ -1,6 +1,5 @@
-import { useMemo } from 'react'
-import { useCombat } from '../../contexts/CombatContext'
-import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
+import { useCombatSystem } from '../../contexts/CombatSystemContext'
+import { useCombatSystemBuffer } from '../../contexts/CombatSystemContext/CombatSystemBuffer'
 import { MoveResult } from '../../types/move'
 import { Box } from '../_core/Box'
 import { colorMap } from '../_core/ElementalIcon'
@@ -13,10 +12,9 @@ export const CombatMoveResultsHeader = (
   props: CombatMoveResultsHeaderProps,
 ) => {
   const { moveResults } = props
-  const { getActiveCharacter, isCharacterPlayerCharacter } = useCombat()
-  const { moveBuffer } = useCombatBuffer()
-  const character = useMemo(() => getActiveCharacter(), [])
-  if (!character || !moveBuffer) return null
+  const { activeCharacter, isCharacterPlayerCharacter } = useCombatSystem()
+  const { moveBuffer } = useCombatSystemBuffer()
+  if (!activeCharacter || !moveBuffer) return null
 
   return (
     <Box
@@ -29,12 +27,12 @@ export const CombatMoveResultsHeader = (
         <span
           style={{
             fontFamily: 'Trade Winds',
-            color: isCharacterPlayerCharacter(character.id)
+            color: isCharacterPlayerCharacter(activeCharacter.id)
               ? 'lightblue'
               : 'lightsalmon',
           }}
         >
-          {character.name}
+          {activeCharacter.name}
         </span>
         <span style={{ padding: '0px 8px' }}> uses </span>
         <span
@@ -45,11 +43,11 @@ export const CombatMoveResultsHeader = (
         >
           {moveBuffer.name}
         </span>
-        {!moveResults.every((r) => r.target.id === character.id) && (
+        {!moveResults.every((r) => r.target.id === activeCharacter.id) && (
           <span style={{ padding: '0px 8px' }}> on </span>
         )}
       </span>
-      {!moveResults.every((r) => r.target.id === character.id) && (
+      {!moveResults.every((r) => r.target.id === activeCharacter.id) && (
         <span>
           {moveResults.map((result, i) => (
             <span key={i}>

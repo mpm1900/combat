@@ -1,12 +1,15 @@
 import { PropsWithChildren } from 'react'
-import { CombatContextProvider } from './CombatContext'
+import { CombatSystem } from './CombatSystemContext'
+import { LogsContextProvider } from './LogsContext'
 import { ModalContextProvider } from './ModalContext'
 
 export const AppContexts = (props: PropsWithChildren<{}>) => {
   const { children } = props
   return (
-    <CombatContextProvider>
-      <ModalContextProvider>{children}</ModalContextProvider>
-    </CombatContextProvider>
+    <LogsContextProvider>
+      <CombatSystem>
+        <ModalContextProvider>{children}</ModalContextProvider>
+      </CombatSystem>
+    </LogsContextProvider>
   )
 }

@@ -1,5 +1,7 @@
-import { useCombat } from '../../contexts/CombatContext'
-import { useCombatTurn } from '../../contexts/CombatContext/turn'
+import { useEffect, useRef } from 'react'
+import { useCombatSystem } from '../../contexts/CombatSystemContext'
+import { useCombatSystemTurn } from '../../contexts/CombatSystemContext/CombatSystemTurn'
+import { useLogs } from '../../contexts/LogsContext'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
 import { Queue } from '../Queue'
 import { QueueNormalized } from '../QueueNormalized'
@@ -9,13 +11,24 @@ export type CombatHeaderProps = {}
 
 export const CombatHeader = (props: CombatHeaderProps) => {
   const {} = props
-  const { queue, characters, getActiveCharacter } = useCombat()
-  const { turnCount } = useCombatTurn()
-  const character = getActiveCharacter()
+  const { logs } = useLogs()
+  const { queue, activeCharacters, activeCharacter } = useCombatSystem()
+  const { turnCount } = useCombatSystemTurn()
+  const logContainerRef = useRef(null)
+  const scrollToBottom = () => {
+    if (logContainerRef.current !== null) {
+      const el: any = logContainerRef.current
+      if (el.scrollIntoView) {
+        el.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
+
+  useEffect(() => scrollToBottom(), [logs])
   return (
-    <Box background='rgba(0, 0, 0, 0.5)'>
+    <Box background='rgba(0, 0, 0, 0.45)'>
       <Box flexDirection='row' padding='0px 8px 16px 8px'>
-        {character && (
+        {activeCharacter && (
           <Box flexDirection='row' width='264px'>
             <Box flex={1} />
             <Box justifyContent='center'>
@@ -28,7 +41,7 @@ export const CombatHeader = (props: CombatHeaderProps) => {
               </Box>
               <Box background='white' padding='4px 8px' maxWidth='160px'>
                 <span>
-                  <strong>{character.name}'s</strong> Turn
+                  <strong>{activeCharacter.name}'s</strong> Turn
                 </span>
               </Box>
             </Box>
@@ -37,15 +50,26 @@ export const CombatHeader = (props: CombatHeaderProps) => {
               height='88px'
               width='88px'
               marginTop='-2px'
-              character={character}
+              character={activeCharacter}
             />
           </Box>
         )}
         <Box flex='1'>
-          <Queue queue={queue} characters={characters} />
-          <QueueNormalized queue={queue} characters={characters} />
+          <Queue queue={queue} characters={activeCharacters} />
+          <QueueNormalized queue={queue} characters={activeCharacters} />
         </Box>
-        <Box width='264px'></Box>
+        <Box
+          width='264px'
+          height='75px'
+          overflow='auto'
+          color='white'
+          padding='8px'
+        >
+          {logs.map((log) => (
+            <Box>{log}</Box>
+          ))}
+          <Box ref={logContainerRef} />
+        </Box>
       </Box>
     </Box>
   )

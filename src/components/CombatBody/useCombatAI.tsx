@@ -1,26 +1,38 @@
 import { useEffect } from 'react'
-import { useCombat } from '../../contexts/CombatContext'
-import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
+import { useCombatSystem } from '../../contexts/CombatSystemContext'
+import { useCombatSystemBuffer } from '../../contexts/CombatSystemContext/CombatSystemBuffer'
 
 export const useCombatAI = () => {
-  const { getActiveCharacter, getTargets, isCharacterPlayerCharacter } =
-    useCombat()
-  const character = getActiveCharacter()
-  const { moveBuffer, setMoveBuffer, targetsBuffer, setTargetsBuffer } =
-    useCombatBuffer()
+  const { activeCharacter, getTargets, isCharacterPlayerCharacter } =
+    useCombatSystem()
+  const { moveBuffer, bufferMove, targetsBuffer, setTargetsBuffer } =
+    useCombatSystemBuffer()
+
+  const targetsOptions =
+    moveBuffer && activeCharacter
+      ? getTargets(moveBuffer, activeCharacter)
+      : undefined
 
   useEffect(() => {
-    if (character && !moveBuffer && !targetsBuffer) {
-      if (!isCharacterPlayerCharacter(character.id)) {
-        const moveIndex = Math.floor(Math.random() * character.moves.length)
-        const move = character.moves[moveIndex]
+    if (activeCharacter && !moveBuffer) {
+      if (!isCharacterPlayerCharacter(activeCharacter.id)) {
+        const moveIndex = Math.floor(
+          Math.random() * activeCharacter.moves.length,
+        )
+        const move = activeCharacter.moves[moveIndex]
         if (move) {
-          setMoveBuffer(move)
-          const targets = getTargets(move, character)
-          const targetsIndex = Math.floor(Math.random() * targets.length)
-          setTargetsBuffer(targets[targetsIndex])
+          bufferMove(move)
         }
       }
     }
-  }, [character, moveBuffer, targetsBuffer])
+  }, [activeCharacter, moveBuffer])
+
+  useEffect(() => {
+    if (activeCharacter && !targetsBuffer && targetsOptions) {
+      if (!isCharacterPlayerCharacter(activeCharacter.id)) {
+        const targetsIndex = Math.floor(Math.random() * targetsOptions.length)
+        setTargetsBuffer(targetsOptions[targetsIndex])
+      }
+    }
+  }, [activeCharacter, targetsBuffer, targetsOptions])
 }

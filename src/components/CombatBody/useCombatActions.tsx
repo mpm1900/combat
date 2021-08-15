@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useCombat } from '../../contexts/CombatContext'
-import { useCombatBuffer } from '../../contexts/CombatContext/buffer'
-import { useCombatTurn } from '../../contexts/CombatContext/turn'
+import { useCombatSystem } from '../../contexts/CombatSystemContext'
+import { useCombatSystemBuffer } from '../../contexts/CombatSystemContext/CombatSystemBuffer'
+import { useCombatSystemTurn } from '../../contexts/CombatSystemContext/CombatSystemTurn'
 import { AccuracyStats, Character } from '../../types/character/character'
 import {
   getStats,
@@ -14,26 +14,31 @@ import { ProtectedId } from '../../types/status/data/Protected'
 
 export const useCombatDamage = () => {
   const {
-    getActiveCharacter,
-    getCharacterPartyId,
+    activeCharacter,
+    activeCharacters,
+    getCharacterStats,
     getLiveCharacters,
     updateCharacter,
     addStatusesToCharacter,
     addDamageToCharacter,
     updateQueueItemById,
-  } = useCombat()
-  const { turnId, nextTurn } = useCombatTurn()
-  const { moveBuffer, targetsBuffer } = useCombatBuffer()
+    substituteCharacters,
+  } = useCombatSystem()
+  const { turnId, nextTurn } = useCombatSystemTurn()
+  const { moveBuffer, targetsBuffer } = useCombatSystemBuffer()
   const [rolls, setRolls] = useState<boolean[]>([])
   const [moveResults, setMoveResults] = useState<MoveResult[] | undefined>()
   const [moveCommited, setMoveCommitted] = useState(false)
-  const character = getActiveCharacter()
 
   const clearMoveResults = () => setMoveResults(undefined)
 
+  useEffect(() => {
+    clearMoveResults()
+  }, [activeCharacter?.id])
+
   const rollDamage = (move: Move, source: Character, targets: Character[]) => {
     if (moveResults) return
-    const stats = getStats(source)
+    const stats = getCharacterStats(source.id)
     const rolls = getRolls(
       move.checks,
       stats[`${move.type}Accuracy` as keyof AccuracyStats] + move.offset,
@@ -49,29 +54,34 @@ export const useCombatDamage = () => {
   }
 
   useEffect(() => {
-    if (character && moveBuffer && targetsBuffer && !moveResults) {
-      rollDamage(moveBuffer, character, targetsBuffer)
+    if (activeCharacter && moveBuffer && targetsBuffer && !moveResults) {
+      rollDamage(moveBuffer, activeCharacter, targetsBuffer)
+      setMoveCommitted(false)
     }
-  }, [character, moveBuffer, targetsBuffer, moveResults])
+  }, [moveBuffer, targetsBuffer, moveResults])
 
-  useEffect(() => {
-    setMoveCommitted(false)
-  }, [turnId])
+  const commitSub = (benchId: string) => {
+    if (!activeCharacter) return
+    substituteCharacters(activeCharacter.id, benchId)
+    nextTurn()
+  }
 
   const commitMove = () => {
-    if (character && moveBuffer && moveResults && !moveCommited) {
+    if (activeCharacter && moveBuffer && moveResults && !moveCommited) {
       setMoveCommitted(true)
       targetsBuffer?.forEach((char, i) => {
         if (moveResults[i]) {
           if (i === 0) {
-            addStatusesToCharacter(character.id, moveResults[i].statuses.source)
+            addStatusesToCharacter(
+              activeCharacter.id,
+              moveResults[i].statuses.source,
+            )
           }
           const protectedStatus = getStatuses(char).find(
             (s) => s.statusId === ProtectedId,
           )
           const hasEnemySourceStatus =
-            getCharacterPartyId(char.id) !==
-              getCharacterPartyId(character.id) &&
+            char.partyId !== activeCharacter.partyId &&
             moveResults[i].statuses.target.length > 0
 
           if (
@@ -92,7 +102,7 @@ export const useCombatDamage = () => {
           }
         }
       })
-      updateCharacter(character.id, (c) => {
+      updateCharacter(activeCharacter.id, (c) => {
         return {
           ...c,
           energyOffset: c.energyOffset + moveBuffer.energyCost,
@@ -102,23 +112,23 @@ export const useCombatDamage = () => {
   }
 
   const commitTurn = () => {
-    if (character && moveBuffer) {
-      updateCharacter(character.id, (c) => {
-        const [stats, { stats: mods }] = getStatsAndEquations(character)
+    if (activeCharacter && moveBuffer) {
+      updateCharacter(activeCharacter.id, (c) => {
+        const [stats, { stats: mods }] = getStatsAndEquations(activeCharacter)
         return {
           ...c,
           damage: min(c.damage - mods.activeTurnHealthRegen(stats.health), 0),
         }
       })
-      getLiveCharacters().forEach((char) => {
+      getLiveCharacters(activeCharacters).forEach((char) => {
         updateCharacter(char.id, (c) => {
-          const [stats, { stats: mods }] = getStatsAndEquations(character)
+          const [stats, { stats: mods }] = getStatsAndEquations(activeCharacter)
           return {
             ...c,
             damage: min(c.damage - mods.turnHealthRegen(stats.health), 0),
           }
         })
-        if (char.id !== character.id) {
+        if (char.id !== activeCharacter.id) {
           updateQueueItemById(char.id, (qi) => {
             const stats = getStats(char)
             return {
@@ -130,9 +140,6 @@ export const useCombatDamage = () => {
       })
 
       nextTurn()
-      setTimeout(() => {
-        clearMoveResults()
-      }, 1)
     }
   }
 
@@ -144,5 +151,6 @@ export const useCombatDamage = () => {
     clearMoveResults,
     commitMove,
     commitTurn,
+    commitSub,
   }
 }

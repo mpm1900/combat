@@ -1,4 +1,8 @@
-import { Character, CharacterStats } from '../character/character'
+import {
+  Character,
+  CharacterStats,
+  ResolvedCharacterStats,
+} from '../character/character'
 import { convertStats, getStats } from '../character/util'
 import { Move } from '../move'
 
@@ -10,7 +14,7 @@ export type Queue = QueueItem[]
 
 export type QueueStats = {
   id: string
-  value: CharacterStats
+  value: ResolvedCharacterStats
 }[]
 
 export const initializeQueue = (characters: Character[]): Queue => {
@@ -29,8 +33,7 @@ export const initializeQueue = (characters: Character[]): Queue => {
         const char = characters.find((c) => c.id === qi.id)
         if (!char) return false
         const stats = convertStats(char)
-        const health = stats.health
-        return char.damage < health
+        return stats.healthRatio > 0
       }),
     characters,
   )
@@ -98,14 +101,14 @@ export const enQueue = (
   ].filter((q) => {
     const character = characters.find((c) => c.id === q.id)
     const stats = statArray.find((s) => s.id === q.id)
-    return character && stats && character.damage < stats.value.health
+    return character && stats && stats.value.healthRatio > 0
   })
 
-  return validateQueue(consolidateQueue(queueToMove, characters), statArray)
+  return validateQueue(consolidateQueue(queueToMove, characters))
 }
 
-export const validateQueue = (queue: Queue, stats: QueueStats): Queue => {
-  const validate = (queue: Queue, stats: QueueStats): [Queue, number] => {
+export const validateQueue = (queue: Queue): Queue => {
+  const validate = (queue: Queue): [Queue, number] => {
     let moves = 0
     let result = [...queue]
     result.forEach((item) => {
@@ -124,17 +127,16 @@ export const validateQueue = (queue: Queue, stats: QueueStats): Queue => {
     return [result, moves]
   }
 
-  let validation = validate(queue, stats)
+  let validation = validate(queue)
   while (validation[1] > 0) {
-    validation = validate(validation[0], stats)
+    validation = validate(validation[0])
   }
   return validation[0]
 }
 
 export const getActiveId = (queue: Queue): string => {
   const item = queue.find((i) => i.value === 0)
-  if (!item) return ''
-  return item.id
+  return item?.id || ''
 }
 
 export const getMaxValue = (queue: Queue) =>

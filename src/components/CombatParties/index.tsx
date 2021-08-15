@@ -1,6 +1,7 @@
-import { useCombat } from '../../contexts/CombatContext'
+import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { CombatCharacter } from '../CombatCharacter'
 import { Box } from '../_core/Box'
+import { CombatPartyBench } from './CombatPartyBench'
 
 export type CombatPartyProps = {
   index: number
@@ -9,14 +10,20 @@ export type CombatPartyProps = {
 
 export const CombatParty = (props: CombatPartyProps) => {
   const { index, side } = props
-  const { parties } = useCombat()
-  const party = parties[index]
+  const { partyIds, getActiveCharacters } = useCombatSystem()
+  const partyId = partyIds[index]
+  if (!partyId) return null
   return (
-    <Box padding='8px'>
-      {party &&
-        party.characters.map((c) => (
-          <CombatCharacter key={c.id} character={c} side={side} />
-        ))}
+    <Box>
+      <Box flexDirection='row'>
+        <CombatPartyBench partyId={partyId} />
+      </Box>
+      <Box padding='8px'>
+        {partyId &&
+          getActiveCharacters(partyId).map((c) => (
+            <CombatCharacter key={c.id} character={c} side={side} />
+          ))}
+      </Box>
     </Box>
   )
 }

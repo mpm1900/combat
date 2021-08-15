@@ -51,15 +51,21 @@ export const getMoveDamageModifier = (
   )
 }
 
-export const getMovePerfectChance = (move: Move, character: Character) => {
-  const stats = getStats(character)
+export const getMovePerfectChance = (
+  move: Move,
+  character: Character,
+  stats: CharacterStats = getStats(character),
+) => {
   const stat = stats[`${move.type}Accuracy` as keyof AccuracyStats]
   const statValue = (stat + move.offset) / 100
   return Math.pow(statValue, move.checks)
 }
 
-export const getMoveFailureChance = (move: Move, character: Character) => {
-  const stats = getStats(character)
+export const getMoveFailureChance = (
+  move: Move,
+  character: Character,
+  stats: CharacterStats = getStats(character),
+) => {
   const stat = stats[`${move.type}Accuracy` as keyof AccuracyStats]
   const statValue = (stat + move.offset) / 100
   return Math.pow(1 - statValue, move.checks)

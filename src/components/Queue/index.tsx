@@ -60,9 +60,7 @@ export const Queue = (props: QueueProps) => {
             }}
             position='absolute'
           >
-            <AnimatedNumberValue>
-              {(deltas.find((d) => d.id === item.id)?.value || 0) * 1000}
-            </AnimatedNumberValue>
+            {(deltas.find((d) => d.id === item.id)?.value || 0) * 1000}
           </CombatCharacterAvatar>
         ))}
         <Box
@@ -71,16 +69,14 @@ export const Queue = (props: QueueProps) => {
           border='1px solid rgba(255,255,255,0.18)'
           height='48px'
         >
-          {mva.map((_, i) => (
-            <Box
-              key={i}
-              style={{
-                width: `${100 / maxValue}%`,
-                height: '100%',
-                background: 'rgba(255,255,255,0.09)',
-              }}
-            />
-          ))}
+          <Box
+            flex={1}
+            style={{
+              width: `${100 / maxValue}%`,
+              height: '100%',
+              background: 'rgba(255,255,255,0.09)',
+            }}
+          />
         </Box>
       </QueueWrapper>
     </Box>

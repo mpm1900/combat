@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
 import { config, useTransition } from 'react-spring'
 import { ReactComponent as Forward } from '../../icons/delapouite/fast-forward-button.svg'
-import { useCombat } from '../../contexts/CombatContext'
 import { Character } from '../../types/character/character'
 import { getStats } from '../../types/character/util'
 import { convertToDeltas, QueueStats } from '../../types/queue/queue'
@@ -10,6 +9,7 @@ import { Box } from '../_core/Box'
 import { Icon } from '../_core/Icon'
 import { ElementalType } from '../../types/elemental'
 import { colorMap } from '../_core/ElementalIcon'
+import { useCombatSystem } from '../../contexts/CombatSystemContext'
 
 const margin = 16
 const width = 18
@@ -17,7 +17,7 @@ const space = width + margin
 
 export const QueueNormalized = (props: QueueProps) => {
   const { queue, characters } = props
-  const { getCharacter } = useCombat()
+  const { getCharacter } = useCombatSystem()
   const statArray: QueueStats = useMemo(
     () =>
       characters.map((c) => ({

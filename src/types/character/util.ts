@@ -47,13 +47,13 @@ export const getModifiers = (character: Character) => {
 }
 
 const converHealth = (health: number, level: number) => {
-  const ev = 252
+  const ev = 0 //252
 
   return Math.floor(((31 + 2 * health + ev / 4) * level) / 100 + 10 + level)
 }
 
 const convertStat = (stat: number, level: number) => {
-  const ev = 252
+  const ev = 0 //252
 
   return Math.floor((((31 + 2 * stat + ev / 4) * level) / 100 + 5) * 1)
 }
@@ -93,16 +93,16 @@ export const getStats = (character: Character): ResolvedCharacterStats => {
 
 export const getStatsAndModifier = (
   character: Character,
+  stats: CharacterStats = getStats(character),
 ): [CharacterStats, Modifier] => {
-  const stats = getStats(character)
   const modifier = reduceModifiers(getModifiers(character))
   return [stats, modifier]
 }
 
 export const getStatsAndEquations = (
   character: Character,
+  stats: CharacterStats = getStats(character),
 ): [CharacterStats, StatEquations] => {
-  const stats = getStats(character)
   const modifier = reduceModifiersToEquations(getModifiers(character))
   return [stats, modifier]
 }

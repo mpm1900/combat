@@ -1,12 +1,7 @@
 import { useMemo } from 'react'
-import { useCombat } from '../../contexts/CombatContext'
 import { theme } from '../../theme'
 import { Character } from '../../types/character/character'
-import {
-  getImmunities,
-  getStats,
-  getStatuses,
-} from '../../types/character/util'
+import { getImmunities, getStatuses } from '../../types/character/util'
 import { min } from '../../types/equation'
 import { Bar } from '../_core/Bar'
 import { Box } from '../_core/Box'
@@ -23,6 +18,7 @@ import { CombatCharacterStats } from './CombatCharacterStats'
 import { CombatCharacterAbility } from './CombatCharacterAbility'
 import { CombatCharacterBadges } from './CombatCharacterBadges'
 import { convertStatusesToStack } from '../../types/status/util'
+import { useCombatSystem } from '../../contexts/CombatSystemContext'
 
 export type CombatCharacterProps = {
   character: Character
@@ -30,11 +26,9 @@ export type CombatCharacterProps = {
 }
 
 export const CombatCharacter = (props: CombatCharacterProps) => {
-  const { character, side } = props
-  const { getActiveCharacter } = useCombat()
-  const activeCharacter = getActiveCharacter()
-  const isActive = character.id === activeCharacter?.id
-  const stats = useMemo(() => getStats(character), [character])
+  const { character } = props
+  const { getCharacterStats } = useCombatSystem()
+  const stats = useMemo(() => getCharacterStats(character.id), [character])
   const currentHealth = min(stats.health - character.damage, 0)
   const currentEnergy = min(stats.energy - character.energyOffset, 0)
   const healthStyles = useSpring({
@@ -43,14 +37,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
   const statusStacks = convertStatusesToStack(getStatuses(character))
   const immunitiesStaks = convertStatusesToStack(getImmunities(character))
   return (
-    <Box
-      style={
-        {
-          //transform: isActive ? 'scale(1.2)' : '',
-          //marginLeft: isActive ? '-24px' : '',
-        }
-      }
-    >
+    <Box>
       <Box
         width='312px'
         background={theme.boxGradient}
