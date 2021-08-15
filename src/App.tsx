@@ -26,7 +26,7 @@ function App() {
   return (
     <Box className='App' flex={1}>
       <CombatHeader />
-      <Box flex='1' overflow='hidden' flexDirection='row' padding='0px 16px'>
+      <Box flex='1' overflow='hidden' flexDirection='row'>
         <CombatParty index={0} side='left' />
         <CombatBody />
         <CombatParty index={1} side='right' />

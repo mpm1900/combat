@@ -50,10 +50,10 @@ export const CombatSystemTurn = (props: PropsWithChildren<{}>) => {
   }, [turnCount])
 
   useEffect(() => {
-    if (validationComplete && moveBuffer) {
+    if (validationComplete) {
       reset()
       reduceStatusDurations()
-      enqueue(moveBuffer)
+      enqueue(moveBuffer?.recovery || 0)
     }
   }, [validationComplete, moveBuffer])
 

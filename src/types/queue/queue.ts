@@ -85,7 +85,7 @@ export const enQueue = (
   queue: Queue,
   activeId: string,
   characters: Character[],
-  move: Move,
+  recovery: number,
 ): Queue => {
   const statArray: QueueStats = characters.map((c) => ({
     id: c.id,
@@ -96,7 +96,7 @@ export const enQueue = (
     ...queue.filter((i) => i.id !== activeId),
     {
       id: activeId,
-      value: Math.round(move.recovery),
+      value: Math.round(recovery),
     },
   ].filter((q) => {
     const character = characters.find((c) => c.id === q.id)

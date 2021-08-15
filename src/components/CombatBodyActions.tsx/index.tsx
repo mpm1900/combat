@@ -8,15 +8,16 @@ import { Spacer } from '../_core/Spacer'
 import { CombatBodySection } from '../CombatBody/CombatBodySection'
 import { CombatBodyActionsAttacks } from './Attacks'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
-import { useCombatSystemValidation } from '../../contexts/CombatSystemContext/CombatSystemValidation'
 import { usePlayer } from '../../contexts/PlayerContext'
+import { CombatBodyActionsBench } from './Bench'
 
-export type CombatBodyActionsProps = {}
+export type CombatBodyActionsProps = {
+  commitSubsitution: (id: string) => void
+}
 
 export const CombatBodyActions = (props: CombatBodyActionsProps) => {
-  const { party } = usePlayer()
-  const { activeCharacter, getLiveCharacters, getBenchCharacters } =
-    useCombatSystem()
+  const { commitSubsitution } = props
+  const { activeCharacter } = useCombatSystem()
   const [tab, setTab] = useState('attacks')
 
   const styles = useSpring({
@@ -87,12 +88,12 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
                 Items
               </Button>
               <Button
-                isHovering={tab === 'switch'}
+                isHovering={tab === 'bench'}
                 borderRadius='4px 4px 0 0'
                 style={{ borderBottom: 'none' }}
-                onClick={() => setTab('switch')}
+                onClick={() => setTab('bench')}
               >
-                Switch
+                Bench
               </Button>
             </Box>
           </Box>
@@ -105,6 +106,9 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
           >
             {tab === 'attacks' && (
               <CombatBodyActionsAttacks character={activeCharacter} />
+            )}
+            {tab === 'bench' && (
+              <CombatBodyActionsBench commitSubsitution={commitSubsitution} />
             )}
           </Box>
         </Box>

@@ -13,7 +13,6 @@ const StyledButton = styled(Box)<ButtonProps>((p) => ({
   fontSize: '14px',
   lineHeight: '20px',
   fontWeight: 500,
-  textTransform: 'uppercase',
   textShadow: '0px 1px 3px rgba(0,0,0,0.54)',
   fontFamily: 'Trade Winds',
   ':hover': {

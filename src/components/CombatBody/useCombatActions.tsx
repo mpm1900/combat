@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { useCombatSystemBuffer } from '../../contexts/CombatSystemContext/CombatSystemBuffer'
 import { useCombatSystemTurn } from '../../contexts/CombatSystemContext/CombatSystemTurn'
+import { useLogs } from '../../contexts/LogsContext'
 import { AccuracyStats, Character } from '../../types/character/character'
 import {
   getStats,
@@ -12,7 +13,8 @@ import { min } from '../../types/equation'
 import { getRolls, Move, MoveResult, resolveMove } from '../../types/move'
 import { ProtectedId } from '../../types/status/data/Protected'
 
-export const useCombatDamage = () => {
+export const useCombatActions = () => {
+  const { push } = useLogs()
   const {
     activeCharacter,
     activeCharacters,
@@ -38,6 +40,7 @@ export const useCombatDamage = () => {
 
   const rollDamage = (move: Move, source: Character, targets: Character[]) => {
     if (moveResults) return
+    push(`${move.name} selected.`)
     const stats = getCharacterStats(source.id)
     const rolls = getRolls(
       move.checks,
@@ -59,12 +62,6 @@ export const useCombatDamage = () => {
       setMoveCommitted(false)
     }
   }, [moveBuffer, targetsBuffer, moveResults])
-
-  const commitSub = (benchId: string) => {
-    if (!activeCharacter) return
-    substituteCharacters(activeCharacter.id, benchId)
-    nextTurn()
-  }
 
   const commitMove = () => {
     if (activeCharacter && moveBuffer && moveResults && !moveCommited) {
@@ -112,7 +109,7 @@ export const useCombatDamage = () => {
   }
 
   const commitTurn = () => {
-    if (activeCharacter && moveBuffer) {
+    if (activeCharacter) {
       updateCharacter(activeCharacter.id, (c) => {
         const [stats, { stats: mods }] = getStatsAndEquations(activeCharacter)
         return {
@@ -143,6 +140,13 @@ export const useCombatDamage = () => {
     }
   }
 
+  const commitSubsitution = (id: string) => {
+    if (activeCharacter) {
+      substituteCharacters(activeCharacter.id, id)
+      commitTurn()
+    }
+  }
+
   return {
     rolls,
     moveResults,
@@ -151,6 +155,6 @@ export const useCombatDamage = () => {
     clearMoveResults,
     commitMove,
     commitTurn,
-    commitSub,
+    commitSubsitution,
   }
 }

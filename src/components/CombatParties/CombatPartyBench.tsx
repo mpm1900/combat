@@ -15,7 +15,7 @@ export const CombatPartyBench = (props: CombatPartyBenchProps) => {
   const { partyId } = props
   const { getBenchCharacters } = useCombatSystem()
   const bench = getBenchCharacters(partyId)
-  const benchList = Array(6)
+  const benchList = Array(5)
     .fill(undefined)
     .map((_, i) => bench[i])
 
@@ -27,7 +27,7 @@ export const CombatPartyBench = (props: CombatPartyBenchProps) => {
       background='rgba(0, 0, 0, 0.45)'
       color='white'
     >
-      <Box flexDirection='row' justifyContent='space-between'>
+      <Box flexDirection='row' justifyContent='space-around'>
         {benchList.map((character) => (
           <CombatPartyBenchCharacter character={character} />
         ))}
@@ -64,8 +64,8 @@ export const CombatPartyBenchCharacter = (
       borderWidth={1}
       justifyContent='center'
       alignItems='center'
-      width='48px'
-      height='48px'
+      width='56px'
+      height='56px'
       style={{ display: 'flex' }}
     >
       {!character && (

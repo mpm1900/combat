@@ -34,7 +34,7 @@ export type CombatSystemContextValue = {
   activeCharacters: CombatSystemCharacter[]
   benchCharacters: CombatSystemCharacter[]
   init: (enemyParty: Party) => void
-  enqueue: (move: Move) => void
+  enqueue: (recovery: number) => void
   getCharacter: (id: string) => Character | undefined
   getCharacterStats: (id: string) => ResolvedCharacterStats
   getActiveCharacters: (partyId: string) => CombatSystemCharacter[]
@@ -237,7 +237,7 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
     activeCharacters,
     benchCharacters,
     init,
-    enqueue: (move: Move) => enqueue(activeCharacters, move),
+    enqueue: (recovery: number) => enqueue(activeCharacters, recovery),
     getCharacter,
     getCharacterStats,
     getActiveCharacters,

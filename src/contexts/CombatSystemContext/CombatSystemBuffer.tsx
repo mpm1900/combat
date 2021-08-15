@@ -8,7 +8,6 @@ import {
 import { useCombatSystem } from '.'
 import { Character } from '../../types/character/character'
 import { Move } from '../../types/move'
-import { useLogs } from '../LogsContext'
 
 export type CombatSystemBufferContextValue = {
   moveBuffer: Move | undefined
@@ -32,19 +31,18 @@ export const useCombatSystemBuffer = () => useContext(CombatSystemBufferContext)
 
 export const CombatSystemBuffer = (props: PropsWithChildren<{}>) => {
   const { children } = props
-  const { push } = useLogs()
   const { getTargets, activeCharacter } = useCombatSystem()
   const [moveBuffer, setMoveBuffer] = useState<Move | undefined>()
   const [targetsBuffer, setTargetsBuffer] = useState<Character[] | undefined>()
 
   const bufferMove = (move: Move) => {
-    push(`${move.name} selected.`)
+    if (moveBuffer || !activeCharacter) return
+
     setMoveBuffer(move)
-    if (activeCharacter) {
-      const targets = getTargets(move, activeCharacter)
-      if (targets.length === 1) {
-        setTargetsBuffer(targets[0])
-      }
+
+    const targets = getTargets(move, activeCharacter)
+    if (targets.length === 1) {
+      setTargetsBuffer(targets[0])
     }
   }
   const clear = () => {
