@@ -6,6 +6,7 @@ export const Teleported = makeStatusFn({
   statusId: TeleportedId,
   name: 'Teleported',
   isStackable: false,
+  removeOnBench: true,
   removeOnHit: false,
   removeOnActiveTurn: false,
   modifiers: [

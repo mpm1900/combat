@@ -9,8 +9,6 @@ const Wrapper = styled(Box)((p) => ({
   boxSizing: 'border-box',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
-  alignItems: 'center',
-  justifyContent: 'center',
   textOverflow: 'ellipsis',
   display: 'inline-block',
   color: 'black',
@@ -41,4 +39,6 @@ CombatCharacterAvatar.defaultProps = {
   borderWidth: '2px',
   borderColor: 'white',
   borderStyle: 'solid',
+  alignItems: 'center',
+  justifyContent: 'center',
 }

@@ -29,7 +29,15 @@ export const useCombatSystemCharacters = () => {
 
   const removeActiveCharacter = (id: string) => {
     setCharacters((list) =>
-      list.map((c) => (c.id === id ? { ...c, isActiveCharacter: false } : c)),
+      list.map((c) =>
+        c.id === id
+          ? {
+              ...c,
+              isActiveCharacter: false,
+              statuses: c.statuses.filter((c) => !c.removeOnBench),
+            }
+          : c,
+      ),
     )
   }
 

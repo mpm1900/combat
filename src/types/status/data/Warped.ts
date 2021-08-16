@@ -6,6 +6,7 @@ export const Warped = makeStatusFn({
   statusId: WarpedId,
   name: 'Warped',
   isStackable: false,
+  removeOnBench: true,
   removeOnHit: false,
   removeOnActiveTurn: false,
   modifiers: [

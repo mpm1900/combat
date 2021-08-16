@@ -8,5 +8,5 @@ export const Spacer = styled(Box)({
 
 Spacer.defaultProps = {
   margin: 'auto 16px',
-  borderBottom: '1px solid rgba(255,255,255,0.24)',
+  borderBottom: '1px solid rgba(255,255,255,0.18)',
 }

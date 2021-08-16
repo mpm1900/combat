@@ -7,6 +7,7 @@ export const Cursed = makeStatusFn({
   name: 'Cursed',
   isStackable: true,
   removeOnHit: false,
+  removeOnBench: false,
   removeOnActiveTurn: false,
   modifiers: [
     {

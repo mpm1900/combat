@@ -6,6 +6,9 @@ import { ReactComponent as Dead } from '../../icons/lorc/tombstone.svg'
 import { Icon } from '../_core/Icon'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { Spacer } from '../_core/Spacer'
+import { Bar } from '../_core/Bar'
+import { min } from '../../types/equation'
+import { theme } from '../../theme'
 
 export type CombatPartyBenchProps = {
   partyId: string
@@ -29,7 +32,9 @@ export const CombatPartyBench = (props: CombatPartyBenchProps) => {
     >
       <Box flexDirection='row' justifyContent='space-around'>
         {benchList.map((character) => (
-          <CombatPartyBenchCharacter character={character} />
+          <Box>
+            <CombatPartyBenchCharacter character={character} />
+          </Box>
         ))}
       </Box>
       <Box flexDirection='row' alignItems='center' paddingTop='8px'>
@@ -56,27 +61,54 @@ export const CombatPartyBenchCharacter = (
 ) => {
   const { character } = props
   const { getCharacterStats } = useCombatSystem()
-  const stats = character ? getCharacterStats(character.id) : undefined
+  const stats = getCharacterStats(character?.id || '')
+  const currentHealth = min(stats.health - (character?.damage || 0), 0)
   return (
     <CombatCharacterAvatar
       character={character}
-      borderColor='rgba(255,255,255,0.27)'
-      borderWidth={1}
-      justifyContent='center'
-      alignItems='center'
+      borderColor={
+        character ? 'rgba(255,255,255,0.72)' : 'rgba(255,255,255,0.09)'
+      }
+      borderWidth={character ? 2 : 1}
       width='72px'
       height='72px'
+      display='flex'
       style={{ display: 'flex' }}
     >
-      {!character && (
-        <Icon color='rgba(255,255,255,0.18)' width='32px'>
-          <Na />
-        </Icon>
-      )}
-      {stats && stats.healthRatio <= 0 && (
-        <Icon color='black' width='32px'>
-          <Dead />
-        </Icon>
+      <Box justifyContent='center' alignItems='center' flex={1}>
+        {!character && (
+          <Icon color='rgba(255,255,255,0.18)' width='32px'>
+            <Na />
+          </Icon>
+        )}
+        {character && stats.healthRatio <= 0 && (
+          <Icon color='black' width='32px'>
+            <Dead />
+          </Icon>
+        )}
+      </Box>
+      {character && (
+        <Box
+          flexDirection='row'
+          width='100%'
+          borderTop='2px solid rgba(255,255,255,0.9)'
+        >
+          {stats && (
+            <Bar
+              width='100%'
+              value={currentHealth}
+              max={stats.health}
+              height='6px'
+              background={theme.healthBarRed}
+              border='1px solid rgba(0,0,0,0.45)'
+              color='rgba(0,0,0,0.56)'
+              style={{
+                fontSize: '12px',
+                fontWeight: 600,
+              }}
+            />
+          )}
+        </Box>
       )}
     </CombatCharacterAvatar>
   )

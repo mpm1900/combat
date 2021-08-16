@@ -7,6 +7,7 @@ export const FireAttackUp = makeStatusFn({
   name: 'Fire Attack Up',
   isStackable: true,
   removeOnHit: false,
+  removeOnBench: false,
   removeOnActiveTurn: false,
   modifiers: [
     {

@@ -6,6 +6,7 @@ export const GrassAttackUp = makeStatusFn({
   statusId: GrassAttackUpId,
   name: 'Grass Attack Up',
   isStackable: true,
+  removeOnBench: false,
   removeOnHit: false,
   removeOnActiveTurn: false,
   modifiers: [

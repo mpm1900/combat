@@ -6,6 +6,7 @@ export const Silenced = makeStatusFn({
   statusId: SilencedId,
   name: 'Silenced',
   isStackable: false,
+  removeOnBench: true,
   removeOnHit: false,
   removeOnActiveTurn: false,
   modifiers: [

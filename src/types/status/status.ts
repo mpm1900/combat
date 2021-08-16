@@ -7,7 +7,7 @@ export type Status = {
   duration: number
   isPositive: boolean
   isStackable: boolean
-  // TODO: implement this (protected)
+  removeOnBench: boolean
   removeOnHit: boolean
   removeOnActiveTurn: boolean
   applyChance: number

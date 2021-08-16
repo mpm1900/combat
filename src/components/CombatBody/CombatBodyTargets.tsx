@@ -7,14 +7,8 @@ import { Character } from '../../types/character/character'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
 import { Box } from '../_core/Box'
 import { Button } from '../_core/Button'
+import { Spacer } from '../_core/Spacer'
 import { CombatBodySection } from './CombatBodySection'
-
-const Spacer = styled(Box)({
-  flex: 1,
-  height: '0px',
-  borderBottom: '1px solid rgba(255,255,255,0.24)',
-  margin: 'auto 16px',
-})
 
 export type CombatBodyTargetsProps = {
   targetsOptions: Character[][]

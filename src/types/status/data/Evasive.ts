@@ -7,6 +7,7 @@ export const Evasive = makeStatusFn({
   name: 'Evasive',
   isStackable: false,
   removeOnHit: false,
+  removeOnBench: true,
   removeOnActiveTurn: false,
   modifiers: [
     {

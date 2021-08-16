@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Box, BoxProps } from '../Box'
 
-const inactiveColor = 'rgba(255,255,255,0.45)'
+const inactiveColor = 'rgba(255,255,255,0.27)'
 const activeColor = 'rgba(255,255,255,0.96)'
 type ButtonProps = { isHovering?: boolean; disabled?: boolean }
 const StyledButton = styled(Box)<ButtonProps>((p) => ({

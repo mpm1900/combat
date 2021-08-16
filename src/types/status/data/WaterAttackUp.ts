@@ -6,6 +6,7 @@ export const WaterAttackUp = makeStatusFn({
   statusId: WaterAttackUpId,
   name: 'Water Attack Up',
   isStackable: true,
+  removeOnBench: false,
   removeOnHit: false,
   removeOnActiveTurn: false,
   modifiers: [

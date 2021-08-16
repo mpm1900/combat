@@ -4,6 +4,7 @@ import { Icon } from '../Icon'
 import { ReactComponent as Check } from '../../../icons/delapouite/dice-target.svg'
 import { MoveStatuses } from '../../../types/move'
 import { StatusList } from '../StatusList'
+import { Spacer } from '../Spacer'
 
 const Section = styled(Box)({
   width: '100%',
@@ -18,12 +19,6 @@ const Title = styled(Box)({
   color: 'rgba(255,255,255,0.90)',
   textTransform: 'uppercase',
   fontSize: '13px',
-})
-const Spacer = styled(Box)({
-  flex: 1,
-  height: '0px',
-  borderBottom: '1px solid rgba(255,255,255,0.24)',
-  margin: 'auto 8px',
 })
 const Chance = styled(Box)({
   fontSize: '14px',

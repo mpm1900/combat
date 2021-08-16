@@ -7,6 +7,7 @@ export const EarthImmunity = makeStatusFn({
   name: 'Earth Immunity',
   isStackable: false,
   removeOnHit: false,
+  removeOnBench: false,
   removeOnActiveTurn: false,
   modifiers: [
     {

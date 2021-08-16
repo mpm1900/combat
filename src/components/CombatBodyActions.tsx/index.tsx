@@ -101,7 +101,7 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
           <Box
             //background='rgba(0,0,0,0.27)'
             background={theme.boxGradient}
-            border={`1px solid ${theme.white4}`}
+            border={`1px solid ${theme.white2}`}
             flex='1'
           >
             <Box
