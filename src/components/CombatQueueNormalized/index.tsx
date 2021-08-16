@@ -4,7 +4,7 @@ import { ReactComponent as Forward } from '../../icons/delapouite/fast-forward-b
 import { Character } from '../../types/character/character'
 import { getStats } from '../../types/character/util'
 import { convertToDeltas, QueueStats } from '../../types/queue/queue'
-import { QueueProps } from '../Queue'
+import { CombatQueueProps } from '../CombatQueue'
 import { Box } from '../_core/Box'
 import { Icon } from '../_core/Icon'
 import { ElementalType } from '../../types/elemental'
@@ -15,7 +15,7 @@ const margin = 16
 const width = 18
 const space = width + margin
 
-export const QueueNormalized = (props: QueueProps) => {
+export const CombatQueueNormalized = (props: CombatQueueProps) => {
   const { queue, characters } = props
   const { getCharacter } = useCombatSystem()
   const statArray: QueueStats = useMemo(

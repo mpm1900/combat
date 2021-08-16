@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { theme } from '../../theme'
 import { Character } from '../../types/character/character'
 import { getImmunities, getStatuses } from '../../types/character/util'
@@ -19,6 +19,8 @@ import { CombatCharacterAbility } from './CombatCharacterAbility'
 import { CombatCharacterBadges } from './CombatCharacterBadges'
 import { convertStatusesToStack } from '../../types/status/util'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
+import { usePrevious } from '../../hooks/usePrevious'
+import { useElementShake } from '../../hooks/useElementShake'
 
 export type CombatCharacterProps = {
   character: Character
@@ -30,6 +32,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
   const { activeCharacter, getCharacterStats } = useCombatSystem()
   const stats = useMemo(() => getCharacterStats(character.id), [character])
   const currentHealth = min(stats.health - character.damage, 0)
+  const previousHelath = usePrevious(currentHealth) || stats.health
   const currentEnergy = min(stats.energy - character.energyOffset, 0)
   const healthStyles = useSpring({
     value: currentHealth,
@@ -37,8 +40,14 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
   const statusStacks = convertStatusesToStack(getStatuses(character))
   const immunitiesStaks = convertStatusesToStack(getImmunities(character))
   const isActive = character.id === activeCharacter?.id
+  const { styles, exec } = useElementShake()
+  useEffect(() => {
+    if (currentHealth < previousHelath) {
+      exec()
+    }
+  }, [previousHelath, currentHealth])
   return (
-    <Box>
+    <Box style={styles}>
       <Box
         width='312px'
         background={theme.boxGradient}

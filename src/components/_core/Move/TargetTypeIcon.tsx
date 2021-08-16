@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
-import { MoveTarget } from '../../types/move'
-import { BoxProps } from '../_core/Box'
-import { Icon } from '../_core/Icon'
+import { MoveTarget } from '../../../types/move'
+import { BoxProps } from '../Box'
+import { Icon } from '../Icon'
 import { ReactComponent as SingleTarget } from '../../icons/delapouite/character.svg'
 import { ReactComponent as OpponentParty } from '../../icons/delapouite/team-upgrade.svg'
 

@@ -1,8 +1,8 @@
-import { ReactComponent as Target } from '../../icons/delapouite/fast-forward-button.svg'
-import { ReactComponent as Source } from '../../icons/delapouite/fast-backward-button.svg'
+import { ReactComponent as Target } from '../../../icons/delapouite/fast-forward-button.svg'
+import { ReactComponent as Source } from '../../../icons/delapouite/fast-backward-button.svg'
 import { FunctionComponent } from 'react'
-import { Icon } from '../_core/Icon'
-import { BoxProps } from '../_core/Box'
+import { Icon } from '../Icon'
+import { BoxProps } from '../Box'
 
 export type StatusTargetType = 'target' | 'source'
 

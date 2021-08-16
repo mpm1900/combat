@@ -1,8 +1,8 @@
-import { ReactComponent as Physical } from '../../icons/darkzaitzev/revolt.svg'
-import { ReactComponent as Special } from '../../icons/lorc/magic-swirl.svg'
+import { ReactComponent as Physical } from '../../../icons/darkzaitzev/revolt.svg'
+import { ReactComponent as Special } from '../../../icons/lorc/magic-swirl.svg'
 import { FunctionComponent } from 'react'
 import styled from 'styled-components'
-import { AttackTypes } from '../../types/character/character'
+import { AttackTypes } from '../../../types/character/character'
 
 const iconMap: Record<AttackTypes, FunctionComponent> = {
   physical: Physical,

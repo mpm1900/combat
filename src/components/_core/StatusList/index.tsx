@@ -1,7 +1,7 @@
 import { PropsWithChildren, useState } from 'react'
 import { Status, StatusStackItem } from '../../../types/status/status'
 import { convertStatusesToStack } from '../../../types/status/util'
-import { StatusTargetIcon } from '../../Move/StatusTargetIcon'
+import { StatusTargetIcon } from '../Move/StatusTargetIcon'
 import { Box } from '../Box'
 import { StatusCard } from '../StatusCard'
 import { Tooltip } from '../Tooltip'

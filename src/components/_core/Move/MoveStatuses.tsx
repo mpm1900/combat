@@ -1,10 +1,10 @@
-import { Character } from '../../types/character/character'
+import { Character } from '../../../types/character/character'
 import {
   getMoveFailureChance,
   getMovePerfectChance,
   Move,
-} from '../../types/move'
-import { Box } from '../_core/Box'
+} from '../../../types/move'
+import { Box } from '../Box'
 import { MoveStatusesSection } from './MoveStatusesSection'
 
 export type MoveStatusesProps = {

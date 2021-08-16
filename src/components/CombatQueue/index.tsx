@@ -9,16 +9,15 @@ import {
   QueueItem as QueueItemType,
 } from '../../types/queue/queue'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
-import { AnimatedNumberValue } from '../_core/AnimatedNumber'
 import { Box } from '../_core/Box'
 import { QueueWrapper } from './style'
 
-export type QueueProps = {
+export type CombatQueueProps = {
   queue: QueueType
   characters: Character[]
 }
 
-export const Queue = (props: QueueProps) => {
+export const CombatQueue = (props: CombatQueueProps) => {
   const { queue, characters } = props
   const mv = getMaxValue(queue)
   const maxValue = mv < 0 ? 0 : mv

@@ -3,8 +3,9 @@ import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { useCombatSystemTurn } from '../../contexts/CombatSystemContext/CombatSystemTurn'
 import { useLogs } from '../../contexts/LogsContext'
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
-import { Queue } from '../Queue'
-import { QueueNormalized } from '../QueueNormalized'
+import { CombatLogs } from '../CombatLogs'
+import { CombatQueue } from '../CombatQueue'
+import { CombatQueueNormalized } from '../CombatQueueNormalized'
 import { Box } from '../_core/Box'
 
 export type CombatHeaderProps = {}
@@ -55,21 +56,10 @@ export const CombatHeader = (props: CombatHeaderProps) => {
           </Box>
         )}
         <Box flex='1'>
-          <Queue queue={queue} characters={activeCharacters} />
-          <QueueNormalized queue={queue} characters={activeCharacters} />
+          <CombatQueue queue={queue} characters={activeCharacters} />
+          <CombatQueueNormalized queue={queue} characters={activeCharacters} />
         </Box>
-        <Box
-          width='264px'
-          height='75px'
-          overflow='auto'
-          color='white'
-          padding='8px'
-        >
-          {logs.map((log) => (
-            <Box>{log}</Box>
-          ))}
-          <Box ref={logContainerRef} />
-        </Box>
+        <CombatLogs />
       </Box>
     </Box>
   )

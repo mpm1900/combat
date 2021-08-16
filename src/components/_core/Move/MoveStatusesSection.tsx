@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { Box, BoxProps } from '../_core/Box'
-import { Icon } from '../_core/Icon'
-import { ReactComponent as Check } from '../../icons/delapouite/dice-target.svg'
-import { MoveStatuses } from '../../types/move'
-import { StatusList } from '../_core/StatusList'
+import { Box, BoxProps } from '../Box'
+import { Icon } from '../Icon'
+import { ReactComponent as Check } from '../../../icons/delapouite/dice-target.svg'
+import { MoveStatuses } from '../../../types/move'
+import { StatusList } from '../StatusList'
 
 const Section = styled(Box)({
   width: '100%',

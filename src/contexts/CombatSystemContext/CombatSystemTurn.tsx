@@ -7,6 +7,9 @@ import {
 } from 'react'
 import { v4 } from 'uuid'
 import { useCombatSystem } from '.'
+import { Box } from '../../components/_core/Box'
+import { Spacer } from '../../components/_core/Spacer'
+import { useLogs } from '../LogsContext'
 import { useCombatSystemBuffer } from './CombatSystemBuffer'
 import { useCombatSystemValidation } from './CombatSystemValidation'
 
@@ -26,6 +29,7 @@ export const useCombatSystemTurn = () => useContext(CombatSystemTurnContext)
 
 export const CombatSystemTurn = (props: PropsWithChildren<{}>) => {
   const { children } = props
+  const { push } = useLogs()
   const [turnId, setTurnId] = useState<string>(v4())
   const [turnCount, setTurnCount] = useState(0)
   const { activeCharacter, enqueue, reduceStatusDurations, updateCharacter } =
@@ -47,6 +51,22 @@ export const CombatSystemTurn = (props: PropsWithChildren<{}>) => {
     if (turnCount > 0) {
       validateParties()
     }
+    push(
+      <Box flexDirection='row' alignItems='center' flex='1'>
+        <Box
+          paddingRight='4px'
+          color='rgba(255,255,255,0.36)'
+          style={{
+            fontSize: '12px',
+            fontWeight: 900,
+            textTransform: 'uppercase',
+          }}
+        >
+          Turn {turnCount + 1}
+        </Box>
+        <Spacer margin='8px 0 8px 4px' />
+      </Box>,
+    )
   }, [turnCount])
 
   useEffect(() => {

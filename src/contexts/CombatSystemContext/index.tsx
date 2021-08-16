@@ -33,9 +33,11 @@ export type CombatSystemContextValue = {
   activeCharacter: CombatSystemCharacter | undefined
   activeCharacters: CombatSystemCharacter[]
   benchCharacters: CombatSystemCharacter[]
+  initialized: boolean
   init: (enemyParty: Party) => void
   enqueue: (recovery: number) => void
-  getCharacter: (id: string) => Character | undefined
+  getCharacter: (id: string) => CombatSystemCharacter | undefined
+  getCharacters: (partyId: string) => CombatSystemCharacter[]
   getCharacterStats: (id: string) => ResolvedCharacterStats
   getActiveCharacters: (partyId: string) => CombatSystemCharacter[]
   getBenchCharacters: (partyId: string) => CombatSystemCharacter[]
@@ -66,9 +68,11 @@ const defaultValue: CombatSystemContextValue = {
   activeCharacter: undefined,
   activeCharacters: [],
   benchCharacters: [],
+  initialized: false,
   init: () => {},
   enqueue: () => {},
   getCharacter: () => undefined,
+  getCharacters: () => [],
   getCharacterStats: () => ZERO_STATS,
   getActiveCharacters: () => [],
   getBenchCharacters: () => [],
@@ -99,11 +103,14 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
   } = useQueue([])
   const activeCharacterId = useMemo(() => getActiveId(queue), [queue])
   const [partyIds, setPartyIds] = useState<string[]>([])
+  const [initialized, setInitialized] = useState(false)
+  const [complete, setComplete] = useState(false)
   const {
     characters,
     activeCharacters,
     benchCharacters,
     getCharacter,
+    getCharacters,
     setCharacters,
     hydrateCharacterIds,
     getActiveCharacters,
@@ -180,6 +187,8 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
         stats: getStats(c),
       })),
     )
+    setComplete(false)
+    setInitialized(true)
   }
 
   const substituteCharacters = (activeId: string, benchId: string) => {
@@ -227,8 +236,6 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
     })
   }
 
-  console.log(partyIds, characters)
-
   const context: CombatSystemContextValue = {
     queue,
     partyIds,
@@ -236,9 +243,11 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
     activeCharacter,
     activeCharacters,
     benchCharacters,
+    initialized,
     init,
     enqueue: (recovery: number) => enqueue(activeCharacters, recovery),
     getCharacter,
+    getCharacters,
     getCharacterStats,
     getActiveCharacters,
     getBenchCharacters,

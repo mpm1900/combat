@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { theme } from '../../theme'
-import { AttackTypes } from '../../types/character/character'
-import { Box } from '../_core/Box'
+import { theme } from '../../../theme'
+import { AttackTypes } from '../../../types/character/character'
+import { Box } from '../Box'
 
 export const Wrapper = styled(Box)`
   color: white;

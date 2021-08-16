@@ -38,7 +38,7 @@ export const Darkrai = (): Character => ({
     speed: 125,
     energy: 100,
     initiative: 100,
-    evasion: 5,
+    evasion: 100,
     criticalChance: 5,
     criticalDamage: 1.5,
     physicalAccuracy: 70,

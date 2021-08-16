@@ -1,5 +1,5 @@
-import { Move, MoveTarget } from '../../types/move'
-import { Box } from '../_core/Box'
+import { Move, MoveTarget } from '../../../types/move'
+import { Box } from '../Box'
 import { MoveDetailsTitle, MoveDetailsValue } from './style'
 
 const targetTypeStringMap: Record<MoveTarget, string> = {

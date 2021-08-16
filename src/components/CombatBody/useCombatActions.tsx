@@ -12,6 +12,7 @@ import {
 import { min } from '../../types/equation'
 import { getRolls, Move, MoveResult, resolveMove } from '../../types/move'
 import { ProtectedId } from '../../types/status/data/Protected'
+import { LogCharacter } from '../CombatLogs'
 
 export const useCombatActions = () => {
   const { push } = useLogs()
@@ -40,7 +41,7 @@ export const useCombatActions = () => {
 
   const rollDamage = (move: Move, source: Character, targets: Character[]) => {
     if (moveResults) return
-    push(`${move.name} selected.`)
+
     const stats = getCharacterStats(source.id)
     const rolls = getRolls(
       move.checks,
@@ -49,9 +50,19 @@ export const useCombatActions = () => {
       stats.forceCombatCheckFailure,
     )
     setRolls(rolls)
+    const successes = rolls.filter(Boolean).length
+    push(
+      <>
+        <LogCharacter characterId={source.id}>{source.name}</LogCharacter>
+        {` uses ${move.name}. (${successes}/${rolls.length})`}
+      </>,
+    )
     setMoveResults(
-      targets.map((target) => {
-        return resolveMove(source, target, move, rolls)
+      targets.map((target, i) => {
+        const result = resolveMove(source, target, move, rolls)
+        if (i === 0) {
+        }
+        return result
       }),
     )
   }
@@ -68,6 +79,39 @@ export const useCombatActions = () => {
       setMoveCommitted(true)
       targetsBuffer?.forEach((char, i) => {
         if (moveResults[i]) {
+          const result = moveResults[i]
+          push(
+            <>
+              {result.critical ? (
+                <>
+                  {'Critical Hit on '}
+                  <LogCharacter characterId={char.id}>{char.name}</LogCharacter>
+                </>
+              ) : (
+                ''
+              )}
+            </>,
+          )
+          push(
+            <>
+              {result.dodged ? (
+                <>
+                  <LogCharacter characterId={char.id}>{char.name}</LogCharacter>
+                  {'dodged the attack. '}
+                </>
+              ) : (
+                ''
+              )}
+            </>,
+          )
+          moveResults[i].statuses.target.forEach((status) => {
+            push(
+              <>
+                <LogCharacter characterId={char.id}>{char.name}</LogCharacter>
+                {`became ${status.name}`}
+              </>,
+            )
+          })
           if (i === 0) {
             addStatusesToCharacter(
               activeCharacter.id,

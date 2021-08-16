@@ -33,6 +33,7 @@ export const CombatSystemValidation = (props: PropsWithChildren<{}>) => {
   const {
     partyIds,
     activeCharacters,
+    getCharacters,
     getActiveCharacters,
     getBenchCharacters,
     getCharacterStats,

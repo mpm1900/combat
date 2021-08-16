@@ -1,4 +1,4 @@
-import { Move as MoveType, MoveTarget } from '../../types/move'
+import { Move as MoveType, MoveTarget } from '../../../types/move'
 import {
   AttackAccuracy,
   AttackAccuracyText,
@@ -11,11 +11,11 @@ import {
 } from './style'
 import { TypeIcon } from './TypeIcon'
 import { MoveStatuses } from './MoveStatuses'
-import { AccuracyStats, Character } from '../../types/character/character'
+import { AccuracyStats, Character } from '../../../types/character/character'
 import { PropsWithChildren, useMemo } from 'react'
-import { getStats } from '../../types/character/util'
-import { Box } from '../_core/Box'
-import { ElementalIcon } from '../_core/ElementalIcon'
+import { getStats } from '../../../types/character/util'
+import { Box } from '../Box'
+import { ElementalIcon } from '../ElementalIcon'
 import { MoveDetails } from './MoveDetails'
 
 export type MoveProps = {
