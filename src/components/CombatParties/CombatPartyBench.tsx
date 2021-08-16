@@ -64,8 +64,8 @@ export const CombatPartyBenchCharacter = (
       borderWidth={1}
       justifyContent='center'
       alignItems='center'
-      width='56px'
-      height='56px'
+      width='72px'
+      height='72px'
       style={{ display: 'flex' }}
     >
       {!character && (

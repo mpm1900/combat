@@ -32,10 +32,10 @@ export const CombatParty = (props: CombatPartyProps) => {
       <Box flexDirection='row'>
         <CombatPartyBench partyId={partyId} />
       </Box>
-      <Box padding='0 48px 0 16px'>
+      <Box padding={side === 'left' ? '0 48px 0 16px' : '0 16px 0 48px'}>
         {transitions((styles, c) => (
           <Box style={styles}>
-            <CombatPartyActiveCharacter id={c.id}>
+            <CombatPartyActiveCharacter id={c.id} side={side}>
               <CombatCharacter key={c.id} character={c} side={side} />
             </CombatPartyActiveCharacter>
           </Box>
@@ -46,14 +46,32 @@ export const CombatParty = (props: CombatPartyProps) => {
 }
 
 export const CombatPartyActiveCharacter = (
-  props: PropsWithChildren<{ id: string }>,
+  props: PropsWithChildren<{ id: string; side: 'right' | 'left' }>,
 ) => {
-  const { id, children } = props
+  const { id, side, children } = props
   const { activeCharacter } = useCombatSystem()
   const isActive = id === activeCharacter?.id
+  const paddingLeft = () => {
+    if (isActive) {
+      if (side === 'left') return 32
+      return 0
+    } else {
+      if (side === 'right') return 32
+      return 0
+    }
+  }
+  const paddingRight = () => {
+    if (isActive) {
+      if (side === 'right') return 32
+      return 0
+    } else {
+      if (side === 'left') return 32
+      return 0
+    }
+  }
   const styles = useSpring({
-    paddingLeft: isActive ? 32 : 0,
-    paddingRight: isActive ? 0 : 32,
+    paddingLeft: paddingLeft(),
+    paddingRight: paddingRight(),
   })
   return <Box style={styles}>{children}</Box>
 }
