@@ -22,7 +22,6 @@ export const Queue = (props: QueueProps) => {
   const { queue, characters } = props
   const mv = getMaxValue(queue)
   const maxValue = mv < 0 ? 0 : mv
-  const mva = Array(maxValue).fill(undefined)
   const character = (id: string) => characters.find((c) => c.id === id)
   const getPosition = (value: number) => `${(value / maxValue) * 100}%`
   const [first, ...rest] = queue.sort((a, b) => a.value - b.value)
@@ -53,6 +52,7 @@ export const Queue = (props: QueueProps) => {
           <CombatCharacterAvatar
             marginTop='-2px'
             textAlign='center'
+            padding='4px'
             character={character(item.id) as Character}
             style={{
               ...styles,

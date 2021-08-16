@@ -30,7 +30,7 @@ export const CombatParty = (props: CombatPartyProps) => {
       <Box flexDirection='row'>
         <CombatPartyBench partyId={partyId} />
       </Box>
-      <Box padding='0 16px'>
+      <Box padding='0 32px'>
         {transitions((styles, c) => (
           <Box style={styles}>
             <CombatCharacter key={c.id} character={c} side={side} />

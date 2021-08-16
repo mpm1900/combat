@@ -31,7 +31,7 @@ export const Charizard = (): Character => ({
   stats: {
     ...ZERO_STATS,
     health: 78,
-    speed: 100,
+    speed: 102,
     energy: 100,
     initiative: 100,
     evasion: 5,
