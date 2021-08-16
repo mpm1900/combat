@@ -1,4 +1,3 @@
-import { Character } from '../../types/character/character'
 import { Move } from '../../types/move'
 import { CombatSystemCharacter } from './types'
 

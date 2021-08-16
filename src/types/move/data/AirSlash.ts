@@ -9,9 +9,9 @@ export const AirSlash: Move = {
   target: 'uncontrolled-target',
   checks: 2,
   offset: 0,
-  power: 80,
+  power: 70,
   recovery: 100,
-  energyCost: 10,
+  energyCost: 0,
   perfectStatuses: {
     target: [],
     source: [],

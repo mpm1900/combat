@@ -5,7 +5,7 @@ import { CombatHeader } from './components/CombatHeader'
 import { CombatParty } from './components/CombatParties'
 import { Box } from './components/_core/Box'
 import { useCombatSystem } from './contexts/CombatSystemContext'
-import { Blastoise } from './types/character/data/entities/blastoise'
+import { Darkrai } from './types/character/data/entities/darkrai'
 import { Golem } from './types/character/data/entities/golem'
 import { Pidgeot } from './types/character/data/entities/pidgeot'
 import { Raichu } from './types/character/data/entities/raichu'
@@ -13,7 +13,7 @@ import { Party } from './types/character/party'
 
 const enemies = (): Party => ({
   id: v4(),
-  characters: [Raichu(), Golem(), Pidgeot(), Blastoise()],
+  characters: [Raichu(), Darkrai(), Golem(), Pidgeot()],
 })
 
 function App() {

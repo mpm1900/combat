@@ -4,7 +4,6 @@ import {
   ResolvedCharacterStats,
 } from '../character/character'
 import { convertStats, getStats } from '../character/util'
-import { Move } from '../move'
 
 export type QueueItem = {
   id: string

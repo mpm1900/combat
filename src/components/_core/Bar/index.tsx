@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useSpring } from 'react-spring'
 import { usePrevious } from '../../../hooks/usePrevious'
 import { AnimatedNumberValue } from '../AnimatedNumber'

@@ -1,8 +1,12 @@
 import { v4 } from 'uuid'
 import { Blaze } from '../../../ability/data/Blaze'
 import { Levitate } from '../../../ability/data/Levitate'
+import { Overgrow } from '../../../ability/data/Overgrow'
 import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
+import { DarkElement } from '../../../elemental/data/DarkElement'
+import { GrassElement } from '../../../elemental/data/GrassElement'
+import { LightElement } from '../../../elemental/data/LightElement'
 import { Blitz } from '../../../move/data/Blitz'
 import { Curse } from '../../../move/data/Curse'
 import { DoubleTeam } from '../../../move/data/DoubleTeam'
@@ -17,43 +21,32 @@ import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
 
-export const Charizard = (): Character => ({
+export const Darkrai = (): Character => ({
   ...BASE_CHARACTER,
   id: v4(),
-  name: 'Charizard',
+  name: 'Darkrai',
   level: 100,
-  elements: [FireElement, AirElement],
-  abilities: [Blaze, Levitate],
+  elements: [DarkElement],
+  abilities: [Levitate],
   statuses: [],
   immunities: [],
   damage: 0,
   energyOffset: 0,
   stats: {
     ...ZERO_STATS,
-    health: 78,
-    speed: 100,
+    health: 70,
+    speed: 125,
     energy: 100,
     initiative: 100,
     evasion: 5,
     criticalChance: 5,
     criticalDamage: 1.5,
-    physicalAccuracy: 64,
-    physicalAttack: 84,
-    physicalDefense: 78,
-    specialAccuracy: 85,
-    specialAttack: 108,
-    specialDefense: 85,
+    physicalAccuracy: 70,
+    physicalAttack: 90,
+    physicalDefense: 90,
+    specialAccuracy: 90,
+    specialAttack: 125,
+    specialDefense: 90,
   },
-  moves: [
-    FireBall,
-    FlareBlitz,
-    DoubleTeam,
-    Rest,
-    TimeWarp,
-    Blitz,
-    Protect,
-    Focus,
-    Curse,
-    Silence,
-  ],
+  moves: [DoubleTeam, Rest, TimeWarp, Blitz, Protect, Focus, Curse, Silence],
 })
