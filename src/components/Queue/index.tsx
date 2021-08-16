@@ -46,7 +46,7 @@ export const Queue = (props: QueueProps) => {
   }, [characters, queue])
 
   return (
-    <Box flex={1} margin='0 0 8px 8px' position='relative' paddingRight='60px'>
+    <Box flex={1} margin='0 0 8px 0' position='relative' paddingRight='60px'>
       <QueueWrapper>
         {transitions((styles, item) => (
           <CombatCharacterAvatar

@@ -27,7 +27,7 @@ export type CombatCharacterProps = {
 
 export const CombatCharacter = (props: CombatCharacterProps) => {
   const { character } = props
-  const { getCharacterStats } = useCombatSystem()
+  const { activeCharacter, getCharacterStats } = useCombatSystem()
   const stats = useMemo(() => getCharacterStats(character.id), [character])
   const currentHealth = min(stats.health - character.damage, 0)
   const currentEnergy = min(stats.energy - character.energyOffset, 0)
@@ -36,6 +36,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
   })
   const statusStacks = convertStatusesToStack(getStatuses(character))
   const immunitiesStaks = convertStatusesToStack(getImmunities(character))
+  const isActive = character.id === activeCharacter?.id
   return (
     <Box>
       <Box

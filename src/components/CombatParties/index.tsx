@@ -1,4 +1,5 @@
-import { config, useTransition } from 'react-spring'
+import { PropsWithChildren } from 'react'
+import { config, useSpring, useTransition } from 'react-spring'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { CombatSystemCharacter } from '../../contexts/CombatSystemContext/types'
 import { CombatCharacter } from '../CombatCharacter'
@@ -14,9 +15,10 @@ export type CombatPartyProps = {
 
 export const CombatParty = (props: CombatPartyProps) => {
   const { index, side } = props
-  const { partyIds, getActiveCharacters } = useCombatSystem()
+  const { partyIds, activeCharacter, getActiveCharacters } = useCombatSystem()
   const partyId = partyIds[index]
   const characters = getActiveCharacters(partyId)
+  const isActive = (id: string) => id === activeCharacter?.id
   const transitions = useTransition(characters, {
     key: (c: CombatSystemCharacter) => c.id,
     from: { opacity: 0, height: 0 },
@@ -30,13 +32,28 @@ export const CombatParty = (props: CombatPartyProps) => {
       <Box flexDirection='row'>
         <CombatPartyBench partyId={partyId} />
       </Box>
-      <Box padding='0 32px'>
+      <Box padding='0 48px 0 16px'>
         {transitions((styles, c) => (
           <Box style={styles}>
-            <CombatCharacter key={c.id} character={c} side={side} />
+            <CombatPartyActiveCharacter id={c.id}>
+              <CombatCharacter key={c.id} character={c} side={side} />
+            </CombatPartyActiveCharacter>
           </Box>
         ))}
       </Box>
     </Box>
   )
+}
+
+export const CombatPartyActiveCharacter = (
+  props: PropsWithChildren<{ id: string }>,
+) => {
+  const { id, children } = props
+  const { activeCharacter } = useCombatSystem()
+  const isActive = id === activeCharacter?.id
+  const styles = useSpring({
+    paddingLeft: isActive ? 32 : 0,
+    paddingRight: isActive ? 0 : 32,
+  })
+  return <Box style={styles}>{children}</Box>
 }
