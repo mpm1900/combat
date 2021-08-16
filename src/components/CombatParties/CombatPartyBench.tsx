@@ -23,8 +23,8 @@ export const CombatPartyBench = (props: CombatPartyBenchProps) => {
   return (
     <Box
       flex='1'
-      padding='0 8px 8px 8px'
-      background='rgba(0, 0, 0, 0.45)'
+      padding='16px 8px 8px 8px'
+      // background='rgba(0, 0, 0, 0.45)'
       color='white'
     >
       <Box flexDirection='row' justifyContent='space-around'>

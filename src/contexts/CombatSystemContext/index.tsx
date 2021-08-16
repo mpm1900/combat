@@ -25,6 +25,7 @@ import { CombatSystemBuffer } from './CombatSystemBuffer'
 import { ZERO_STATS } from '../../types/character/data/ZERO_STATS'
 import { CombatSystemValidation } from './CombatSystemValidation'
 import { CombatSystemTurn } from './CombatSystemTurn'
+import { useLogs } from '../LogsContext'
 
 export type CombatSystemContextValue = {
   queue: Queue
@@ -94,6 +95,7 @@ export const useCombatSystem = () => useContext(CombatSystemContext)
 export const CombatSystem = (props: PropsWithChildren<{}>) => {
   const { children } = props
   const { party } = usePlayer()
+  const { clear } = useLogs()
   const {
     queue,
     enqueue,
@@ -187,6 +189,7 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
         stats: getStats(c),
       })),
     )
+    clear()
     setComplete(false)
     setInitialized(true)
   }

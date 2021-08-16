@@ -27,7 +27,7 @@ export const CombatHeader = (props: CombatHeaderProps) => {
 
   useEffect(() => scrollToBottom(), [logs])
   return (
-    <Box background='rgba(0, 0, 0, 0.45)'>
+    <Box background='rgba(0, 0, 0, 0.45)' overflow='hidden'>
       <Box flexDirection='row' padding='0px 8px 16px 8px'>
         {activeCharacter && (
           <Box flexDirection='row' width='264px'>

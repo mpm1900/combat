@@ -64,7 +64,7 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
                 position='absolute'
                 marginRight='-8px'
                 marginLeft='-16px'
-                marginBottom='-16px'
+                marginBottom='-14px'
                 borderRadius='50%'
                 height='56px'
                 width='56px'
@@ -99,18 +99,23 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
             </Box>
           </Box>
           <Box
-            background='rgba(0,0,0,0.09)'
-            border={`1px solid ${theme.white6}`}
-            padding='8px'
+            //background='rgba(0,0,0,0.27)'
+            background={theme.boxGradient}
+            border={`1px solid ${theme.white4}`}
             flex='1'
-            flexDirection='row'
           >
-            {tab === 'attacks' && (
-              <CombatBodyActionsAttacks character={activeCharacter} />
-            )}
-            {tab === 'bench' && (
-              <CombatBodyActionsBench commitSubsitution={commitSubsitution} />
-            )}
+            <Box
+              padding='8px'
+              flexDirection='row'
+              background='rgba(0,0,0,0.54)'
+            >
+              {tab === 'attacks' && (
+                <CombatBodyActionsAttacks character={activeCharacter} />
+              )}
+              {tab === 'bench' && (
+                <CombatBodyActionsBench commitSubsitution={commitSubsitution} />
+              )}
+            </Box>
           </Box>
         </Box>
         <Box flex={1} />

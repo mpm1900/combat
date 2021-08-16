@@ -52,6 +52,7 @@ export const CombatQueue = (props: CombatQueueProps) => {
             marginTop='-2px'
             textAlign='center'
             padding='4px'
+            borderTopWidth='0px'
             character={character(item.id) as Character}
             style={{
               ...styles,

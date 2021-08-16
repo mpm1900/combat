@@ -4,11 +4,13 @@ type Log = JSX.Element | string
 
 export type LogsContextValue = {
   push: (log: Log) => void
+  clear: () => void
   logs: Log[]
 }
 
 const defaultValue: LogsContextValue = {
   push: () => {},
+  clear: () => {},
   logs: [],
 }
 
@@ -22,6 +24,7 @@ export const LogsContextProvider = (props: PropsWithChildren<{}>) => {
   const context: LogsContextValue = {
     logs,
     push,
+    clear: () => set([]),
   }
 
   return <LogsContext.Provider value={context}>{children}</LogsContext.Provider>
