@@ -13,12 +13,14 @@ import { min } from '../../types/equation'
 import { getRolls, Move, MoveResult, resolveMove } from '../../types/move'
 import { ProtectedId } from '../../types/status/data/Protected'
 import { LogCharacter } from '../CombatLogs'
+import { Box } from '../_core/Box'
 
 export const useCombatActions = () => {
   const { push } = useLogs()
   const {
     activeCharacter,
     activeCharacters,
+    getCharacter,
     getCharacterStats,
     getLiveCharacters,
     updateCharacter,
@@ -84,7 +86,7 @@ export const useCombatActions = () => {
             <>
               {result.critical ? (
                 <>
-                  {'Critical Hit on '}
+                  <Box marginRight='4px'>Critical Hit on</Box>
                   <LogCharacter characterId={char.id}>{char.name}</LogCharacter>
                 </>
               ) : (
@@ -186,6 +188,17 @@ export const useCombatActions = () => {
 
   const commitSubsitution = (id: string) => {
     if (activeCharacter) {
+      const benchCharacter = getCharacter(id)
+      if (!benchCharacter) return
+      push(
+        <>
+          <LogCharacter characterId={activeCharacter.id}>
+            {activeCharacter.name}
+          </LogCharacter>
+          <Box marginRight='4px'>subed out for</Box>
+          <LogCharacter characterId={id}>{benchCharacter.name}</LogCharacter>
+        </>,
+      )
       substituteCharacters(activeCharacter.id, id)
       commitTurn()
     }

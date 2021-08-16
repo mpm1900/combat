@@ -52,6 +52,7 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
         justifyContent='center'
         padding='8px 24px'
         overflow='hidden'
+        marginTop='64px'
         style={styles}
       >
         <Box flex={1} />
@@ -80,13 +81,13 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
               >
                 Attacks
               </Button>
-              <Button
+              {/*<Button
                 marginRight='4px'
                 borderRadius='4px 4px 0 0'
                 style={{ borderBottom: 'none' }}
               >
                 Items
-              </Button>
+              </Button>*/}
               <Button
                 isHovering={tab === 'bench'}
                 borderRadius='4px 4px 0 0'

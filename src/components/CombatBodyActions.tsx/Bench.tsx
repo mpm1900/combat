@@ -16,7 +16,7 @@ export const CombatBodyActionsBench = (props: CombatBodyActionsBenchProps) => {
   const benchTargets = getLiveCharacters(getBenchCharacters(party.id))
 
   return (
-    <Box flex='1' flexDirection='row' justifyContent='center' minWidth='400px'>
+    <Box flex='1' flexDirection='row' justifyContent='center' minWidth='532px'>
       {benchTargets.map((character) => (
         <Box
           padding='8px'
