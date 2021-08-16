@@ -70,8 +70,8 @@ export const CombatPartyBenchCharacter = (
         character ? 'rgba(255,255,255,0.72)' : 'rgba(255,255,255,0.09)'
       }
       borderWidth={character ? 2 : 1}
-      width='72px'
-      height='72px'
+      width='64px'
+      height='64px'
       display='flex'
       style={{ display: 'flex' }}
     >

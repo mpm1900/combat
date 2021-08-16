@@ -56,7 +56,12 @@ export const CombatQueueNormalized = (props: CombatQueueProps) => {
   )
 
   return (
-    <Box margin='0 8px 0 16px' height='20px' flexDirection='row'>
+    <Box
+      margin='0px 8px 8px 16px'
+      height='36px'
+      flexDirection='row'
+      alignItems='center'
+    >
       {transitions((styles, character) => {
         return (
           <Box

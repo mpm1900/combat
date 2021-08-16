@@ -25,10 +25,11 @@ import { useElementShake } from '../../hooks/useElementShake'
 export type CombatCharacterProps = {
   character: Character
   side: 'left' | 'right'
+  index: number
 }
 
 export const CombatCharacter = (props: CombatCharacterProps) => {
-  const { character } = props
+  const { character, index } = props
   const { getCharacterStats } = useCombatSystem()
   const stats = useMemo(() => getCharacterStats(character.id), [character])
   const currentHealth = min(stats.health - character.damage, 0)
@@ -51,7 +52,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         width='312px'
         background={theme.boxGradient}
         border='1px solid rgba(255,255,255,0.56)'
-        margin='36px 0 0 48px'
+        margin={`16px 0 0 48px`}
         flexDirection='row'
       >
         <Box>

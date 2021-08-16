@@ -22,7 +22,7 @@ export const CombatLogs = () => {
   return (
     <Box
       width='264px'
-      height='75px'
+      height='85px'
       overflow='auto'
       color='rgba(255,255,255,0.72)'
       padding='8px'

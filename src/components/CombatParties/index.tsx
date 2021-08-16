@@ -32,11 +32,11 @@ export const CombatParty = (props: CombatPartyProps) => {
       <Box flexDirection='row'>
         <CombatPartyBench partyId={partyId} />
       </Box>
-      <Box padding={side === 'left' ? '0 48px 0 16px' : '0 16px 0 48px'}>
-        {transitions((styles, c) => (
+      <Box padding={side === 'left' ? '0 32px 0 16px' : '0 16px 0 32px'}>
+        {transitions((styles, c, state, i) => (
           <Box style={styles}>
             <CombatPartyActiveCharacter id={c.id} side={side}>
-              <CombatCharacter key={c.id} character={c} side={side} />
+              <CombatCharacter key={c.id} character={c} side={side} index={i} />
             </CombatPartyActiveCharacter>
           </Box>
         ))}

@@ -27,7 +27,7 @@ function App() {
     <Box className='App' flex={1}>
       <Box
         color='rgba(255,255,255,0.36)'
-        height='32px'
+        height='24px'
         flexDirection='row'
         alignItems='center'
         justifyContent='space-between'
@@ -37,6 +37,7 @@ function App() {
         padding='0 8px'
         style={{
           fontFamily: 'Roboto Mono',
+          fontSize: '14px',
         }}
       >
         <Box>Combat Simulator - version: 0.0.4-a</Box>
