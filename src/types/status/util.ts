@@ -3,9 +3,10 @@ import { ResolvedStatus, Status, StatusFn, StatusStackItem } from './status'
 
 export const resolveStatus = (status: Status): ResolvedStatus => {
   const { applyChance } = status
+  const value = applyChance > Math.random()
   return {
     ...status,
-    isApplied: applyChance > Math.random(),
+    isApplied: value,
   }
 }
 
@@ -33,7 +34,7 @@ export const convertStatusesToStack = (
       .filter((s) => s.statusId === status.statusId)
       .map((is) => {
         const s = { ...is } as ResolvedStatus
-        return { ...s, isApplied: s.isApplied || true }
+        return { ...s, isApplied: s.isApplied ?? true }
       })
     list = list.filter((s) => s.statusId !== status.statusId)
     stack = [
