@@ -107,6 +107,7 @@ export const useCombatActions = () => {
             </>,
           )
           moveResults[i].statuses.target.forEach((status) => {
+            if (!status.isApplied) return
             push(
               <>
                 <LogCharacter characterId={char.id}>{char.name}</LogCharacter>

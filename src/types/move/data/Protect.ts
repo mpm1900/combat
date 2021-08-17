@@ -7,7 +7,7 @@ export const Protect: Move = {
   name: 'Protect',
   type: 'special',
   element: 'light',
-  target: 'controlled-target',
+  target: 'controlled-active-target',
   checks: 2,
   offset: 0,
   recovery: 100,

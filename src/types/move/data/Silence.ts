@@ -7,7 +7,7 @@ export const Silence: Move = {
   name: 'Silence',
   type: 'special',
   element: 'ghost',
-  target: 'uncontrolled-target',
+  target: 'uncontrolled-active-target',
   checks: 2,
   offset: 0,
   recovery: 100,

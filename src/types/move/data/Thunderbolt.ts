@@ -7,7 +7,7 @@ export const Thunderbolt: Move = {
   name: 'Thunderbolt',
   type: 'special',
   element: 'thunder',
-  target: 'uncontrolled-target',
+  target: 'uncontrolled-active-target',
   checks: 1,
   offset: -5,
   power: 45,

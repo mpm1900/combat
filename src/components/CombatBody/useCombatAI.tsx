@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { useCombatSystemBuffer } from '../../contexts/CombatSystemContext/CombatSystemBuffer'
+import { getStatuses } from '../../types/character/util'
 import { min } from '../../types/equation'
+import { TauntedId } from '../../types/status/data/Taunted'
 
 export const useCombatAI = () => {
   const {
@@ -42,7 +44,19 @@ export const useCombatAI = () => {
 
   useEffect(() => {
     if (activeCharacter && !targetsBuffer && targetsOptions) {
-      if (!isCharacterPlayerCharacter(activeCharacter.id)) {
+      const tauntedTargets = targetsOptions.filter((targets) =>
+        targets.some(
+          (t) =>
+            t.partyId !== activeCharacter.partyId &&
+            getStatuses(t)
+              .map((s) => s.statusId)
+              .includes(TauntedId),
+        ),
+      )
+      if (tauntedTargets.length > 0) {
+        const targetsIndex = Math.floor(Math.random() * tauntedTargets.length)
+        setTargetsBuffer(tauntedTargets[targetsIndex])
+      } else if (!isCharacterPlayerCharacter(activeCharacter.id)) {
         const targetsIndex = Math.floor(Math.random() * targetsOptions.length)
         setTargetsBuffer(targetsOptions[targetsIndex])
       }

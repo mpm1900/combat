@@ -66,6 +66,7 @@ export const CombatBodyTargets = (props: CombatBodyTargetsProps) => {
                 height='80px'
                 width='80px'
                 character={target}
+                onClick={() => setTargetsBuffer(targets)}
               />
             ))}
             <Button marginTop='8px' onClick={() => setTargetsBuffer(targets)}>

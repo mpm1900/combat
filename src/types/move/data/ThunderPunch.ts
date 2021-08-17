@@ -8,7 +8,7 @@ export const ThunderPunch: Move = {
   name: 'Thunder Punch',
   type: 'physical',
   element: 'thunder',
-  target: 'uncontrolled-target',
+  target: 'uncontrolled-active-target',
   checks: 3,
   offset: 0,
   power: 85,

@@ -3,15 +3,16 @@ import { Box } from '../Box'
 import { MoveDetailsTitle, MoveDetailsValue } from './style'
 
 const targetTypeStringMap: Record<MoveTarget, string> = {
-  all: 'All',
   self: 'Self',
-  'uncontrolled-target': 'Enemy',
-  'uncontrolled-splash': 'Splash',
-  'uncontrolled-party': 'Party',
-  'controlled-target': 'Ally',
-  'controlled-target-not-self': 'Teammate',
-  'controlled-splash': 'Splash',
-  'controlled-party': 'Team',
+  'all-active': 'All',
+  'any-active': 'Any',
+  'uncontrolled-active-target': 'Enemy',
+  'uncontrolled-active-splash': 'Splash',
+  'uncontrolled-active-party': 'Party',
+  'controlled-active-target': 'Ally',
+  'controlled-active-ally': 'Teammate',
+  'controlled-active-splash': 'Splash',
+  'controlled-active-party': 'Team',
 }
 
 export type MoveDetailsProps = {

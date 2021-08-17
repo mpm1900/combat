@@ -6,7 +6,7 @@ export const AirSlash: Move = {
   name: 'Air Slash',
   type: 'physical',
   element: 'air',
-  target: 'uncontrolled-target',
+  target: 'uncontrolled-active-target',
   checks: 2,
   offset: 0,
   power: 70,

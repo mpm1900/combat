@@ -1,14 +1,14 @@
 import { v4 } from 'uuid'
 import { Move } from '../move'
 
-export const RockSmash: Move = {
+export const EarthQuake: Move = {
   id: v4(),
-  name: 'Rock Smash',
+  name: 'Earth Quake',
   type: 'physical',
   element: 'earth',
-  target: 'uncontrolled-party',
+  target: 'uncontrolled-active-party',
   checks: 3,
-  offset: -5,
+  offset: 0,
   power: 100,
   recovery: 100,
   energyCost: 10,

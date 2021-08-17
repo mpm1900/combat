@@ -7,7 +7,7 @@ export const Blitz: Move = {
   name: 'Blitz',
   type: 'special',
   element: 'thunder',
-  target: 'controlled-target',
+  target: 'controlled-active-target',
   checks: 2,
   offset: 0,
   recovery: 100,

@@ -16,15 +16,16 @@ export type MoveAttributeType = ''
 export type MoveAttribute = {}
 
 export type MoveTarget =
-  | 'all'
   | 'self'
-  | 'controlled-target'
-  | 'controlled-target-not-self'
-  | 'controlled-party'
-  | 'controlled-splash'
-  | 'uncontrolled-target'
-  | 'uncontrolled-party'
-  | 'uncontrolled-splash'
+  | 'all-active'
+  | 'any-active'
+  | 'controlled-active-target'
+  | 'controlled-active-ally'
+  | 'controlled-active-party'
+  | 'controlled-active-splash'
+  | 'uncontrolled-active-target'
+  | 'uncontrolled-active-party'
+  | 'uncontrolled-active-splash'
 
 export type Move = {
   id: string

@@ -1,7 +1,7 @@
 import { v4 } from 'uuid'
 import { Sturdy } from '../../../ability/data/Sturdy'
 import { EarthElement } from '../../../elemental/data/EarthElement'
-import { RockSmash } from '../../../move/data/RockSmash'
+import { EarthQuake } from '../../../move/data/EarthQuake'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
@@ -33,5 +33,5 @@ export const Golem = (): Character => ({
     specialAttack: 55,
     specialDefense: 65,
   },
-  moves: [RockSmash],
+  moves: [EarthQuake],
 })

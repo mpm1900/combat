@@ -7,7 +7,7 @@ export const FireBall: Move = {
   name: 'Fire Ball',
   type: 'special',
   element: 'fire',
-  target: 'uncontrolled-target',
+  target: 'uncontrolled-active-target',
   checks: 1,
   offset: -10,
   power: 45,

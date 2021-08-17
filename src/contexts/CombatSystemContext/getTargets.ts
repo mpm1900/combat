@@ -24,7 +24,7 @@ export const getTargetIds = (
   const enemyPartyId = partyIds.find((id) => id !== sourcePartyId)
   if (!enemyPartyId) throw new Error('Invalid Combat state. [[getTargets]')
   switch (move.target) {
-    case 'all':
+    case 'all-active':
       return [
         [
           ...getActiveCharacters(sourcePartyId).map((c) => c.id),
@@ -33,22 +33,34 @@ export const getTargetIds = (
       ]
     case 'self':
       return [[source.id]]
-    case 'controlled-party':
+    case 'all-active':
+      return [
+        [
+          ...getActiveCharacters(sourcePartyId),
+          ...getActiveCharacters(enemyPartyId),
+        ].map((c) => c.id),
+      ]
+    case 'any-active':
+      return [
+        ...getActiveCharacters(sourcePartyId),
+        ...getActiveCharacters(enemyPartyId),
+      ].map((c) => [c.id])
+    case 'controlled-active-party':
       return [getActiveCharacters(sourcePartyId).map((c) => c.id)]
-    case 'controlled-target':
+    case 'controlled-active-target':
       return getActiveCharacters(sourcePartyId).map((c) => [c.id])
-    case 'controlled-target-not-self':
+    case 'controlled-active-ally':
       return getActiveCharacters(sourcePartyId)
         .filter((c) => c.id !== source.id)
         .map((c) => [c.id])
-    case 'controlled-splash':
+    case 'controlled-active-splash':
       // return getSplashTargets(sourceParty.characterIds)
       return getActiveCharacters(sourcePartyId).map((c) => [c.id])
-    case 'uncontrolled-party':
+    case 'uncontrolled-active-party':
       return [getActiveCharacters(enemyPartyId).map((c) => c.id)]
-    case 'uncontrolled-target':
+    case 'uncontrolled-active-target':
       return getActiveCharacters(enemyPartyId).map((c) => [c.id])
-    case 'uncontrolled-splash':
+    case 'uncontrolled-active-splash':
       return getActiveCharacters(enemyPartyId).map((c) => [c.id])
     default:
       return []

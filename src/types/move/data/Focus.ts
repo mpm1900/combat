@@ -7,7 +7,7 @@ export const Focus: Move = {
   name: 'Focus',
   type: 'special',
   element: 'light',
-  target: 'controlled-target-not-self',
+  target: 'controlled-active-ally',
   checks: 2,
   offset: 0,
   recovery: 100,

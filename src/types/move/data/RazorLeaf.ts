@@ -6,7 +6,7 @@ export const RazorLeaf: Move = {
   name: 'Razor Leaf',
   type: 'special',
   element: 'grass',
-  target: 'uncontrolled-target',
+  target: 'uncontrolled-active-target',
   checks: 2,
   offset: -10,
   power: 80,
