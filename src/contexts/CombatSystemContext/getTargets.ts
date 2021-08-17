@@ -37,6 +37,10 @@ export const getTargetIds = (
       return [getActiveCharacters(sourcePartyId).map((c) => c.id)]
     case 'controlled-target':
       return getActiveCharacters(sourcePartyId).map((c) => [c.id])
+    case 'controlled-target-not-self':
+      return getActiveCharacters(sourcePartyId)
+        .filter((c) => c.id !== source.id)
+        .map((c) => [c.id])
     case 'controlled-splash':
       // return getSplashTargets(sourceParty.characterIds)
       return getActiveCharacters(sourcePartyId).map((c) => [c.id])

@@ -8,7 +8,8 @@ export const Focused = makeStatusFn({
   isStackable: true,
   removeOnBench: true,
   removeOnHit: false,
-  removeOnActiveTurn: false,
+  removeOnActiveTurnStart: false,
+  removeOnActiveTurnEnd: true,
   modifiers: [
     {
       stats: {

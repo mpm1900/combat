@@ -8,7 +8,8 @@ export const Shocked = makeStatusFn({
   isStackable: false,
   removeOnBench: false,
   removeOnHit: false,
-  removeOnActiveTurn: false,
+  removeOnActiveTurnStart: false,
+  removeOnActiveTurnEnd: false,
   modifiers: [
     {
       stats: {

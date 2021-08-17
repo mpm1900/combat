@@ -11,6 +11,7 @@ const iconMap: Record<MoveTarget, FunctionComponent> = {
   'controlled-party': () => <span>cp</span>,
   'controlled-splash': () => <span>cs</span>,
   'controlled-target': SingleTarget,
+  'controlled-target-not-self': SingleTarget,
   'uncontrolled-party': OpponentParty,
   'uncontrolled-splash': () => <span>us</span>,
   'uncontrolled-target': SingleTarget,

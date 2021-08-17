@@ -34,7 +34,7 @@ export const CombatSystemTurn = (props: PropsWithChildren<{}>) => {
   const [turnCount, setTurnCount] = useState(0)
   const { activeCharacter, enqueue, reduceStatusDurations, updateCharacter } =
     useCombatSystem()
-  const { clear, moveBuffer } = useCombatSystemBuffer()
+  const { moveBuffer } = useCombatSystemBuffer()
   const { validationComplete, validateParties, reset } =
     useCombatSystemValidation()
   const nextTurn = () => {
@@ -81,7 +81,7 @@ export const CombatSystemTurn = (props: PropsWithChildren<{}>) => {
     if (activeCharacter) {
       updateCharacter(activeCharacter.id, (c) => ({
         ...c,
-        statuses: c.statuses.filter((s) => !s.removeOnActiveTurn),
+        statuses: c.statuses.filter((s) => !s.removeOnActiveTurnStart),
       }))
     }
   }, [activeCharacter?.id])

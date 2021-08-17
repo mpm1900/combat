@@ -160,6 +160,7 @@ export const useCombatActions = () => {
         const [stats, { stats: mods }] = getStatsAndEquations(activeCharacter)
         return {
           ...c,
+          statuses: c.statuses.filter((s) => !s.removeOnActiveTurnEnd),
           damage: min(c.damage - mods.activeTurnHealthRegen(stats.health), 0),
         }
       })

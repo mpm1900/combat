@@ -68,7 +68,7 @@ export const StatusCard = (props: StatusCardProps) => {
       >
         <span style={{ whiteSpace: 'nowrap' }}>
           Duration:{' '}
-          {status.duration === -1 ? <span>&#8734;</span> : status.duration} Turn
+          {status.duration <= -1 ? <span>&#8734;</span> : status.duration} Turn
           {status.duration !== 1 ? 's' : ''}
         </span>
       </Box>
@@ -100,14 +100,21 @@ export const StatusCard = (props: StatusCardProps) => {
           )}
         </Box>
       )}
-      {(status.removeOnHit || status.removeOnActiveTurn) && (
+      {(status.removeOnHit ||
+        status.removeOnActiveTurnStart ||
+        status.removeOnActiveTurnEnd) && (
         <Box marginTop='8px' style={{ fontWeight: 600 }}>
           {status.removeOnHit && (
             <Box style={{ fontSize: '10px' }}>Removed on hit.</Box>
           )}
-          {status.removeOnActiveTurn && (
+          {status.removeOnActiveTurnStart && (
             <Box style={{ fontSize: '10px' }}>
-              Removed character's next turn.
+              Removed at start of character's next turn.
+            </Box>
+          )}
+          {status.removeOnActiveTurnEnd && (
+            <Box style={{ fontSize: '10px' }}>
+              Removed at end of character's next turn.
             </Box>
           )}
         </Box>

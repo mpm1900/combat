@@ -19,6 +19,7 @@ export type MoveTarget =
   | 'all'
   | 'self'
   | 'controlled-target'
+  | 'controlled-target-not-self'
   | 'controlled-party'
   | 'controlled-splash'
   | 'uncontrolled-target'

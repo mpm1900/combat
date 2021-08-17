@@ -52,7 +52,7 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
         justifyContent='center'
         padding='8px 24px'
         overflow='hidden'
-        marginTop='64px'
+        marginTop='32px'
         style={styles}
       >
         <Box flex={1} />

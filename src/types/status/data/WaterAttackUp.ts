@@ -8,7 +8,8 @@ export const WaterAttackUp = makeStatusFn({
   isStackable: true,
   removeOnBench: false,
   removeOnHit: false,
-  removeOnActiveTurn: false,
+  removeOnActiveTurnStart: false,
+  removeOnActiveTurnEnd: false,
   modifiers: [
     {
       stats: {

@@ -8,7 +8,8 @@ export const Protected = makeStatusFn({
   isStackable: false,
   removeOnBench: true,
   removeOnHit: true,
-  removeOnActiveTurn: true,
+  removeOnActiveTurnStart: true,
+  removeOnActiveTurnEnd: false,
   modifiers: [
     {
       stats: {},

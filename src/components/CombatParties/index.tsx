@@ -15,10 +15,9 @@ export type CombatPartyProps = {
 
 export const CombatParty = (props: CombatPartyProps) => {
   const { index, side } = props
-  const { partyIds, activeCharacter, getActiveCharacters } = useCombatSystem()
+  const { partyIds, getActiveCharacters } = useCombatSystem()
   const partyId = partyIds[index]
   const characters = getActiveCharacters(partyId)
-  const isActive = (id: string) => id === activeCharacter?.id
   const transitions = useTransition(characters, {
     key: (c: CombatSystemCharacter) => c.id,
     from: { opacity: 0, height: 0 },

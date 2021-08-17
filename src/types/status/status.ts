@@ -9,7 +9,8 @@ export type Status = {
   isStackable: boolean
   removeOnBench: boolean
   removeOnHit: boolean
-  removeOnActiveTurn: boolean
+  removeOnActiveTurnStart: boolean
+  removeOnActiveTurnEnd: boolean
   applyChance: number
   modifiers: Modifier[]
 }

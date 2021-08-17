@@ -9,7 +9,8 @@ export const Wet = makeStatusFn({
 
   removeOnBench: false,
   removeOnHit: false,
-  removeOnActiveTurn: false,
+  removeOnActiveTurnStart: false,
+  removeOnActiveTurnEnd: false,
   modifiers: [
     {
       stats: {

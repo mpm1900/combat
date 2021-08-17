@@ -8,7 +8,8 @@ export const Warped = makeStatusFn({
   isStackable: false,
   removeOnBench: true,
   removeOnHit: false,
-  removeOnActiveTurn: false,
+  removeOnActiveTurnStart: false,
+  removeOnActiveTurnEnd: false,
   modifiers: [
     {
       stats: {

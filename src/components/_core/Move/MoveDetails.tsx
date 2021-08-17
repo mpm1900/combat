@@ -9,6 +9,7 @@ const targetTypeStringMap: Record<MoveTarget, string> = {
   'uncontrolled-splash': 'Splash',
   'uncontrolled-party': 'Party',
   'controlled-target': 'Ally',
+  'controlled-target-not-self': 'Teammate',
   'controlled-splash': 'Splash',
   'controlled-party': 'Team',
 }

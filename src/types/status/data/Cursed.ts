@@ -8,7 +8,8 @@ export const Cursed = makeStatusFn({
   isStackable: true,
   removeOnHit: false,
   removeOnBench: false,
-  removeOnActiveTurn: false,
+  removeOnActiveTurnStart: false,
+  removeOnActiveTurnEnd: false,
   modifiers: [
     {
       stats: {
