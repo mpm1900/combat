@@ -24,7 +24,10 @@ export const CombatBodySwitch = () => {
             background={theme.boxGradient}
             alignItems='center'
           >
-            <CombatCharacterAvatar character={character} />
+            <CombatCharacterAvatar
+              character={character}
+              onClick={() => activateCharacter(character.id)}
+            />
             <Button
               marginTop='8px'
               onClick={() => activateCharacter(character.id)}

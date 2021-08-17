@@ -25,7 +25,10 @@ export const CombatBodyActionsBench = (props: CombatBodyActionsBenchProps) => {
           background={theme.boxGradient}
           border='1px solid rgba(255,255,255,0.45)'
         >
-          <CombatCharacterAvatar character={character} />
+          <CombatCharacterAvatar
+            character={character}
+            onClick={() => commitSubsitution(character.id)}
+          />
           <Button
             marginTop='8px'
             onClick={() => commitSubsitution(character.id)}
