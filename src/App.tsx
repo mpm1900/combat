@@ -24,7 +24,7 @@ function App() {
   }, [])
 
   return (
-    <Box className='App' flex={1}>
+    <Box className='App' height='100%' flex={1}>
       <Box
         color='rgba(255,255,255,0.36)'
         height='24px'

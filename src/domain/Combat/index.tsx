@@ -7,7 +7,7 @@ import { useCombatSystem } from '../../contexts/CombatSystemContext'
 export const Combat = () => {
   const { initialized } = useCombatSystem()
   return initialized ? (
-    <Box flex={1}>
+    <Box flex={1} overflow='hidden'>
       <CombatHeader />
       <Box flex='1' flexDirection='row' overflow='auto'>
         <CombatParty index={0} side='left' />
