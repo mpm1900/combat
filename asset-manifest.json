@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/combat/static/css/main.ca654e3f.chunk.css",
-    "main.js": "/combat/static/js/main.a31786a3.chunk.js",
-    "main.js.map": "/combat/static/js/main.a31786a3.chunk.js.map",
+    "main.js": "/combat/static/js/main.92c4f26e.chunk.js",
+    "main.js.map": "/combat/static/js/main.92c4f26e.chunk.js.map",
     "runtime-main.js": "/combat/static/js/runtime-main.32250efa.js",
     "runtime-main.js.map": "/combat/static/js/runtime-main.32250efa.js.map",
     "static/js/2.ab5aa7cc.chunk.js": "/combat/static/js/2.ab5aa7cc.chunk.js",
@@ -12,6 +12,7 @@
     "index.html": "/combat/index.html",
     "static/css/main.ca654e3f.chunk.css.map": "/combat/static/css/main.ca654e3f.chunk.css.map",
     "static/js/2.ab5aa7cc.chunk.js.LICENSE.txt": "/combat/static/js/2.ab5aa7cc.chunk.js.LICENSE.txt",
+    "static/media/2.08e65761.png": "/combat/static/media/2.08e65761.png",
     "static/media/allied-star.9a910a3f.svg": "/combat/static/media/allied-star.9a910a3f.svg",
     "static/media/battered-axe.e5f4176d.svg": "/combat/static/media/battered-axe.e5f4176d.svg",
     "static/media/cancel.e172eefb.svg": "/combat/static/media/cancel.e172eefb.svg",
@@ -45,13 +46,12 @@
     "static/media/sprint.bff415c6.svg": "/combat/static/media/sprint.bff415c6.svg",
     "static/media/star-swirl.58a85c13.svg": "/combat/static/media/star-swirl.58a85c13.svg",
     "static/media/stone-pile.addbf61f.svg": "/combat/static/media/stone-pile.addbf61f.svg",
-    "static/media/tombstone.16fc10a3.svg": "/combat/static/media/tombstone.16fc10a3.svg",
     "static/media/vibrating-shield.33076a20.svg": "/combat/static/media/vibrating-shield.33076a20.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.32250efa.js",
     "static/js/2.ab5aa7cc.chunk.js",
     "static/css/main.ca654e3f.chunk.css",
-    "static/js/main.a31786a3.chunk.js"
+    "static/js/main.92c4f26e.chunk.js"
   ]
 }
