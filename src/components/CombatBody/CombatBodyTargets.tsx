@@ -56,7 +56,7 @@ export const CombatBodyTargets = (props: CombatBodyTargetsProps) => {
             key={i}
             padding='16px'
             margin='4px'
-            border='1px solid black'
+            border='1px solid rgba(255,255,255,0.27)'
             alignItems='center'
             background={theme.boxGradient}
           >

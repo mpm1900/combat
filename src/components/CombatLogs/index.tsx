@@ -2,7 +2,9 @@ import { useEffect, useRef } from 'react'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { CombatSystemCharacter } from '../../contexts/CombatSystemContext/types'
 import { useLogs } from '../../contexts/LogsContext'
+import { ElementalType } from '../../types/elemental'
 import { Box, BoxProps } from '../_core/Box'
+import { colorMap } from '../_core/ElementalIcon'
 
 export const CombatLogs = () => {
   const { logs } = useLogs()
@@ -57,6 +59,19 @@ export const LogCharacter = (props: LogCharacterProps) => {
       }}
       {...rest}
     >
+      {children}
+    </Box>
+  )
+}
+
+export type LogElementProps = BoxProps & {
+  element: ElementalType
+}
+export const LogElement = (props: LogElementProps) => {
+  const { element, children, ...rest } = props
+
+  return (
+    <Box {...rest} color={colorMap[element]} margin='0 4px'>
       {children}
     </Box>
   )

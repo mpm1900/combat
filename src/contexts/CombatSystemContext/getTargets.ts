@@ -27,7 +27,9 @@ export const getTargetIds = (
     case 'all-active':
       return [
         [
-          ...getActiveCharacters(sourcePartyId).map((c) => c.id),
+          ...getActiveCharacters(sourcePartyId)
+            .map((c) => c.id)
+            .filter((id) => id !== source.id),
           ...getActiveCharacters(enemyPartyId).map((c) => c.id),
         ],
       ]

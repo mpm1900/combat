@@ -30,7 +30,7 @@ export type CombatCharacterProps = {
 
 export const CombatCharacter = (props: CombatCharacterProps) => {
   const { character, index } = props
-  const { getCharacterStats } = useCombatSystem()
+  const { activeCharacter, getCharacterStats } = useCombatSystem()
   const stats = useMemo(() => getCharacterStats(character.id), [character])
   const currentHealth = min(stats.health - character.damage, 0)
   const previousHelath = usePrevious(currentHealth) || stats.health
@@ -41,6 +41,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
   const statusStacks = convertStatusesToStack(getStatuses(character))
   const immunitiesStaks = convertStatusesToStack(getImmunities(character))
   const { styles, exec } = useElementShake()
+  const isActive = character.id === activeCharacter?.id
   useEffect(() => {
     if (currentHealth < previousHelath) {
       exec()
@@ -51,7 +52,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
       <Box
         width='312px'
         background={theme.boxGradient}
-        border='1px solid rgba(255,255,255,0.56)'
+        border={`1px solid rgba(255,255,255,${isActive ? '0.72' : '0.27'})`}
         margin={`16px 0 0 48px`}
         flexDirection='row'
       >
@@ -73,7 +74,9 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             flexDirection='row'
             justifyContent='space-between'
             padding='4px 4px 4px 8px'
-            borderBottom='1px solid rgba(255,255,255,0.36)'
+            borderBottom={`1px solid rgba(255,255,255,${
+              isActive ? '0.72' : '0.27'
+            })`}
           >
             <Box
               paddingTop='4px'

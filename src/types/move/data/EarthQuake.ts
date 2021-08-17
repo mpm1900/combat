@@ -6,7 +6,7 @@ export const EarthQuake: Move = {
   name: 'Earth Quake',
   type: 'physical',
   element: 'earth',
-  target: 'uncontrolled-active-party',
+  target: 'all-active',
   checks: 3,
   offset: 0,
   power: 100,

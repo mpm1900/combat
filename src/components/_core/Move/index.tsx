@@ -52,7 +52,9 @@ export const Move = (props: PropsWithChildren<MoveProps>) => {
           <TypeIcon type={move.type} />
           {move.power ? (
             <span style={{ marginLeft: 4 }}>{move.power}</span>
-          ) : null}
+          ) : (
+            <span style={{ marginLeft: 4 }}>--</span>
+          )}
         </AttackPower>
         <AttackAccuracy>
           <AttackAccuracyText checks={move.checks} style={{ marginRight: 4 }}>

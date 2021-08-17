@@ -145,8 +145,8 @@ export const resolveMove = (
 
   return {
     totalDamage: dodged ? 0 : totalDamage,
-    critical: critical && perfect,
-    dodged,
+    critical: critical && perfect && totalDamage > 0,
+    dodged: dodged && totalDamage > 0,
     statuses: resolvedStatuses,
     source,
     target,

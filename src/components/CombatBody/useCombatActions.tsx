@@ -13,7 +13,7 @@ import {
 import { min } from '../../types/equation'
 import { getRolls, Move, MoveResult, resolveMove } from '../../types/move'
 import { ProtectedId } from '../../types/status/data/Protected'
-import { LogCharacter } from '../CombatLogs'
+import { LogCharacter, LogElement } from '../CombatLogs'
 import { Box } from '../_core/Box'
 
 export const useCombatActions = () => {
@@ -57,7 +57,11 @@ export const useCombatActions = () => {
     push(
       <>
         <LogCharacter characterId={source.id}>{source.name}</LogCharacter>
-        {` uses ${move.name}. (${successes}/${rolls.length})`}
+        {` uses `}
+        <LogElement element={move.element}>{move.name}</LogElement>
+        <Box color={successes === rolls.length ? 'gold' : undefined}>
+          ({successes}/{rolls.length})
+        </Box>
       </>,
     )
     setMoveResults(
@@ -112,7 +116,10 @@ export const useCombatActions = () => {
             push(
               <>
                 <LogCharacter characterId={char.id}>{char.name}</LogCharacter>
-                {`became ${status.name}`}
+                {`became`}
+                <Box marginLeft='4px' color='white'>
+                  {status.name}
+                </Box>
               </>,
             )
           })

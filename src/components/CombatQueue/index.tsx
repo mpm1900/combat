@@ -72,9 +72,8 @@ export const CombatQueue = (props: CombatQueueProps) => {
           <Box
             flex={1}
             style={{
-              width: `${100 / maxValue}%`,
               height: '100%',
-              background: 'rgba(255,255,255,0.09)',
+              background: 'rgba(180,200,255,0.09)',
             }}
           />
         </Box>

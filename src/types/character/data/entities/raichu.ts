@@ -14,7 +14,7 @@ export const Raichu = (): Character => ({
   name: 'Raichu',
   level: 100,
   elements: [ThunderElement],
-  abilities: [Levitate],
+  abilities: [],
   statuses: [],
   immunities: [],
   damage: 0,
