@@ -13,7 +13,7 @@ export const BASE_MODIFIER: ResolvedModifier = {
     criticalDamage: { m: 1, b: 0 },
     turnHealthRegen: { m: 0, b: 0 },
     activeTurnHealthRegen: { m: 0, b: 0 },
-    queuePositionOffset: { m: 1, b: 0 },
+    queuePositionOffset: { m: 0, b: 0 },
     forceCombatCheckSuccess: { m: 1, b: 0 },
     forceCombatCheckFailure: { m: 1, b: 0 },
 

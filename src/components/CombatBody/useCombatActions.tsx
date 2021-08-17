@@ -5,6 +5,7 @@ import { useCombatSystemTurn } from '../../contexts/CombatSystemContext/CombatSy
 import { useLogs } from '../../contexts/LogsContext'
 import { AccuracyStats, Character } from '../../types/character/character'
 import {
+  getModifiers,
   getStats,
   getStatsAndEquations,
   getStatuses,
@@ -175,10 +176,12 @@ export const useCombatActions = () => {
         })
         if (char.id !== activeCharacter.id) {
           updateQueueItemById(char.id, (qi) => {
-            const stats = getStats(char)
+            const [stats, { stats: mods }] = getStatsAndEquations(char)
+            const modifs = getModifiers(activeCharacter)
+            console.log(qi.value, mods.queuePositionOffset(qi.value))
             return {
               ...qi,
-              value: min(qi.value + stats.queuePositionOffset, 0),
+              value: min(qi.value + mods.queuePositionOffset(qi.value), 0),
             }
           })
         }

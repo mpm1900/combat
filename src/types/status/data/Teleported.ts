@@ -14,8 +14,8 @@ export const Teleported = makeStatusFn({
     {
       stats: {
         queuePositionOffset: {
-          m: 0,
-          b: -100,
+          m: -1,
+          b: 0,
         },
       },
     },
