@@ -25,7 +25,13 @@ function App() {
   }, [])
 
   return (
-    <Box className='App' height='100%' flex={1} background={`url(${Forest})`}>
+    <Box
+      className='App'
+      height='100%'
+      flex={1}
+      background={`url(${Forest})`}
+      backgroundSize='cover'
+    >
       <Box background='rgba(0,0,20,0.72)' flex={1}>
         <Box
           color='rgba(255,255,255,0.36)'
