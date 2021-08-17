@@ -10,6 +10,7 @@ import { Golem } from './types/character/data/entities/golem'
 import { Pidgeot } from './types/character/data/entities/pidgeot'
 import { Raichu } from './types/character/data/entities/raichu'
 import { Party } from './types/character/party'
+import Forest from './assets/2.png'
 
 const enemies = (): Party => ({
   id: v4(),
@@ -24,26 +25,28 @@ function App() {
   }, [])
 
   return (
-    <Box className='App' height='100%' flex={1}>
-      <Box
-        color='rgba(255,255,255,0.36)'
-        height='24px'
-        flexDirection='row'
-        alignItems='center'
-        justifyContent='space-between'
-        background={theme.boxGradient}
-        borderBottom='1px solid rgba(255,255,255,0.54)'
-        marginBottom='1px'
-        padding='0 8px'
-        style={{
-          fontFamily: 'Roboto Mono',
-          fontSize: '14px',
-        }}
-      >
-        <Box>Combat Simulator - version: 0.0.4-a</Box>
-        <Reset onClick={() => init(enemies())}>reset</Reset>
+    <Box className='App' height='100%' flex={1} background={`url(${Forest})`}>
+      <Box background='rgba(0,0,20,0.72)' flex={1}>
+        <Box
+          color='rgba(255,255,255,0.36)'
+          height='24px'
+          flexDirection='row'
+          alignItems='center'
+          justifyContent='space-between'
+          background={theme.boxGradient}
+          borderBottom='1px solid rgba(255,255,255,0.36)'
+          marginBottom='1px'
+          padding='0 8px'
+          style={{
+            fontFamily: 'Roboto Mono',
+            fontSize: '14px',
+          }}
+        >
+          <Box>Combat Simulator - version: 0.0.5-a</Box>
+          <Reset onClick={() => init(enemies())}>reset</Reset>
+        </Box>
+        <Combat />
       </Box>
-      <Combat />
     </Box>
   )
 }

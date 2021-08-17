@@ -49,7 +49,7 @@ export const CombatMoveResults = (props: CombatMoveResultProps) => {
     <Box padding='0 16px' style={wrapperStyles}>
       <Box style={innerStyles}>
         <CombatMoveResultsHeader moveResults={moveResults} />
-        <Box minWidth='366px' justifyContent='center'>
+        <Box minWidth='366px' justifyContent='center' marginTop='16px'>
           <CombatMoveResultsChecks
             rolls={rolls}
             checksDone={checksDone}
@@ -57,7 +57,7 @@ export const CombatMoveResults = (props: CombatMoveResultProps) => {
             onDone={() => setChecksDone(true)}
           />
           {checksDone && (
-            <Box flexDirection='row'>
+            <Box flexDirection='row' marginTop='32px'>
               <Box flex={1} />
               <Box minWidth='400px' marginTop='16px'>
                 <CombatMoveResultsDetails

@@ -7,7 +7,7 @@ export const FlareBlitz: Move = {
   name: 'Flare Blitz',
   type: 'physical',
   element: 'fire',
-  target: 'uncontrolled-active-party',
+  target: 'all-active', // 'uncontrolled-active-party',
   checks: 4,
   offset: 0,
   power: 120,

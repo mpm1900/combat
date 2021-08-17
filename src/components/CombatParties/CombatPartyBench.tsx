@@ -40,7 +40,11 @@ export const CombatPartyBench = (props: CombatPartyBenchProps) => {
         <Spacer />
         <Box
           style={{
-            fontFamily: 'Trade Winds',
+            //fontFamily: 'Trade Winds',
+            textTransform: 'uppercase',
+            fontWeight: 900,
+            fontSize: '12px',
+            textShadow: '0px 3px 3px rgba(0,0,0,0.9)',
           }}
         >
           Bench
@@ -72,6 +76,7 @@ export const CombatPartyBenchCharacter = (
       width='64px'
       height='64px'
       display='flex'
+      opacity={character && stats.healthRatio <= 0 ? '0.45' : '1'}
       style={{ display: 'flex' }}
     >
       <Box justifyContent='center' alignItems='center' flex={1}>
@@ -81,9 +86,15 @@ export const CombatPartyBenchCharacter = (
           </Icon>
         )}
         {character && stats.healthRatio <= 0 && (
-          <Icon color='black' width='32px'>
-            <Dead />
-          </Icon>
+          <Box
+            color='white'
+            style={{
+              fontFamily: 'Trade Winds',
+              textShadow: '0px 0px 3px rgba(0,0,0,1)',
+            }}
+          >
+            Dead
+          </Box>
         )}
       </Box>
       {character && (

@@ -25,7 +25,8 @@ export const CombatCharacterAvatar = (props: CombatCharacterAvatarProps) => {
     <Wrapper
       {...rest}
       backgroundColor={
-        colorMap[character?.elements[0].element as ElementalType]
+        colorMap[character?.elements[0].element as ElementalType] ||
+        'rgba(0,0,0,0.27)'
       }
     >
       {children}

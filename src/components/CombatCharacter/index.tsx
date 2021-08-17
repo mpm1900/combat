@@ -55,6 +55,9 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
         border={`1px solid rgba(255,255,255,${isActive ? '0.72' : '0.27'})`}
         margin={`16px 0 0 48px`}
         flexDirection='row'
+        style={{
+          boxShadow: '0px 0px 20px rgba(0,0,0,0.72)',
+        }}
       >
         <Box>
           <Hexagon
@@ -81,7 +84,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             <Box
               paddingTop='4px'
               style={{
-                textShadow: '0 1px 3px rgba(0,0,0,0.56)',
+                textShadow: '0px 2px 3px rgba(0,0,0,0.9)',
                 fontFamily: 'Trade Winds',
               }}
             >

@@ -17,6 +17,7 @@ export const Header = styled(Box)({
   flexDirection: 'row',
   alignItems: 'center',
   marginBottom: '12px',
+  textShadow: '0px 3px 3px rgba(0,0,0,0.9)',
 })
 
 export const AttackWrapper = styled.div({
@@ -32,6 +33,7 @@ export const AttackPower = styled.div<{ type: AttackTypes }>((props) => ({
   fontWeight: 800,
   justifyContent: 'center',
   alignItems: 'center',
+  textShadow: '0px 1px 3px rgba(0,0,0,0.9)',
   background:
     props.type === 'special'
       ? 'linear-gradient(198deg, rgba(130,93,232,1) 0%, rgba(129,36,195,1) 100%)'

@@ -51,13 +51,12 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
         flexDirection='row'
         justifyContent='center'
         padding='8px 24px'
-        overflow='hidden'
         paddingTop='32px'
         position='relative'
         style={styles}
       >
         <Box flex={1} />
-        <Box maxWidth='640px' overflow='hidden'>
+        <Box maxWidth='640px'>
           <Box flexDirection='row' alignItems='flex-end'>
             {activeCharacter && (
               <CombatCharacterAvatar
@@ -104,6 +103,9 @@ export const CombatBodyActions = (props: CombatBodyActionsProps) => {
             background={theme.boxGradient}
             border={`1px solid ${theme.white2}`}
             flex='1'
+            style={{
+              boxShadow: '0px 0px 20px rgba(0,0,0,0.72)',
+            }}
           >
             <Box
               padding='8px'

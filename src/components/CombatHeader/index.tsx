@@ -27,7 +27,7 @@ export const CombatHeader = (props: CombatHeaderProps) => {
 
   useEffect(() => scrollToBottom(), [logs])
   return (
-    <Box background='rgba(0, 0, 0, 0.45)' overflow='hidden'>
+    <Box background='rgba(0, 0, 0, 0.63)' overflow='hidden'>
       <Box flexDirection='row'>
         {activeCharacter && (
           <Box flexDirection='row' width='264px'>
@@ -42,7 +42,14 @@ export const CombatHeader = (props: CombatHeaderProps) => {
               </Box>
               <Box background='white' padding='4px 8px' maxWidth='160px'>
                 <span>
-                  <strong>{activeCharacter.name}'s</strong> Turn
+                  <span
+                    style={{
+                      fontFamily: 'Trade Winds',
+                    }}
+                  >
+                    {activeCharacter.name}'s
+                  </span>{' '}
+                  <strong>Turn</strong>
                 </span>
               </Box>
             </Box>
