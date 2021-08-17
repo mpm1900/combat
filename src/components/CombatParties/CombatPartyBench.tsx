@@ -22,7 +22,6 @@ export const CombatPartyBench = (props: CombatPartyBenchProps) => {
     .fill(undefined)
     .map((_, i) => bench[i])
 
-  if (bench.length === 0) return null
   return (
     <Box
       flex='1'
@@ -30,7 +29,7 @@ export const CombatPartyBench = (props: CombatPartyBenchProps) => {
       // background='rgba(0, 0, 0, 0.45)'
       color='white'
     >
-      <Box flexDirection='row' justifyContent='space-around'>
+      <Box flexDirection='row' justifyContent='space-around' width='426px'>
         {benchList.map((character) => (
           <Box>
             <CombatPartyBenchCharacter character={character} />

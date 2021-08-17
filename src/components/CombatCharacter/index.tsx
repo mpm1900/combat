@@ -140,7 +140,12 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             ))}
           </Box>
           <CombatCharacterBadges character={character} marginLeft='-1px' />
-          <Box position='relative'>
+          <Box
+            position='relative'
+            borderTop={`1px solid rgba(255,255,255,${
+              isActive ? '0.72' : '0.27'
+            })`}
+          >
             <Bar
               value={currentHealth}
               max={stats.health}
