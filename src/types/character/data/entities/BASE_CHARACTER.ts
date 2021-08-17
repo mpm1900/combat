@@ -8,6 +8,7 @@ export const BASE_CHARACTER: Character = {
   level: 0,
   elements: [],
   abilities: [],
+  events: [],
   statuses: [],
   immunities: [],
   damage: 0,

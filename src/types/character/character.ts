@@ -1,4 +1,5 @@
 import { Ability } from '../ability/ability'
+import { CharacterEvent } from '../characterEvent/characterEvent'
 import { ElementalType, Elemental } from '../elemental/elemental'
 import { Move } from '../move/move'
 import { Status } from '../status/status'
@@ -59,6 +60,7 @@ export type Character = {
   stats: CharacterStats
   elements: Elemental[]
   abilities: Ability[]
+  events: CharacterEvent[]
   statuses: Status[]
   immunities: Status[]
   moves: Move[]
