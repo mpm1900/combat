@@ -30,7 +30,7 @@ export const PartyCharacterStats = (props: PartyCharacterProps) => {
   }
   const convertedStats = convertStats(character)
   return (
-    <Box width='240px' flexDirection='column'>
+    <Box width='240px' flexDirection='column' style={{ fontSize: '14px' }}>
       <Box flex='1' marginRight='0px'>
         {nonZeroStatKeys.map((key) => (
           <Box key={key} flexDirection='row'>
@@ -54,6 +54,9 @@ export const PartyCharacterStats = (props: PartyCharacterProps) => {
                   ? 'lightcoral'
                   : 'white'
               }
+              style={{
+                fontFamily: 'Roboto Mono',
+              }}
             >
               {stats[key]}
             </Box>
@@ -67,7 +70,11 @@ export const PartyCharacterStats = (props: PartyCharacterProps) => {
               {statKeyMap[key] || key}
             </Box>
             <Spacer />
-            <Box>
+            <Box
+              style={{
+                fontFamily: 'Roboto Mono',
+              }}
+            >
               <PartyCharacterStatValue m={mods[key]?.m} b={mods[key]?.b} />
             </Box>
           </Box>

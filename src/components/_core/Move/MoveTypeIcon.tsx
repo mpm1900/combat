@@ -12,8 +12,8 @@ const iconMap: Record<AttackTypes, FunctionComponent> = {
 }
 
 const colorMap: Record<AttackTypes, string> = {
-  physical: theme.physicalColor,
-  special: theme.specialColor,
+  physical: theme.physicalTextColor,
+  special: theme.specialTextColor,
 }
 
 export type TypeIconProps = BoxProps & {

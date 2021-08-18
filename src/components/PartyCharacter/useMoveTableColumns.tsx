@@ -1,24 +1,28 @@
 import { useMemo } from 'react'
-import { useTable, Column } from 'react-table'
-import { usePartySystem } from '../../contexts/PartySystemContext'
+import { Column } from 'react-table'
 import {
   Character,
+  CharacterStats,
   ElementalAccuracyStats,
 } from '../../types/character/character'
-import { getStatsAndEquations } from '../../types/character/util'
+import { Equation } from '../../types/equation'
 import { Move } from '../../types/move'
 import { getMoveAccuracy } from '../CombatBody/useCombatActions'
 import { Box } from '../_core/Box'
 import { ElementalIcon } from '../_core/ElementalIcon'
 import { MoveStatuses } from '../_core/Move/MoveStatuses'
 import { TypeIcon } from '../_core/Move/MoveTypeIcon'
-import { Table, Td, Th, Tr } from '../_core/Table'
 
-export const MoveTable = (props: { character: Character }) => {
-  const { character } = props
-  const { getMoveList } = usePartySystem()
+export const useMoveTableColumns = (
+  character: Character,
+  stats: CharacterStats,
+  mods: Record<keyof CharacterStats, Equation>,
+  columnProps: {
+    addMove: (move: Move) => void
+    removeMove: (id: string) => void
+  },
+) => {
   const { moves } = character
-  const [stats, { stats: mods }] = getStatsAndEquations(character)
   const moveIds = moves.map((m) => m.id)
   const getAccuracy = (move: Move) => {
     const elementAccuracyBonus =
@@ -31,7 +35,21 @@ export const MoveTable = (props: { character: Character }) => {
         Header: `(${character.moves.length}/${stats.memory})`,
         accessor: 'id',
         Cell: (props) => (
-          <input type='checkbox' checked={moveIds.includes(props.value)} />
+          <input
+            type='checkbox'
+            checked={moveIds.includes(props.value)}
+            disabled={
+              !moveIds.includes(props.value) && moves.length >= stats.memory
+            }
+            onChange={(e) => {
+              const selected = e.target.checked
+              if (selected) {
+                columnProps.addMove(props.row.original)
+              } else {
+                columnProps.removeMove(props.row.original.id)
+              }
+            }}
+          />
         ),
       },
       {
@@ -131,43 +149,6 @@ export const MoveTable = (props: { character: Character }) => {
       },
     ]
   }, [character])
-  const table = useTable<Move>({
-    data: getMoveList(character.id),
-    columns,
-  })
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    table
 
-  return (
-    <Box overflow='auto' flex={1}>
-      <Table {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <Tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <Th
-                  {...column.getHeaderProps()}
-                  style={{ whiteSpace: 'nowrap', textAlign: 'left' }}
-                >
-                  {column.render('Header')}
-                </Th>
-              ))}
-            </Tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row)
-            return (
-              <Tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return <Td {...cell.getCellProps()}>{cell.render('Cell')}</Td>
-                })}
-              </Tr>
-            )
-          })}
-        </tbody>
-      </Table>
-    </Box>
-  )
+  return columns
 }

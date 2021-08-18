@@ -2,7 +2,7 @@ import { v4 } from 'uuid'
 import { useHistory } from 'react-router-dom'
 import { PartyCharacter } from '../../components/PartyCharacter'
 import { Box } from '../../components/_core/Box'
-import { Button } from '../../components/_core/Button'
+import { Button, CriticalButton } from '../../components/_core/Button'
 import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { usePartySystem } from '../../contexts/PartySystemContext'
 import { usePlayer } from '../../contexts/PlayerContext'
@@ -38,7 +38,7 @@ export const Party = () => {
         <Box flexDirection='row'>
           {characters.map((character) => (
             <Button
-              margin='8px 4px'
+              margin='8px 8px 8px 0'
               isHovering={character.id === activeCharacter?.id}
               onClick={() => setActiveCharacterId(character.id)}
             >
@@ -47,7 +47,7 @@ export const Party = () => {
           ))}
         </Box>
         <Box>
-          <Button onClick={startCombat}>Start Combat</Button>
+          <CriticalButton onClick={startCombat}>Start Combat</CriticalButton>
         </Box>
       </Box>
       <Box padding='0 16px 16px 16px'>

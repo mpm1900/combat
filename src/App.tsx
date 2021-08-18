@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { v4 } from 'uuid'
 import { Box } from './components/_core/Box'
 import { useCombatSystem } from './contexts/CombatSystemContext'
 
-import { theme } from './theme'
 import { Darkrai } from './types/character/data/entities/darkrai'
 import { Golem } from './types/character/data/entities/golem'
 import { Pidgeot } from './types/character/data/entities/pidgeot'

@@ -7,7 +7,10 @@ type ButtonProps = { isHovering?: boolean; disabled?: boolean }
 const StyledButton = styled(Box)<ButtonProps>((p) => ({
   alignItems: 'center',
   background: 'rgba(0,0,0,0.18)',
-  border: `2px solid ${inactiveColor}`,
+  borderWidth: '2px',
+  borderStyle: 'solid',
+  borderColor: inactiveColor,
+  borderRadius: '4px',
   color: activeColor,
   cursor: 'pointer',
   fontSize: '14px',
@@ -38,9 +41,28 @@ const StyledButton = styled(Box)<ButtonProps>((p) => ({
     : {}),
 }))
 
+const StyledCriticalButton = styled(StyledButton)((p) => ({
+  background: 'rgba(240,128,128,0.09)',
+  borderColor: 'rgba(240,128,128,0.36)',
+  ':hover': {
+    background: 'rgba(255,128,128,0.27)',
+    borderColor: 'rgba(240,128,128,0.45)',
+    color: activeColor,
+  },
+}))
+
 export const Button = (props: BoxProps & ButtonProps) => (
   <StyledButton as='button' {...props} />
 )
+
+export const CriticalButton = (props: BoxProps & ButtonProps) => (
+  <StyledCriticalButton as='button' {...props} />
+)
+
+CriticalButton.defaultProps = {
+  padding: '4px 16px',
+  borderRadius: '4px',
+}
 
 Button.defaultProps = {
   padding: '4px 16px',

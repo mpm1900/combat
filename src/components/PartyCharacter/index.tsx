@@ -9,7 +9,8 @@ import { Box } from '../_core/Box'
 import { Select } from '../_core/Select'
 import { PartyCharacterBaseStats } from './PartyCharacterBaseStats'
 import { PartyCharacterStats } from './PartyCharacterStats'
-import { MoveTable } from './useMoveTable'
+import { PartyCharacterTables } from './PartyCharacterTables'
+import { MoveTable } from './MoveTable'
 
 export type PartyCharacterProps = {
   character: Character
@@ -78,15 +79,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           <PartyCharacterStats character={character} />
         </Box>
       </Box>
-      <Box
-        marginLeft='16px'
-        flex='1'
-        background={theme.boxGradient}
-        border={`1px solid ${theme.white3}`}
-        overflow='auto'
-      >
-        <MoveTable character={character} />
-      </Box>
+      <PartyCharacterTables character={character} />
     </Box>
   )
 }
