@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
@@ -8,7 +9,9 @@ import { AppContexts } from './contexts'
 ReactDOM.render(
   <React.StrictMode>
     <AppContexts>
-      <App />
+      <BrowserRouter basename='/combat'>
+        <App />
+      </BrowserRouter>
     </AppContexts>
   </React.StrictMode>,
   document.getElementById('root'),

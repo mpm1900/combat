@@ -3,18 +3,38 @@ import { useCombatSystem } from '../../contexts/CombatSystemContext'
 import { useCombatSystemBuffer } from '../../contexts/CombatSystemContext/CombatSystemBuffer'
 import { useCombatSystemTurn } from '../../contexts/CombatSystemContext/CombatSystemTurn'
 import { useLogs } from '../../contexts/LogsContext'
-import { AccuracyStats, Character } from '../../types/character/character'
+import {
+  AccuracyStats,
+  Character,
+  CharacterStats,
+  ElementalAccuracyStats,
+  ResolvedCharacterStats,
+} from '../../types/character/character'
 import {
   getModifiers,
   getStats,
   getStatsAndEquations,
   getStatuses,
 } from '../../types/character/util'
-import { min } from '../../types/equation'
+import { Equation, max, min } from '../../types/equation'
 import { getRolls, Move, MoveResult, resolveMove } from '../../types/move'
 import { ProtectedId } from '../../types/status/data/Protected'
 import { LogCharacter, LogElement } from '../CombatLogs'
 import { Box } from '../_core/Box'
+
+export const getMoveAccuracy = (
+  move: Move,
+  stats: CharacterStats,
+  elementAccuracyBonus: Equation,
+) => {
+  const baseAccuracy = stats[`${move.type}Accuracy` as keyof AccuracyStats]
+  return max(
+    baseAccuracy +
+      move.offset +
+      elementAccuracyBonus(baseAccuracy + move.offset),
+    95,
+  )
+}
 
 export const useCombatActions = () => {
   const { push } = useLogs()
@@ -45,10 +65,13 @@ export const useCombatActions = () => {
   const rollDamage = (move: Move, source: Character, targets: Character[]) => {
     if (moveResults) return
 
-    const stats = getCharacterStats(source.id)
+    const [stats, { stats: mods }] = getStatsAndEquations(source)
+    const baseAccuracy = stats[`${move.type}Accuracy` as keyof AccuracyStats]
+    const elementAccuracyBonus =
+      mods[`${move.element}Accuracy` as keyof ElementalAccuracyStats]
     const rolls = getRolls(
       move.checks,
-      stats[`${move.type}Accuracy` as keyof AccuracyStats] + move.offset,
+      getMoveAccuracy(move, stats, elementAccuracyBonus),
       stats.forceCombatCheckSuccess,
       stats.forceCombatCheckFailure,
     )

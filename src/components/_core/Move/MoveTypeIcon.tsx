@@ -1,8 +1,10 @@
 import { ReactComponent as Physical } from '../../../icons/darkzaitzev/revolt.svg'
 import { ReactComponent as Special } from '../../../icons/lorc/magic-swirl.svg'
 import { FunctionComponent } from 'react'
-import styled from 'styled-components'
 import { AttackTypes } from '../../../types/character/character'
+import { BoxProps } from '../Box'
+import { Icon } from '../Icon'
+import { theme } from '../../../theme'
 
 const iconMap: Record<AttackTypes, FunctionComponent> = {
   physical: Physical,
@@ -10,28 +12,24 @@ const iconMap: Record<AttackTypes, FunctionComponent> = {
 }
 
 const colorMap: Record<AttackTypes, string> = {
-  physical: 'white',
-  special: 'white',
+  physical: theme.physicalColor,
+  special: theme.specialColor,
 }
 
-const Wrapper = styled.div<{ color: string }>`
-  height: 32px;
-  width: 32px;
-  path {
-    fill: ${(p) => p.color};
-  }
-`
-
-export type TypeIconProps = {
+export type TypeIconProps = BoxProps & {
   type: AttackTypes
-  color?: string
 }
 export const TypeIcon = (props: TypeIconProps) => {
-  const { type, color } = props
+  const { type, color, ...rest } = props
   const Name = iconMap[type]
   return (
-    <Wrapper color={color || colorMap[type]}>
+    <Icon color={color || colorMap[type]} {...rest}>
       <Name />
-    </Wrapper>
+    </Icon>
   )
+}
+
+TypeIcon.defaultProps = {
+  height: '32px',
+  width: '32px',
 }

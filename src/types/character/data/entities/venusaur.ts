@@ -18,7 +18,7 @@ export const Venusaur = (): Character => ({
   damage: 0,
   energyOffset: 0,
   stats: {
-    ...ZERO_STATS,
+    ...BASE_CHARACTER.stats,
     health: 80,
     speed: 80,
     energy: 100,

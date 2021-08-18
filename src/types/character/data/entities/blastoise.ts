@@ -3,12 +3,13 @@ import { Torrent } from '../../../ability/data/Torrent'
 import { WaterElement } from '../../../elemental/data/WaterElement'
 import { WaterShot } from '../../../move/data/WaterShot'
 import { Character } from '../../character'
-import { ZERO_STATS } from '../ZERO_STATS'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
 
+export const BlastoiseId = v4()
 export const Blastoise = (): Character => ({
   ...BASE_CHARACTER,
   id: v4(),
+  characterId: BlastoiseId,
   name: 'Blastoise',
   level: 100,
   elements: [WaterElement],
@@ -18,7 +19,7 @@ export const Blastoise = (): Character => ({
   damage: 0,
   energyOffset: 0,
   stats: {
-    ...ZERO_STATS,
+    ...BASE_CHARACTER.stats,
     health: 79,
     speed: 78,
     energy: 100,

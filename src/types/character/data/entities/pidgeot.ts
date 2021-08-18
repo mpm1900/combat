@@ -18,7 +18,7 @@ export const Pidgeot = (): Character => ({
   damage: 0,
   energyOffset: 0,
   stats: {
-    ...ZERO_STATS,
+    ...BASE_CHARACTER.stats,
     health: 83,
     speed: 91,
     energy: 100,

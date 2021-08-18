@@ -29,7 +29,7 @@ export type MoveStatusesSectionProps = BoxProps & {
   checks: number
   checksColor?: string
   chance?: number
-  title: string
+  title?: string
   statuses?: MoveStatuses
 }
 
@@ -45,23 +45,25 @@ export const MoveStatusesSection = (props: MoveStatusesSectionProps) => {
   const checksArray = Array(checks).fill(null)
   return (
     <Section {...rest}>
-      <TitleWrapper>
-        <Title>{title}</Title>
-        <Spacer />
-        <Box flexDirection='row' alignItems='center'>
-          <Box flexDirection='row' marginRight='4px'>
-            {checksArray.map((_, i) => (
-              <Icon key={i} color={checksColor} height='16px' width='16px'>
-                <Check />
-              </Icon>
-            ))}
-          </Box>
+      {title && (
+        <TitleWrapper>
+          <Title>{title}</Title>
+          <Spacer />
+          <Box flexDirection='row' alignItems='center'>
+            <Box flexDirection='row' marginRight='4px'>
+              {checksArray.map((_, i) => (
+                <Icon key={i} color={checksColor} height='16px' width='16px'>
+                  <Check />
+                </Icon>
+              ))}
+            </Box>
 
-          {chance !== undefined && (
-            <Chance>({(chance * 100).toFixed(0)}%)</Chance>
-          )}
-        </Box>
-      </TitleWrapper>
+            {chance !== undefined && (
+              <Chance>({(chance * 100).toFixed(0)}%)</Chance>
+            )}
+          </Box>
+        </TitleWrapper>
+      )}
       <StatusList statuses={statuses?.source} type='source' />
       <StatusList statuses={statuses?.target} type='target' />
     </Section>

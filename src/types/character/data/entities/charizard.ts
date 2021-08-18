@@ -13,23 +13,26 @@ import { Protect } from '../../../move/data/Protect'
 import { Rest } from '../../../move/data/Rest'
 import { Silence } from '../../../move/data/Silence'
 import { TimeWarp } from '../../../move/data/TimeWarp'
+import { FireAccuracyUp } from '../../../status/data/FireAccuracyUp'
+import { FireAttackUp } from '../../../status/data/FireAttackUp'
 import { Character } from '../../character'
-import { ZERO_STATS } from '../ZERO_STATS'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
 
+export const CharizardId = v4()
 export const Charizard = (): Character => ({
   ...BASE_CHARACTER,
   id: v4(),
+  characterId: CharizardId,
   name: 'Charizard',
   level: 100,
   elements: [FireElement, AirElement],
   abilities: [Blaze, Levitate],
-  statuses: [],
+  statuses: [FireAccuracyUp(1, -1, true)],
   immunities: [],
   damage: 0,
   energyOffset: 0,
   stats: {
-    ...ZERO_STATS,
+    ...BASE_CHARACTER.stats,
     health: 78,
     speed: 102,
     energy: 100,

@@ -4,6 +4,9 @@ import { ElementalType, Elemental } from '../elemental/elemental'
 import { Move } from '../move/move'
 import { Status } from '../status/status'
 
+export type ElementalAccuracyStats = {
+  [Property in ElementalType as `${Property}Accuracy`]: number
+}
 export type ElementalDamageStats = {
   [Property in ElementalType as `${Property}Damage`]: number
 }
@@ -36,6 +39,8 @@ export type BaseCharacterStats = {
   queuePositionOffset: number
   forceCombatCheckSuccess: number
   forceCombatCheckFailure: number
+  memory: number
+  equip: number
 }
 
 export type CharacterStats = BaseCharacterStats &
@@ -43,8 +48,67 @@ export type CharacterStats = BaseCharacterStats &
   DefenseStats &
   AccuracyStats &
   ArmorStats &
+  ElementalAccuracyStats &
   ElementalDamageStats &
   ElementalResistanceStats
+
+export type CharacterMainStatKeysType =
+  | 'health'
+  | 'speed'
+  | 'physicalAccuracy'
+  | 'physicalAttack'
+  | 'physicalDefense'
+  | 'specialAccuracy'
+  | 'specialAttack'
+  | 'specialDefense'
+
+export type CharacterModifierDisplayKeyType = keyof (ElementalAccuracyStats &
+  ElementalDamageStats &
+  ElementalResistanceStats)
+
+export const CharacterModifierDisplayKeys: CharacterModifierDisplayKeyType[] = [
+  'normalAccuracy',
+  'normalDamage',
+  'normalResistance',
+  'fireAccuracy',
+  'fireDamage',
+  'fireResistance',
+  'waterAccuracy',
+  'waterDamage',
+  'waterResistance',
+  'grassAccuracy',
+  'grassDamage',
+  'grassResistance',
+  'earthAccuracy',
+  'earthDamage',
+  'earthResistance',
+  'thunderAccuracy',
+  'thunderDamage',
+  'thunderResistance',
+  'airAccuracy',
+  'airDamage',
+  'airResistance',
+  'ghostAccuracy',
+  'ghostDamage',
+  'ghostResistance',
+  'darkAccuracy',
+  'darkDamage',
+  'darkResistance',
+  'lightAccuracy',
+  'lightDamage',
+  'lightResistance',
+]
+
+export const CharacterMainStatKeys: CharacterMainStatKeysType[] = [
+  'health',
+  'speed',
+  'physicalAccuracy',
+  'physicalAttack',
+  'physicalDefense',
+  'specialAccuracy',
+  'specialAttack',
+  'specialDefense',
+]
 
 export type ResolvedCharacterStats = CharacterStats & {
   healthRatio: number
@@ -52,6 +116,7 @@ export type ResolvedCharacterStats = CharacterStats & {
 
 export type Character = {
   id: string
+  characterId: string
   partyId?: string
   name: string
   level: number

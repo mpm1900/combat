@@ -164,6 +164,11 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             >
               <AnimatedNumber value={healthStyles.value} />/{stats.health}
             </Bar>
+            <Box
+              height='1px'
+              background={`rgba(255,255,255,${isActive ? '0.72' : '0.27'})`}
+              marginBottom='1px'
+            />
             <Bar
               value={currentEnergy}
               max={stats.energy}

@@ -9,14 +9,19 @@ import {
   MoveDetailsTitle,
   Wrapper,
 } from './style'
-import { TypeIcon } from './TypeIcon'
+import { TypeIcon } from './MoveTypeIcon'
 import { MoveStatuses } from './MoveStatuses'
-import { AccuracyStats, Character } from '../../../types/character/character'
+import {
+  AccuracyStats,
+  Character,
+  ElementalAccuracyStats,
+} from '../../../types/character/character'
 import { PropsWithChildren, useMemo } from 'react'
-import { getStats } from '../../../types/character/util'
+import { getStats, getStatsAndEquations } from '../../../types/character/util'
 import { Box } from '../Box'
 import { ElementalIcon } from '../ElementalIcon'
 import { MoveDetails } from './MoveDetails'
+import { getMoveAccuracy } from '../../CombatBody/useCombatActions'
 
 export type MoveProps = {
   move: MoveType
@@ -27,10 +32,11 @@ export const Move = (props: PropsWithChildren<MoveProps>) => {
   const { move, character, children } = props
   const accuracy = useMemo(() => {
     if (character) {
-      const stats = getStats(character)
-      return `(${
-        stats[`${move.type}Accuracy` as keyof AccuracyStats] + move.offset
-      }%)`
+      const [stats, { stats: mods }] = getStatsAndEquations(character)
+      const elementAccuracyBonus =
+        mods[`${move.element}Accuracy` as keyof ElementalAccuracyStats]
+
+      return `(${getMoveAccuracy(move, stats, elementAccuracyBonus)}%)`
     }
     return `(${move.offset >= 0 && '+'}${move.offset})`
   }, [character, move])
@@ -49,7 +55,7 @@ export const Move = (props: PropsWithChildren<MoveProps>) => {
       </Header>
       <AttackWrapper>
         <AttackPower type={move.type}>
-          <TypeIcon type={move.type} />
+          <TypeIcon type={move.type} color='white' />
           {move.power ? (
             <span style={{ marginLeft: 4 }}>{move.power}</span>
           ) : (

@@ -20,7 +20,7 @@ export const Raichu = (): Character => ({
   damage: 0,
   energyOffset: 0,
   stats: {
-    ...ZERO_STATS,
+    ...BASE_CHARACTER.stats,
     health: 60,
     speed: 99,
     energy: 100,

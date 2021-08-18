@@ -6,7 +6,9 @@ const tokens = {
   perfectCheckColor: '#fcba03',
 
   physicalColor: 'rgba(215,93,13,1)',
+  physicalTextColor: 'rgba(248, 180, 135, 1)',
   specialColor: 'rgba(130,93,232,1)',
+  specialTextColor: 'rgba(169, 143, 239, 1)',
 
   boxGradientFrom: 'rgba(27,36,45,1)',
   boxGradientTo: 'rgba(54,63,81,1)',

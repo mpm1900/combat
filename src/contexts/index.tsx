@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react'
 import { CombatSystem } from './CombatSystemContext'
 import { LogsContextProvider } from './LogsContext'
 import { ModalContextProvider } from './ModalContext'
+import { PartySystem } from './PartySystemContext'
 import { PlayerContextProvider } from './PlayerContext'
 
 export const AppContexts = (props: PropsWithChildren<{}>) => {
@@ -9,9 +10,11 @@ export const AppContexts = (props: PropsWithChildren<{}>) => {
   return (
     <LogsContextProvider>
       <PlayerContextProvider>
-        <CombatSystem>
-          <ModalContextProvider>{children}</ModalContextProvider>
-        </CombatSystem>
+        <PartySystem>
+          <CombatSystem>
+            <ModalContextProvider>{children}</ModalContextProvider>
+          </CombatSystem>
+        </PartySystem>
       </PlayerContextProvider>
     </LogsContextProvider>
   )

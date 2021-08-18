@@ -21,9 +21,11 @@ import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
 
+export const DarkraiId = v4()
 export const Darkrai = (): Character => ({
   ...BASE_CHARACTER,
   id: v4(),
+  characterId: DarkraiId,
   name: 'Darkrai',
   level: 100,
   elements: [DarkElement],
@@ -33,7 +35,7 @@ export const Darkrai = (): Character => ({
   damage: 0,
   energyOffset: 0,
   stats: {
-    ...ZERO_STATS,
+    ...BASE_CHARACTER.stats,
     health: 70,
     speed: 125,
     energy: 100,
