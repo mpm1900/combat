@@ -34,7 +34,7 @@ function App() {
       background={`url(${Forest})`}
       backgroundSize='cover'
     >
-      <Box background='rgba(0,0,20,0.72)' flex={1}>
+      <Box background='rgba(0,0,20,0.72)' flex={1} height='100%' width='100%'>
         <AppHeader />
         <Routes />
       </Box>

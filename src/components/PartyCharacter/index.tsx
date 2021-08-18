@@ -32,15 +32,19 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
   }
   const stats = getStats(character)
   const itemList = Array(stats.equip).fill(undefined)
+  const moveList = Array(stats.memory)
+    .fill(undefined)
+    .map((_, i) => character.moves[i])
 
   return (
-    <Box flexDirection='row'>
-      <Box>
+    <Box flexDirection='row' overflow='hidden'>
+      <Box overflow='hidden'>
         <Box
           padding='16px'
           background={theme.boxGradient}
           border={`1px solid ${theme.white3}`}
           flexDirection='row'
+          overflow='auto'
         >
           <Box marginRight='16px'>
             <Select
@@ -61,17 +65,36 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                 />
                 <PartyCharacterBaseStats character={character} />
               </Box>
+              <Box
+                style={{
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                }}
+              >
+                items
+              </Box>
               {itemList.map((_, i) => (
-                <Box
-                  marginTop='8px'
-                  style={{
-                    fontSize: '12px',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  item {i + 1}
+                <Box marginTop='8px'>
                   <Select />
+                </Box>
+              ))}
+              <Box
+                marginTop='16px'
+                style={{
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                }}
+              >
+                moves
+              </Box>
+              {moveList.map((move, i) => (
+                <Box marginTop='8px'>
+                  <Select
+                    isDisabled={character.moves.length >= stats.memory}
+                    value={{ value: move?.id, label: move.name }}
+                  />
                 </Box>
               ))}
             </Box>

@@ -37,7 +37,7 @@ export const MoveTable = (props: { character: Character }) => {
     table
 
   return (
-    <Box overflow='auto' flex={1}>
+    <Box overflow='auto'>
       <Table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (

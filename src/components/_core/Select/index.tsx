@@ -10,11 +10,21 @@ export const Select = (props: Props) => {
           ...provided,
           background: theme.boxGradient,
           color: 'black',
+          ...(state.isDisabled
+            ? {
+                opacity: 0.72,
+              }
+            : {}),
         }),
-        control: (provided) => ({
+        control: (provided, state) => ({
           ...provided,
           background: 'rgba(0,0,0,0.18)',
           borderColor: 'rgba(255,255,255,0.45)',
+          ...(state.isDisabled
+            ? {
+                background: 'rgba(255,255,255,0.18)',
+              }
+            : {}),
         }),
         menu: (provided) => ({
           ...provided,

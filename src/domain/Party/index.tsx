@@ -28,7 +28,7 @@ export const Party = () => {
     push('/')
   }
   return (
-    <Box flex='1' color='white'>
+    <Box flex='1' color='white' height='calc(100vh - 25px)'>
       <Box
         flexDirection='row'
         padding='16px'
@@ -50,8 +50,8 @@ export const Party = () => {
           <CriticalButton onClick={startCombat}>Start Combat</CriticalButton>
         </Box>
       </Box>
-      <Box padding='0 16px 16px 16px'>
-        <Box>
+      <Box padding='0 16px 16px 16px' overflow='hidden'>
+        <Box overflow='hidden'>
           {activeCharacter && <PartyCharacter character={activeCharacter} />}
         </Box>
       </Box>
