@@ -11,6 +11,7 @@ import { PartyCharacterBaseStats } from './PartyCharacterBaseStats'
 import { PartyCharacterStats } from './PartyCharacterStats'
 import { PartyCharacterTables } from './PartyCharacterTables'
 import { MoveTable } from './MoveTable'
+import { PartyCharacterStatuses } from './PartyCharacterStatuses'
 
 export type PartyCharacterProps = {
   character: Character
@@ -75,8 +76,10 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               ))}
             </Box>
           </Box>
-
-          <PartyCharacterStats character={character} />
+          <Box>
+            <PartyCharacterStats character={character} />
+            <PartyCharacterStatuses character={character} />
+          </Box>
         </Box>
       </Box>
       <PartyCharacterTables character={character} />

@@ -31,6 +31,7 @@ export const PartyCharacterStats = (props: PartyCharacterProps) => {
   const convertedStats = convertStats(character)
   return (
     <Box width='240px' flexDirection='column' style={{ fontSize: '14px' }}>
+      <Box style={{ fontFamily: 'Trade Winds', fontSize: '16px' }}>Stats</Box>
       <Box flex='1' marginRight='0px'>
         {nonZeroStatKeys.map((key) => (
           <Box key={key} flexDirection='row'>

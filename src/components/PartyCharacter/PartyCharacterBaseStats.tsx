@@ -46,7 +46,7 @@ export const PartyCharacterBaseStats = (props: PartyCharacterProps) => {
           minWidth='180px'
           margin='1px'
         >
-          <Box>{statKeyMap[key]}</Box>
+          <Box style={{ fontSize: '14px' }}>{statKeyMap[key]}</Box>
           <Box flex='1' />
           <Box>{character.stats[key]}</Box>
         </Bar>
