@@ -18,15 +18,15 @@ export const AbilityCard = (props: AbilityCardProps) => {
   )
   return (
     <TooltipCard>
-      <Box style={{ fontWeight: 700 }}>{ability.name}</Box>
+      <Box style={{ fontFamily: 'Trade Winds' }}>{ability.name}</Box>
       {normalStatuses.length > 0 && (
-        <Box marginTop='4px' background='rgba(0,0,0,0.27)' padding='8px'>
+        <Box marginTop='4px'>
           <Box flexDirection='row'>
             <Box
               color='white'
               style={{
                 fontWeight: 700,
-                fontSize: '14px',
+                fontSize: '12px',
                 textTransform: 'uppercase',
               }}
             >
@@ -37,18 +37,18 @@ export const AbilityCard = (props: AbilityCardProps) => {
           <StatusList
             type='source'
             statuses={normalStatuses}
-            //showIcon={false}
+            showIcon={false}
           />
         </Box>
       )}
       {criticalStatuses.length > 0 && (
-        <Box marginTop='4px' background='rgba(0,0,0,0.27)' padding='8px'>
+        <Box marginTop='4px'>
           <Box flexDirection='row'>
             <Box
               color='white'
               style={{
                 fontWeight: 700,
-                fontSize: '14px',
+                fontSize: '12px',
                 textTransform: 'uppercase',
               }}
             >
@@ -59,24 +59,28 @@ export const AbilityCard = (props: AbilityCardProps) => {
           <StatusList
             type='source'
             statuses={criticalStatuses}
-            //showIcon={false}
+            showIcon={false}
           />
         </Box>
       )}
       {ability.immunities.length > 0 && (
-        <Box marginTop='4px' background='rgba(0,0,0,0.27)' padding='8px'>
+        <Box marginTop='4px'>
           <Box
             style={{
               fontWeight: 700,
-              fontSize: '14px',
+              fontSize: '12px',
               textTransform: 'uppercase',
             }}
           >
             Immunities
           </Box>
-          {ability.immunities.map((immunity) => (
-            <Box style={{ fontSize: '14px' }}>{immunity.name}</Box>
-          ))}
+          <Box flexDirection='row'>
+            <StatusList
+              statuses={ability.immunities}
+              showIcon={false}
+              type='source'
+            />
+          </Box>
         </Box>
       )}
     </TooltipCard>

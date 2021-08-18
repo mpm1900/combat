@@ -18,6 +18,7 @@ export type PartySystemContextValue = {
   allCharacters: Character[]
   getCharacter: (id: string) => Character | undefined
   getMoveList: (id: string) => Move[]
+  getMoveOptions: (id: string) => Move[]
 }
 const defaultValue: PartySystemContextValue = {
   activeCharacter: undefined,
@@ -25,6 +26,7 @@ const defaultValue: PartySystemContextValue = {
   allCharacters: [],
   getCharacter: () => undefined,
   getMoveList: () => [],
+  getMoveOptions: () => [],
 }
 
 export const PartySystemContext = createContext(defaultValue)
@@ -42,8 +44,16 @@ export const PartySystem = (props: PropsWithChildren<{}>) => {
   }, [characters, activeCharacterId])
 
   const getCharacter = (id: string) => characterList.find((c) => c.id === id)
+  const getPartyCharacter = (id: string) => characters.find((c) => c.id === id)
 
   const getMoveList = (id: string) => MOVES_BY_CHARACTER[id] || ALL_MOVES
+  const getMoveOptions = (id: string) => {
+    const char = getPartyCharacter(id)
+    if (!char) return []
+    return getMoveList(id).filter(
+      (move) => !char.moves.map((m) => m.id).includes(move.id),
+    )
+  }
 
   const context: PartySystemContextValue = {
     activeCharacter,
@@ -51,6 +61,7 @@ export const PartySystem = (props: PropsWithChildren<{}>) => {
     allCharacters: characterList,
     getCharacter,
     getMoveList,
+    getMoveOptions,
   }
   return (
     <PartySystemContext.Provider value={context}>

@@ -62,7 +62,7 @@ export const useMoveTableColumns = (
         ),
       },
       {
-        Header: 'element',
+        Header: 'elem',
         accessor: 'element',
         Cell: (props) => (
           <ElementalIcon height='24px' width='24px' type={props.value} />
@@ -75,20 +75,16 @@ export const useMoveTableColumns = (
       },
 
       {
-        Header: 'power',
+        Header: 'pow',
         accessor: 'power',
-        Cell: (props) => (
-          <Box padding='0px 4px' style={{ fontWeight: 900 }}>
-            {props.value}
-          </Box>
-        ),
+        Cell: (props) => <Box style={{ fontWeight: 900 }}>{props.value}</Box>,
       },
       {
         Header: 'checks',
         accessor: 'checks',
       },
       {
-        Header: 'accuracy',
+        Header: 'acc',
         accessor: (move) => getAccuracy(move),
         Cell: (props: any) => {
           return `${props.value}%`

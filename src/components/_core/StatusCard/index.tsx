@@ -71,7 +71,7 @@ export const StatusCard = (props: StatusCardProps) => {
   const description = statusDescriptions[status.statusId]
   return (
     <TooltipCard>
-      <Box style={{ fontWeight: 700 }}>{status.name}</Box>
+      <Box style={{ fontFamily: 'Trade Winds' }}>{status.name}</Box>
 
       <Box
         color='rgba(255,255,255,0.63)'

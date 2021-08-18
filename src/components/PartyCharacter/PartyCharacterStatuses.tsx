@@ -1,6 +1,8 @@
 import { PartyCharacterProps } from '.'
 import { getImmunities, getStatuses } from '../../types/character/util'
+import { AbilityList } from '../_core/AbilityList'
 import { Box } from '../_core/Box'
+import { StatusList } from '../_core/StatusList'
 
 export const PartyCharacterStatuses = (props: PartyCharacterProps) => {
   const { character } = props
@@ -18,16 +20,7 @@ export const PartyCharacterStatuses = (props: PartyCharacterProps) => {
             Abilities
           </Box>
           <Box flexDirection='row'>
-            {abilities.map((ability, i) => (
-              <Box marginRight='4px'>
-                <span>
-                  <span>{ability.name}</span>
-                  {i !== abilities.length - 1 && abilities.length !== 1
-                    ? ', '
-                    : ''}
-                </span>
-              </Box>
-            ))}
+            <AbilityList abilities={abilities} />
           </Box>
         </>
       )}
@@ -40,22 +33,7 @@ export const PartyCharacterStatuses = (props: PartyCharacterProps) => {
             Statuses
           </Box>
           <Box flexDirection='row'>
-            {statuses.map((status, i) => (
-              <Box marginRight='4px'>
-                <span>
-                  <span
-                    style={{
-                      color: status.isPositive ? 'lightgreen' : 'lightcoral',
-                    }}
-                  >
-                    {status.name}
-                  </span>
-                  {i !== statuses.length - 1 && statuses.length !== 1
-                    ? ', '
-                    : ''}
-                </span>
-              </Box>
-            ))}
+            <StatusList statuses={statuses} showIcon={false} type='source' />
           </Box>
         </>
       )}
@@ -68,16 +46,7 @@ export const PartyCharacterStatuses = (props: PartyCharacterProps) => {
             Immunities
           </Box>
           <Box flexDirection='row'>
-            {immunities.map((status, i) => (
-              <Box marginRight='4px'>
-                <span>
-                  <span>{status.name}</span>
-                  {i !== immunities.length - 1 && immunities.length !== 1
-                    ? ', '
-                    : ''}
-                </span>
-              </Box>
-            ))}
+            <StatusList statuses={immunities} showIcon={false} type='source' />
           </Box>
         </>
       )}

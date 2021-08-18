@@ -36,7 +36,7 @@ export const PartyCharacterTables = (props: PartyCharacterProps) => {
           overflow='auto'
         >
           {activeTab === 'moves' && <MoveTable character={character} />}
-          {activeTab === 'items' && <Box>Items</Box>}
+          {activeTab === 'items' && <Box padding='16px'>Coming Soon!</Box>}
         </Box>
       </Box>
     </Box>

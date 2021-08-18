@@ -7,7 +7,7 @@ export const ImmunityCard = (props: StatusCardProps) => {
 
   return (
     <TooltipCard>
-      <Box style={{ fontWeight: 700 }}>{status.name} Immunity</Box>
+      <Box style={{ fontFamily: 'Trade Winds' }}>{status.name} Immunity</Box>
     </TooltipCard>
   )
 }

@@ -3,7 +3,7 @@ import { Move } from '../move'
 
 export const EarthQuake: Move = {
   id: v4(),
-  name: 'Earth Quake',
+  name: 'Earthquake',
   type: 'physical',
   element: 'earth',
   target: 'all-active',

@@ -20,7 +20,8 @@ export type PartyCharacterProps = {
 export const PartyCharacter = (props: PartyCharacterProps) => {
   const { character } = props
   const { updateCharacter } = usePlayer()
-  const { allCharacters, getCharacter, setActiveCharacterId } = usePartySystem()
+  const { allCharacters, getCharacter, setActiveCharacterId, getMoveOptions } =
+    usePartySystem()
 
   const handleCharacterChange = (option: { value: string; label: string }) => {
     const found = getCharacter(option.value)
@@ -93,6 +94,25 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                   <Select
                     isDisabled={character.moves.length >= stats.memory}
                     value={{ value: move?.id, label: move?.name }}
+                    options={getMoveOptions(character.id).map((m) => ({
+                      value: m.id,
+                      label: m.name,
+                    }))}
+                    onChange={(e) => {
+                      const moveToAdd = getMoveOptions(character.id).find(
+                        (m) => m.id === e?.value,
+                      )
+                      if (moveToAdd) {
+                        updateCharacter(character.id, (c) => {
+                          const moves = [...c.moves]
+                          moves[i] = moveToAdd
+                          return {
+                            ...c,
+                            moves,
+                          }
+                        })
+                      }
+                    }}
                   />
                 </Box>
               ))}

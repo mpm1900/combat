@@ -8,21 +8,13 @@ export const Wrapper = styled(Box)({
   alignItems: 'center',
 })
 
-export const StatusWrapper = styled(Box)<{ isPositive: boolean }>((props) => ({
-  color: !props.isPositive ? theme.statsPink : theme.statsGreen,
+export const AbilityWrapper = styled(Box)((props) => ({
   marginRight: '4px',
   flexDirection: 'row',
   alignItems: 'center',
 }))
 
-export const StatusChance = styled(Box)({
-  marginRight: '2px',
-  opacity: 0.72,
-  fontSize: '10px',
-  fontWeight: 300,
-})
-
-export const StatusName = styled(Box)<{ isHovering?: boolean }>((props) => ({
+export const AbilityName = styled(Box)<{ isHovering?: boolean }>((props) => ({
   fontSize: '13px',
   fontWeight: 400,
   cursor: 'default',
