@@ -39,3 +39,7 @@ div::-webkit-scrollbar-thumb {
   background-clip: content-box;
   background-color: rgba(255, 255, 255, 0.27);
 }
+
+div::-webkit-scrollbar-corner {
+  background: transparent;
+}
