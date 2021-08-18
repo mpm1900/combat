@@ -55,8 +55,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               }))}
               onChange={(e) => e && handleCharacterChange(e)}
             />
-            <Box height='16px' />
-            <Box>
+            <Box marginTop='16px'>
               <Box flexDirection='row'>
                 <CombatCharacterAvatar
                   character={character}
@@ -93,7 +92,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                 <Box marginTop='8px'>
                   <Select
                     isDisabled={character.moves.length >= stats.memory}
-                    value={{ value: move?.id, label: move.name }}
+                    value={{ value: move?.id, label: move?.name }}
                   />
                 </Box>
               ))}

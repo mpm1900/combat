@@ -78,7 +78,7 @@ export const useMoveTableColumns = (
         Header: 'power',
         accessor: 'power',
         Cell: (props) => (
-          <Box padding='0px 4px' style={{ fontSize: '20px', fontWeight: 900 }}>
+          <Box padding='0px 4px' style={{ fontWeight: 900 }}>
             {props.value}
           </Box>
         ),

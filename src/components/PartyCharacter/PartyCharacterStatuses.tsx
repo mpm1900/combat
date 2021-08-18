@@ -15,7 +15,7 @@ export const PartyCharacterStatuses = (props: PartyCharacterProps) => {
             marginTop='16px'
             style={{ fontFamily: 'Trade Winds', fontSize: '16px' }}
           >
-            Statuses
+            Abilities
           </Box>
           <Box flexDirection='row'>
             {abilities.map((ability, i) => (
