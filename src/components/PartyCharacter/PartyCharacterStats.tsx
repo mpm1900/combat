@@ -30,7 +30,14 @@ export const PartyCharacterStats = (props: PartyCharacterProps) => {
   }
   const convertedStats = convertStats(character)
   return (
-    <Box width='240px' flexDirection='column' style={{ fontSize: '14px' }}>
+    <Box
+      width='240px'
+      flexDirection='column'
+      background='rgba(0,0,0,0.27)'
+      padding='8px'
+      margin='-8px'
+      style={{ fontSize: '14px' }}
+    >
       <Box style={{ fontFamily: 'Trade Winds', fontSize: '16px' }}>Stats</Box>
       <Box flex='1' marginRight='0px'>
         {nonZeroStatKeys.map((key) => (
@@ -41,7 +48,7 @@ export const PartyCharacterStats = (props: PartyCharacterProps) => {
                   ? theme.specialTextColor
                   : key.includes('physical')
                   ? theme.physicalTextColor
-                  : 'white'
+                  : 'rgba(255,255,255,0.72)'
               }
             >
               {statKeyMap[key] || key}

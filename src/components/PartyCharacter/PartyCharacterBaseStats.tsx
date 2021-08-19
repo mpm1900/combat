@@ -2,6 +2,7 @@ import { PartyCharacterProps } from '.'
 import {
   CharacterMainStatKeys,
   CharacterMainStatKeysType,
+  CharacterStats,
 } from '../../types/character/character'
 import { Bar } from '../_core/Bar'
 import { Box } from '../_core/Box'
@@ -28,8 +29,19 @@ const getAccuracyColor = (value: number) => {
   return 'hotpink'
 }
 
+function hsl_col_perc(percent: number, start: number, end: number) {
+  var a = percent / 100,
+    b = (end - start) * a,
+    c = b + start
+
+  // Return a CSS HSL string
+  return 'hsl(' + c + ', 90%, 40%)'
+}
+
 export const PartyCharacterBaseStats = (props: PartyCharacterProps) => {
   const { character } = props
+  const percent = (key: keyof CharacterStats) =>
+    character.stats[key] / (key.includes('Accuracy') ? 95 : 255)
   return (
     <Box marginLeft='16px'>
       {CharacterMainStatKeys.map((key) => (
@@ -38,15 +50,20 @@ export const PartyCharacterBaseStats = (props: PartyCharacterProps) => {
           height='24px'
           value={character.stats[key]}
           max={key.includes('Accuracy') ? 95 : 255}
-          background={
-            key.includes('Accuracy')
-              ? getAccuracyColor(character.stats[key])
-              : getStatColor(character.stats[key])
-          }
+          background={hsl_col_perc(percent(key) * 100, -45, 200)}
           minWidth='180px'
           margin='1px'
         >
-          <Box style={{ fontSize: '14px' }}>{statKeyMap[key]}</Box>
+          <Box
+            color='white'
+            style={{
+              fontSize: '14px',
+              fontWeight: 600,
+              textShadow: '0px 1px 2px rgba(0,0,0,1)',
+            }}
+          >
+            {statKeyMap[key]}
+          </Box>
           <Box flex='1' />
           <Box style={{ fontSize: '14px', fontFamily: 'Roboto Mono' }}>
             {character.stats[key]}

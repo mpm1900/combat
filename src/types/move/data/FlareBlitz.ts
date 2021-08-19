@@ -10,7 +10,7 @@ export const FlareBlitz: Move = {
   target: 'all-active', // 'uncontrolled-active-party',
   checks: 4,
   offset: 0,
-  power: 1200,
+  power: 120,
   recovery: 100,
   energyCost: 20,
   perfectStatuses: {

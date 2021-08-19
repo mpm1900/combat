@@ -39,7 +39,7 @@ export const Darkrai = (): Character => ({
     physicalAttack: 90,
     physicalDefense: 90,
     specialAccuracy: 90,
-    specialAttack: 125,
+    specialAttack: 135,
     specialDefense: 90,
   },
   moves: [DoubleTeam, Rest, TimeWarp, Blitz, Protect, Focus, Curse, Silence],
