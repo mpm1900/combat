@@ -32,7 +32,7 @@ export const Charizard = (): Character => ({
   elements: [FireElement, AirElement],
   items: [BookOfFlight()],
   abilities: [Blaze],
-  statuses: [Silenced(1, -1, false)],
+  statuses: [],
   immunities: [],
   damage: 0,
   energyOffset: 0,
