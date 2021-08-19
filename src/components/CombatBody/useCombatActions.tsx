@@ -146,7 +146,6 @@ export const useCombatActions = () => {
             )
           }
           const flags = getCharacterFlags(char)
-          console.log(char.name, flags)
           const hasEnemySourceStatus =
             char.partyId !== activeCharacter.partyId &&
             moveResults[i].statuses.target.length > 0
@@ -158,11 +157,11 @@ export const useCombatActions = () => {
             }))
           }
 
-          if (flags.canRecieveDamage) {
+          if (!flags.isImmuneToDamage) {
             addDamageToCharacter(char.id, moveResults[i].totalDamage)
           }
 
-          if (flags.canRecieveStatuses) {
+          if (!flags.isImmuneToStatuses) {
             addStatusesToCharacter(char.id, moveResults[i].statuses.target)
           }
         }

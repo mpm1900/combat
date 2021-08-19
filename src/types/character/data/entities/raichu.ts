@@ -1,6 +1,7 @@
 import { v4 } from 'uuid'
 import { Levitate } from '../../../ability/data/Levitate'
 import { ThunderElement } from '../../../elemental/data/ThunderElement'
+import { Taunt } from '../../../move/data/Taunt'
 import { Thunderbolt } from '../../../move/data/Thunderbolt'
 import { ThunderPunch } from '../../../move/data/ThunderPunch'
 import { Protected } from '../../../status/data/Protected'
@@ -36,5 +37,5 @@ export const Raichu = (): Character => ({
     specialAttack: 90,
     specialDefense: 80,
   },
-  moves: [ThunderPunch, Thunderbolt],
+  moves: [ThunderPunch, Thunderbolt, Taunt],
 })

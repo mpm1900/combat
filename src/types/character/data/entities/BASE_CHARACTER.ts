@@ -1,5 +1,5 @@
 import { v4 } from 'uuid'
-import { Character, TRUE_FLAGS } from '../../character'
+import { Character, FALSE_FLAGS } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 
 export const BASE_CHARACTER_ID = v4()
@@ -24,6 +24,6 @@ export const BASE_CHARACTER: Character = {
     equip: 2,
     benchRecovery: 50,
   },
-  flags: TRUE_FLAGS,
+  flags: FALSE_FLAGS,
   moves: [],
 }

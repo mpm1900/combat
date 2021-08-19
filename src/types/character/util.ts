@@ -132,17 +132,18 @@ export const getStatsAndEquations = (
   return [stats, modifier]
 }
 
-export const andCharacterFlags = (flags: CharacterFlags[]): CharacterFlags => {
+export const orCharacterFlags = (flags: CharacterFlags[]): CharacterFlags => {
   return flags.reduce((result, flag) => {
     return {
       ...result,
-      canRecieveDamage: result.canRecieveDamage && flag.canRecieveDamage,
-      canRecieveStatuses: result.canRecieveStatuses && flag.canRecieveDamage,
+      isImmuneToDamage: result.isImmuneToDamage || flag.isImmuneToDamage,
+      isImmuneToStatuses: result.isImmuneToStatuses || flag.isImmuneToStatuses,
+      isTaunting: result.isTaunting || flag.isTaunting,
     }
   })
 }
 
 export const getCharacterFlags = (character: Character) => {
   const flags = [character.flags, ...getStatuses(character).map((s) => s.flags)]
-  return andCharacterFlags(flags)
+  return orCharacterFlags(flags)
 }

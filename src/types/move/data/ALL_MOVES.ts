@@ -10,6 +10,7 @@ import { Protect } from './Protect'
 import { RazorLeaf } from './RazorLeaf'
 import { Rest } from './Rest'
 import { Silence } from './Silence'
+import { Taunt } from './Taunt'
 import { Thunderbolt } from './Thunderbolt'
 import { ThunderPunch } from './ThunderPunch'
 import { TimeWarp } from './TimeWarp'
@@ -25,6 +26,7 @@ export const ALL_MOVES = [
   FlareBlitz,
   Focus,
   Protect,
+  Taunt,
   RazorLeaf,
   Rest,
   Silence,

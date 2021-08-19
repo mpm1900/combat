@@ -58,7 +58,6 @@ export const CombatSystemBuffer = (props: PropsWithChildren<{}>) => {
     }
   }
   const clearBuffers = () => {
-    console.log('clearing results')
     setMoveBuffer(undefined)
     setTargetsBuffer(undefined)
     setMoveResults(undefined)

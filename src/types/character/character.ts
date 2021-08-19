@@ -117,13 +117,15 @@ export type ResolvedCharacterStats = CharacterStats & {
 }
 
 export type CharacterFlags = {
-  canRecieveDamage: boolean
-  canRecieveStatuses: boolean
+  isImmuneToDamage: boolean
+  isImmuneToStatuses: boolean
+  isTaunting: boolean
 }
 
-export const TRUE_FLAGS: CharacterFlags = {
-  canRecieveDamage: true,
-  canRecieveStatuses: true,
+export const FALSE_FLAGS: CharacterFlags = {
+  isImmuneToDamage: false,
+  isImmuneToStatuses: false,
+  isTaunting: false,
 }
 
 export type Character = {

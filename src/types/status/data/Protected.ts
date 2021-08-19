@@ -1,5 +1,5 @@
 import { v4 } from 'uuid'
-import { TRUE_FLAGS } from '../../character/character'
+import { FALSE_FLAGS } from '../../character/character'
 import { makeStatusFn } from '../util'
 
 export const ProtectedId = v4()
@@ -17,7 +17,8 @@ export const Protected = makeStatusFn({
     },
   ],
   flags: {
-    canRecieveDamage: false,
-    canRecieveStatuses: false,
+    ...FALSE_FLAGS,
+    isImmuneToDamage: true,
+    isImmuneToStatuses: true,
   },
 })

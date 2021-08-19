@@ -4,6 +4,7 @@ import {
 } from '../../../types/character/character'
 import { Status } from '../../../types/status/status'
 import { Box } from '../Box'
+import { StatusIcon } from '../StatusIcon'
 import { TooltipCard } from '../TooltipCard'
 import { statusDescriptions } from './descriptions'
 
@@ -64,8 +65,9 @@ export const statKeyMap: Record<keyof CharacterStats, string> = {
 }
 
 export const flagMap: Record<keyof CharacterFlags, string> = {
-  canRecieveDamage: 'Can Recieve Damage',
-  canRecieveStatuses: 'Can Recieve Statuses',
+  isImmuneToDamage: 'Immune to Damage',
+  isImmuneToStatuses: 'Immune to Statuses',
+  isTaunting: 'Taunting',
 }
 
 export type StatusCardProps = {
@@ -79,12 +81,24 @@ export const StatusCard = (props: StatusCardProps) => {
     Object.keys(mod.stats),
   ) as (keyof CharacterStats)[][]
   const flagKeys = (Object.keys(flags) as (keyof CharacterFlags)[]).filter(
-    (key) => flags[key] === false,
+    (key) => flags[key] === true,
   )
   const description = statusDescriptions[status.statusId]
   return (
     <TooltipCard>
-      <Box style={{ fontFamily: 'Trade Winds' }}>{name}</Box>
+      <Box
+        flexDirection='row'
+        alignItems='center'
+        style={{ fontFamily: 'Trade Winds' }}
+      >
+        <StatusIcon
+          color='white'
+          width='16px'
+          marginRight='8px '
+          status={status}
+        />
+        {name}
+      </Box>
 
       <Box
         color='rgba(255,255,255,0.63)'

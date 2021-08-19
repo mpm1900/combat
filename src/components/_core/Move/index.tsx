@@ -38,7 +38,7 @@ export const Move = (props: PropsWithChildren<MoveProps>) => {
 
       return `(${getMoveAccuracy(move, stats, elementAccuracyBonus)}%)`
     }
-    return `(${move.offset >= 0 && '+'}${move.offset})`
+    return `(${move.offset >= 0 ? '+' : ''}${move.offset})`
   }, [character, move])
 
   return (

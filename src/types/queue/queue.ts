@@ -87,7 +87,6 @@ export const enQueue = (
   characters: Character[],
   recovery: number,
 ): Queue => {
-  console.log('enque', recovery)
   const statArray: QueueStats = characters.map((c) => ({
     id: c.id,
     value: getStats(c),

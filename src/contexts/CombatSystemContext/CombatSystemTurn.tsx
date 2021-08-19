@@ -77,7 +77,6 @@ export const CombatSystemTurn = (props: PropsWithChildren<{}>) => {
 
   useEffect(() => {
     if (validationComplete) {
-      console.log('validation complete, pass', activeCharacter?.name)
       reset()
       reduceStatusDurations()
       const newActiveId = enqueue(moveBuffer?.recovery || 0)

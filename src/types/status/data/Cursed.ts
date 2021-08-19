@@ -1,5 +1,5 @@
 import { v4 } from 'uuid'
-import { TRUE_FLAGS } from '../../character/character'
+import { FALSE_FLAGS } from '../../character/character'
 import { makeStatusFn } from '../util'
 
 export const CursedId = v4()
@@ -21,5 +21,5 @@ export const Cursed = makeStatusFn({
       },
     },
   ],
-  flags: TRUE_FLAGS,
+  flags: FALSE_FLAGS,
 })
