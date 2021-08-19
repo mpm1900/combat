@@ -2,7 +2,6 @@ import { usePartySystem } from '../../contexts/PartySystemContext'
 import { usePlayer } from '../../contexts/PlayerContext'
 import { theme } from '../../theme'
 import { Character } from '../../types/character/character'
-import { getStats } from '../../types/character/util'
 
 import { CombatCharacterAvatar } from '../CombatCharacterAvatar'
 import { Box } from '../_core/Box'
@@ -23,13 +22,7 @@ export type PartyCharacterProps = {
 export const PartyCharacter = (props: PartyCharacterProps) => {
   const { character } = props
   const { party, updateCharacter, setParty } = usePlayer()
-  const {
-    allCharacters,
-    getCharacter,
-    setActiveCharacterId,
-    getMoveOptions,
-    getItemOptions,
-  } = usePartySystem()
+  const { allCharacters, getCharacter, setActiveCharacterId } = usePartySystem()
 
   const handleCharacterChange = (option: { value: string; label: string }) => {
     const found = getCharacter(option.value)
@@ -39,14 +32,6 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
       setActiveCharacterId(id)
     }
   }
-  const stats = getStats(character)
-  const itemList = Array(stats.equip)
-    .fill(undefined)
-    .map((_, i) => character.items[i])
-  const moveList = Array(stats.memory)
-    .fill(undefined)
-    .map((_, i) => character.moves[i])
-
   const removeCharacter = () => {
     const characters = party.characters.filter((c) => c.id !== character.id)
     setActiveCharacterId(characters[0].id)

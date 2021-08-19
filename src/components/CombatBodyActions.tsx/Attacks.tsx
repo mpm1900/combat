@@ -7,6 +7,7 @@ import { Move } from '../_core/Move'
 import { Box } from '../_core/Box'
 import { Button } from '../_core/Button'
 import { ElementalIcon } from '../_core/ElementalIcon'
+import { min } from '../../types/equation'
 
 export type CombatBodyActionsAttacksProps = {
   character: Character
@@ -41,7 +42,7 @@ export const CombatBodyActionsAttacks = (
               width='200px'
               disabled={
                 !stats ||
-                stats.energy - character.energyOffset < move.energyCost
+                min(stats.energy - character.energyOffset, 0) < move.energyCost
               }
               isHovering={move.id === activeMove?.id}
               onClick={() => {

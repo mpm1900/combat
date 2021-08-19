@@ -18,6 +18,7 @@ import { Confused } from '../../../status/data/Confused'
 import { FireAccuracyUp } from '../../../status/data/FireAccuracyUp'
 import { FireAttackUp } from '../../../status/data/FireAttackUp'
 import { Protected } from '../../../status/data/Protected'
+import { Silenced } from '../../../status/data/Silenced'
 import { Character } from '../../character'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
 
@@ -31,7 +32,7 @@ export const Charizard = (): Character => ({
   elements: [FireElement, AirElement],
   items: [BookOfFlight()],
   abilities: [Blaze],
-  statuses: [],
+  statuses: [Silenced(1, -1, false)],
   immunities: [],
   damage: 0,
   energyOffset: 0,
