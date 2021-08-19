@@ -13,6 +13,8 @@ import { PartyCharacterTables } from './PartyCharacterTables'
 import { PartyCharacterStatuses } from './PartyCharacterStatuses'
 import { ElementalList } from '../_core/ElementalList'
 import { PartyCharacterDetails } from './PartyCharacterDetails'
+import { CriticalButton } from '../_core/Button'
+import { v4 } from 'uuid'
 
 export type PartyCharacterProps = {
   character: Character
@@ -20,7 +22,7 @@ export type PartyCharacterProps = {
 
 export const PartyCharacter = (props: PartyCharacterProps) => {
   const { character } = props
-  const { updateCharacter } = usePlayer()
+  const { party, updateCharacter, setParty } = usePlayer()
   const {
     allCharacters,
     getCharacter,
@@ -32,7 +34,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
   const handleCharacterChange = (option: { value: string; label: string }) => {
     const found = getCharacter(option.value)
     if (found) {
-      updateCharacter(character.id, () => found)
+      updateCharacter(character.id, () => ({ ...found, id: v4() }))
       setActiveCharacterId(found.id)
     }
   }
@@ -43,6 +45,15 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
   const moveList = Array(stats.memory)
     .fill(undefined)
     .map((_, i) => character.moves[i])
+
+  const removeCharacter = () => {
+    const characters = party.characters.filter((c) => c.id !== character.id)
+    setActiveCharacterId(characters[0].id)
+    setParty({
+      ...party,
+      characters,
+    })
+  }
 
   return (
     <Box flexDirection='row' overflow='hidden'>
@@ -102,6 +113,13 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           <Box overflowY='auto'>
             <PartyCharacterStats character={character} />
             <PartyCharacterStatuses character={character} />
+            <Box flex='1' />
+            <CriticalButton
+              disabled={party.characters.length === 1}
+              onClick={removeCharacter}
+            >
+              Remove
+            </CriticalButton>
           </Box>
         </Box>
       </Box>

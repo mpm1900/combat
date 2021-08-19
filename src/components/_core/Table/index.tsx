@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Column, useSortBy, useTable } from 'react-table'
+import { Column, TableOptions, useSortBy, useTable } from 'react-table'
 import { theme } from '../../../theme'
 
 export const StyledTable = styled.table({
@@ -29,13 +29,15 @@ export const Td = styled.td({
 export type TableProps<T extends Object> = {
   data: T[]
   columns: Column<T>[]
+  options?: Omit<TableOptions<T>, 'data' | 'columns'>
 }
 
 export function Table<T extends Object>(props: TableProps<T>) {
-  const { data, columns } = props
+  const { data, columns, options } = props
 
   const table = useTable<T>(
     {
+      ...options,
       data,
       columns,
     },

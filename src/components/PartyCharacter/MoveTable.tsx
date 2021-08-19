@@ -37,7 +37,20 @@ export const MoveTable = (props: { character: Character }) => {
 
   return (
     <Box overflow='auto'>
-      <Table data={data} columns={columns} />
+      <Table
+        data={data}
+        columns={columns}
+        options={{
+          initialState: {
+            sortBy: [
+              {
+                id: 'name',
+                desc: false,
+              },
+            ],
+          } as any,
+        }}
+      />
     </Box>
   )
 }

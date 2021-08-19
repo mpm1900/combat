@@ -19,13 +19,20 @@ const enemies = (): PartyType => ({
 
 export const Party = () => {
   const { push } = useHistory()
-  const { party } = usePlayer()
+  const { party, setParty } = usePlayer()
   const { characters } = party
-  const { activeCharacter, setActiveCharacterId } = usePartySystem()
+  const { activeCharacter, setActiveCharacterId, allCharacters } =
+    usePartySystem()
   const { init } = useCombatSystem()
   const startCombat = () => {
     init(enemies())
     push('/')
+  }
+  const addCharacter = () => {
+    setParty({
+      ...party,
+      characters: [...party.characters, { ...allCharacters[0], id: v4() }],
+    })
   }
   return (
     <Box flex='1' color='white' height='calc(100vh - 25px)'>
@@ -45,6 +52,11 @@ export const Party = () => {
               {character.name}
             </Button>
           ))}
+          {characters.length < 6 && (
+            <Button margin='8px 8px 8px 0' onClick={addCharacter}>
+              +
+            </Button>
+          )}
         </Box>
         <Box>
           <CriticalButton onClick={startCombat}>Start Combat</CriticalButton>

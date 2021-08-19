@@ -117,12 +117,14 @@ export type ResolvedCharacterStats = CharacterStats & {
 }
 
 export type CharacterFlags = {
+  isConfused: boolean
   isImmuneToDamage: boolean
   isImmuneToStatuses: boolean
   isTaunting: boolean
 }
 
 export const FALSE_FLAGS: CharacterFlags = {
+  isConfused: false,
   isImmuneToDamage: false,
   isImmuneToStatuses: false,
   isTaunting: false,

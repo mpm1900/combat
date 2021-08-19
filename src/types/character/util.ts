@@ -136,6 +136,7 @@ export const orCharacterFlags = (flags: CharacterFlags[]): CharacterFlags => {
   return flags.reduce((result, flag) => {
     return {
       ...result,
+      isConfused: result.isConfused || flag.isConfused,
       isImmuneToDamage: result.isImmuneToDamage || flag.isImmuneToDamage,
       isImmuneToStatuses: result.isImmuneToStatuses || flag.isImmuneToStatuses,
       isTaunting: result.isTaunting || flag.isTaunting,

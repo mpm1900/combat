@@ -33,7 +33,20 @@ export const ItemTable = (props: { character: Character }) => {
 
   return (
     <Box overflow='auto'>
-      <Table columns={columns} data={data} />
+      <Table
+        columns={columns}
+        data={data}
+        options={{
+          initialState: {
+            sortBy: [
+              {
+                id: 'name',
+                desc: false,
+              },
+            ],
+          } as any,
+        }}
+      />
     </Box>
   )
 }

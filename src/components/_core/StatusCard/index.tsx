@@ -65,6 +65,7 @@ export const statKeyMap: Record<keyof CharacterStats, string> = {
 }
 
 export const flagMap: Record<keyof CharacterFlags, string> = {
+  isConfused: 'Confused',
   isImmuneToDamage: 'Immune to Damage',
   isImmuneToStatuses: 'Immune to Statuses',
   isTaunting: 'Taunting',

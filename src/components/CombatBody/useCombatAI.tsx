@@ -21,7 +21,8 @@ export const useCombatAI = () => {
 
   useEffect(() => {
     if (activeCharacter && !moveBuffer) {
-      if (!isCharacterPlayerCharacter(activeCharacter.id)) {
+      const flags = getCharacterFlags(activeCharacter)
+      if (!isCharacterPlayerCharacter(activeCharacter.id) || flags.isConfused) {
         const stats = getCharacterStats(activeCharacter.id)
         const availableEnergy = min(
           stats.energy - activeCharacter.energyOffset,
@@ -51,10 +52,14 @@ export const useCombatAI = () => {
           )
         }),
       )
+      const flags = getCharacterFlags(activeCharacter)
       if (tauntedTargets.length > 0) {
         const targetsIndex = Math.floor(Math.random() * tauntedTargets.length)
         setTargetsBuffer(tauntedTargets[targetsIndex])
-      } else if (!isCharacterPlayerCharacter(activeCharacter.id)) {
+      } else if (
+        !isCharacterPlayerCharacter(activeCharacter.id) ||
+        flags.isConfused
+      ) {
         const targetsIndex = Math.floor(Math.random() * targetsOptions.length)
         setTargetsBuffer(targetsOptions[targetsIndex])
       }
