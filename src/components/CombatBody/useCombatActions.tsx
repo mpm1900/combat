@@ -8,17 +8,13 @@ import {
   Character,
   CharacterStats,
   ElementalAccuracyStats,
-  ResolvedCharacterStats,
 } from '../../types/character/character'
 import {
-  getModifiers,
-  getStats,
+  getCharacterFlags,
   getStatsAndEquations,
-  getStatuses,
 } from '../../types/character/util'
 import { Equation, max, min } from '../../types/equation'
-import { getRolls, Move, MoveResult, resolveMove } from '../../types/move'
-import { ProtectedId } from '../../types/status/data/Protected'
+import { getRolls, Move, resolveMove } from '../../types/move'
 import { LogCharacter, LogElement } from '../CombatLogs'
 import { Box } from '../_core/Box'
 
@@ -49,7 +45,7 @@ export const useCombatActions = () => {
     updateQueueItemById,
     substituteCharacters,
   } = useCombatSystem()
-  const { turnId, nextTurn } = useCombatSystemTurn()
+  const { nextTurn } = useCombatSystemTurn()
   const {
     rolls,
     moveBuffer,
@@ -149,28 +145,25 @@ export const useCombatActions = () => {
               moveResults[i].statuses.source,
             )
           }
-          const protectedStatus = getStatuses(char).find(
-            (s) => s.statusId === ProtectedId,
-          )
+          const flags = getCharacterFlags(char)
+          console.log(char.name, flags)
           const hasEnemySourceStatus =
             char.partyId !== activeCharacter.partyId &&
             moveResults[i].statuses.target.length > 0
 
-          if (
-            protectedStatus &&
-            (moveResults[i].totalDamage > 0 || hasEnemySourceStatus)
-          ) {
+          if (moveResults[i].totalDamage > 0 || hasEnemySourceStatus) {
             updateCharacter(char.id, (c) => ({
               ...c,
               statuses: c.statuses.filter((s) => !s.removeOnHit),
             }))
-          } else {
-            updateCharacter(char.id, (c) => ({
-              ...c,
-              statuses: c.statuses.filter((s) => !s.removeOnHit),
-            }))
-            addStatusesToCharacter(char.id, moveResults[i].statuses.target)
+          }
+
+          if (flags.canRecieveDamage) {
             addDamageToCharacter(char.id, moveResults[i].totalDamage)
+          }
+
+          if (flags.canRecieveStatuses) {
+            addStatusesToCharacter(char.id, moveResults[i].statuses.target)
           }
         }
       })

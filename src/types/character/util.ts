@@ -8,7 +8,12 @@ import {
   StatEquations,
 } from '../stats'
 import { Status } from '../status/status'
-import { Character, CharacterStats, ResolvedCharacterStats } from './character'
+import {
+  Character,
+  CharacterFlags,
+  CharacterStats,
+  ResolvedCharacterStats,
+} from './character'
 import { BASE_MODIFIER } from './data'
 
 export const getAbilities = (character: Character) => {
@@ -125,4 +130,19 @@ export const getStatsAndEquations = (
 ): [CharacterStats, StatEquations] => {
   const modifier = reduceModifiersToEquations(getModifiers(character))
   return [stats, modifier]
+}
+
+export const andCharacterFlags = (flags: CharacterFlags[]): CharacterFlags => {
+  return flags.reduce((result, flag) => {
+    return {
+      ...result,
+      canRecieveDamage: result.canRecieveDamage && flag.canRecieveDamage,
+      canRecieveStatuses: result.canRecieveStatuses && flag.canRecieveDamage,
+    }
+  })
+}
+
+export const getCharacterFlags = (character: Character) => {
+  const flags = [character.flags, ...getStatuses(character).map((s) => s.flags)]
+  return andCharacterFlags(flags)
 }

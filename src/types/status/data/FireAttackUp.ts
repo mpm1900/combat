@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { TRUE_FLAGS } from '../../character/character'
 import { makeStatusFn } from '../util'
 
 export const FireAttackUpId = v4()
@@ -20,4 +21,5 @@ export const FireAttackUp = makeStatusFn({
       },
     },
   ],
+  flags: TRUE_FLAGS,
 })

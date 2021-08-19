@@ -116,6 +116,16 @@ export type ResolvedCharacterStats = CharacterStats & {
   healthRatio: number
 }
 
+export type CharacterFlags = {
+  canRecieveDamage: boolean
+  canRecieveStatuses: boolean
+}
+
+export const TRUE_FLAGS: CharacterFlags = {
+  canRecieveDamage: true,
+  canRecieveStatuses: true,
+}
+
 export type Character = {
   id: string
   characterId: string
@@ -125,6 +135,7 @@ export type Character = {
   damage: number
   energyOffset: number
   stats: CharacterStats
+  flags: CharacterFlags
   elements: Elemental[]
   items: Item[]
   abilities: Ability[]

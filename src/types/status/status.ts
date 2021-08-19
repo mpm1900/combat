@@ -1,3 +1,4 @@
+import { CharacterFlags } from '../character/character'
 import { Modifier } from '../stats/stats'
 
 export type Status = {
@@ -13,6 +14,7 @@ export type Status = {
   removeOnActiveTurnEnd: boolean
   applyChance: number
   modifiers: Modifier[]
+  flags: CharacterFlags
 }
 
 export type ResolvedStatus = Status & {

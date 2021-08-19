@@ -1,4 +1,7 @@
-import { CharacterStats } from '../../../types/character/character'
+import {
+  CharacterFlags,
+  CharacterStats,
+} from '../../../types/character/character'
 import { Status } from '../../../types/status/status'
 import { Box } from '../Box'
 import { TooltipCard } from '../TooltipCard'
@@ -60,19 +63,28 @@ export const statKeyMap: Record<keyof CharacterStats, string> = {
   lightResistance: 'Light Resistance',
 }
 
+export const flagMap: Record<keyof CharacterFlags, string> = {
+  canRecieveDamage: 'Can Recieve Damage',
+  canRecieveStatuses: 'Can Recieve Statuses',
+}
+
 export type StatusCardProps = {
   status: Status
 }
 
 export const StatusCard = (props: StatusCardProps) => {
   const { status } = props
-  const modKeys = status.modifiers.map((mod) =>
+  const { name, duration, flags, modifiers } = status
+  const modKeys = modifiers.map((mod) =>
     Object.keys(mod.stats),
   ) as (keyof CharacterStats)[][]
+  const flagKeys = (Object.keys(flags) as (keyof CharacterFlags)[]).filter(
+    (key) => flags[key] === false,
+  )
   const description = statusDescriptions[status.statusId]
   return (
     <TooltipCard>
-      <Box style={{ fontFamily: 'Trade Winds' }}>{status.name}</Box>
+      <Box style={{ fontFamily: 'Trade Winds' }}>{name}</Box>
 
       <Box
         color='rgba(255,255,255,0.63)'
@@ -80,37 +92,49 @@ export const StatusCard = (props: StatusCardProps) => {
         style={{ fontWeight: 400, fontSize: '10px' }}
       >
         <span style={{ whiteSpace: 'nowrap' }}>
-          Duration:{' '}
-          {status.duration <= -1 ? <span>&#8734;</span> : status.duration} Turn
-          {status.duration !== 1 ? 's' : ''}
+          Duration: {duration <= -1 ? <span>&#8734;</span> : duration} Turn
+          {duration !== 1 ? 's' : ''}
         </span>
       </Box>
       {description && <Box style={{ fontSize: '14px' }}>{description}</Box>}
-      {!description && (
-        <Box style={{ fontSize: '14px' }}>
-          {modKeys.map((keys, modIndex) =>
-            keys.map((key) => {
-              const mod = status.modifiers[modIndex]
-              const eq = mod.stats[key]
-              if (!eq) return null
-              return (
-                <Box key={`${status.id}-${key}`}>
-                  {eq.m !== 0 && (
-                    <Box>
-                      {statKeyMap[key]}: {eq.m > 0 ? '+' : ''}
-                      {eq.m * 100}%
-                    </Box>
-                  )}
-                  {eq.b !== 0 && (
-                    <Box>
-                      {statKeyMap[key]}: {eq.b > 0 ? '+' : ''}
-                      {eq.b}
-                    </Box>
-                  )}
-                </Box>
-              )
-            }),
-          )}
+      <Box style={{ fontSize: '14px' }}>
+        {modKeys.map((keys, modIndex) =>
+          keys.map((key) => {
+            const mod = modifiers[modIndex]
+            const eq = mod.stats[key]
+            if (!eq) return null
+            return (
+              <Box key={`${status.id}-${key}`}>
+                {eq.m !== 0 && (
+                  <Box>
+                    {statKeyMap[key]}: {eq.m > 0 ? '+' : ''}
+                    {eq.m * 100}%
+                  </Box>
+                )}
+                {eq.b !== 0 && (
+                  <Box>
+                    {statKeyMap[key]}: {eq.b > 0 ? '+' : ''}
+                    {eq.b}
+                  </Box>
+                )}
+              </Box>
+            )
+          }),
+        )}
+      </Box>
+      {flagKeys.length > 0 && (
+        <Box marginTop='8px'>
+          {flagKeys.map((key) => (
+            <Box key={key} style={{ fontSize: '12px' }}>
+              <Box>
+                <span>
+                  {flagMap[key]}
+                  {'? '}
+                  <strong>{String(flags[key])}</strong>
+                </span>
+              </Box>
+            </Box>
+          ))}
         </Box>
       )}
       {(status.removeOnHit ||

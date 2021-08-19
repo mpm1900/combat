@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { TRUE_FLAGS } from '../../character/character'
 import { makeStatusFn } from '../util'
 
 export const WetId = v4()
@@ -21,4 +22,5 @@ export const Wet = makeStatusFn({
       },
     },
   ],
+  flags: TRUE_FLAGS,
 })

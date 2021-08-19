@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { TRUE_FLAGS } from '../../character/character'
 import { makeStatusFn } from '../util'
 
 export const EarthImmunityId = v4()
@@ -20,4 +21,5 @@ export const EarthImmunity = makeStatusFn({
       },
     },
   ],
+  flags: TRUE_FLAGS,
 })

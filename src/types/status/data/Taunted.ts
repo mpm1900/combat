@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { TRUE_FLAGS } from '../../character/character'
 import { makeStatusFn } from '../util'
 
 export const TauntedId = v4()
@@ -15,4 +16,5 @@ export const Taunted = makeStatusFn({
       stats: {},
     },
   ],
+  flags: TRUE_FLAGS,
 })
