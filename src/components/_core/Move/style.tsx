@@ -6,7 +6,7 @@ import { Box } from '../Box'
 export const Wrapper = styled(Box)`
   color: white;
   flex-direction: column;
-  padding: 12px 16px 16px 16px;
+  padding: 12px 16px 0px 16px;
   border: 1px solid rgba(255, 255, 255, 0.27);
   min-width: 250px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.27);

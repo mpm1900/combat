@@ -41,7 +41,12 @@ export const MoveStatuses = (props: MoveStatusesProps) => {
 
   if (!hasFailureStatuses && !hasPerfectStatuses) return null
   return (
-    <Box background='rgba(0,0,0,0.27)' padding='8px' margin='0 -8px' {...rest}>
+    <Box
+      background='rgba(0,0,0,0.27)'
+      padding='8px'
+      margin='0 -8px 8px -8px'
+      {...rest}
+    >
       {hasPerfectStatuses && showPerfect && (
         <MoveStatusesSection
           checks={move.checks}
