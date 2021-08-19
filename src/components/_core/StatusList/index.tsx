@@ -53,7 +53,9 @@ export const StatusListItem = (
       onMouseLeave={() => setIsHovering(false)}
     >
       {status.applyChance < 1 && (
-        <StatusChance>({(status.applyChance * 100).toFixed(0)}%)</StatusChance>
+        <StatusChance style={{ fontSize: '12px' }}>
+          ({(status.applyChance * 100).toFixed(0)}%)
+        </StatusChance>
       )}
       <Tooltip
         isOpen={isHovering}

@@ -5,7 +5,7 @@ import { Character } from '../../types/character/character'
 import { getStats } from '../../types/character/util'
 import { Item } from '../../types/item/item'
 import { Box } from '../_core/Box'
-import { Table, Td, Th, Tr } from '../_core/Table'
+import { StyledTable, Table, Td, Th, Tr } from '../_core/Table'
 import { useItemTableColumns } from './useItemTableColumns'
 
 export const ItemTable = (props: { character: Character }) => {
@@ -36,7 +36,7 @@ export const ItemTable = (props: { character: Character }) => {
 
   return (
     <Box overflow='auto'>
-      <Table {...getTableProps()}>
+      <StyledTable {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <Tr {...headerGroup.getHeaderGroupProps()}>
@@ -63,7 +63,7 @@ export const ItemTable = (props: { character: Character }) => {
             )
           })}
         </tbody>
-      </Table>
+      </StyledTable>
     </Box>
   )
 }

@@ -10,7 +10,6 @@ import { Select } from '../_core/Select'
 import { PartyCharacterBaseStats } from './PartyCharacterBaseStats'
 import { PartyCharacterStats } from './PartyCharacterStats'
 import { PartyCharacterTables } from './PartyCharacterTables'
-import { MoveTable } from './MoveTable'
 import { PartyCharacterStatuses } from './PartyCharacterStatuses'
 import { ElementalList } from '../_core/ElementalList'
 
@@ -49,7 +48,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           flexDirection='row'
           overflow='auto'
         >
-          <Box marginRight='16px'>
+          <Box marginRight='32px'>
             <Select
               value={{ value: character.id, label: character.name }}
               options={allCharacters.map((c) => ({

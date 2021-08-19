@@ -51,3 +51,14 @@ Box.defaultProps = {
   display: 'flex',
   flexDirection: 'column',
 }
+
+export const NumberBox = (props: BoxProps) => (
+  <Box
+    {...props}
+    style={{
+      fontFamily: 'Roboto Mono',
+      fontSize: '14px',
+      ...(props.style || {}),
+    }}
+  />
+)

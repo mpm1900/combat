@@ -27,7 +27,7 @@ const iconMap: Record<ElementalType, FunctionComponent> = {
 }
 
 export const colorMap: Record<ElementalType, string> = {
-  normal: 'grey',
+  normal: 'rgba(255,255,255,0.72)',
   fire: 'salmon',
   water: 'CornflowerBlue',
   grass: 'lightgreen',

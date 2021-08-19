@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { theme } from '../../../theme'
-import { Box } from '../Box'
+import { Box, NumberBox } from '../Box'
 
 export const Wrapper = styled(Box)({
   marginLeft: '0x',
@@ -15,7 +15,7 @@ export const StatusWrapper = styled(Box)<{ isPositive: boolean }>((props) => ({
   alignItems: 'center',
 }))
 
-export const StatusChance = styled(Box)({
+export const StatusChance = styled(NumberBox)({
   marginRight: '2px',
   opacity: 0.72,
   fontSize: '10px',

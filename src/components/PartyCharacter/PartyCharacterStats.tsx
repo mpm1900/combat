@@ -34,7 +34,7 @@ export const PartyCharacterStats = (props: PartyCharacterProps) => {
       width='240px'
       flexDirection='column'
       background='rgba(0,0,0,0.27)'
-      padding='8px'
+      padding='8px 12px'
       margin='-8px'
       style={{ fontSize: '14px' }}
     >
