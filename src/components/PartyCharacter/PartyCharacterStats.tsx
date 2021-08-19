@@ -35,8 +35,11 @@ export const PartyCharacterStats = (props: PartyCharacterProps) => {
       flexDirection='column'
       background='rgba(0,0,0,0.27)'
       padding='8px 12px'
-      margin='-8px'
-      style={{ fontSize: '14px' }}
+      // margin='-8px'
+      style={{
+        fontSize: '14px',
+        boxShadow: 'inset 0px 0px 10px rgba(0,0,0,0.27)',
+      }}
     >
       <Box style={{ fontFamily: 'Trade Winds', fontSize: '16px' }}>Stats</Box>
       <Box flex='1' marginRight='0px'>

@@ -1,12 +1,12 @@
-import { useTable } from 'react-table'
+import { useMemo } from 'react'
 import { usePartySystem } from '../../contexts/PartySystemContext'
 import { usePlayer } from '../../contexts/PlayerContext'
 import { Character } from '../../types/character/character'
 import { getStats } from '../../types/character/util'
 import { Item } from '../../types/item/item'
 import { Box } from '../_core/Box'
-import { StyledTable, Table, Td, Th, Tr } from '../_core/Table'
-import { useItemTableColumns } from './useItemTableColumns'
+import { Table } from '../_core/Table'
+import { getItemTableColumns } from './getItemTableColumns'
 
 export const ItemTable = (props: { character: Character }) => {
   const { character } = props
@@ -26,44 +26,14 @@ export const ItemTable = (props: { character: Character }) => {
       items: c.items.filter((i) => i.itemId !== itemId),
     }))
   }
-  const columns = useItemTableColumns(character, stats, { addItem, removeItem })
-  const table = useTable<Item>({
-    data: getItemList(character.id),
-    columns,
-  })
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    table
+  const columns = useMemo(() => {
+    return getItemTableColumns(character, stats, { addItem, removeItem })
+  }, [character])
+  const data = useMemo(() => getItemList(character.id), [character.id])
 
   return (
     <Box overflow='auto'>
-      <StyledTable {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <Tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <Th
-                  {...column.getHeaderProps()}
-                  style={{ whiteSpace: 'nowrap', textAlign: 'left' }}
-                >
-                  {column.render('Header')}
-                </Th>
-              ))}
-            </Tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row)
-            return (
-              <Tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return <Td {...cell.getCellProps()}>{cell.render('Cell')}</Td>
-                })}
-              </Tr>
-            )
-          })}
-        </tbody>
-      </StyledTable>
+      <Table columns={columns} data={data} />
     </Box>
   )
 }

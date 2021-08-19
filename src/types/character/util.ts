@@ -52,7 +52,16 @@ export const getModifiers = (character: Character) => {
     (list, element) => [...list, ...element.modifiers],
     [] as Modifier[],
   )
-  return [BASE_MODIFIER, ...statusModifiers, ...elementModifiers]
+  const itemModifiers = character.items.reduce(
+    (list, item) => [...list, ...item.modifiers],
+    [] as Modifier[],
+  )
+  return [
+    BASE_MODIFIER,
+    ...statusModifiers,
+    ...elementModifiers,
+    ...itemModifiers,
+  ]
 }
 
 const converHealth = (health: number, level: number) => {
@@ -91,10 +100,12 @@ export const getStats = (character: Character): ResolvedCharacterStats => {
     ...stats,
     physicalAccuracy: max(stats.physicalAccuracy, 95),
     specialAccuracy: max(stats.specialAccuracy, 95),
-    physicalDefense: min(stats.physicalDefense, 1),
-    specialDefense: min(stats.specialDefense, 1),
-    speed: min(stats.speed, 0),
-    energy: min(stats.energy, 0),
+    physicalAttack: Math.floor(stats.physicalAttack),
+    specialAttack: Math.floor(stats.specialAttack),
+    physicalDefense: Math.floor(min(stats.physicalDefense, 1)),
+    specialDefense: Math.floor(min(stats.specialDefense, 1)),
+    speed: Math.floor(min(stats.speed, 0)),
+    energy: Math.floor(min(stats.energy, 0)),
     evasion: minmax(stats.evasion, 0, 100),
     healthRatio: health / stats.health,
   }

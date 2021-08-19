@@ -87,7 +87,7 @@ export const PartySystem = (props: PropsWithChildren<{}>) => {
     const char = getPartyCharacter(id)
     if (!char) return []
     return getItemList(id).filter(
-      (item) => !char.items.map((m) => m.id).includes(item.id),
+      (item) => !char.items.map((m) => m.itemId).includes(item.itemId),
     )
   }
 

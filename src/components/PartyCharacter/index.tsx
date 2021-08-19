@@ -12,6 +12,7 @@ import { PartyCharacterStats } from './PartyCharacterStats'
 import { PartyCharacterTables } from './PartyCharacterTables'
 import { PartyCharacterStatuses } from './PartyCharacterStatuses'
 import { ElementalList } from '../_core/ElementalList'
+import { PartyCharacterDetails } from './PartyCharacterDetails'
 
 export type PartyCharacterProps = {
   character: Character
@@ -20,8 +21,13 @@ export type PartyCharacterProps = {
 export const PartyCharacter = (props: PartyCharacterProps) => {
   const { character } = props
   const { updateCharacter } = usePlayer()
-  const { allCharacters, getCharacter, setActiveCharacterId, getMoveOptions } =
-    usePartySystem()
+  const {
+    allCharacters,
+    getCharacter,
+    setActiveCharacterId,
+    getMoveOptions,
+    getItemOptions,
+  } = usePartySystem()
 
   const handleCharacterChange = (option: { value: string; label: string }) => {
     const found = getCharacter(option.value)
@@ -46,9 +52,9 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
           background={theme.boxGradient}
           border={`1px solid ${theme.white3}`}
           flexDirection='row'
-          overflow='auto'
+          overflow='hidden'
         >
-          <Box marginRight='32px'>
+          <Box marginRight='16px' overflow='hidden'>
             <Select
               value={{ value: character.id, label: character.name }}
               options={allCharacters.map((c) => ({
@@ -57,7 +63,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
               }))}
               onChange={(e) => e && handleCharacterChange(e)}
             />
-            <Box marginTop='16px'>
+            <Box marginTop='16px' overflow='hidden'>
               <Box flexDirection='row'>
                 <Box>
                   <CombatCharacterAvatar
@@ -90,54 +96,10 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
                 </Box>
                 <PartyCharacterBaseStats character={character} />
               </Box>
-              <Box style={{ fontFamily: 'Trade Winds', fontSize: '16px' }}>
-                Items
-              </Box>
-              {itemList.map((item, i) => (
-                <Box marginTop='8px'>
-                  <Select
-                    isDisabled={character.items.length >= stats.equip}
-                    value={{ value: item?.id, label: item?.name }}
-                    options={[]}
-                  />
-                </Box>
-              ))}
-              <Box
-                marginTop='8px'
-                style={{ fontFamily: 'Trade Winds', fontSize: '16px' }}
-              >
-                Moves
-              </Box>
-              {moveList.map((move, i) => (
-                <Box marginTop='8px'>
-                  <Select
-                    isDisabled={character.moves.length >= stats.memory}
-                    value={{ value: move?.id, label: move?.name }}
-                    options={getMoveOptions(character.id).map((m) => ({
-                      value: m.id,
-                      label: m.name,
-                    }))}
-                    onChange={(e) => {
-                      const moveToAdd = getMoveOptions(character.id).find(
-                        (m) => m.id === e?.value,
-                      )
-                      if (moveToAdd) {
-                        updateCharacter(character.id, (c) => {
-                          const moves = [...c.moves]
-                          moves[i] = moveToAdd
-                          return {
-                            ...c,
-                            moves,
-                          }
-                        })
-                      }
-                    }}
-                  />
-                </Box>
-              ))}
+              <PartyCharacterDetails character={character} />
             </Box>
           </Box>
-          <Box>
+          <Box overflowY='auto'>
             <PartyCharacterStats character={character} />
             <PartyCharacterStatuses character={character} />
           </Box>

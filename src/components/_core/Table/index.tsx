@@ -23,6 +23,7 @@ export const Th = styled.th({
 export const Td = styled.td({
   padding: '4px',
   whiteSpace: 'nowrap',
+  fontSize: '14px',
 })
 
 export type TableProps<T extends Object> = {

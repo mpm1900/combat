@@ -51,7 +51,7 @@ export const PartyCharacterBaseStats = (props: PartyCharacterProps) => {
           value={character.stats[key]}
           max={key.includes('Accuracy') ? 95 : 255}
           background={hsl_col_perc(percent(key) * 100, -45, 200)}
-          minWidth='180px'
+          minWidth='198px'
           margin='1px'
         >
           <Box

@@ -10,4 +10,14 @@ export const BookOfFlight = (): Item => ({
   name: 'Book of Flight',
   abilities: [Levitate],
   moves: [AirSlash],
+  modifiers: [
+    {
+      stats: {
+        speed: {
+          m: 0.05,
+          b: 10,
+        },
+      },
+    },
+  ],
 })
