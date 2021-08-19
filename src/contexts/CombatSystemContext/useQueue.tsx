@@ -13,7 +13,9 @@ import { CombatSystemCharacter } from './types'
 export const useQueue = (initialValue?: Queue) => {
   const [queue, set] = useState<Queue>(initialValue || [])
   const enqueue = (characters: CombatSystemCharacter[], recovery: number) => {
-    set((q) => enQueue(q, getActiveId(q), characters, recovery))
+    const _queue = enQueue(queue, getActiveId(queue), characters, recovery)
+    set(_queue)
+    return getActiveId(_queue)
   }
   const updateById = (id: string, fn: (item: QueueItem) => QueueItem) => {
     set((q) => q.map((qi) => (qi.id === id ? fn(qi) : qi)))

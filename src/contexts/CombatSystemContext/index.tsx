@@ -36,7 +36,7 @@ export type CombatSystemContextValue = {
   benchCharacters: CombatSystemCharacter[]
   initialized: boolean
   init: (enemyParty: Party) => void
-  enqueue: (recovery: number) => void
+  enqueue: (recovery: number) => string
   getCharacter: (id: string) => CombatSystemCharacter | undefined
   getCharacters: (partyId: string) => CombatSystemCharacter[]
   getCharacterStats: (id: string) => ResolvedCharacterStats
@@ -60,6 +60,7 @@ export type CombatSystemContextValue = {
   addDamageToCharacter: (id: string, damage: number) => void
   addStatusesToCharacter: (id: string, statuses: ResolvedStatus[]) => void
   reduceStatusDurations: () => void
+  removeActiveTurnStartStatuses: (id: string) => void
 }
 
 const defaultValue: CombatSystemContextValue = {
@@ -71,7 +72,7 @@ const defaultValue: CombatSystemContextValue = {
   benchCharacters: [],
   initialized: false,
   init: () => {},
-  enqueue: () => {},
+  enqueue: () => '',
   getCharacter: () => undefined,
   getCharacters: () => [],
   getCharacterStats: () => ZERO_STATS,
@@ -87,6 +88,7 @@ const defaultValue: CombatSystemContextValue = {
   addDamageToCharacter: () => {},
   addStatusesToCharacter: () => {},
   reduceStatusDurations: () => {},
+  removeActiveTurnStartStatuses: () => {},
 }
 
 export const CombatSystemContext = createContext(defaultValue)
@@ -241,6 +243,13 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
     })
   }
 
+  const removeActiveTurnStartStatuses = (id: string) => {
+    updateCharacter(id, (c) => ({
+      ...c,
+      statuses: c.statuses.filter((s) => !s.removeOnActiveTurnStart),
+    }))
+  }
+
   const context: CombatSystemContextValue = {
     queue,
     partyIds,
@@ -266,6 +275,7 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
     addDamageToCharacter,
     addStatusesToCharacter,
     reduceStatusDurations,
+    removeActiveTurnStartStatuses,
   }
   return (
     <CombatSystemContext.Provider value={context}>

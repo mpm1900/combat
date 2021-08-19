@@ -16,6 +16,7 @@ import { Silence } from '../../../move/data/Silence'
 import { TimeWarp } from '../../../move/data/TimeWarp'
 import { FireAccuracyUp } from '../../../status/data/FireAccuracyUp'
 import { FireAttackUp } from '../../../status/data/FireAttackUp'
+import { Protected } from '../../../status/data/Protected'
 import { Character } from '../../character'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
 
