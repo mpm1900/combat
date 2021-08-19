@@ -56,7 +56,9 @@ export const getMoveTableColumns = (
     {
       Header: 'name',
       accessor: 'name',
-      Cell: (props) => <MoveList moves={[props.row.original]} />,
+      Cell: (props) => (
+        <MoveList moves={[props.row.original]} character={character} />
+      ),
     },
     {
       Header: 'elem',

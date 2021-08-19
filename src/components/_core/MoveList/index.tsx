@@ -7,19 +7,21 @@ import { AbilityCard } from '../AbilityCard'
 import { Move as MoveType } from '../../../types/move'
 import { Move } from '../Move'
 import { colorMap } from '../ElementalIcon'
+import { Character } from '../../../types/character/character'
 
 export type MoveListProps = {
   moves: MoveType[] | undefined
+  character?: Character
 }
 export const MoveList = (props: MoveListProps) => {
-  const { moves = [] } = props
+  const { moves = [], character } = props
   return (
     <>
       {moves.length > 0 && (
         <Wrapper>
           <Box flexDirection='row' flexWrap='wrap'>
             {moves.map((move, i) => (
-              <MoveListItem move={move}>
+              <MoveListItem move={move} character={character}>
                 {i !== moves.length - 1 ? ',' : ''}
               </MoveListItem>
             ))}
@@ -32,9 +34,10 @@ export const MoveList = (props: MoveListProps) => {
 
 export type MoveListItemProps = {
   move: MoveType
+  character?: Character
 }
 export const MoveListItem = (props: PropsWithChildren<MoveListItemProps>) => {
-  const { move, children } = props
+  const { move, character, children } = props
   const [isHovering, setIsHovering] = useState(false)
   return (
     <MoveWrapper
@@ -43,7 +46,7 @@ export const MoveListItem = (props: PropsWithChildren<MoveListItemProps>) => {
     >
       <Tooltip
         isOpen={isHovering}
-        content={<Move move={move} />}
+        content={<Move move={move} character={character} />}
         options={{
           auto: true,
           placement: 'bottom-center',
