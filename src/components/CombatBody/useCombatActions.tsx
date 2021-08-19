@@ -51,16 +51,15 @@ export const useCombatActions = () => {
     substituteCharacters,
   } = useCombatSystem()
   const { turnId, nextTurn } = useCombatSystemTurn()
-  const { moveBuffer, targetsBuffer } = useCombatSystemBuffer()
-  const [rolls, setRolls] = useState<boolean[]>([])
-  const [moveResults, setMoveResults] = useState<MoveResult[] | undefined>()
+  const {
+    rolls,
+    moveBuffer,
+    targetsBuffer,
+    moveResults,
+    setRolls,
+    setMoveResults,
+  } = useCombatSystemBuffer()
   const [moveCommited, setMoveCommitted] = useState(false)
-
-  const clearMoveResults = () => setMoveResults(undefined)
-
-  useEffect(() => {
-    clearMoveResults()
-  }, [activeCharacter?.id])
 
   const rollDamage = (move: Move, source: Character, targets: Character[]) => {
     if (moveResults) return
@@ -207,8 +206,6 @@ export const useCombatActions = () => {
         if (char.id !== activeCharacter.id) {
           updateQueueItemById(char.id, (qi) => {
             const [stats, { stats: mods }] = getStatsAndEquations(char)
-            const modifs = getModifiers(activeCharacter)
-            console.log(qi.value, mods.queuePositionOffset(qi.value))
             return {
               ...qi,
               value: min(qi.value + mods.queuePositionOffset(qi.value), 0),
@@ -244,7 +241,6 @@ export const useCombatActions = () => {
     moveResults,
     moveCommited,
     rollDamage,
-    clearMoveResults,
     commitMove,
     commitTurn,
     commitSubsitution,

@@ -5,9 +5,11 @@ import {
   useEffect,
   useState,
 } from 'react'
+import { v4 } from 'uuid'
 import { useCombatSystem } from '.'
 import { Character } from '../../types/character/character'
-import { Move } from '../../types/move'
+import { Move, MoveResult } from '../../types/move'
+import { useCombatSystemTurn } from './CombatSystemTurn'
 
 export type CombatSystemBufferContextValue = {
   moveBuffer: Move | undefined
@@ -15,7 +17,11 @@ export type CombatSystemBufferContextValue = {
   bufferMove: (move: Move) => void
   targetsBuffer: Character[] | undefined
   setTargetsBuffer: (targets: Character[] | undefined) => void
-  clear: () => void
+  clearBuffers: () => void
+  rolls: boolean[]
+  setRolls: (r: boolean[]) => void
+  moveResults: MoveResult[] | undefined
+  setMoveResults: (r: MoveResult[]) => void
 }
 const defaultValue: CombatSystemBufferContextValue = {
   moveBuffer: undefined,
@@ -23,7 +29,11 @@ const defaultValue: CombatSystemBufferContextValue = {
   bufferMove: () => {},
   targetsBuffer: undefined,
   setTargetsBuffer: () => {},
-  clear: () => {},
+  clearBuffers: () => {},
+  rolls: [],
+  setRolls: () => {},
+  moveResults: undefined,
+  setMoveResults: () => {},
 }
 
 export const CombatSystemBufferContext = createContext(defaultValue)
@@ -34,6 +44,8 @@ export const CombatSystemBuffer = (props: PropsWithChildren<{}>) => {
   const { getTargets, activeCharacter } = useCombatSystem()
   const [moveBuffer, setMoveBuffer] = useState<Move | undefined>()
   const [targetsBuffer, setTargetsBuffer] = useState<Character[] | undefined>()
+  const [rolls, setRolls] = useState<boolean[]>([])
+  const [moveResults, setMoveResults] = useState<MoveResult[] | undefined>()
 
   const bufferMove = (move: Move) => {
     if (moveBuffer || !activeCharacter) return
@@ -45,9 +57,11 @@ export const CombatSystemBuffer = (props: PropsWithChildren<{}>) => {
       setTargetsBuffer(targets[0])
     }
   }
-  const clear = () => {
+  const clearBuffers = () => {
+    console.log('clearing results')
     setMoveBuffer(undefined)
     setTargetsBuffer(undefined)
+    setMoveResults(undefined)
   }
   const context: CombatSystemBufferContextValue = {
     moveBuffer,
@@ -55,14 +69,12 @@ export const CombatSystemBuffer = (props: PropsWithChildren<{}>) => {
     bufferMove,
     targetsBuffer,
     setTargetsBuffer,
-    clear,
+    clearBuffers,
+    rolls,
+    setRolls,
+    moveResults,
+    setMoveResults,
   }
-
-  useEffect(() => {
-    if (activeCharacter) {
-      clear()
-    }
-  }, [activeCharacter?.id])
 
   return (
     <CombatSystemBufferContext.Provider value={context}>

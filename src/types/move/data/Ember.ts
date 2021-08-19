@@ -2,23 +2,23 @@ import { v4 } from 'uuid'
 import { Burned } from '../../status/data/Burning'
 import { Move } from '../move'
 
-export const FlareBlitz: Move = {
+export const Ember: Move = {
   id: v4(),
-  name: 'Flare Blitz',
-  type: 'physical',
+  name: 'Ember',
+  type: 'special',
   element: 'fire',
-  target: 'all-active', // 'uncontrolled-active-party',
-  checks: 4,
+  target: 'uncontrolled-active-target',
+  checks: 2,
   offset: 0,
-  power: 1200,
+  power: 40,
   recovery: 100,
-  energyCost: 20,
+  energyCost: 0,
   perfectStatuses: {
-    target: [Burned(0.95, 5, true)],
+    target: [],
     source: [],
   },
   failureStatuses: {
     target: [],
-    source: [Burned(1.0, 5, false)],
+    source: [],
   },
 }

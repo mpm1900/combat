@@ -1,6 +1,8 @@
+import { v4 } from 'uuid'
 import { Elemental } from '../elemental'
 
 export const GrassElement: Elemental = {
+  id: v4(),
   element: 'grass',
   modifiers: [
     {
@@ -20,4 +22,5 @@ export const GrassElement: Elemental = {
       },
     },
   ],
+  moves: [],
 }

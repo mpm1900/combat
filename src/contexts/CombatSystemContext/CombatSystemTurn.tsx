@@ -32,11 +32,17 @@ export const CombatSystemTurn = (props: PropsWithChildren<{}>) => {
   const { push } = useLogs()
   const [turnId, setTurnId] = useState<string>(v4())
   const [turnCount, setTurnCount] = useState(0)
-  const { activeCharacter, enqueue, reduceStatusDurations, updateCharacter } =
-    useCombatSystem()
-  const { moveBuffer } = useCombatSystemBuffer()
+  const {
+    activeCharacter,
+    queue,
+    enqueue,
+    reduceStatusDurations,
+    updateCharacter,
+  } = useCombatSystem()
+  const { moveBuffer, clearBuffers } = useCombatSystemBuffer()
   const { validationComplete, validateParties, reset } =
     useCombatSystemValidation()
+
   const nextTurn = () => {
     setTurnId(v4())
     setTurnCount((c) => c + 1)
@@ -71,9 +77,11 @@ export const CombatSystemTurn = (props: PropsWithChildren<{}>) => {
 
   useEffect(() => {
     if (validationComplete) {
+      console.log('validation complete, pass')
       reset()
       reduceStatusDurations()
       enqueue(moveBuffer?.recovery || 0)
+      clearBuffers()
     }
   }, [validationComplete, moveBuffer])
 
@@ -84,7 +92,7 @@ export const CombatSystemTurn = (props: PropsWithChildren<{}>) => {
         statuses: c.statuses.filter((s) => !s.removeOnActiveTurnStart),
       }))
     }
-  }, [activeCharacter?.id])
+  }, [activeCharacter?.id, turnId])
 
   return (
     <CombatSystemTurnContext.Provider value={context}>

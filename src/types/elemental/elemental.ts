@@ -1,3 +1,4 @@
+import { Move } from '../move'
 import { Modifier } from '../stats'
 
 export type ElementalType =
@@ -12,6 +13,8 @@ export type ElementalType =
   | 'dark'
   | 'light'
 export type Elemental = {
+  id: string
   element: ElementalType
   modifiers: Modifier[]
+  moves: Move[]
 }

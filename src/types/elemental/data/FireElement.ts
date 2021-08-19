@@ -1,6 +1,9 @@
+import { v4 } from 'uuid'
+import { Ember } from '../../move/data/Ember'
 import { Elemental } from '../elemental'
 
 export const FireElement: Elemental = {
+  id: v4(),
   element: 'fire',
   modifiers: [
     {
@@ -20,4 +23,5 @@ export const FireElement: Elemental = {
       },
     },
   ],
+  moves: [Ember],
 }

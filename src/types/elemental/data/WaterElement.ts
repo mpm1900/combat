@@ -1,6 +1,8 @@
+import { v4 } from 'uuid'
 import { Elemental } from '../elemental'
 
 export const WaterElement: Elemental = {
+  id: v4(),
   element: 'water',
   modifiers: [
     {
@@ -20,4 +22,5 @@ export const WaterElement: Elemental = {
       },
     },
   ],
+  moves: [],
 }

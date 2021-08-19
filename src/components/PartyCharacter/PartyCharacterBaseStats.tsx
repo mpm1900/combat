@@ -35,7 +35,7 @@ export const PartyCharacterBaseStats = (props: PartyCharacterProps) => {
       {CharacterMainStatKeys.map((key) => (
         <Bar
           key={key}
-          height='20px'
+          height='24px'
           value={character.stats[key]}
           max={key.includes('Accuracy') ? 95 : 255}
           background={

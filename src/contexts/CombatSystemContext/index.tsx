@@ -102,6 +102,7 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
     updateById,
     initialize: initializeQueue,
     set: setQueue,
+    consolidate,
   } = useQueue([])
   const activeCharacterId = useMemo(() => getActiveId(queue), [queue])
   const [partyIds, setPartyIds] = useState<string[]>([])
@@ -204,6 +205,7 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
         ? [{ id: benchId, value: stats.initiative }]
         : []),
     ])
+    consolidate(characters)
   }
 
   const addDamageToCharacter = (id: string, damage: number) =>
@@ -248,7 +250,7 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
     benchCharacters,
     initialized,
     init,
-    enqueue: (recovery: number) => enqueue(activeCharacters, recovery),
+    enqueue: (recovery: number) => enqueue(characters, recovery),
     getCharacter,
     getCharacters,
     getCharacterStats,

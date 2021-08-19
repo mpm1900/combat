@@ -3,6 +3,7 @@ import { PartyCharacterProps } from '.'
 import { theme } from '../../theme'
 import { Box } from '../_core/Box'
 import { Button } from '../_core/Button'
+import { ItemTable } from './ItemTable'
 import { MoveTable } from './MoveTable'
 
 type TabType = 'moves' | 'items'
@@ -36,7 +37,7 @@ export const PartyCharacterTables = (props: PartyCharacterProps) => {
           overflow='auto'
         >
           {activeTab === 'moves' && <MoveTable character={character} />}
-          {activeTab === 'items' && <Box padding='16px'>Coming Soon!</Box>}
+          {activeTab === 'items' && <ItemTable character={character} />}
         </Box>
       </Box>
     </Box>

@@ -1,6 +1,9 @@
+import { v4 } from 'uuid'
+import { Gust } from '../../move/data/Gust'
 import { Elemental } from '../elemental'
 
 export const AirElement: Elemental = {
+  id: v4(),
   element: 'air',
   modifiers: [
     {
@@ -20,4 +23,5 @@ export const AirElement: Elemental = {
       },
     },
   ],
+  moves: [Gust],
 }

@@ -11,21 +11,30 @@ import { Status } from '../status/status'
 import { Character, CharacterStats, ResolvedCharacterStats } from './character'
 import { BASE_MODIFIER } from './data'
 
+export const getAbilities = (character: Character) => {
+  return character.items.reduce((abilities, item) => {
+    return [...abilities, ...item.abilities]
+  }, character.abilities)
+}
+
 export const getStatuses = (character: Character) => {
-  const abilityStatuses = character.abilities.reduce((statuses, ability) => {
-    const stats = convertStats(character)
-    return [
-      ...statuses,
-      ...ability.statuses.filter((s) =>
-        getResolvedAbilityStatusValue(s, stats),
-      ),
-    ]
-  }, [] as Status[])
+  const abilityStatuses = getAbilities(character).reduce(
+    (statuses, ability) => {
+      const stats = convertStats(character)
+      return [
+        ...statuses,
+        ...ability.statuses.filter((s) =>
+          getResolvedAbilityStatusValue(s, stats),
+        ),
+      ]
+    },
+    [] as Status[],
+  )
   return [...character.statuses, ...abilityStatuses]
 }
 
 export const getImmunities = (character: Character) => {
-  const abilityImmunities = character.abilities.reduce(
+  const abilityImmunities = getAbilities(character).reduce(
     (immunities, ability) => {
       return [...immunities, ...ability.immunities]
     },

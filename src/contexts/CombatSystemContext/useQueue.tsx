@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Move } from '../../types/move'
 import {
+  consolidateQueue,
   enQueue,
   getActiveId,
   initializeQueue,
@@ -20,11 +21,15 @@ export const useQueue = (initialValue?: Queue) => {
   const initialize = (characters: CombatSystemCharacter[]) => {
     set(initializeQueue(characters))
   }
+  const consolidate = (characters: CombatSystemCharacter[]) => {
+    set((q) => consolidateQueue(q, characters))
+  }
   return {
     queue,
     set,
     enqueue,
     updateById,
     initialize,
+    consolidate,
   }
 }

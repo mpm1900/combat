@@ -6,6 +6,7 @@ import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
 import { GrassElement } from '../../../elemental/data/GrassElement'
 import { LightElement } from '../../../elemental/data/LightElement'
+import { BookOfFlight } from '../../../item/data/BookOfFlight'
 import { Blitz } from '../../../move/data/Blitz'
 import { Curse } from '../../../move/data/Curse'
 import { DoubleTeam } from '../../../move/data/DoubleTeam'
@@ -27,7 +28,8 @@ export const Mew = (): Character => ({
   name: 'Mew',
   level: 100,
   elements: [LightElement],
-  abilities: [Levitate],
+  items: [BookOfFlight()],
+  abilities: [],
   statuses: [],
   immunities: [],
   damage: 0,

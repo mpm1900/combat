@@ -1,5 +1,9 @@
 import { PartyCharacterProps } from '.'
-import { getImmunities, getStatuses } from '../../types/character/util'
+import {
+  getAbilities,
+  getImmunities,
+  getStatuses,
+} from '../../types/character/util'
 import { AbilityList } from '../_core/AbilityList'
 import { Box } from '../_core/Box'
 import { StatusList } from '../_core/StatusList'
@@ -8,7 +12,7 @@ export const PartyCharacterStatuses = (props: PartyCharacterProps) => {
   const { character } = props
   const statuses = getStatuses(character)
   const immunities = getImmunities(character)
-  const abilities = character.abilities
+  const abilities = getAbilities(character)
   return (
     <Box style={{ fontSize: '14px' }}>
       {abilities.length > 0 && (

@@ -9,6 +9,7 @@ export const BASE_CHARACTER: Character = {
   name: '',
   level: 0,
   elements: [],
+  items: [],
   abilities: [],
   events: [],
   statuses: [],
@@ -20,7 +21,7 @@ export const BASE_CHARACTER: Character = {
     criticalChance: 5,
     criticalDamage: 1.5,
     memory: 4,
-    equip: 4,
+    equip: 1,
   },
   moves: [],
 }

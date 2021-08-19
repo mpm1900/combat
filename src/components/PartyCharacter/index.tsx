@@ -12,6 +12,7 @@ import { PartyCharacterStats } from './PartyCharacterStats'
 import { PartyCharacterTables } from './PartyCharacterTables'
 import { MoveTable } from './MoveTable'
 import { PartyCharacterStatuses } from './PartyCharacterStatuses'
+import { ElementalList } from '../_core/ElementalList'
 
 export type PartyCharacterProps = {
   character: Character
@@ -26,13 +27,14 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
   const handleCharacterChange = (option: { value: string; label: string }) => {
     const found = getCharacter(option.value)
     if (found) {
-      console.log(character, found)
       updateCharacter(character.id, () => found)
       setActiveCharacterId(found.id)
     }
   }
   const stats = getStats(character)
-  const itemList = Array(stats.equip).fill(undefined)
+  const itemList = Array(stats.equip)
+    .fill(undefined)
+    .map((_, i) => character.items[i])
   const moveList = Array(stats.memory)
     .fill(undefined)
     .map((_, i) => character.moves[i])
@@ -58,36 +60,54 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             />
             <Box marginTop='16px'>
               <Box flexDirection='row'>
-                <CombatCharacterAvatar
-                  character={character}
-                  height='120px'
-                  width='120px'
-                />
+                <Box>
+                  <CombatCharacterAvatar
+                    character={character}
+                    height='120px'
+                    width='120px'
+                  />
+                  <Box flexDirection='row' justifyContent='center'>
+                    <Box
+                      background='white'
+                      color='black'
+                      padding='0 4px'
+                      style={{
+                        fontFamily: 'Trade Winds',
+                      }}
+                    >
+                      Lv. {character.level}
+                    </Box>
+                  </Box>
+                  <Box flex='1'>
+                    <ElementalList
+                      elements={character.elements}
+                      alignItems='center'
+                      flexDirection='row'
+                      flex='1'
+                      justifyContent='space-around'
+                      margin='0 8px 8px 8px'
+                    />
+                  </Box>
+                </Box>
                 <PartyCharacterBaseStats character={character} />
               </Box>
-              <Box
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                }}
-              >
-                items
+              <Box style={{ fontFamily: 'Trade Winds', fontSize: '16px' }}>
+                Items
               </Box>
-              {itemList.map((_, i) => (
+              {itemList.map((item, i) => (
                 <Box marginTop='8px'>
-                  <Select />
+                  <Select
+                    isDisabled={character.items.length >= stats.equip}
+                    value={{ value: item?.id, label: item?.name }}
+                    options={[]}
+                  />
                 </Box>
               ))}
               <Box
-                marginTop='16px'
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                }}
+                marginTop='8px'
+                style={{ fontFamily: 'Trade Winds', fontSize: '16px' }}
               >
-                moves
+                Moves
               </Box>
               {moveList.map((move, i) => (
                 <Box marginTop='8px'>

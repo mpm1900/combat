@@ -1,6 +1,8 @@
+import { v4 } from 'uuid'
 import { Elemental } from '../elemental'
 
 export const ThunderElement: Elemental = {
+  id: v4(),
   element: 'thunder',
   modifiers: [
     {
@@ -20,4 +22,5 @@ export const ThunderElement: Elemental = {
       },
     },
   ],
+  moves: [],
 }

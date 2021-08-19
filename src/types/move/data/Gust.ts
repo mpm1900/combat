@@ -1,19 +1,19 @@
 import { v4 } from 'uuid'
-import { Resting } from '../../status/data/Resting'
 import { Move } from '../move'
 
-export const Rest: Move = {
+export const Gust: Move = {
   id: v4(),
-  name: 'Rest',
-  type: 'physical',
-  element: 'normal',
-  target: 'self',
+  name: 'Gust',
+  type: 'special',
+  element: 'air',
+  target: 'uncontrolled-active-target',
   checks: 2,
   offset: 0,
+  power: 40,
   recovery: 100,
-  energyCost: 10,
+  energyCost: 0,
   perfectStatuses: {
-    target: [Resting(1, 3, true)],
+    target: [],
     source: [],
   },
   failureStatuses: {

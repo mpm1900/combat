@@ -1,7 +1,11 @@
 import { useEffect, useMemo } from 'react'
 import { theme } from '../../theme'
 import { Character } from '../../types/character/character'
-import { getImmunities, getStatuses } from '../../types/character/util'
+import {
+  getAbilities,
+  getImmunities,
+  getStatuses,
+} from '../../types/character/util'
 import { min } from '../../types/equation'
 import { Bar } from '../_core/Bar'
 import { Box } from '../_core/Box'
@@ -40,6 +44,7 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
   })
   const statusStacks = convertStatusesToStack(getStatuses(character))
   const immunitiesStaks = convertStatusesToStack(getImmunities(character))
+  const abilities = getAbilities(character)
   const { styles, exec } = useElementShake()
   const isActive = character.id === activeCharacter?.id
   useEffect(() => {
@@ -132,13 +137,10 @@ export const CombatCharacter = (props: CombatCharacterProps) => {
             padding='0px 4px 4px 4px'
             style={{ fontSize: '14px' }}
           >
-            {character.abilities.map((ability, i) => (
+            {abilities.map((ability, i) => (
               <CombatCharacterAbility
                 ability={ability}
-                comma={
-                  i !== character.abilities.length - 1 &&
-                  character.abilities.length > 1
-                }
+                comma={i !== abilities.length - 1 && abilities.length > 1}
               />
             ))}
           </Box>

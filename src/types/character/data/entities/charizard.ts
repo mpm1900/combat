@@ -3,6 +3,7 @@ import { Blaze } from '../../../ability/data/Blaze'
 import { Levitate } from '../../../ability/data/Levitate'
 import { FireElement } from '../../../elemental'
 import { AirElement } from '../../../elemental/data/AirElement'
+import { BookOfFlight } from '../../../item/data/BookOfFlight'
 import { Blitz } from '../../../move/data/Blitz'
 import { Curse } from '../../../move/data/Curse'
 import { DoubleTeam } from '../../../move/data/DoubleTeam'
@@ -26,15 +27,16 @@ export const Charizard = (): Character => ({
   name: 'Charizard',
   level: 100,
   elements: [FireElement, AirElement],
-  abilities: [Blaze, Levitate],
-  statuses: [FireAccuracyUp(1, -1, true)],
+  items: [BookOfFlight()],
+  abilities: [Blaze],
+  statuses: [],
   immunities: [],
   damage: 0,
   energyOffset: 0,
   stats: {
     ...BASE_CHARACTER.stats,
     health: 78,
-    speed: 102,
+    speed: 202,
     energy: 100,
     initiative: 100,
     evasion: 5,
@@ -47,16 +49,5 @@ export const Charizard = (): Character => ({
     specialAttack: 108,
     specialDefense: 85,
   },
-  moves: [
-    FireBall,
-    FlareBlitz,
-    DoubleTeam,
-    Rest,
-    TimeWarp,
-    Blitz,
-    Protect,
-    Focus,
-    Curse,
-    Silence,
-  ],
+  moves: [FireBall, FlareBlitz, DoubleTeam, Rest],
 })

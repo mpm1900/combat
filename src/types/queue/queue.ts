@@ -67,6 +67,7 @@ export const consolidateQueue = (queue: Queue, characters: Character[]) => {
     Math,
     deltaToZero.map((d) => d.value),
   )
+  if (minT === 0) return queue
   return [
     ...queue.map((i) => {
       const stats = statArray.find((qs) => qs.id === i.id)?.value
@@ -86,6 +87,7 @@ export const enQueue = (
   characters: Character[],
   recovery: number,
 ): Queue => {
+  console.log('enque', recovery)
   const statArray: QueueStats = characters.map((c) => ({
     id: c.id,
     value: getStats(c),
