@@ -42,7 +42,6 @@ export const useCombatActions = () => {
     activeCharacter,
     activeCharacters,
     getCharacter,
-    getCharacterStats,
     getLiveCharacters,
     updateCharacter,
     addStatusesToCharacter,
@@ -65,7 +64,6 @@ export const useCombatActions = () => {
     if (moveResults) return
 
     const [stats, { stats: mods }] = getStatsAndEquations(source)
-    const baseAccuracy = stats[`${move.type}Accuracy` as keyof AccuracyStats]
     const elementAccuracyBonus =
       mods[`${move.element}Accuracy` as keyof ElementalAccuracyStats]
     const rolls = getRolls(

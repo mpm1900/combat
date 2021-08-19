@@ -5,6 +5,7 @@ export const ZERO_STATS: ResolvedCharacterStats = {
   speed: 0,
   energy: 0,
   initiative: 0,
+  benchRecovery: 0,
   evasion: 0,
   physicalArmor: 0,
   specialArmor: 0,

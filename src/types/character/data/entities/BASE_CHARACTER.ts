@@ -22,6 +22,7 @@ export const BASE_CHARACTER: Character = {
     criticalDamage: 1.5,
     memory: 4,
     equip: 1,
+    benchRecovery: 50,
   },
   moves: [],
 }

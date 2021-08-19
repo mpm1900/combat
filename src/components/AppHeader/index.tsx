@@ -24,7 +24,7 @@ export const AppHeader = (props: PropsWithChildren<{}>) => {
         fontSize: '14px',
       }}
     >
-      <Box>Combat Simulator - version: 0.0.6-a</Box>
+      <Box>Combat Simulator - version: 0.0.7-a</Box>
       <Box flexDirection='row' alignItems='center'>
         <Link
           to='/party'

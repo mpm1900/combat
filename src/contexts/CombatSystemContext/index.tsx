@@ -202,7 +202,7 @@ export const CombatSystem = (props: PropsWithChildren<{}>) => {
     setQueue((q) => [
       ...q.filter((qi) => qi.id !== activeId),
       ...(stats.healthRatio > 0
-        ? [{ id: benchId, value: stats.initiative }]
+        ? [{ id: benchId, value: stats.benchRecovery }]
         : []),
     ])
     consolidate(characters)

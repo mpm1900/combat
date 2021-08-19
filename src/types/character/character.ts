@@ -32,6 +32,7 @@ export type BaseCharacterStats = {
   speed: number
   energy: number
   initiative: number
+  benchRecovery: number
   evasion: number
   criticalChance: number
   criticalDamage: number
