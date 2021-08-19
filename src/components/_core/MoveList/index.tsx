@@ -6,6 +6,7 @@ import { Ability } from '../../../types/ability/ability'
 import { AbilityCard } from '../AbilityCard'
 import { Move as MoveType } from '../../../types/move'
 import { Move } from '../Move'
+import { colorMap } from '../ElementalIcon'
 
 export type MoveListProps = {
   moves: MoveType[] | undefined
@@ -49,7 +50,9 @@ export const MoveListItem = (props: PropsWithChildren<MoveListItemProps>) => {
           triggerOffset: 4,
         }}
       >
-        <MoveName isHovering={isHovering}>{move.name}</MoveName>
+        <MoveName isHovering={isHovering} color={colorMap[move.element]}>
+          {move.name}
+        </MoveName>
       </Tooltip>
       {children}
     </MoveWrapper>
