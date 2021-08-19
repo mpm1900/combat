@@ -34,8 +34,9 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
   const handleCharacterChange = (option: { value: string; label: string }) => {
     const found = getCharacter(option.value)
     if (found) {
-      updateCharacter(character.id, () => ({ ...found, id: v4() }))
-      setActiveCharacterId(found.id)
+      const id = v4()
+      updateCharacter(character.id, () => ({ ...found, id }))
+      setActiveCharacterId(id)
     }
   }
   const stats = getStats(character)
@@ -115,6 +116,7 @@ export const PartyCharacter = (props: PartyCharacterProps) => {
             <PartyCharacterStatuses character={character} />
             <Box flex='1' />
             <CriticalButton
+              marginTop='16px'
               disabled={party.characters.length === 1}
               onClick={removeCharacter}
             >
