@@ -41,7 +41,12 @@ export const PartyCharacterStats = (props: PartyCharacterProps) => {
         boxShadow: 'inset 0px 0px 10px rgba(0,0,0,0.27)',
       }}
     >
-      <Box style={{ fontFamily: 'Trade Winds', fontSize: '16px' }}>Stats</Box>
+      <Box
+        marginBottom='8px'
+        style={{ fontFamily: 'Trade Winds', fontSize: '16px' }}
+      >
+        Stats
+      </Box>
       <Box flex='1' marginRight='0px'>
         {nonZeroStatKeys.map((key) => (
           <Box key={key} flexDirection='row'>

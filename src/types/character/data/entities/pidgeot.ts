@@ -2,6 +2,7 @@ import { v4 } from 'uuid'
 import { Levitate } from '../../../ability/data/Levitate'
 import { AirElement } from '../../../elemental/data/AirElement'
 import { AirSlash } from '../../../move/data/AirSlash'
+import { BraveBird } from '../../../move/data/BraveBird'
 import { Gust } from '../../../move/data/Gust'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
@@ -34,5 +35,5 @@ export const Pidgeot = (): Character => ({
     specialAttack: 70,
     specialDefense: 70,
   },
-  moves: [Gust, AirSlash],
+  moves: [Gust, AirSlash, BraveBird],
 })

@@ -1,27 +1,26 @@
 import { v4 } from 'uuid'
-import { CriticalChanceUp } from '../../status/data/CriticalChanceUp'
+import { SpecialAttackDown } from '../../status/data/SpecialAttackDown'
 import { Move } from '../move'
 import { BASE_MOVE } from './BASE_MOVE'
 
-export const NightSlash: Move = {
+export const LeafStorm: Move = {
   ...BASE_MOVE,
   id: v4(),
-  name: 'NightSlash',
-  type: 'physical',
-  element: 'dark',
+  name: 'Leaf Storm',
+  type: 'special',
+  element: 'grass',
   target: 'uncontrolled-active-target',
   checks: 2,
-  offset: 0,
-  power: 70,
-  criticalOffset: 0.25,
+  offset: -10,
+  power: 140,
   recovery: 100,
   energyCost: 0,
   perfectStatuses: {
     target: [],
-    source: [],
+    source: [SpecialAttackDown(1, -1, false)],
   },
   failureStatuses: {
     target: [],
-    source: [],
+    source: [SpecialAttackDown(1, -1, false)],
   },
 }

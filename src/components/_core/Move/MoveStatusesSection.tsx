@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box, BoxProps } from '../Box'
+import { Box, BoxProps, NumberBox } from '../Box'
 import { Icon } from '../Icon'
 import { ReactComponent as Check } from '../../../icons/delapouite/dice-target.svg'
 import { MoveStatuses } from '../../../types/move'
@@ -31,6 +31,7 @@ export type MoveStatusesSectionProps = BoxProps & {
   chance?: number
   title?: string
   statuses?: MoveStatuses
+  critOffset: number
 }
 
 export const MoveStatusesSection = (props: MoveStatusesSectionProps) => {
@@ -40,6 +41,7 @@ export const MoveStatusesSection = (props: MoveStatusesSectionProps) => {
     chance,
     statuses,
     title,
+    critOffset,
     ...rest
   } = props
   const checksArray = Array(checks).fill(null)
@@ -66,6 +68,18 @@ export const MoveStatusesSection = (props: MoveStatusesSectionProps) => {
       )}
       <StatusList statuses={statuses?.source} type='source' />
       <StatusList statuses={statuses?.target} type='target' />
+      {critOffset > 0 && (
+        <Box
+          flexDirection='row'
+          style={{ fontSize: '14px' }}
+          color='lightgreen'
+        >
+          <NumberBox style={{ fontSize: '12px' }} marginRight='4px'>
+            +{critOffset * 100}%
+          </NumberBox>
+          Critical Chance
+        </Box>
+      )}
     </Section>
   )
 }

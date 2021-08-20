@@ -1,4 +1,5 @@
 import { Move } from '../../move'
+import { BraveBird } from '../../move/data/BraveBird'
 import { DoubleTeam } from '../../move/data/DoubleTeam'
 import { FireBall } from '../../move/data/FireBall'
 import { FirePunch } from '../../move/data/FirePunch'
@@ -15,5 +16,6 @@ export const MOVES_BY_CHARACTER: Record<string, Move[]> = {
     FlareBlitz,
     Rest,
     DoubleTeam,
+    BraveBird,
   ],
 }

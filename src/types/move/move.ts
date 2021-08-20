@@ -39,7 +39,9 @@ export type Move = {
   recovery: number
   power?: number
   criticalOffset: number
+  recoilRatio: number
   attributes?: MoveAttribute[]
   perfectStatuses?: MoveStatuses
   failureStatuses?: MoveStatuses
+  neitherStatuses?: MoveStatuses
 }

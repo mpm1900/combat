@@ -8,6 +8,7 @@ import { Blitz } from '../../../move/data/Blitz'
 import { Curse } from '../../../move/data/Curse'
 import { DoubleTeam } from '../../../move/data/DoubleTeam'
 import { FireBall } from '../../../move/data/FireBall'
+import { FirePunch } from '../../../move/data/FirePunch'
 import { FlareBlitz } from '../../../move/data/FlareBlitz'
 import { Focus } from '../../../move/data/Focus'
 import { Protect } from '../../../move/data/Protect'
@@ -52,5 +53,5 @@ export const Charizard = (): Character => ({
     specialAttack: 108,
     specialDefense: 85,
   },
-  moves: [FireBall, FlareBlitz, DoubleTeam, Rest, TimeWarp],
+  moves: [FireBall, FlareBlitz, FirePunch, Rest],
 })

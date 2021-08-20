@@ -1,19 +1,20 @@
 import { v4 } from 'uuid'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
-export const BASE_MOVE: Move = {
+export const BraveBird: Move = {
+  ...BASE_MOVE,
   id: v4(),
-  name: '',
-  type: 'special',
-  element: 'normal',
+  name: 'Brave Bird',
+  type: 'physical',
+  element: 'air',
   target: 'uncontrolled-active-target',
-  checks: 1,
-  offset: 0,
-  power: 0,
-  criticalOffset: 0,
+  checks: 2,
+  offset: -15,
+  power: 120,
+  recoilRatio: 0.33,
   recovery: 100,
-  energyCost: 0,
-  recoilRatio: 0,
+  energyCost: 20,
   perfectStatuses: {
     target: [],
     source: [],

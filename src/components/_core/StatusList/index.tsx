@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react'
+import { PropsWithChildren, ReactChild, useState } from 'react'
 import { Status, StatusStackItem } from '../../../types/status/status'
 import { convertStatusesToStack } from '../../../types/status/util'
 import { StatusTargetIcon } from '../Move/StatusTargetIcon'
@@ -11,9 +11,10 @@ export type StatusListProps = {
   statuses: Status[] | undefined
   type: 'target' | 'source'
   showIcon?: boolean
+  children?: ReactChild
 }
 export const StatusList = (props: StatusListProps) => {
-  const { statuses, type, showIcon = true } = props
+  const { statuses, type, showIcon = true, children } = props
   const stack = convertStatusesToStack(statuses || [])
   return (
     <>
@@ -30,6 +31,7 @@ export const StatusList = (props: StatusListProps) => {
                 {i !== stack.length - 1 ? ',' : ''}
               </StatusListItem>
             ))}
+            {children}
           </Box>
         </Wrapper>
       )}

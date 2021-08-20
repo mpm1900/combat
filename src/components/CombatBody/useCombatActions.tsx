@@ -159,6 +159,10 @@ export const useCombatActions = () => {
 
           if (!flags.isImmuneToDamage) {
             addDamageToCharacter(char.id, moveResults[i].totalDamage)
+            addDamageToCharacter(
+              activeCharacter.id,
+              moveResults[i].recoilDamage,
+            )
           }
 
           if (!flags.isImmuneToStatuses) {

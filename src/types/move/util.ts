@@ -91,6 +91,7 @@ export const getResolvedStatuses = (
 
 export type MoveResult = {
   totalDamage: number
+  recoilDamage: number
   critical: boolean
   dodged: boolean
   statuses: MoveResolvedStatuses
@@ -136,7 +137,7 @@ export const resolveMove = (
     ? move.perfectStatuses
     : failure
     ? move.failureStatuses
-    : undefined) || { target: [], source: [] }
+    : move.neitherStatuses) || { target: [], source: [] }
 
   const resolvedStatuses: MoveResolvedStatuses = {
     source: getResolvedStatuses(statuses.source, source),
@@ -145,6 +146,7 @@ export const resolveMove = (
 
   return {
     totalDamage: dodged ? 0 : totalDamage,
+    recoilDamage: dodged ? 0 : totalDamage * move.recoilRatio,
     critical: critical && perfect && totalDamage > 0,
     dodged: dodged && totalDamage > 0,
     statuses: resolvedStatuses,

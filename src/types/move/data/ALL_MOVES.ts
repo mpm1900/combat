@@ -1,5 +1,6 @@
 import { AirSlash } from './AirSlash'
 import { Blitz } from './Blitz'
+import { BraveBird } from './BraveBird'
 import { Bubble } from './Bubble'
 import { ConfuseRay } from './ConfuseRay'
 import { Curse } from './Curse'
@@ -12,6 +13,8 @@ import { Flamethrower } from './Flamethrower'
 import { FlareBlitz } from './FlareBlitz'
 import { Focus } from './Focus'
 import { Gust } from './Gust'
+import { HyperBeam } from './HyperBeam'
+import { LeafStorm } from './LeafStorm'
 import { NightSlash } from './NightSlash'
 import { Protect } from './Protect'
 import { Psybeam } from './Psybeam'
@@ -31,6 +34,7 @@ import { WaterShot } from './WaterShot'
 export const ALL_MOVES = [
   AirSlash,
   Blitz,
+  BraveBird,
   Bubble,
   ConfuseRay,
   Curse,
@@ -43,6 +47,8 @@ export const ALL_MOVES = [
   FlareBlitz,
   Focus,
   Gust,
+  HyperBeam,
+  LeafStorm,
   NightSlash,
   Protect,
   Psybeam,
