@@ -52,5 +52,5 @@ export const Charizard = (): Character => ({
     specialAttack: 108,
     specialDefense: 85,
   },
-  moves: [FireBall, FlareBlitz, DoubleTeam, Rest],
+  moves: [FireBall, FlareBlitz, DoubleTeam, Rest, TimeWarp],
 })

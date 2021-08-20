@@ -2,23 +2,23 @@ import { v4 } from 'uuid'
 import { Burned } from '../../status/data/Burning'
 import { Move } from '../move'
 
-export const FireBall: Move = {
+export const Flamethrower: Move = {
   id: v4(),
-  name: 'Fire Ball',
+  name: 'Flamethrower',
   type: 'special',
   element: 'fire',
   target: 'uncontrolled-active-target',
-  checks: 1,
-  offset: -10,
-  power: 45,
+  checks: 3,
+  offset: 0,
+  power: 95,
   recovery: 100,
-  energyCost: 0,
+  energyCost: 10,
   perfectStatuses: {
-    target: [Burned(0.25, 5, true)],
+    target: [Burned(0.05, 5, true)],
     source: [],
   },
   failureStatuses: {
     target: [],
-    source: [Burned(0.5, 5, false)],
+    source: [],
   },
 }

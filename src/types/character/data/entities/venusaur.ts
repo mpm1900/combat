@@ -2,6 +2,7 @@ import { v4 } from 'uuid'
 import { Overgrow } from '../../../ability/data/Overgrow'
 import { GrassElement } from '../../../elemental/data/GrassElement'
 import { RazorLeaf } from '../../../move/data/RazorLeaf'
+import { SleepPowder } from '../../../move/data/SleepPowder'
 import { Character } from '../../character'
 import { ZERO_STATS } from '../ZERO_STATS'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
@@ -33,5 +34,5 @@ export const Venusaur = (): Character => ({
     specialAttack: 100,
     specialDefense: 100,
   },
-  moves: [RazorLeaf],
+  moves: [RazorLeaf, SleepPowder],
 })

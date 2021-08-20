@@ -1,15 +1,15 @@
 import { v4 } from 'uuid'
 import { Move } from '../move'
 
-export const RazorLeaf: Move = {
+export const Surf: Move = {
   id: v4(),
-  name: 'Razor Leaf',
+  name: 'Surf',
   type: 'special',
-  element: 'grass',
-  target: 'uncontrolled-active-party',
-  checks: 2,
-  offset: -10,
-  power: 65,
+  element: 'water',
+  target: 'all-active',
+  checks: 3,
+  offset: 0,
+  power: 100,
   recovery: 100,
   energyCost: 10,
   perfectStatuses: {

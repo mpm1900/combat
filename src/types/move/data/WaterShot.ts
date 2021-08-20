@@ -10,15 +10,15 @@ export const WaterShot: Move = {
   target: 'uncontrolled-active-target',
   checks: 4,
   offset: -5,
-  power: 150,
+  power: 120,
   recovery: 100,
   energyCost: 10,
   perfectStatuses: {
-    target: [Wet(0.95, 5, true)],
+    target: [Wet(0.5, 5, true)],
     source: [],
   },
   failureStatuses: {
     target: [],
-    source: [Wet(0.95, 5, false)],
+    source: [Wet(0.5, 5, false)],
   },
 }

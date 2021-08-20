@@ -1,24 +1,25 @@
 import { v4 } from 'uuid'
 import { Burned } from '../../status/data/Burning'
+import { Dazed } from '../../status/data/Dazed'
 import { Move } from '../move'
 
-export const FireBall: Move = {
+export const SleepPowder: Move = {
   id: v4(),
-  name: 'Fire Ball',
+  name: 'Sleep Powder',
   type: 'special',
-  element: 'fire',
+  element: 'grass',
   target: 'uncontrolled-active-target',
-  checks: 1,
-  offset: -10,
-  power: 45,
+  checks: 4,
+  offset: 0,
+  power: 10,
   recovery: 100,
   energyCost: 0,
   perfectStatuses: {
-    target: [Burned(0.25, 5, true)],
+    target: [Dazed(0.95, 5, true)],
     source: [],
   },
   failureStatuses: {
     target: [],
-    source: [Burned(0.5, 5, false)],
+    source: [],
   },
 }

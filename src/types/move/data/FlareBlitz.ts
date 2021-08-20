@@ -4,17 +4,17 @@ import { Move } from '../move'
 
 export const FlareBlitz: Move = {
   id: v4(),
-  name: 'Flare Blitz',
-  type: 'physical',
+  name: 'Fire Blast',
+  type: 'special',
   element: 'fire',
-  target: 'all-active', // 'uncontrolled-active-party',
+  target: 'uncontrolled-active-target',
   checks: 4,
-  offset: 0,
+  offset: -10,
   power: 120,
   recovery: 100,
   energyCost: 20,
   perfectStatuses: {
-    target: [Burned(0.95, 5, true)],
+    target: [Burned(0.75, 5, true)],
     source: [],
   },
   failureStatuses: {

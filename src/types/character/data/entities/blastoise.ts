@@ -1,6 +1,7 @@
 import { v4 } from 'uuid'
 import { Torrent } from '../../../ability/data/Torrent'
 import { WaterElement } from '../../../elemental/data/WaterElement'
+import { Surf } from '../../../move/data/Surf'
 import { WaterShot } from '../../../move/data/WaterShot'
 import { Character } from '../../character'
 import { BASE_CHARACTER } from './BASE_CHARACTER'
@@ -34,5 +35,5 @@ export const Blastoise = (): Character => ({
     specialAttack: 85,
     specialDefense: 105,
   },
-  moves: [WaterShot],
+  moves: [WaterShot, Surf],
 })

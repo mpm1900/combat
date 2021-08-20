@@ -8,12 +8,14 @@ import { GrassElement } from '../../../elemental/data/GrassElement'
 import { LightElement } from '../../../elemental/data/LightElement'
 import { BookOfFlight } from '../../../item/data/BookOfFlight'
 import { Blitz } from '../../../move/data/Blitz'
+import { ConfuseRay } from '../../../move/data/ConfuseRay'
 import { Curse } from '../../../move/data/Curse'
 import { DoubleTeam } from '../../../move/data/DoubleTeam'
 import { FireBall } from '../../../move/data/FireBall'
 import { FlareBlitz } from '../../../move/data/FlareBlitz'
 import { Focus } from '../../../move/data/Focus'
 import { Protect } from '../../../move/data/Protect'
+import { Psybeam } from '../../../move/data/Psybeam'
 import { Rest } from '../../../move/data/Rest'
 import { Silence } from '../../../move/data/Silence'
 import { TimeWarp } from '../../../move/data/TimeWarp'
@@ -37,7 +39,7 @@ export const Mew = (): Character => ({
   stats: {
     ...BASE_CHARACTER.stats,
     health: 100,
-    speed: 100,
+    speed: 200,
     energy: 100,
     initiative: 100,
     evasion: 5,
@@ -50,5 +52,5 @@ export const Mew = (): Character => ({
     specialAttack: 100,
     specialDefense: 100,
   },
-  moves: [DoubleTeam, Rest, TimeWarp, Blitz, Protect, Focus, Curse, Silence],
+  moves: [ConfuseRay, Psybeam, Protect, Focus],
 })

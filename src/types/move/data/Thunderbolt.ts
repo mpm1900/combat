@@ -8,17 +8,17 @@ export const Thunderbolt: Move = {
   type: 'special',
   element: 'thunder',
   target: 'uncontrolled-active-target',
-  checks: 1,
-  offset: -5,
-  power: 45,
+  checks: 3,
+  offset: 0,
+  power: 90,
   recovery: 100,
   energyCost: 0,
   perfectStatuses: {
-    target: [Shocked(0.95, 5, true)],
+    target: [Shocked(0.05, 5, true)],
     source: [],
   },
   failureStatuses: {
     target: [],
-    source: [Shocked(0.95, 5, false)],
+    source: [Shocked(0.5, 5, false)],
   },
 }

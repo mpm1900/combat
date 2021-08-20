@@ -9,13 +9,13 @@ export const ThunderPunch: Move = {
   type: 'physical',
   element: 'thunder',
   target: 'uncontrolled-active-target',
-  checks: 3,
+  checks: 2,
   offset: 0,
-  power: 85,
+  power: 60,
   recovery: 100,
   energyCost: 10,
   perfectStatuses: {
-    target: [Dazed(0.55, 3, true), Shocked(0.75, 5, true)],
+    target: [Shocked(0.25, 5, true)],
     source: [],
   },
   failureStatuses: {

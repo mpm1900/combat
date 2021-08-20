@@ -5,6 +5,7 @@ import { Blitz } from '../../../move/data/Blitz'
 import { Curse } from '../../../move/data/Curse'
 import { DoubleTeam } from '../../../move/data/DoubleTeam'
 import { Focus } from '../../../move/data/Focus'
+import { NightSlash } from '../../../move/data/NightSlash'
 import { Protect } from '../../../move/data/Protect'
 import { Rest } from '../../../move/data/Rest'
 import { Silence } from '../../../move/data/Silence'
@@ -42,5 +43,5 @@ export const Darkrai = (): Character => ({
     specialAttack: 135,
     specialDefense: 90,
   },
-  moves: [DoubleTeam, Rest, TimeWarp, Blitz, Protect, Focus, Curse, Silence],
+  moves: [DoubleTeam, TimeWarp, NightSlash, Curse, Silence],
 })

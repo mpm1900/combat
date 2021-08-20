@@ -7,9 +7,9 @@ export const AirSlash: Move = {
   type: 'physical',
   element: 'air',
   target: 'uncontrolled-active-target',
-  checks: 2,
-  offset: 0,
-  power: 70,
+  checks: 3,
+  offset: -5,
+  power: 75,
   recovery: 100,
   energyCost: 0,
   perfectStatuses: {

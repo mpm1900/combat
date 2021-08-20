@@ -1,24 +1,25 @@
 import { v4 } from 'uuid'
 import { Burned } from '../../status/data/Burning'
+import { Confused } from '../../status/data/Confused'
 import { Move } from '../move'
 
-export const FireBall: Move = {
+export const Psybeam: Move = {
   id: v4(),
-  name: 'Fire Ball',
+  name: 'Psybeam',
   type: 'special',
-  element: 'fire',
+  element: 'light',
   target: 'uncontrolled-active-target',
-  checks: 1,
-  offset: -10,
-  power: 45,
+  checks: 2,
+  offset: 0,
+  power: 65,
   recovery: 100,
-  energyCost: 0,
+  energyCost: 5,
   perfectStatuses: {
-    target: [Burned(0.25, 5, true)],
+    target: [Confused(0.1, 10, true)],
     source: [],
   },
   failureStatuses: {
     target: [],
-    source: [Burned(0.5, 5, false)],
+    source: [],
   },
 }
