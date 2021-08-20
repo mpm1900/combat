@@ -39,7 +39,7 @@ export const Mew = (): Character => ({
   stats: {
     ...BASE_CHARACTER.stats,
     health: 100,
-    speed: 200,
+    speed: 100,
     energy: 100,
     initiative: 100,
     evasion: 5,
