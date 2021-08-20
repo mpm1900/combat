@@ -72,7 +72,11 @@ export const getMoveTableColumns = (
       accessor: 'type',
       Cell: (props) => <TypeIcon height='24px' type={props.value} />,
     },
-
+    {
+      Header: 'crit',
+      accessor: 'criticalOffset',
+      Cell: (props: any) => <NumberBox>+{props.value * 100}%</NumberBox>,
+    },
     {
       Header: 'power',
       accessor: 'power',

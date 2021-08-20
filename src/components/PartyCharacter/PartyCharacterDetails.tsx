@@ -24,23 +24,22 @@ export const PartyCharacterDetails = (props: PartyCharacterProps) => {
     .map((_, i) => character.moves[i])
   return (
     <Box overflow='hidden'>
-      <Box
-        flexDirection='row'
-        justifyContent='space-around'
-        margin='32px 0 16px 0'
-      >
+      <Box flexDirection='row' margin='32px 0 8px 0'>
         <Button
+          marginRight='8px'
           isHovering={activeTab === 'edit'}
           onClick={() => setActiveTab('edit')}
         >
           Edit
         </Button>
         <Button
+          marginRight='8px'
           isHovering={activeTab === 'view'}
           onClick={() => setActiveTab('view')}
         >
-          Details
+          Moves
         </Button>
+        <Button>Items</Button>
       </Box>
       <Box
         overflow='auto'
