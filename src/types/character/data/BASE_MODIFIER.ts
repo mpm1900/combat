@@ -19,6 +19,7 @@ export const BASE_MODIFIER: ResolvedModifier = {
     forceCombatCheckFailure: { m: 1, b: 0 },
     memory: { m: 1, b: 0 },
     equip: { m: 1, b: 0 },
+    recoilDamage: { m: 0, b: 0 },
 
     physicalAccuracy: { m: 1, b: 0 },
     physicalAttack: { m: 1, b: 0 },

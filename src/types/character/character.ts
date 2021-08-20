@@ -43,6 +43,7 @@ export type BaseCharacterStats = {
   forceCombatCheckFailure: number
   memory: number
   equip: number
+  recoilDamage: number
 }
 
 export type CharacterStats = BaseCharacterStats &

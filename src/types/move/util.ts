@@ -144,9 +144,11 @@ export const resolveMove = (
     target: getResolvedStatuses(statuses.target, target, true),
   }
 
+  const recoilDamage = dodged ? 0 : totalDamage * move.recoilRatio
+
   return {
     totalDamage: dodged ? 0 : totalDamage,
-    recoilDamage: dodged ? 0 : totalDamage * move.recoilRatio,
+    recoilDamage: dodged ? 0 : recoilDamage + sMods.recoilDamage(recoilDamage),
     critical: critical && perfect && totalDamage > 0,
     dodged: dodged && totalDamage > 0,
     statuses: resolvedStatuses,

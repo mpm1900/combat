@@ -18,6 +18,7 @@ export const ZERO_STATS: ResolvedCharacterStats = {
   forceCombatCheckFailure: 0,
   memory: 0,
   equip: 0,
+  recoilDamage: 0,
   physicalAccuracy: 0,
   physicalAttack: 0,
   physicalDefense: 0,

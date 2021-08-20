@@ -26,6 +26,7 @@ export const statKeyMap: Record<keyof CharacterStats, string> = {
   forceCombatCheckFailure: 'Forced Check Failure',
   memory: 'Memory',
   equip: 'Equipable Item(s)',
+  recoilDamage: 'Recoil Damage',
   physicalAccuracy: 'Physical Accuracy',
   physicalAttack: 'Physical Attack',
   physicalDefense: 'Physical Defense',
