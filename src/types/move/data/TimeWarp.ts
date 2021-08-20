@@ -1,8 +1,10 @@
 import { v4 } from 'uuid'
 import { Warped } from '../../status/data/Warped'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const TimeWarp: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Time Warp',
   type: 'special',

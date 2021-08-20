@@ -1,7 +1,9 @@
 import { v4 } from 'uuid'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const AirSlash: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Air Slash',
   type: 'physical',

@@ -1,8 +1,10 @@
 import { v4 } from 'uuid'
 import { Focused } from '../../status/data/Focused'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const Focus: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Focus',
   type: 'special',

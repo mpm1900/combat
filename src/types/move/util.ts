@@ -117,7 +117,7 @@ export const resolveMove = (
     !(source.id === target.id)
   const baseDamage = (successes / move.checks) * (move.power || 0)
   const damageModifier = getMoveDamageModifier(move, sStats, tStats)
-  const [critical] = getRolls(1, sStats.criticalChance)
+  const [critical] = getRolls(1, sStats.criticalChance + move.criticalOffset)
   const criticalMod = critical && perfect ? sStats.criticalDamage : 1
   const rawDamage = baseDamage * damageModifier * criticalMod
   const armorKey = `${move.type}Armor` as keyof ArmorStats

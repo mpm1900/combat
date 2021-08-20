@@ -2,8 +2,10 @@ import { v4 } from 'uuid'
 import { Burned } from '../../status/data/Burning'
 import { Dazed } from '../../status/data/Dazed'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const SleepPowder: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Sleep Powder',
   type: 'special',

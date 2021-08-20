@@ -1,21 +1,20 @@
 import { v4 } from 'uuid'
-import { Silenced } from '../../status/data/Silenced'
 import { Move } from '../move'
-import { BASE_MOVE } from './BASE_MOVE'
 
-export const Silence: Move = {
-  ...BASE_MOVE,
+export const BASE_MOVE: Move = {
   id: v4(),
-  name: 'Silence',
+  name: '',
   type: 'special',
-  element: 'ghost',
+  element: 'normal',
   target: 'uncontrolled-active-target',
-  checks: 2,
+  checks: 1,
   offset: 0,
+  power: 0,
+  criticalOffset: 0,
   recovery: 100,
-  energyCost: 10,
+  energyCost: 0,
   perfectStatuses: {
-    target: [Silenced(1, 6, true)],
+    target: [],
     source: [],
   },
   failureStatuses: {

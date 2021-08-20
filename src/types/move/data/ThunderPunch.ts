@@ -1,9 +1,10 @@
 import { v4 } from 'uuid'
-import { Dazed } from '../../status/data/Dazed'
 import { Shocked } from '../../status/data/Shocked'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const ThunderPunch: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Thunder Punch',
   type: 'physical',

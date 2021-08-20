@@ -1,8 +1,10 @@
 import { v4 } from 'uuid'
 import { Wet } from '../../status/data/Wet'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const WaterShot: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Water Shot',
   type: 'special',

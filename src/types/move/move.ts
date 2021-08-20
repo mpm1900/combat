@@ -38,6 +38,7 @@ export type Move = {
   energyCost: number
   recovery: number
   power?: number
+  criticalOffset: number
   attributes?: MoveAttribute[]
   perfectStatuses?: MoveStatuses
   failureStatuses?: MoveStatuses

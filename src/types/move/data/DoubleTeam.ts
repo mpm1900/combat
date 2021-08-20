@@ -1,8 +1,10 @@
 import { v4 } from 'uuid'
 import { Evasive } from '../../status/data/Evasive'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const DoubleTeam: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Double Team',
   type: 'special',

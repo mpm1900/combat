@@ -1,8 +1,10 @@
 import { v4 } from 'uuid'
 import { Protected } from '../../status/data/Protected'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const Protect: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Protect',
   type: 'special',

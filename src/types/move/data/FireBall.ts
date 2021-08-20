@@ -1,8 +1,10 @@
 import { v4 } from 'uuid'
 import { Burned } from '../../status/data/Burning'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const FireBall: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Fire Ball',
   type: 'special',

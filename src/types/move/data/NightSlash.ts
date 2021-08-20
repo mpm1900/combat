@@ -1,9 +1,10 @@
 import { v4 } from 'uuid'
-import { Burned } from '../../status/data/Burning'
 import { CriticalChanceUp } from '../../status/data/CriticalChanceUp'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const NightSlash: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'NightSlash',
   type: 'physical',

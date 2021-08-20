@@ -1,8 +1,10 @@
 import { v4 } from 'uuid'
 import { Teleported } from '../../status/data/Teleported'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const Blitz: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Blitz',
   type: 'physical',

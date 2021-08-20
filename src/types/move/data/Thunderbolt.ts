@@ -1,8 +1,10 @@
 import { v4 } from 'uuid'
 import { Shocked } from '../../status/data/Shocked'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const Thunderbolt: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Thunderbolt',
   type: 'special',
@@ -12,7 +14,7 @@ export const Thunderbolt: Move = {
   offset: 0,
   power: 90,
   recovery: 100,
-  energyCost: 0,
+  energyCost: 10,
   perfectStatuses: {
     target: [Shocked(0.05, 5, true)],
     source: [],

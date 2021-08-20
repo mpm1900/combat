@@ -1,7 +1,9 @@
 import { v4 } from 'uuid'
 import { Move } from '../move'
+import { BASE_MOVE } from './BASE_MOVE'
 
 export const VineWhip: Move = {
+  ...BASE_MOVE,
   id: v4(),
   name: 'Vine Whip',
   type: 'special',
