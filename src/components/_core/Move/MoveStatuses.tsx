@@ -39,7 +39,7 @@ export const MoveStatuses = (props: MoveStatusesProps) => {
     ? getMoveFailureChance(move, character)
     : undefined
 
-  if (!hasFailureStatuses && !(hasPerfectStatuses || move.criticalOffset > 0))
+  if (!hasFailureStatuses && !(hasPerfectStatuses || move.criticalChance > 0))
     return null
   return (
     <Box
@@ -48,13 +48,13 @@ export const MoveStatuses = (props: MoveStatusesProps) => {
       margin='0 -8px 8px -8px'
       {...rest}
     >
-      {(hasPerfectStatuses || move.criticalOffset > 0) && showPerfect && (
+      {(hasPerfectStatuses || move.criticalChance > 0) && showPerfect && (
         <MoveStatusesSection
           checks={move.checks}
           chance={perfectChance}
           statuses={move.perfectStatuses}
           title={perfectTitle}
-          critOffset={move.criticalOffset}
+          critOffset={move.criticalChance}
         />
       )}
       {hasFailureStatuses && showFailure && (

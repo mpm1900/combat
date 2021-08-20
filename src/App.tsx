@@ -12,10 +12,11 @@ import { Party } from './types/character/party'
 import Forest from './assets/2.png'
 import { Routes } from './routes'
 import { AppHeader } from './components/AppHeader'
+import { Venusaur } from './types/character/data/entities/venusaur'
 
 const enemies = (): Party => ({
   id: v4(),
-  characters: [Raichu(), Darkrai(), Golem(), Pidgeot()],
+  characters: [Raichu(), Darkrai(), Venusaur(), Pidgeot()],
 })
 
 function App() {

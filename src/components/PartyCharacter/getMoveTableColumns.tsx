@@ -74,7 +74,7 @@ export const getMoveTableColumns = (
     },
     {
       Header: 'recoil',
-      accessor: 'recoilRatio',
+      accessor: 'recoilDamage',
       Cell: (props: any) => <NumberBox>{props.value * 100}%</NumberBox>,
     },
     {

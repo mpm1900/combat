@@ -13,7 +13,7 @@ import {
   getStats,
   getStatsAndEquations,
 } from '../character/util'
-import { min } from '../equation'
+import { Equation, min } from '../equation'
 import { ResolvedStatus, Status } from '../status/status'
 import { resolveStatus } from '../status/util'
 import { Move, MoveResolvedStatuses, MoveStatuses } from './move'
@@ -89,9 +89,64 @@ export const getResolvedStatuses = (
     )
 }
 
+type Mods = Record<keyof CharacterStats, Equation>
+
+export const getElementalDamageOffset = (
+  move: Move,
+  rawDamage: number,
+  sourceMods: Mods,
+  targetMods: Mods,
+) => {
+  const elementalDamageKey =
+    `${move.element}Damage` as keyof ElementalDamageStats
+  const elementalResistanceKey =
+    `${move.element}Resistance` as keyof ElementalResistanceStats
+  const eSourceDamage = sourceMods[elementalDamageKey](rawDamage)
+  const eTargetDamage = targetMods[elementalResistanceKey](
+    rawDamage + eSourceDamage,
+  )
+  return eSourceDamage - eTargetDamage
+}
+
+export const getArmorDamageOffset = (
+  move: Move,
+  targetStats: CharacterStats,
+) => {
+  const armorKey = `${move.type}Armor` as keyof ArmorStats
+  const armor = targetStats[armorKey] || 0
+  return min(armor - move.armorPenetration, 0)
+}
+
+export const getRecoilDamage = (
+  move: Move,
+  totalDamage: number,
+  sourceMods: Mods,
+) => {
+  const recoilDamage = totalDamage * move.recoilDamage
+  return recoilDamage + sourceMods.recoilDamage(recoilDamage)
+}
+
+export const getMoveStatuses = (
+  move: Move,
+  perfect: boolean,
+  failure: boolean,
+) => {
+  return (
+    (perfect
+      ? move.perfectStatuses
+      : failure
+      ? move.failureStatuses
+      : move.neitherStatuses) || { target: [], source: [] }
+  )
+}
+
 export type MoveResult = {
   totalDamage: number
   recoilDamage: number
+  damageModifier: number
+  elementalDamageModifier: number
+  armorDamageReduction: number
+  successes: number
   critical: boolean
   dodged: boolean
   statuses: MoveResolvedStatuses
@@ -109,48 +164,42 @@ export const resolveMove = (
   const [sStats, { stats: sMods }] = getStatsAndEquations(source)
   const [tStats, { stats: tMods }] = getStatsAndEquations(target)
   const successes = rolls.filter(Boolean).length
-  const perfect = successes === move.checks
-  const failure = successes === 0
-  const dodged =
+  const isPerfect = successes === move.checks
+  const isFailure = successes === 0
+  const isDodged =
     getRolls(1, tStats.evasion)[0] &&
-    !perfect &&
-    !failure &&
+    !isPerfect &&
+    !isFailure &&
     !(source.id === target.id)
   const baseDamage = (successes / move.checks) * (move.power || 0)
   const damageModifier = getMoveDamageModifier(move, sStats, tStats)
-  const [critical] = getRolls(1, sStats.criticalChance + move.criticalOffset)
-  const criticalMod = critical && perfect ? sStats.criticalDamage : 1
-  const rawDamage = baseDamage * damageModifier * criticalMod
-  const armorKey = `${move.type}Armor` as keyof ArmorStats
-  const elementalDamageKey =
-    `${move.element}Damage` as keyof ElementalDamageStats
-  const elementalResistanceKey =
-    `${move.element}Resistance` as keyof ElementalResistanceStats
-  const eSourceDamage = sMods[elementalDamageKey](rawDamage)
-  const eTargetDamage = tMods[elementalResistanceKey](rawDamage + eSourceDamage)
-  const armor = tStats[armorKey]
+  const [isCritical] = getRolls(1, sStats.criticalChance + move.criticalChance)
+  const criticalModifier = isCritical && isPerfect ? sStats.criticalDamage : 1
+  const rawDamage = baseDamage * damageModifier * criticalModifier
+  const armorDamageReduction = getArmorDamageOffset(move, tStats)
+  const elementDamage = getElementalDamageOffset(move, rawDamage, sMods, tMods)
+  const resolvedDamage = rawDamage + elementDamage - armorDamageReduction
   const totalDamage =
-    rawDamage === 0
-      ? 0
-      : min(Math.floor(rawDamage + eSourceDamage - eTargetDamage) - armor, 0)
-  const statuses: MoveStatuses = (perfect
-    ? move.perfectStatuses
-    : failure
-    ? move.failureStatuses
-    : move.neitherStatuses) || { target: [], source: [] }
-
+    rawDamage === 0 || isDodged ? 0 : min(Math.floor(resolvedDamage), 0)
+  const recoilDamage = isDodged ? 0 : getRecoilDamage(move, totalDamage, sMods)
+  const statuses = getMoveStatuses(move, isPerfect, isFailure)
   const resolvedStatuses: MoveResolvedStatuses = {
     source: getResolvedStatuses(statuses.source, source),
     target: getResolvedStatuses(statuses.target, target, true),
   }
 
-  const recoilDamage = dodged ? 0 : totalDamage * move.recoilRatio
+  const elementalDamageModifier =
+    rawDamage === 0 ? 0 : (rawDamage + elementDamage) / rawDamage
 
   return {
-    totalDamage: dodged ? 0 : totalDamage,
-    recoilDamage: dodged ? 0 : recoilDamage + sMods.recoilDamage(recoilDamage),
-    critical: critical && perfect && totalDamage > 0,
-    dodged: dodged && totalDamage > 0,
+    totalDamage,
+    recoilDamage,
+    damageModifier,
+    elementalDamageModifier,
+    armorDamageReduction,
+    successes,
+    critical: isCritical && isPerfect && totalDamage > 0,
+    dodged: isDodged && resolvedDamage > 0,
     statuses: resolvedStatuses,
     source,
     target,

@@ -121,7 +121,17 @@ const TargetResult = (props: TargetResultProps) => {
           width='36px'
           margin='8px'
           character={result.target}
-        />
+        >
+          <Box
+            style={{
+              lineHeight: '32px',
+              fontSize: '12px',
+              textAlign: 'center',
+            }}
+          >
+            {result.elementalDamageModifier.toFixed(2)}
+          </Box>
+        </CombatCharacterAvatar>
         {result.move.power ? (
           <Box width='100px' alignItems='center' position='relative'>
             <AnimatedNumber

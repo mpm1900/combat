@@ -103,18 +103,44 @@ export const useCombatActions = () => {
       targetsBuffer?.forEach((char, i) => {
         if (moveResults[i]) {
           const result = moveResults[i]
-          push(
-            <>
-              {result.critical ? (
-                <>
-                  <Box marginRight='4px'>Critical Hit on</Box>
-                  <LogCharacter characterId={char.id}>{char.name}</LogCharacter>
-                </>
-              ) : (
-                ''
-              )}
-            </>,
-          )
+          if (result.move.power) {
+            push(
+              <>
+                <LogCharacter
+                  paddingLeft='16px'
+                  characterId={char.id}
+                  style={{ fontSize: '10px', fontWeight: 700 }}
+                >
+                  {char.name}
+                </LogCharacter>
+                <Box
+                  marginRight='4px'
+                  style={{ fontSize: '10px' }}
+                  justifyContent='center'
+                >
+                  {': '}
+                  {result.move.power}
+                  {' x '}
+                  {(result.successes / result.move.checks).toFixed(2)}
+                  {' x '}
+                  {result.damageModifier.toFixed(2)}
+                  {' x '}
+                  {result.elementalDamageModifier.toFixed(2)}
+                  {' - '}
+                  {result.armorDamageReduction}
+                </Box>
+              </>,
+            )
+          }
+          if (result.critical) {
+            push(
+              <>
+                <Box marginRight='4px'>Critical Hit on</Box>
+                <LogCharacter characterId={char.id}>{char.name}</LogCharacter>
+              </>,
+            )
+          }
+
           push(
             <>
               {result.dodged ? (

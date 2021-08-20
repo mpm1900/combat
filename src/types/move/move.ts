@@ -38,9 +38,10 @@ export type Move = {
   energyCost: number
   recovery: number
   power?: number
-  criticalOffset: number
-  recoilRatio: number
-  attributes?: MoveAttribute[]
+  criticalChance: number
+  criticalDamage: number
+  recoilDamage: number
+  armorPenetration: number
   perfectStatuses?: MoveStatuses
   failureStatuses?: MoveStatuses
   neitherStatuses?: MoveStatuses

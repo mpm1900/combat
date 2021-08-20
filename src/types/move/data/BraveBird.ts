@@ -12,7 +12,7 @@ export const BraveBird: Move = {
   checks: 2,
   offset: -15,
   power: 120,
-  recoilRatio: 0.33,
+  recoilDamage: 0.33,
   recovery: 100,
   energyCost: 20,
   perfectStatuses: {

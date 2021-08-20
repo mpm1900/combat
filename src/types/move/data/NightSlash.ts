@@ -13,7 +13,7 @@ export const NightSlash: Move = {
   checks: 2,
   offset: 0,
   power: 70,
-  criticalOffset: 0.25,
+  criticalChance: 0.25,
   recovery: 100,
   energyCost: 0,
   perfectStatuses: {
