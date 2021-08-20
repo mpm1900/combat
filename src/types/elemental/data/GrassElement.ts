@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { VineWhip } from '../../move/data/VineWhip'
 import { Elemental } from '../elemental'
 
 export const GrassElement: Elemental = {
@@ -22,5 +23,5 @@ export const GrassElement: Elemental = {
       },
     },
   ],
-  moves: [],
+  moves: [VineWhip],
 }

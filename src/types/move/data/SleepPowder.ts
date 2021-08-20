@@ -11,9 +11,9 @@ export const SleepPowder: Move = {
   target: 'uncontrolled-active-target',
   checks: 4,
   offset: 0,
-  power: 10,
+  power: 20,
   recovery: 100,
-  energyCost: 0,
+  energyCost: 10,
   perfectStatuses: {
     target: [Dazed(0.95, 5, true)],
     source: [],

@@ -5,7 +5,7 @@ import { Move } from '../move'
 export const Blitz: Move = {
   id: v4(),
   name: 'Blitz',
-  type: 'special',
+  type: 'physical',
   element: 'thunder',
   target: 'controlled-active-ally',
   checks: 2,

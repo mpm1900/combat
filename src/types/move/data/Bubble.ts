@@ -1,20 +1,19 @@
 import { v4 } from 'uuid'
-import { Confused } from '../../status/data/Confused'
 import { Move } from '../move'
 
-export const Psybeam: Move = {
+export const Bubble: Move = {
   id: v4(),
-  name: 'Psybeam',
+  name: 'Bubble',
   type: 'special',
-  element: 'light',
+  element: 'water',
   target: 'uncontrolled-active-target',
   checks: 2,
   offset: 0,
-  power: 65,
+  power: 40,
   recovery: 100,
-  energyCost: 5,
+  energyCost: 0,
   perfectStatuses: {
-    target: [Confused(0.1, 10, true)],
+    target: [],
     source: [],
   },
   failureStatuses: {

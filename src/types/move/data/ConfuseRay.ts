@@ -1,5 +1,4 @@
 import { v4 } from 'uuid'
-import { Burned } from '../../status/data/Burning'
 import { Confused } from '../../status/data/Confused'
 import { Move } from '../move'
 

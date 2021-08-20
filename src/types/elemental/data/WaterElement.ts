@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { Bubble } from '../../move/data/Bubble'
 import { Elemental } from '../elemental'
 
 export const WaterElement: Elemental = {
@@ -22,5 +23,5 @@ export const WaterElement: Elemental = {
       },
     },
   ],
-  moves: [],
+  moves: [Bubble],
 }
