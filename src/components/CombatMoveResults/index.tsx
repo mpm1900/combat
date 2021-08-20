@@ -46,7 +46,7 @@ export const CombatMoveResults = (props: CombatMoveResultProps) => {
   if (!moveResults) return null
 
   return (
-    <Box padding='0 16px' style={wrapperStyles}>
+    <Box padding='24px 16px 0 16px' style={wrapperStyles}>
       <Box style={innerStyles}>
         <CombatMoveResultsHeader moveResults={moveResults} />
         <Box minWidth='366px' justifyContent='center' marginTop='16px'>

@@ -37,16 +37,8 @@ export const CombatMoveResultsDetails = (
     <Box
       padding='16px 8px'
       background={theme.boxGradient}
-      border={`1px solid ${theme.white5}`}
+      border={`1px solid ${theme.white2}`}
     >
-      <Box
-        color='white'
-        marginBottom='8px'
-        textAlign='center'
-        style={{ fontFamily: 'Trade Winds' }}
-      >
-        Targets
-      </Box>
       {moveResults.map((result, i) => (
         <Box key={i} marginTop={i > 0 ? '12px' : 0}>
           <TargetResult

@@ -10,6 +10,7 @@ export const CombatBodySection = (props: CombatBodySectionProps) => {
   return (
     <Box flex='1' overflow='hidden' {...rest}>
       <Box
+        padding='24px 0'
         alignItems='center'
         color='white'
         flexDirection='row'

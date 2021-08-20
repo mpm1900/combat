@@ -25,8 +25,8 @@ export const CombatBody = () => {
   const { benchCharactersToAdd } = useCombatSystemValidation()
 
   return (
-    <Box flex={1} marginTop='24px'>
-      <Box flex='1' alignItems='center'>
+    <Box flex={1}>
+      <Box flex='1'>
         {benchCharactersToAdd > 0 && <CombatBodySwitch />}
         {!moveBuffer &&
           isCharacterPlayerCharacter(activeCharacter?.id || '') && (
